@@ -40,6 +40,7 @@ voting_prizes:
       - netherite_axe
       - netherite_pickaxe
       - turtle_helmet
+      - budding_amethyst[quantity=1]
       - spectral_arrow[quantity=256]
       - <list[bee|cat|cow|dolphin|donkey|fox|horse|llama|mule|ocelot|panda|parrot|pig|polar_bear|pufferfish|rabbit|sheep|tropical_fish|wolf|axolotl].random>_spawn_egg
       - royal_halberd
@@ -50,6 +51,11 @@ voting_prizes:
       - paper[custom_model_data=7100;display_name=Mergu Plushie;quantity=1]
       - paper[custom_model_data=8400;display_name=EyelessTenshi Plushie;quantity=1]
       - paper[custom_model_data=12211;display_name=Froggy Chair;quantity=1]
+      - paper[custom_model_data=16001;display_name=Drippy Dampe Plushie;quantity=1]
+      - paper[custom_model_data=16002;display_name=Postman Plushie;quantity=1]
+      - paper[custom_model_data=16003;display_name=Speckled Man Plushie;quantity=1]
+      - paper[custom_model_data=16005;display_name=King's Crown;quantity=1]
+      - paper[custom_model_data=16006;display_name=Loftwing Plushie;quantity=1]
       - kass_theme_custom_record
     common:
       - Flytime_6-Minutes
@@ -87,6 +93,8 @@ voting_prizes:
       - honey_bottle[quantity=3]
       - wither_rose[quantity=8]
       - lodestone
+      - shroomlight[quantity=16]
+      - amethyst_shard[quantity=4]
       - phantom_membrane[quantity=8]
       - dragon_breath[quantity=24]
       - <list[flower|creeper|skull|mojang|globe|piglin].random>_banner_pattern
