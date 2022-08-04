@@ -40,7 +40,7 @@ voting_prizes:
       - netherite_axe
       - netherite_pickaxe
       - turtle_helmet
-      - budding_amethyst[quantity=1]
+      - budding_amethyst
       - spectral_arrow[quantity=256]
       - <list[bee|cat|cow|dolphin|donkey|fox|horse|llama|mule|ocelot|panda|parrot|pig|polar_bear|pufferfish|rabbit|sheep|tropical_fish|wolf|axolotl].random>_spawn_egg
       - royal_halberd
