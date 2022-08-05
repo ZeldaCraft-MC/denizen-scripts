@@ -47,6 +47,7 @@ voting_prizes:
       - bomb_item[quantity=8]
       - spore_blossom
       - paper[custom_model_data=5000;display_name=Lon Lon Milk Jar;quantity=5]
+<<<<<<< Updated upstream
       - paper[custom_model_data=7000;display_name=DCaff95 Plushie;quantity=1]
       - paper[custom_model_data=7100;display_name=Mergu Plushie;quantity=1]
       - paper[custom_model_data=8400;display_name=EyelessTenshi Plushie;quantity=1]
@@ -56,6 +57,12 @@ voting_prizes:
       - paper[custom_model_data=16003;display_name=Speckled Man Plushie;quantity=1]
       - paper[custom_model_data=16005;display_name=King's Crown;quantity=1]
       - paper[custom_model_data=16006;display_name=Loftwing Plushie;quantity=1]
+=======
+      - paper[custom_model_data=7000;display_name=DCaff95 Plushie]
+      - paper[custom_model_data=7100;display_name=Mergu Plushie]
+      - paper[custom_model_data=8400;display_name=EyelessTenshi Plushie]
+      - paper[custom_model_data=12211;display_name=Froggy Chair]
+>>>>>>> Stashed changes
       - kass_theme_custom_record
     common:
       - Flytime_6-Minutes
