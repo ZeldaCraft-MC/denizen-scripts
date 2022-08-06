@@ -50,7 +50,7 @@ voting_prizes:
       - paper[custom_model_data=7000;display_name=DCaff95 Plushie]
       - paper[custom_model_data=7100;display_name=Mergu Plushie]
       - paper[custom_model_data=8400;display_name=EyelessTenshi Plushie]
-      - paper[custom_model_data=12211;display_name=Froggy Chair;]
+      - paper[custom_model_data=12211;display_name=Froggy Chair]
       - paper[custom_model_data=16001;display_name=Drippy Dampe Plushie]
       - paper[custom_model_data=16002;display_name=Postman Plushie]
       - paper[custom_model_data=16003;display_name=Speckled Man Plushie]
