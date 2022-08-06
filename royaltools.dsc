@@ -4,7 +4,7 @@ royal_pickaxe:
   material: golden_pickaxe
   display name: <&6>Royal Pickaxe
   mechanisms:
-    custom_model_data: 700
+  custom_model_data: 700
 
 royal_hoe:
   type: item
@@ -12,7 +12,7 @@ royal_hoe:
   material: golden_hoe
   display name: <&6>Royal Hoe
    mechanisms:
-    custom_model_data: 700
+  custom_model_data: 700
 
 royal_axe:
   type: item
@@ -20,7 +20,7 @@ royal_axe:
   material: golden_axe
   display name: <&6>Royal Axe
    mechanisms:
-    custom_model_data: 700
+  custom_model_data: 700
 
 royal_shovel:
   type: item
@@ -28,4 +28,4 @@ royal_shovel:
   material: golden_shovel
   display name: <&6>Royal Shovel
    mechanisms:
-    custom_model_data: 700
+  custom_model_data: 700
