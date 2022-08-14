@@ -24,6 +24,17 @@ zc_monkey_shovel:
         - diamond
         - zc_mythril_hilt
 
+banana:
+  type: item
+  debug: false
+  material: apple
+  display name: Banana
+  mechanisms:
+    custom_model_data: 100
+  lore:
+    - This fruit grows mainly in tropical
+    - forests of the Faron region.
+
 monkey_head:
   type: item
   debug: false
@@ -45,15 +56,14 @@ monkey_head:
         - banana|wither_skeleton_skull|banana
         - banana|banana|banana
 
-place_monkey:
+monkey_shovel_events:
   type: world
-  events:
-    on player places monkey_head:
-    - determine cancelled
-
-banana_drops:
-  type: world
+  debug: false
   events:
     on jungle_leaves decay:
+    - if <context.location.world.name> not in s1|s2|newnether|theendkek|resources|resources_nether|resources_the_end|resources_nullscape_end_island:
+      - stop
     - if <util.random_chance[3]>:
       - drop banana <context.location>
+    on player places monkey_head:
+    - determine cancelled

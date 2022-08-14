@@ -118,7 +118,6 @@ mythril_dragon_scale:
         - zc_dragon_scale|zc_mythril|zc_dragon_scale
         - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
 
-
 gear_of_time:
   type: item
   debug: false
