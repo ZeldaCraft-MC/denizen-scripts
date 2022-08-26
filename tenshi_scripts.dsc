@@ -4,7 +4,7 @@ tempered_iron_plate:
   material: iron_ingot
   data:
     discover: true
-  display name: Tempered Iron Plate
+  display name: <&color[#999999]>Tempered Iron Plate
   enchantments:
     - LUCK: 1
   mechanisms:
@@ -12,8 +12,8 @@ tempered_iron_plate:
     hides:
       - ENCHANTS
   lore:
-    - A solid plate perfect for
-    - armor smithing.
+    - <&color[#eeeeee]>A solid plate perfect for
+    - <&color[#eeeeee]>armor smithing.
   recipes:
     1:
       type: shaped
@@ -414,3 +414,238 @@ chu_chu_club:
         - chu_chu_jelly
         - chu_chu_jelly
         - stick
+
+plate_of_power:
+  type: item
+  debug: false
+  material: fermented_spider_eye
+  data:
+    discover: true
+  display name: <&color[#b63737]>Plate of Power
+  mechanisms:
+    custom_model_data: 500
+    enchantments:
+      - LUCK: 1
+    hides:
+      - ENCHANTS
+  lore:
+    - <&color[#d24848]>Forged from the
+    - <&color[#d24848]>fallen souls. Power
+    - <&color[#d24848]>overcomes weakness.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
+        - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
+        - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
+
+plate_of_wisdom:
+  type: item
+  debug: false
+  material: gold_ingot
+  data:
+    discover: true
+  display name: <&color[#f1c232]>Plate of Wisdom
+  mechanisms:
+    custom_model_data: 500
+    enchantments:
+      - LUCK: 1
+    hides:
+      - ENCHANTS
+  lore:
+    - <&color[#ffe599]>From the brighest
+    - <&color[#ffe599]>of minds come the
+    - <&color[#ffe599]>strongest warriors.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - zc_shard_of_wisdom|zc_shard_of_wisdom|zc_shard_of_wisdom
+        - zc_shard_of_wisdom|zc_shard_of_wisdom|zc_shard_of_wisdom
+        - zc_shard_of_wisdom|zc_shard_of_wisdom|zc_shard_of_wisdom
+
+
+plate_of_courage:
+  type: item
+  debug: false
+  material: scute
+  data:
+    discover: true
+  display name: <&color[#6aa84f]>Plate of Courage
+  mechanisms:
+    custom_model_data: 500
+    enchantments:
+      - LUCK: 1
+    hides:
+      - ENCHANTS
+  lore:
+    - <&color[#b6d7a8]>Let tenacity and
+    - <&color[#b6d7a8]>determination shine
+    - <&color[#b6d7a8]>strong without fear.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - zc_shard_of_courage|zc_shard_of_courage|zc_shard_of_courage
+        - zc_shard_of_courage|zc_shard_of_courage|zc_shard_of_courage
+        - zc_shard_of_courage|zc_shard_of_courage|zc_shard_of_courage
+
+keese_kleaver:
+  type: item
+  debug: false
+  material: netherite_axe
+  data:
+    discover: true
+  display name: <&color[#351c75]>Keese Kleaver
+  mechanisms:
+    custom_model_data: 500
+    enchantments:
+      - DAMAGE_ALL: 5
+  lore:
+    - <&color[#674ea7]>Erratic movements allow
+    - <&color[#674ea7]>you to strike your enemies
+    - <&color[#674ea7]>down with ease.
+
+  recipes:
+    1:
+      type: shaped
+      input:
+        - tempered_iron_plate|tempered_iron_plate|keese_wing
+        - tempered_iron_plate|keese_eye|air
+        - air|stick|air
+
+keese_bat_effect:
+  type: world
+  debug: false
+  events:
+    on player kills entity:
+    - if <context.cause> == entity_attack:
+      - if <context.damager.item_in_hand.script.name.if_null[null]> == keese_kleaver:
+        - define players <context.damager.location.find_players_within[20]>
+        - repeat 5:
+          - define r1 <util.random.decimal[-0.2].to[0.2]>
+          - define r2 <util.random.decimal[-0.2].to[0.2]>
+          - fakespawn bat <context.entity.location> duration:1s players:<[players]>
+
+harp_of_ages:
+  type: item
+  debug: false
+  material: netherite_sword
+  data:
+    discover: true
+  display name: <&color[#6fa8dc]>Harp of Ages
+  mechanisms:
+    custom_model_data: 2700
+    enchantments:
+      - DAMAGE_ALL: 5
+      - LUCK: 3
+  lore:
+    - <&color[#cfe2f3]>Bestowed upon the Hero,
+    - <&color[#fff2cc]>May Nayru's Love flow
+    - <&color[#f4ccdd]>through you with music.
+
+  recipes:
+    1:
+      type: shaped
+      input:
+        - tune_of_currents|tune_of_echoes|tune_of_time
+        - tune_of_currents|tune_of_echoes|tune_of_time
+        - tune_of_currents|tune_of_echoes|tune_of_time
+
+ember_seed:
+  type: item
+  debug: false
+  material: apple
+  data:
+    discover: true
+  display name: Roasted Ember Seed
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    hides:
+      - ENCHANTS
+    custom_model_data: 1400
+  lore:
+    - Tastes spicy!
+    - Better to cook it first!
+
+roasted_ember_seed:
+  type: item
+  debug: false
+  material: apple
+  data:
+    discover: true
+  display name: Roasted Ember Seed
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    hides:
+      - ENCHANTS
+    custom_model_data: 1401
+  lore:
+    - Tastes spicy!
+  recipes:
+    1:
+      type: blast
+      cook_time: 6m
+      experience: 1000
+      input: ember_seed
+
+ember_seed_events:
+  type: world
+  debug: false
+  events:
+    on birch_leaves decay:
+    - if <context.location.world.name> not in s1|s2|newnether|theendkek|resources|resources_nether|resources_the_end|resources_nullscape_end_island:
+      - stop
+    - if <util.random_chance[3]>:
+      - drop ember_seed <context.location>
+
+pegasus_seed:
+  type: item
+  debug: false
+  material: apple
+  data:
+    discover: true
+  display name: Roasted Ember Seed
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    hides:
+      - ENCHANTS
+    custom_model_data: 1500
+  lore:
+    - Better find my track shoes.
+
+roasted_pegasus_seed:
+  type: item
+  debug: false
+  material: apple
+  data:
+    discover: true
+  display name: Roasted Ember Seed
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    hides:
+      - ENCHANTS
+    custom_model_data: 1501
+  lore:
+    - Feels like I can run a marathon!
+  recipes:
+    1:
+      type: blast
+      cook_time: 6m
+      experience: 1000
+      input: pegasus_seed
+
+pegasus_seed_events:
+  type: world
+  debug: false
+  events:
+    on oak_leaves decay:
+    - if <context.location.world.name> not in s1|s2|newnether|theendkek|resources|resources_nether|resources_the_end|resources_nullscape_end_island:
+      - stop
+    - if <util.random_chance[3]>:
+      - drop pegasus_seed <context.location>
