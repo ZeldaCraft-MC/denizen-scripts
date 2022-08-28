@@ -750,8 +750,9 @@ d_butt_w:
     - flag <context.channel> <context.button.map.get[id].after[deny_bug_]>:!
     - ~discordmessage id:zc-info edit:<[msg]> "<[msg].embed.first.with[footer].as[status - Not a Bug].with[color].as[red]>"
     - ~discordinteraction reply interaction:<context.interaction> "The bug report has been set to Not a Bug!"
-    - adjust <[msg].flag[reply_thread]> is_thread_archived:true
-    - adjust <[msg].flag[reply_thread]> is_thread_locked:true
+    - if <[msg].has_flag[reply_thread]>:
+      - adjust <[msg].flag[reply_thread]> is_thread_archived:true
+      - adjust <[msg].flag[reply_thread]> is_thread_locked:true
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Denied Bug Report].with[description].as[<context.interaction.user.name> Denied a bug report<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[lime]>"
     on discord button clicked id:accept_bug_* for:zc-info:
     - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
@@ -764,8 +765,9 @@ d_butt_w:
       - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Accept Bug Report].with[description].as[<context.interaction.user.name> tried to accept a bug report<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[red]>"
       - stop
     - flag <context.channel> <context.button.map.get[id].after[accept_bug_]>:!
-    - adjust <[msg].flag[reply_thread]> is_thread_archived:true
-    - adjust <[msg].flag[reply_thread]> is_thread_locked:true
+    - if <[msg].has_flag[reply_thread]>:
+      - adjust <[msg].flag[reply_thread]> is_thread_archived:true
+      - adjust <[msg].flag[reply_thread]> is_thread_locked:true
     - ~discordmessage id:zc-info edit:<[msg]> "<[msg].embed.first.with[footer].as[status - Fixed].with[color].as[lime]>"
     - ~discordinteraction reply interaction:<context.interaction> "Suggestion accepted."
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Accept Bug Report].with[description].as[<context.interaction.user.name> marked a bug report as fixed<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[lime]>"
@@ -779,8 +781,9 @@ d_butt_w:
       - ~discordinteraction reply interaction:<context.interaction> "You cannot deny a suggestion!"
       - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Denied Suggestion].with[description].as[<context.interaction.user.name> tried to mark a suggestion as denied<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[red]>"
       - stop
-    - adjust <[msg].flag[reply_thread]> is_thread_archived:true
-    - adjust <[msg].flag[reply_thread]> is_thread_locked:true
+    - if <[msg].has_flag[reply_thread]>:
+      - adjust <[msg].flag[reply_thread]> is_thread_archived:true
+      - adjust <[msg].flag[reply_thread]> is_thread_locked:true
     - flag <context.channel> <context.button.map.get[id].after[deny_suggestion_]>:!
     - ~discordmessage id:zc-info edit:<[msg]> "<[msg].embed.first.with[footer].as[status - Denied].with[color].as[red]>"
     - ~discordinteraction reply interaction:<context.interaction> "The suggestion has been denied!"
@@ -813,8 +816,9 @@ d_butt_w:
       - discordinteraction reply interaction:<context.interaction> "This suggestion is already accepted/declined"
       - stop
     - define msg <context.channel.flag[<context.button.map.get[id].after[accept_suggestion_]>]>
-    - adjust <[msg].flag[reply_thread]> is_thread_archived:true
-    - adjust <[msg].flag[reply_thread]> is_thread_locked:true
+    - if <[msg].has_flag[reply_thread]>:
+      - adjust <[msg].flag[reply_thread]> is_thread_archived:true
+      - adjust <[msg].flag[reply_thread]> is_thread_locked:true
     - flag <context.channel> <context.button.map.get[id].after[accept_suggestion_]>:!
     - ~discordmessage id:zc-info edit:<[msg]> "<[msg].embed.first.with[footer].as[status - Accepted].with[color].as[lime]>"
     - ~discordinteraction reply interaction:<context.interaction> "Suggestion accepted."
