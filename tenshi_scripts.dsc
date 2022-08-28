@@ -218,7 +218,7 @@ gold_dust:
   type: item
   debug: false
   material: glowstone_dust
-  display name: Deku Root
+  display name: Gold Dust
   enchantments:
     - LUCK: 1
   mechanisms:
@@ -391,7 +391,7 @@ chu_chu_jelly_drop:
     on player kills slime:
     - define droprate 5
     - if <util.random_chance[<[droprate]>]>:
-      - drop loftwing_feather[quantity=<util.random.int[1].to[3]>]
+      - drop chu_chu_jelly[quantity=<util.random.int[1].to[3]>]
 
 chu_chu_club:
   type: item
@@ -491,42 +491,6 @@ plate_of_courage:
         - zc_shard_of_courage|zc_shard_of_courage|zc_shard_of_courage
         - zc_shard_of_courage|zc_shard_of_courage|zc_shard_of_courage
 
-keese_kleaver:
-  type: item
-  debug: false
-  material: netherite_axe
-  data:
-    discover: true
-  display name: <&color[#351c75]>Keese Kleaver
-  mechanisms:
-    custom_model_data: 500
-    enchantments:
-      - DAMAGE_ALL: 5
-  lore:
-    - <&color[#674ea7]>Erratic movements allow
-    - <&color[#674ea7]>you to strike your enemies
-    - <&color[#674ea7]>down with ease.
-
-  recipes:
-    1:
-      type: shaped
-      input:
-        - tempered_iron_plate|tempered_iron_plate|keese_wing
-        - tempered_iron_plate|keese_eye|air
-        - air|stick|air
-
-keese_bat_effect:
-  type: world
-  debug: false
-  events:
-    on player kills entity:
-    - if <context.cause> == entity_attack:
-      - if <context.damager.item_in_hand.script.name.if_null[null]> == keese_kleaver:
-        - define players <context.damager.location.find_players_within[20]>
-        - repeat 5:
-          - define r1 <util.random.decimal[-0.2].to[0.2]>
-          - define r2 <util.random.decimal[-0.2].to[0.2]>
-          - fakespawn bat <context.entity.location> duration:1s players:<[players]>
 
 harp_of_ages:
   type: item
@@ -553,99 +517,187 @@ harp_of_ages:
         - tune_of_currents|tune_of_echoes|tune_of_time
         - tune_of_currents|tune_of_echoes|tune_of_time
 
-ember_seed:
+diamond_demon_pickaxe:
   type: item
   debug: false
-  material: apple
+  material: netherite_pickaxe
   data:
     discover: true
-  display name: Roasted Ember Seed
-  enchantments:
-    - LUCK: 1
+  display name: <&color[#a41111]>Diamond Demon Pickaxe
   mechanisms:
-    hides:
-      - ENCHANTS
-    custom_model_data: 1400
+    custom_model_data: 300
   lore:
-    - Tastes spicy!
-    - Better to cook it first!
-
-roasted_ember_seed:
-  type: item
-  debug: false
-  material: apple
-  data:
-    discover: true
-  display name: Roasted Ember Seed
-  enchantments:
-    - LUCK: 1
-  mechanisms:
-    hides:
-      - ENCHANTS
-    custom_model_data: 1401
-  lore:
-    - Tastes spicy!
+    - <&color[#d92a2a]>It reminds you of
+    - <&color[#d92a2a]>the Demon Lord
+    - <&color[#d92a2a]>Ghirahim.
   recipes:
     1:
-      type: blast
-      cook_time: 6m
-      experience: 1000
-      input: ember_seed
+      type: shaped
+      input:
+        - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
+        - air|netherite_ingot|air
+        - air|netherite_ingot|air
 
-ember_seed_events:
-  type: world
-  debug: false
-  events:
-    on birch_leaves decay:
-    - if <context.location.world.name> not in s1|s2|newnether|theendkek|resources|resources_nether|resources_the_end|resources_nullscape_end_island:
-      - stop
-    - if <util.random_chance[3]>:
-      - drop ember_seed <context.location>
-
-pegasus_seed:
+diamond_demon_axe:
   type: item
   debug: false
-  material: apple
+  material: netherite_axe
   data:
     discover: true
-  display name: Roasted Ember Seed
-  enchantments:
-    - LUCK: 1
+  display name: <&color[#a41111]>Diamond Demon Axe
   mechanisms:
-    hides:
-      - ENCHANTS
-    custom_model_data: 1500
+    custom_model_data: 300
   lore:
-    - Better find my track shoes.
-
-roasted_pegasus_seed:
-  type: item
-  debug: false
-  material: apple
-  data:
-    discover: true
-  display name: Roasted Ember Seed
-  enchantments:
-    - LUCK: 1
-  mechanisms:
-    hides:
-      - ENCHANTS
-    custom_model_data: 1501
-  lore:
-    - Feels like I can run a marathon!
+    - <&color[#d92a2a]>Anyone who gets in
+    - <&color[#d92a2a]>my way must be
+    - <&color[#d92a2a]>dealt with!
   recipes:
     1:
-      type: blast
-      cook_time: 6m
-      experience: 1000
-      input: pegasus_seed
+      type: shaped
+      input:
+        - zc_shard_of_power|zc_shard_of_power|air
+        - zc_shard_of_power|netherite_ingot|air
+        - air|netherite_ingot|air
 
-pegasus_seed_events:
-  type: world
+diamond_demon_blade:
+  type: item
   debug: false
-  events:
-    on oak_leaves decay:
-    - if <context.location.world.name> not in s1|s2|newnether|theendkek|resources|resources_nether|resources_the_end|resources_nullscape_end_island:
-      - stop
-    - if <util.random_chance[3]>:
-      - drop pegasus_seed <context.location>
+  material: netherite_sword
+  data:
+    discover: true
+  display name: <&color[#a41111]>Diamond Demon Blade
+  mechanisms:
+    custom_model_data: 600
+  lore:
+    - <&color[#d92a2a]>Do you have any
+    - <&color[#d92a2a]>idea how that makes me
+    - <&color[#d92a2a]>feel? Furious! Outraged!
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|air|zc_shard_of_power
+        - air|zc_shard_of_power|air
+        - netherite_ingot|air|air
+
+diamond_demon_shovel:
+  type: item
+  debug: false
+  material: netherite_shovel
+  data:
+    discover: true
+  display name: <&color[#a41111]>Diamond Demon Shovel
+  mechanisms:
+    custom_model_data: 300
+  lore:
+    - <&color[#d92a2a]>Left behind by
+    - <&color[#d92a2a]>a demon lord
+    - <&color[#d92a2a]>on the land below.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|zc_shard_of_power|air
+        - air|netherite_ingot|air
+        - air|netherite_ingot|air
+
+sword_spirit_blade:
+  type: item
+  debug: false
+  material: diamond_sword
+  data:
+    discover: true
+  display name: <&color[#00aded]>Sword Spirit Blade
+  mechanisms:
+    custom_model_data: 500
+  lore:
+    - <&color[#b4a7d6]>Legend says an ancient
+    - <&color[#b4a7d6]>voice resonates inside it.
+    - <&color[#b4a7d6]>Can you hear it, Hero?
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|gear_of_time|air
+        - air|gear_of_time|air
+        - air|timestone_shard|air
+
+sword_spirit_shovel:
+  type: item
+  debug: false
+  material: diamond_shovel
+  data:
+    discover: true
+  display name: <&color[#00aded]>Sword Spirit Shovel
+  mechanisms:
+    custom_model_data: 500
+  lore:
+    - <&color[#b4a7d6]>Left behind by the
+    - <&color[#b4a7d6]>Hero of the Sky, it
+    - <&color[#b4a7d6]>was said to grant wishes.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|gear_of_time|air
+        - air|timestone_shard|air
+        - air|timestone_shard|air
+
+sword_spirit_pickaxe:
+  type: item
+  debug: false
+  material: diamond_pickaxe
+  data:
+    discover: true
+  display name: <&color[#00aded]>Sword Spirit Pickaxe
+  mechanisms:
+    custom_model_data: 500
+  lore:
+    - <&color[#b4a7d6]>It is said that
+    - <&color[#b4a7d6]>this tool had
+    - <&color[#b4a7d6]>magical properties long ago.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - gear_of_time|gear_of_time|gear_of_time
+        - air|timestone_shard|air
+        - air|timestone_shard|air
+
+sword_spirit_axe:
+  type: item
+  debug: false
+  material: diamond_axe
+  data:
+    discover: true
+  display name: <&color[#00aded]>Sword Spirit Axe
+  mechanisms:
+    custom_model_data: 500
+  lore:
+    - <&color[#b4a7d6]>Lost to time, The blade
+    - <&color[#b4a7d6]>allows you to render
+    - <&color[#b4a7d6]>your enemies to dust.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - gear_of_time|gear_of_time|air
+        - gear_of_time|timestone_shard|air
+        - air|timestone_shard|air
+
+timestone_shard:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: Timestone Shard
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 1700
+    hides:
+      - ENCHANTS
+  lore:
+    - A fragment of a timestone
+    - lost to the Era of the Sky.
