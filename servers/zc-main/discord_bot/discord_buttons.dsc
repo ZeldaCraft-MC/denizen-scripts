@@ -522,7 +522,7 @@ d_butt_w:
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Trusted Downvote].with[description].as[Your vote has been changed].with[color].as[lime].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes]>"
     - else:
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Trusted Downvote].with[description].as[Thank you for voting].with[color].as[lime].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes]>"
-    - if <context.channel.flag[<[ruuid]>.votes]> > <[amount].sub[<context.channel.flag[<[ruuid]>.yesses]||0>]>:
+    - if <context.channel.flag[<[ruuid]>.votes].sub[<context.channel.flag[<[ruuid]>.yesses]||0>]> > <[amount]>:
       - ~discordmessage id:zc-info edit:<[msg]> "<discord_embed.with_map[<[new_msg]>].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes].with[color].as[red]>"
       - flag <context.channel> <[ruuid]>:!
     - else:
@@ -603,7 +603,7 @@ d_butt_w:
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Helper Downvote].with[description].as[Your vote has been changed].with[color].as[lime].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes]>"
     - else:
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Helper Downvote].with[description].as[Thank you for voting].with[color].as[lime].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes]>"
-    - if <context.channel.flag[<[ruuid]>.votes]> > <[amount].sub[<context.channel.flag[<[ruuid]>.yesses]||0>]>:
+    - if <context.channel.flag[<[ruuid]>.votes].sub[<context.channel.flag[<[ruuid]>.yesses]||0>]> > <[amount]>:
       - ~discordmessage id:zc-info edit:<[msg]> "<discord_embed.with_map[<[new_msg]>].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes].with[color].as[red]>"
       - flag <context.channel> <[ruuid]>:!
     - else:
