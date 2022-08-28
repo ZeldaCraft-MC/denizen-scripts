@@ -402,30 +402,30 @@ bot_connect:
   type: world
   debug: false
   pvp_ranks:
-    0: "Deku Scrub"
-    100: "Octorok"
-    300: "Tektite"
-    600: "Armos"
-    1000: "Moblin"
-    1400: "Wolfos"
-    2000: "Stalfos"
-    2600: "ReDead"
-    3200: "Gibdo"
-    3800: "Darknut"
-    4400: "Iron Knuckle"
-    5000: "Bongo Bongo"
-    5500: "Phantom Ganon"
-    6000: "Dark Link"
-    6600: "Morpha"
-    7200: "Zant"
-    7800: "Ghirahim"
-    8400: "Majora"
-    9000: "Agahnim"
-    10000: "Nightmare"
-    12000: "Yuga Ganon"
-    14000: "Ganondorf"
-    16000: "Ganon"
-    19999: "Return of Ganon"
+    0: Deku Scrub
+    100: Octorok
+    300: Tektite
+    600: Armos
+    1000: Moblin
+    1400: Wolfos
+    2000: Stalfos
+    2600: ReDead
+    3200: Gibdo
+    3800: Darknut
+    4400: Iron Knuckle
+    5000: Bongo Bongo
+    5500: Phantom Ganon
+    6000: Dark Link
+    6600: Morpha
+    7200: Zant
+    7800: Ghirahim
+    8400: Majora
+    9000: Agahnim
+    10000: Nightmare
+    12000: Yuga Ganon
+    14000: Ganondorf
+    16000: Ganon
+    19999: Return of Ganon
   events:
     on server start:
     - ~discordconnect id:zc-info token:<secret[zc_bot_token]>
