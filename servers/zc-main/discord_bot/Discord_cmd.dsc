@@ -549,7 +549,6 @@ class_cmd:
               name: Remove
               value: remove
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:class "description:Bring up the menu for classes" options:<[options]>
-
 mod_app_cmd:
   type: task
   debug: false
@@ -607,6 +606,148 @@ mod_app_cmd:
           description: Someone enters another person's house without their permission, what do you do?
           required: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:moderator "description:Post a moderator application" options:<[options]>
+tempban_cmd:
+  type: task
+  debug: false
+  script:
+    - definemap options:
+        1:
+          type: string
+          name: ign
+          description: What is the persons ign (in game name)
+          required: true
+        2:
+          type: string
+          name: reason
+          description: What is the reason of the tempban
+          required: true
+        3:
+          type: string
+          name: time
+          description: what is the time of this tempban
+          required: true
+          choices:
+            1:
+              name: 1 hour
+              type: 1h
+            2:
+              name: 1 day
+              type: 1d
+            3:
+              name: 3 days
+              type: 3d
+            4:
+              name: 5 days
+              type: 5d
+            5:
+              name: 7 days
+              type: 7d
+            6:
+              name: 2 weeks
+              type: 14d
+            7:
+              name: 1 month
+              type: 31d
+            8:
+              name: 2 months
+              type: 62d
+    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:tempban "description:Tempban a player for a certain time" options:<[options]>
+permban_cmd:
+  type: task
+  debug: false
+  script:
+    - definemap options:
+        1:
+          type: string
+          name: ign
+          description: What is the persons ign (in game name)
+          required: true
+        2:
+          type: string
+          name: reason
+          description: What is the reason of the tempban
+          required: true
+    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:permban "description:Permban a player" options:<[options]>
+warn_cmd:
+  type: task
+  debug: false
+  script:
+    - definemap options:
+        1:
+          type: string
+          name: ign
+          description: What is the persons ign (in game name)
+          required: true
+        2:
+          type: string
+          name: reason
+          description: What is the reason of the tempban
+          required: true
+    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:warn "description:Warn a player" options:<[options]>
+mute_cmd:
+  type: task
+  debug: false
+  script:
+    - definemap options:
+        1:
+          type: string
+          name: ign
+          description: What is the persons ign (in game name)
+          required: true
+        2:
+          type: string
+          name: time
+          description: what is the time of this tempban
+          required: true
+          choices:
+            1:
+              name: 5 minutes
+              type: 5m
+            2:
+              name: 10 minutes
+              type: 10m
+            3:
+              name: 30 minutes
+              type: 30m
+            4:
+              name: 1 hour
+              type: 1h
+            5:
+              name: 2 hours
+              type: 2h
+    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:mute "description:Mute a player ingame" options:<[options]>
+jail_cmd:
+  type: task
+  debug: false
+  script:
+    - definemap options:
+        1:
+          type: string
+          name: ign
+          description: What is the persons ign (in game name)
+          required: true
+        2:
+          type: string
+          name: time
+          description: what is the time of this tempban
+          required: true
+          choices:
+           1:
+             name: 5 minutes
+             type: 5m
+           2:
+             name: 10 minutes
+             type: 10m
+           3:
+             name: 30 minutes
+             type: 30m
+           4:
+             name: 1 hour
+             type: 1h
+           5:
+             name: 2 hours
+             type: 2h
+    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:jail "description:Put a player into jail" options:<[options]>
 
 c_command_w:
   type: world
@@ -1349,3 +1490,141 @@ d_command_w:
     - ~discordmessage id:zc-info user:<[u]> "<discord_embed.with[title].as[Forced Ticket].with[description].as[A Ticket has been forced to open.<&nl><&nl>**Ticket Message:**<&nl><&gt><&sp><[msg]>]>"
     - run create_ticket_task def.u:<[u]> def.msg:<[msg]> def.atta:<[atta]>
     - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Force Ticket].with[description].as[Ticket opened with <[u].name>].with[color].as[lime]>"
+    on discord slash command name:tempban:
+    - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+    - if <server.match_offline_player[<context.options.get[ign]>].if_null[error]> == error:
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Tempban].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
+      - stop
+    - define player <server.match_offline_player[<context.options.get[ign]>]>
+    - define message <context.options.get[reason]>
+    - define time_now <util.time_now>
+    - define time <duration[<context.options.get[time]>]>
+    - if !<context.interaction.user.has_flag[mc_link]>:
+      - define by_player <server.match_offline_player[Zeldacraft]>
+    - else:
+      - define by_player <context.interaction.user.flag[mc_link]>
+    - define num <[player].flag[moderate.tempban].size.add[1]||1>
+    - flag <[player]> moderate.tempban.<[num]>.by_player:<[by_player]>
+    - flag <[player]> moderate.tempban.<[num]>.reason:<[message]>
+    - flag <[player]> moderate.tempban.<[num]>.time_till:<[time]>
+    - flag <[player]> moderate.tempban.<[num]>.time_now:<[time_now]>
+    - flag <[player]> moderate.tempban.<[num]>.was_ip:false
+    - ban <[player]> reason:<[message]> duration:<[time]> source:<[by_player].name>
+    - define has_perm <[player].has_flag[moderate.permban]>
+    - define has_temp <[player].has_flag[moderate.tempban]>
+    - define has_warn <[player].has_flag[moderate.warnings]>
+    - narrate "<&1>Tempban From <&3><[by_player].name> recorded:<&nl>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&3>Player: <&f><[player].name>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&3>Reason: <&f><[message]>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&3>Until: <&f><[time_now].add[<[time]>].format> (<[time].as_duration.formatted>)" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&3>Time: <&f><[time_now].format><&nl>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&3><[player].name> their warnings, tempbans and perms" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<tern[<[has_warn]>].pass[<&click[/listwarns <[player].name>]><&hover[Click to show their warning(s)]><&e>[<[player].flag[moderate.warnings].size> Warning(s)]<&end_hover><&end_click>].fail[<&e>[0 Warnings]]> <tern[<[has_temp]>].pass[<&click[/listtemps <[player].name>]><&hover[Click to show their Tempban(s)]><&3>[<[player].flag[moderate.tempban].size> Tempban(s)]<&end_hover><&end_click>].fail[<&3>[0 Tempbans]]> <tern[<[has_perm]>].pass[<&click[/listperms <[player].name>]><&hover[Click to show their permban(s)]><&c>[<[player].flag[moderate.permban].size> Permbans(s)]<&end_hover><&end_click>].fail[<&c>[0 Permbans]]>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has tempbanned <[player].name>].add_field[Tempban Reason:].value[<[message]>].add_inline_field[Time of tempban:].value[<util.time_now.format>].add_inline_field[Tempban until:].value[<util.time_now.add[<[time]>].format> (<duration[<[time]>].formatted>)].add_field[Ip tempban].value[false].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[red].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
+    - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Tempbanned].with[description].as[Succesfully tempbanned <[player].name>  for <[message]> until <[time_now].add[<[time]>].format> (<[time].as_duration.formatted>)].with[color].as[aqua]>"
+    on discord slash command name:permban:
+    - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+    - if <server.match_offline_player[<context.options.get[ign]>].if_null[error]> == error:
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Permban].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
+      - stop
+    - define player <server.match_offline_player[<context.options.get[ign]>]>
+    - define message <context.options.get[reason]>
+    - define time_now <util.time_now>
+    - if !<context.interaction.user.has_flag[mc_link]>:
+      - define by_player <server.match_offline_player[Zeldacraft]>
+    - else:
+      - define by_player <context.interaction.user.flag[mc_link]>
+    - define num <[player].flag[moderate.permban].size.add[1]||1>
+    - flag <[player]> moderate.permban.<[num]>.by_player:<[by_player]>
+    - flag <[player]> moderate.permban.<[num]>.reason:<[message]>
+    - flag <[player]> moderate.permban.<[num]>.time_now:<[time_now]>
+    - flag <[player]> moderate.permban.<[num]>.was_ip:false
+    - ban <[player]> reason:<[message]> source:<[by_player].name>
+    - define has_perm <[player].has_flag[moderate.permban]>
+    - define has_temp <[player].has_flag[moderate.tempban]>
+    - define has_warn <[player].has_flag[moderate.warnings]>
+    - narrate "<&4>Permban From <&c><[by_player].name> recorded:<&nl>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&c>Player: <&f><[player].name>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&c>Reason: <&f><[message]>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&c>Time: <&f><[time_now].format><&nl>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&c><[player].name> their warnings, tempbans and perms" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<tern[<[has_warn]>].pass[<&click[/listwarns <[player].name>]><&hover[Click to show their warning(s)]><&e>[<[player].flag[moderate.warnings].size> Warning(s)]<&end_hover><&end_click>].fail[<&e>[0 Warnings]]> <tern[<[has_temp]>].pass[<&click[/listtemps <[player].name>]><&hover[Click to show their Tempban(s)]><&3>[<[player].flag[moderate.tempban].size> Tempban(s)]<&end_hover><&end_click>].fail[<&3>[0 Tempbans]]> <tern[<[has_perm]>].pass[<&click[/listperms <[player].name>]><&hover[Click to show their permban(s)]><&c>[<[player].flag[moderate.permban].size> Permbans(s)]<&end_hover><&end_click>].fail[<&c>[0 Permbans]]>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has permbanned <[player].name>].add_field[Permban Reason:].value[<[message]>].add_inline_field[Time of permpban:].value[<[time_now].format>].add_field[Ip tempban].value[false].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[red].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
+    - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Permban].with[description].as[Succesfully permbanned <[player].name>  for <[message]>].with[color].as[aqua]>"
+    on discord slash command name:warn:
+    - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+    - if <server.match_offline_player[<context.options.get[ign]>].if_null[error]> == error:
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Warn].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
+      - stop
+    - define player <server.match_offline_player[<context.options.get[ign]>]>
+    - define message <context.options.get[reason]>
+    - define time_now <util.time_now>
+    - if !<context.interaction.user.has_flag[mc_link]>:
+      - define by_player <server.match_offline_player[Zeldacraft]>
+    - else:
+      - define by_player <context.interaction.user.flag[mc_link]>
+    - if <[player].is_online>:
+      - clickable confirm_warn def:<[player]> save:conf_click
+      - narrate "<&e>You have been <&6>warned:<&nl>" targets:<[player]>
+      - narrate "<&e>Reason: <&f><[message]>" targets:<[player]>
+      - narrate "<&e>Time: <&f><[time_now].format><&nl>" targets:<[player]>
+      - narrate "<&e>Click <&click[<entry[conf_click].command>]><&hover[Confirm to stop the warning message from reappearing]><&a>[Confirm]<&end_hover><&end_click><&e> to confirm that you received this" targets:<[player]>
+    - flag <[player]> new_warnings:->:<map.with[<[message]>].as[<[time_now]>]>
+    - define num <[player].flag[moderate.warnings].size.add[1]||1>
+    - flag <[player]> moderate.warnings.<[num]>.by_player:<[by_player]>
+    - flag <[player]> moderate.warnings.<[num]>.reason:<[message]>
+    - flag <[player]> moderate.warnings.<[num]>.time:<[time_now]>
+    - define has_perm <[player].has_flag[moderate.permban]>
+    - define has_temp <[player].has_flag[moderate.tempban]>
+    - define has_warn <[player].has_flag[moderate.warnings]>
+    - narrate "<&6>Warning From <&e><[by_player].name> recorded:<&nl>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&e>Player: <&f><[player].name>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&e>Reason: <&f><[message]>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&e>Time: <&f><[time_now].format><&nl>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<&e><[player].name> their warnings, tempbans and perms" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - narrate "<tern[<[has_warn]>].pass[<&click[/listwarns <[player].name>]><&hover[Click to show their warning(s)]><&e>[<[player].flag[moderate.warnings].size> Warning(s)]<&end_hover><&end_click>].fail[<&e>[0 Warnings]]> <tern[<[has_temp]>].pass[<&click[/listtemps <[player].name>]><&hover[Click to show their Tempban(s)]><&3>[<[player].flag[moderate.tempban].size> Tempban(s)]<&end_hover><&end_click>].fail[<&3>[0 Tempbans]]> <tern[<[has_perm]>].pass[<&click[/listperms <[player].name>]><&hover[Click to show their permban(s)]><&c>[<[player].flag[moderate.permban].size> Permbans(s)]<&end_hover><&end_click>].fail[<&c>[0 Permbans]]>" targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has warned <[player].name>].add_field[Warning Reason:].value[<[message]>].add_field[Time of warning:].value[<util.time_now.format>].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[yellow].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
+    - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Warn].with[description].as[Succesfully warned <[player].name>  for <[message]>].with[color].as[aqua]>"
+    on discord slash command name:mute:
+    - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+    - if <server.match_offline_player[<context.options.get[ign]>].if_null[error]> == error:
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Mute].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
+      - stop
+    - define player <server.match_offline_player[<context.options.get[ign]>]>
+    - define dur <duration[<context.options.get[time]>]>
+    - adjust <[player]> is_muted:true|<[dur]>
+    - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[mute].with[description].as[<[player].name> has been muted for <[dur].formatted>].with[color].as[aqua]>"
+    on discord slash command name:jail:
+    - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+    - if <server.match_offline_player[<context.options.get[ign]>].if_null[error]> == error:
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Jail].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
+      - stop
+    - define player <server.match_offline_player[<context.options.get[ign]>]>
+    - define time <context.options.get[time]>
+    - define jail cell1
+    - define time_now <util.time_now>
+    - if !<context.interaction.user.has_flag[mc_link]>:
+      - define by_player <server.match_offline_player[Zeldacraft]>
+    - else:
+      - define by_player <context.interaction.user.flag[mc_link]>
+    - define num <[player].flag[moderate.jail].size.add[1]||1>
+    - flag <[player]> moderate.jail.<[num]>.by_player:<[by_player]>
+    - flag <[player]> moderate.jail.<[num]>.jail:<[jail]>
+    - flag <[player]> moderate.jail.<[num]>.time_till:<[time]>
+    - flag <[player]> moderate.jail.<[num]>.time_now:<[time_now]>
+    - if <[player].has_flag[jailed]>:
+      - teleport <[player]> <server.flag[jails.<[jail]>]>
+      - define tel <[player].flag[jailed]>
+      - flag <[player]> jailed:<[tel]> expire:<[time]>
+      - flag <[player]> moderate.jail.<[num]>.is_change:true
+      - narrate "Your jail time has been changed to <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<[player]>
+      - narrate "<[player].name>'s jail time has been changed to <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted> <&f>inside <&e><[jail]> <&f>by <[by_player].name>" format:zc_text targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - else:
+      - define tel <[player].location>
+      - teleport <[player]> <server.flag[jails.<[jail]>]>
+      - flag <[player]> jailed:<[tel]> expire:<[time]>
+      - flag <[player]> moderate.jail.<[num]>.is_change:false
+      - narrate "<&f>You have been <&4>jailed <&f>for <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<[player]>
+      - narrate "<&c>You do the crime, you do the time." format:zc_text targets:<[player]>
+      - narrate "<[by_player].name> has jailed <[player].name> in <&e><[jail]> <&f>for <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<server.online_players.filter[has_permission[zc.mod]]>
+    - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Jail].with[description].as[Succesfully jailed <[player].name> in <[jail]> for <[time].formatted>].with[color].as[aqua]>"
