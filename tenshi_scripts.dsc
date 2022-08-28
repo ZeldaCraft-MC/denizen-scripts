@@ -192,7 +192,7 @@ skulltula_silk_drop:
     on player kills cave_spider:
     - define droprate 2
     - if <util.random_chance[<[droprate]>]>:
-      - drop wizzrobe_crystal[quantity=<util.random.int[1].to[3]>]
+      - drop skulltula_silk[quantity=<util.random.int[1].to[3]>]
 
 gold_skulltula_silk:
   type: item
@@ -267,8 +267,8 @@ fairy_bow:
     1:
       type: shaped
       input:
-        - zc_courage_shard|deku_tree_root|zc_triforce_gem
-        - deku_tree_root|skulltula_silk|air
+        - zc_courage_shard|deku_root|zc_triforce_gem
+        - deku_root|skulltula_silk|air
         - zc_triforce_gem|air|air
 
 keaton_fur_tuft:
@@ -366,8 +366,7 @@ zc_bomb:
       input:
         - tnt|zc_power_dust|tnt
         - zc_power_dust|ink_sac|zc_power_dust
-        - tnt|zc_poster_dust|tnt
-      output: 2
+        - tnt|zc_power_dust|tnt
 
 chu_chu_jelly:
   type: item
@@ -423,7 +422,7 @@ plate_of_power:
     discover: true
   display name: <&color[#b63737]>Plate of Power
   mechanisms:
-    custom_model_data: 500
+    custom_model_data: 600
     enchantments:
       - LUCK: 1
     hides:
@@ -448,7 +447,7 @@ plate_of_wisdom:
     discover: true
   display name: <&color[#f1c232]>Plate of Wisdom
   mechanisms:
-    custom_model_data: 500
+    custom_model_data: 400
     enchantments:
       - LUCK: 1
     hides:
@@ -461,9 +460,10 @@ plate_of_wisdom:
     1:
       type: shaped
       input:
-        - zc_shard_of_wisdom|zc_shard_of_wisdom|zc_shard_of_wisdom
-        - zc_shard_of_wisdom|zc_shard_of_wisdom|zc_shard_of_wisdom
-        - zc_shard_of_wisdom|zc_shard_of_wisdom|zc_shard_of_wisdom
+        - zc_wisdom_shard|zc_wisdom_shard|zc_wisdom_shard
+        - zc_wisdom_shard|zc_wisdom_shard|zc_wisdom_shard
+        - zc_wisdom_shard|zc_wisdom_shard|zc_wisdom_shard
+
 
 
 plate_of_courage:
@@ -474,7 +474,7 @@ plate_of_courage:
     discover: true
   display name: <&color[#6aa84f]>Plate of Courage
   mechanisms:
-    custom_model_data: 500
+    custom_model_data: 600
     enchantments:
       - LUCK: 1
     hides:
@@ -487,10 +487,9 @@ plate_of_courage:
     1:
       type: shaped
       input:
-        - zc_shard_of_courage|zc_shard_of_courage|zc_shard_of_courage
-        - zc_shard_of_courage|zc_shard_of_courage|zc_shard_of_courage
-        - zc_shard_of_courage|zc_shard_of_courage|zc_shard_of_courage
-
+        - zc_courage_shard|zc_courage_shard|zc_courage_shard
+        - zc_courage_shard|zc_courage_shard|zc_courage_shard
+        - zc_courage_shard|zc_courage_shard|zc_courage_shard
 
 harp_of_ages:
   type: item
