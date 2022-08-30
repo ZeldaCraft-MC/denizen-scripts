@@ -773,7 +773,7 @@ bot_connect:
             - if <[bar].starts_with[****]>:
               - define bar <[bar].after_last[*]>
             - define rank <[player].mcmmo.rank[<[skill]>]||0>
-            - ~discordmessage id:zc-info reply:<context.new_message> "<discord_embed.with[title].as[<[player].name> <[skill]> Stats].with[description].as[Ranked #<[rank]><&nl>[Level <[level]>] <[bar]> (<[cur]>/<[max]> xp) (<[percent]>% to level <[level].add[1]>)].with[color].as[aqua].with[thumbnail].as[https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStagdyunL5zpU5cfCZnvS1YKvHYQH_4Vrsng&usqp=CAU]>" no_mention
+            - ~discordmessage id:zc-info reply:<context.new_message> "<discord_embed.with[title].as[<[player].name> <[skill]> Stats].with[description].as[Ranked #<[rank]><&nl>[Level <[level]>] <[bar]> (<[cur]>/<[max]> xp) (<[percent]><&pc> to level <[level].add[1]>)].with[color].as[aqua].with[thumbnail].as[https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStagdyunL5zpU5cfCZnvS1YKvHYQH_4Vrsng&usqp=CAU]>" no_mention
         # votes command
         - case votes:
           - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[votes_msg]>]> no_mention
@@ -1177,7 +1177,7 @@ non_discord_events_w:
 report_command:
   type: command
   name: report
-  description: "Lets you report either a player, a bug or a grief"
+  description: Lets you report a player, bug, or grief
   usage: /report <&lt>(username)/bug/grief<&gt>
   debug: false
   tab_completions:
@@ -1252,7 +1252,7 @@ report_command:
 suggestion:
   type: command
   name: suggestion
-  description: "Lets you post a suggestion"
+  description: Lets you post a suggestion
   usage: /suggestion <&lt>suggestion<&gt>
   debug: false
   script:
@@ -1293,7 +1293,7 @@ news_cmd:
     - if <[page]> == 1:
       - define messages <list[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].channel[<script[zc_bot_info].data_key[mc_announce_channel].get[name]>].last_message>]>
       - define num 1
-    - narrate "<&nl><&2><&l>Announcement #<[page]><&nl>
+    - narrate "<&nl><&2><&l>Announcement #<[page]><&nl>"
     - narrate <[messages].get[<[num]>].text_stripped><&nl>
     - if <[max_page]> <= 1:
       - narrate " "
@@ -1310,7 +1310,7 @@ news_cmd:
 discord_command_den:
     type: command
     name: discord
-    description: "Gives you the link to our discord"
+    description: Gives you the link to our discord
     usage: /discord
     debug: false
     script:
