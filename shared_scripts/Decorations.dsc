@@ -1,4 +1,4 @@
-Decorations:
+decoration_events:
   type: world
   debug: false
   events:
@@ -79,76 +79,76 @@ Decorations:
         - drop <[item]> <context.location.center>
 
 custom_items_command:
-    type: command
-    name: custom_items
-    debug: false
-    usage: /custom_items (search)
-    description: Searches a list of custom items.
-    permission: zc.custom_items
-    aliases:
-      - ci
+  type: command
+  name: custom_items
+  debug: false
+  usage: /custom_items (search)
+  description: Searches a list of custom items.
+  permission: zc.custom_items
+  aliases:
+    - ci
     # tab complete:
     #     - define args <context.raw_args>
     #     - determine <script[decorations_data].list_deep_keys.alphabetical.filter[starts_with[<[args]>]]>
-    script:
-      - if <player.gamemode> == creative || <player.groups.contains[gm]>:
-        - foreach <script[decorations_data].list_keys.exclude[debug|type|paper].insert[paper].at[1]> as:type:
-          - foreach <script[decorations_data].data_key[<[type]>].keys.alphanumeric> as:item:
-            - define base <script[decorations_data].data_key[<[type]>].get[<[item]>].get[name].replace[_].with[<&sp>]>
-            - if !<player.has_flag[fav_ci_list]>:
-              - flag <player> fav_ci_list:|:paper[display=sunglasses;custom_model_data=9200]
-            - if <player.flag[fav_ci_list].advanced_matches[*<[base]>*]>:
-              - define fav <gold>Favourite
-            - else:
-              - define fav <empty>
-            - if <script[decorations_data].data_key[<[type]>].get[<[item]>].contains[custom_item]>:
-              - define ci <gray>custom_item=<light_purple><script[decorations_data].data_key[<[type]>].get[<[item]>].get[custom_item]||false>
-            - else:
-              - define ci <empty>
-            - if <script[decorations_data].data_key[<[type]>].get[<[item]>].contains[solid]>:
-              - define solid <gray>is_solid=<green><script[decorations_data].data_key[<[type]>].get[<[item]>].get[solid]||<red>false>
-            - else:
-              - define solid <empty>
-            - define tags <script[decorations_data].data_key[<[type]>].get[<[item]>].get[tags]||<list[]>>
-            - define lore <list[<gray>base_item=<aqua><[type]>|<gray>model_data=<aqua><[item]>|<[solid]>|<[ci]>|<[fav]>].exclude[||].include[<[tags].as_list>].combine>
-            - define custom_items:|:<[type]||paper>[custom_model_data=<[item]>;display_name=<[base]>;lore=<[lore]>]
-        - if <context.args.first||<empty>> != <empty>:
-          - if <context.args.first.before[:]||nothing> == model:
-            - define custom_items <[custom_items].filter_tag[<item[<[filter_value]>].custom_model_data.contains_text[<context.args.first.after[model:]>]||false>]>
+  script:
+    - if <player.gamemode> == creative || <player.groups.contains[gm]>:
+      - foreach <script[decorations_data].list_keys.exclude[debug|type|paper].insert[paper].at[1]> as:type:
+        - foreach <script[decorations_data].data_key[<[type]>].keys.alphanumeric> as:item:
+          - define base <script[decorations_data].data_key[<[type]>].get[<[item]>].get[name].replace[_].with[<&sp>]>
+          - if !<player.has_flag[fav_ci_list]>:
+            - flag <player> fav_ci_list:|:paper[display=sunglasses;custom_model_data=9200]
+          - if <player.flag[fav_ci_list].advanced_matches[*<[base]>*]>:
+            - define fav <gold>Favourite
           - else:
-            - define custom_items <[custom_items].filter_tag[<item[<[filter_value]>].lore.contains_any_text[<context.args.first>]||false>]>
-        - run custom_items_inv_open_task def.ci_list:<[custom_items]> def.page:1
+            - define fav <empty>
+          - if <script[decorations_data].data_key[<[type]>].get[<[item]>].contains[custom_item]>:
+            - define ci <gray>custom_item=<light_purple><script[decorations_data].data_key[<[type]>].get[<[item]>].get[custom_item]||false>
+          - else:
+            - define ci <empty>
+          - if <script[decorations_data].data_key[<[type]>].get[<[item]>].contains[solid]>:
+            - define solid <gray>is_solid=<green><script[decorations_data].data_key[<[type]>].get[<[item]>].get[solid]||<red>false>
+          - else:
+            - define solid <empty>
+          - define tags <script[decorations_data].data_key[<[type]>].get[<[item]>].get[tags]||<list>>
+          - define lore <list[<gray>base_item=<aqua><[type]>|<gray>model_data=<aqua><[item]>|<[solid]>|<[ci]>|<[fav]>].exclude[||].include[<[tags]>].combine>
+          - define custom_items:|:<[type]||paper>[custom_model_data=<[item]>;display_name=<[base]>;lore=<[lore]>]
+      - if <context.args.first||<empty>> != <empty>:
+        - if <context.args.first.before[:]||nothing> == model:
+          - define custom_items <[custom_items].filter_tag[<item[<[filter_value]>].custom_model_data.contains_text[<context.args.first.after[model:]>]||false>]>
+        - else:
+          - define custom_items <[custom_items].filter_tag[<item[<[filter_value]>].lore.contains_any_text[<context.args.first>]||false>]>
+      - run custom_items_inv_open_task def.ci_list:<[custom_items]> def.page:1
 
 custom_items_inv_open_task:
-    type: task
-    definitions: ci_list|page
-    debug: false
-    script:
+  type: task
+  definitions: ci_list|page
+  debug: false
+  script:
     - if <player.has_flag[in_fav_custom_item]>:
-        - flag player fav_ci_page:<[page]>
-        - define inv <inventory[custom_items_favourites_inventory]>
-        - inventory set d:<[inv]> o:custom_items_favourites slot:50
+      - flag player fav_ci_page:<[page]>
+      - define inv <inventory[custom_items_favourites_inventory]>
+      - inventory set d:<[inv]> o:custom_items_favourites slot:50
     - else:
-        - flag player current_ci_list:!|:<[ci_list]>
-        - flag player current_ci_page:<[page]>
-        - define inv <inventory[custom_items_list_inventory]>
-        - inventory set d:<[inv]> o:search_sign slot:51
-        - inventory set d:<[inv]> o:custom_items_favourites slot:49
+      - flag player current_ci_list:!|:<[ci_list]>
+      - flag player current_ci_page:<[page]>
+      - define inv <inventory[custom_items_list_inventory]>
+      - inventory set d:<[inv]> o:search_sign slot:51
+      - inventory set d:<[inv]> o:custom_items_favourites slot:49
     - inventory set d:<[inv]> o:<[ci_list].get[<[page].sub[1].mul[45].max[1]>].to[<[page].mul[45]>]>
     - if <[page]> > 1:
-        - inventory set d:<[inv]> o:custom_items_arrow_left_item slot:46
+      - inventory set d:<[inv]> o:custom_items_arrow_left_item slot:46
     - if <[ci_list].size> >= <[page].mul[45]>:
-        - inventory set d:<[inv]> o:custom_items_arrow_right_item slot:54
+      - inventory set d:<[inv]> o:custom_items_arrow_right_item slot:54
     - inventory open d:<[inv]>
 
 custom_items_list_inventory:
-    type: inventory
-    inventory: chest
-    debug: false
-    title: <aqua>Items - Right click to favourite
-    size: 54
-    gui: true
-    slots:
+  type: inventory
+  inventory: chest
+  debug: false
+  title: <aqua>Items - Right click to favourite
+  size: 54
+  gui: true
+  slots:
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
@@ -157,13 +157,13 @@ custom_items_list_inventory:
     - [] [] [] [] [] [] [] [] []
 
 custom_items_favourites_inventory:
-    type: inventory
-    inventory: chest
-    debug: false
-    title: <red>Favourites - Right click to remove
-    size: 54
-    gui: true
-    slots:
+  type: inventory
+  inventory: chest
+  debug: false
+  title: <red>Favourites - Right click to remove
+  size: 54
+  gui: true
+  slots:
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
@@ -172,64 +172,60 @@ custom_items_favourites_inventory:
     - [] [] [] [] [] [] [] [] []
 
 custom_items_inv_world:
-    type: world
-    debug: false
-    events:
-        on server start:
-          - if <yaml.list.contains[custom_items_list]>:
-              - yaml unload id:custom_items_list
-          - ~yaml load:custom_items_list.yml id:custom_items_list
-        on player closes custom_items_favourites_inventory:
-            - wait 5t
-            - if <player.open_inventory.script.name||null> != custom_items_favourites_inventory:
-                - flag <player> in_fav_custom_item:!
-        on player clicks in custom_items*_inventory priority:1:
-        - if <context.click> == right:
-            - if <context.clicked_inventory.script.name||null> != custom_items_favourites_inventory && <context.clicked_inventory.script.name||null> != custom_items_list_inventory:
-              - stop
-            - if <context.item.material.name> == air:
-              - stop
-            - if <player.flag[fav_ci_list].advanced_matches[*Custom_Model_data=<context.item.custom_model_data>*]>:
-                - flag <player> fav_ci_list:<-:<context.item>
-                - actionbar "<red>Removed from favourites"
-                - if <player.has_flag[in_fav_custom_item]>:
-                  - run custom_items_inv_open_task def.ci_list:<player.flag[fav_ci_list]> def.page:<player.flag[fav_ci_page]||1>
-                - stop
-            - flag <player> fav_ci_list:|:<context.item>
-            - actionbar "<green>Added to favourites"
+  type: world
+  debug: false
+  events:
+    on player closes custom_items_favourites_inventory:
+      - wait 5t
+      - if <player.open_inventory.script.name||null> != custom_items_favourites_inventory:
+        - flag <player> in_fav_custom_item:!
+    on player clicks in custom_items*_inventory priority:1:
+      - if <context.click> == right:
+        - if <context.clicked_inventory.script.name||null> != custom_items_favourites_inventory && <context.clicked_inventory.script.name||null> != custom_items_list_inventory:
+          - stop
+        - if <context.item.material.name> == air:
+          - stop
+        - if <player.flag[fav_ci_list].advanced_matches[*Custom_Model_data=<context.item.custom_model_data>*]>:
+            - flag <player> fav_ci_list:<-:<context.item>
+            - actionbar "<red>Removed from favourites"
+            - if <player.has_flag[in_fav_custom_item]>:
+              - run custom_items_inv_open_task def.ci_list:<player.flag[fav_ci_list]> def.page:<player.flag[fav_ci_page]||1>
             - stop
-        - if <context.raw_slot||100> < 55 && <context.item.material.name||air> != air:
-          - if <context.click> == shift_left:
-            - give <script[decorations_data].data_key[<context.item.material.name||paper>].get[<context.item.custom_model_data||100>].get[custom_item]||<context.item>>
-          - else:
-            - give <context.item>
-        on player clicks custom_items_arrow_left_item in custom_items*_inventory:
-        - determine passively cancelled
-        - if !<player.has_flag[current_ci_list]>:
-            - stop
-        - if <player.has_flag[in_fav_custom_item]>:
-            - run custom_items_inv_open_task def.ci_list:<player.flag[fav_ci_list]> def.page:<player.flag[fav_ci_page].sub[1]>
-            - stop
-        - run custom_items_inv_open_task def.ci_list:<player.flag[current_ci_list]> def.page:<player.flag[current_ci_page].sub[1]>
-        on player clicks custom_items_arrow_right_item in custom_items*_inventory:
-        - determine passively cancelled
-        - if !<player.has_flag[current_ci_list]>:
-            - stop
-        - if <player.has_flag[in_fav_custom_item]>:
-            - run custom_items_inv_open_task def.ci_list:<player.flag[fav_ci_list]> def.page:<player.flag[fav_ci_page].add[1]>
-            - stop
-        - run custom_items_inv_open_task def.ci_list:<player.flag[current_ci_list]> def.page:<player.flag[current_ci_page].add[1]>
-        on player clicks custom_items_favourites in custom_items*_inventory:
-        - determine passively cancelled
-        - if !<player.has_flag[fav_ci_list]>:
-            - stop
-        - if <player.has_flag[in_fav_custom_item]>:
-            - flag <player> in_fav_custom_item:!
-            - run custom_items_inv_open_task def.ci_list:<player.flag[current_ci_list]> def.page:<player.flag[current_ci_page]>
-            - stop
-        - flag <player> fav_ci_page:1
-        - flag <player> in_fav_custom_item
-        - run custom_items_inv_open_task def.ci_list:<player.flag[fav_ci_list]> def.page:<player.flag[fav_ci_page]||1>
+        - flag <player> fav_ci_list:|:<context.item>
+        - actionbar "<green>Added to favourites"
+        - stop
+      - if <context.raw_slot||100> < 55 && <context.item.material.name||air> != air:
+        - if <context.click> == shift_left:
+          - give <script[decorations_data].data_key[<context.item.material.name||paper>].get[<context.item.custom_model_data||100>].get[custom_item]||<context.item>>
+        - else:
+          - give <context.item>
+    on player clicks custom_items_arrow_left_item in custom_items*_inventory:
+      - determine passively cancelled
+      - if !<player.has_flag[current_ci_list]>:
+        - stop
+      - if <player.has_flag[in_fav_custom_item]>:
+        - run custom_items_inv_open_task def.ci_list:<player.flag[fav_ci_list]> def.page:<player.flag[fav_ci_page].sub[1]>
+        - stop
+      - run custom_items_inv_open_task def.ci_list:<player.flag[current_ci_list]> def.page:<player.flag[current_ci_page].sub[1]>
+    on player clicks custom_items_arrow_right_item in custom_items*_inventory:
+      - determine passively cancelled
+      - if !<player.has_flag[current_ci_list]>:
+        - stop
+      - if <player.has_flag[in_fav_custom_item]>:
+        - run custom_items_inv_open_task def.ci_list:<player.flag[fav_ci_list]> def.page:<player.flag[fav_ci_page].add[1]>
+        - stop
+      - run custom_items_inv_open_task def.ci_list:<player.flag[current_ci_list]> def.page:<player.flag[current_ci_page].add[1]>
+    on player clicks custom_items_favourites in custom_items*_inventory:
+      - determine passively cancelled
+      - if !<player.has_flag[fav_ci_list]>:
+        - stop
+      - if <player.has_flag[in_fav_custom_item]>:
+        - flag <player> in_fav_custom_item:!
+        - run custom_items_inv_open_task def.ci_list:<player.flag[current_ci_list]> def.page:<player.flag[current_ci_page]>
+        - stop
+      - flag <player> fav_ci_page:1
+      - flag <player> in_fav_custom_item
+      - run custom_items_inv_open_task def.ci_list:<player.flag[fav_ci_list]> def.page:<player.flag[fav_ci_page]||1>
 
 #-----------------#
 # by green testing
@@ -239,18 +235,18 @@ fake_sign_w:
   debug: true
   events:
     on player changes sign:
-    - if !<player.has_flag[deco_searching]>:
-      - stop
-    - if <context.new.unseparated> == <empty>:
-      - adjust <player> edit_sign
-      - narrate "The sign cannot be empty"
-      - stop
-    - define search_result <context.new.unseparated>
-    - narrate "Searching for: <[search_result]>"
-    - execute as_player "ci <[search_result]>"
+      - if !<player.has_flag[deco_searching]>:
+        - stop
+      - if <context.new.unseparated> == <empty>:
+        - adjust <player> edit_sign
+        - narrate "The sign cannot be empty"
+        - stop
+      - define search_result <context.new.unseparated>
+      - narrate "Searching for: <[search_result]>"
+      - execute as_player "ci <[search_result]>"
     on player clicks search_sign in custom_items_list_inventory:
-    - flag player deco_searching expire:20m
-    - adjust <player> edit_sign
+      - flag player deco_searching expire:20m
+      - adjust <player> edit_sign
 
 decorations_data:
   type: data
@@ -888,7 +884,7 @@ decorations_data:
         - cup
         - liquid
     8500:
-      Name: Vine Basket
+      name: Vine Basket
       tags:
         - basket
         - decor
@@ -903,7 +899,7 @@ decorations_data:
         - grass
         - bush
     12201:
-      Name: Spruce Chair
+      name: Spruce Chair
       solid: true
       tags:
         - spruce
@@ -916,7 +912,7 @@ decorations_data:
         - wood
         - interior
     12202:
-      Name: Warped Chair
+      name: Warped Chair
       tags:
         - warped
         - chair
@@ -929,7 +925,7 @@ decorations_data:
         - interior
       solid: true
     12203:
-      Name: Birch Chair
+      name: Birch Chair
       tags:
         - birch
         - chair
@@ -942,7 +938,7 @@ decorations_data:
         - interior
       solid: true
     12204:
-      Name: Crimson Chair
+      name: Crimson Chair
       tags:
         - crimson
         - chair
@@ -955,7 +951,7 @@ decorations_data:
         - interior
       solid: true
     12205:
-      Name: Oak Chair
+      name: Oak Chair
       tags:
         - oak
         - chair
@@ -968,7 +964,7 @@ decorations_data:
         - interior
       solid: true
     12206:
-      Name: Jungle Chair
+      name: Jungle Chair
       tags:
         - jungle
         - chair
@@ -981,7 +977,7 @@ decorations_data:
         - interior
       solid: true
     12207:
-      Name: Dark Oak Chair
+      name: Dark Oak Chair
       tags:
         - dark
         - oak
@@ -995,7 +991,7 @@ decorations_data:
         - interior
       solid: true
     12208:
-      Name: White Chair
+      name: White Chair
       tags:
         - white
         - chair
@@ -1007,7 +1003,7 @@ decorations_data:
         - interior
       solid: true
     12209:
-      Name: Black Chair
+      name: Black Chair
       tags:
         - black
         - chair
@@ -1019,7 +1015,7 @@ decorations_data:
         - interior
       solid: true
     12212:
-      Name: Black Stool
+      name: Black Stool
       tags:
         - black
         - stool
@@ -1030,7 +1026,7 @@ decorations_data:
         - interior
       solid: true
     12213:
-      Name: White Stool
+      name: White Stool
       solid: true
       tags:
         - white
@@ -1041,7 +1037,7 @@ decorations_data:
         - counter
         - interior
     12215:
-      Name: Bar Stool
+      name: Bar Stool
       solid: true
       tags:
         - bar
@@ -1055,7 +1051,7 @@ decorations_data:
         - interior
         - casino
     12216:
-      Name: Dark Bar Stool
+      name: Dark Bar Stool
       solid: true
       tags:
         - dark
@@ -1070,7 +1066,7 @@ decorations_data:
         - interior
         - casino
     600:
-      Name: Bunny Hood
+      name: Bunny Hood
       custom_item: bunny_hood
       tags:
         - bunny
@@ -1085,7 +1081,7 @@ decorations_data:
         - easter
         - helmet
     700:
-      Name: Bug Net
+      name: Bug Net
       tags:
         - bug
         - net
@@ -1094,7 +1090,7 @@ decorations_data:
         - nature
         - tool
     800:
-      Name: Super Bug Net
+      name: Super Bug Net
       tags:
         - super
         - bug
@@ -1104,7 +1100,7 @@ decorations_data:
         - nature
         - tool
     5300:
-      Name: Acacia Mug Beer
+      name: Acacia Mug Beer
       tags:
         - acacia
         - mug
@@ -1115,7 +1111,7 @@ decorations_data:
         - beer
         - bar
     5400:
-      Name: Acacia Mug Coffee
+      name: Acacia Mug Coffee
       tags:
         - acacia
         - mug
@@ -1126,7 +1122,7 @@ decorations_data:
         - coffee
         - cafe
     5600:
-      Name: Acacia Mug Milk
+      name: Acacia Mug Milk
       tags:
         - acacia
         - mug
@@ -1137,7 +1133,7 @@ decorations_data:
         - milk
         - cow
     5800:
-      Name: Birch Mug Beer
+      name: Birch Mug Beer
       tags:
         - birch
         - mug
@@ -1148,7 +1144,7 @@ decorations_data:
         - beer
         - bar
     5900:
-      Name: Birch Mug Coffee
+      name: Birch Mug Coffee
       tags:
         - birch
         - mug
@@ -1159,7 +1155,7 @@ decorations_data:
         - cofee
         - cafe
     6100:
-      Name: Birch Mug Milk
+      name: Birch Mug Milk
       tags:
         - birch
         - mug
@@ -1170,7 +1166,7 @@ decorations_data:
         - milk
         - cow
     6200:
-      Name: Crimson Mug Beer
+      name: Crimson Mug Beer
       tags:
         - crimson
         - mug
@@ -1181,7 +1177,7 @@ decorations_data:
         - beer
         - bar
     6300:
-      Name: Crimson Mug Coffee
+      name: Crimson Mug Coffee
       tags:
         - crimson
         - mug
@@ -1192,7 +1188,7 @@ decorations_data:
         - coffee
         - cafe
     6500:
-      Name: Crimson Mug Milk
+      name: Crimson Mug Milk
       tags:
         - crimson
         - mug
@@ -1203,7 +1199,7 @@ decorations_data:
         - milk
         - cow
     6600:
-      Name: Dark Oak Mug Beer
+      name: Dark Oak Mug Beer
       tags:
         - dark
         - oak
@@ -1215,7 +1211,7 @@ decorations_data:
         - beer
         - bar
     6700:
-      Name: Dark Oak Mug Coffee
+      name: Dark Oak Mug Coffee
       tags:
         - dark
         - oak
@@ -1227,7 +1223,7 @@ decorations_data:
         - coffee
         - cafe
     6900:
-      Name: Dark Oak Mug Milk
+      name: Dark Oak Mug Milk
       tags:
         - dark
         - oak
@@ -1239,7 +1235,7 @@ decorations_data:
         - milk
         - cow
     7200:
-      Name: Jungle Mug Beer
+      name: Jungle Mug Beer
       tags:
         - jungle
         - mug
@@ -1250,7 +1246,7 @@ decorations_data:
         - beer
         - bar
     7300:
-      Name: Jungle Mug Coffee
+      name: Jungle Mug Coffee
       tags:
         - jungle
         - mug
@@ -1261,7 +1257,7 @@ decorations_data:
         - coffee
         - cafe
     7500:
-      Name: Jungle Mug Milk
+      name: Jungle Mug Milk
       tags:
         - jungle
         - mug
@@ -1272,7 +1268,7 @@ decorations_data:
         - milk
         - cow
     7600:
-      Name: Oak Mug Beer
+      name: Oak Mug Beer
       tags:
         - oak
         - mug
@@ -1283,7 +1279,7 @@ decorations_data:
         - beer
         - bar
     7700:
-      Name: Oak Mug Coffee
+      name: Oak Mug Coffee
       tags:
         - oak
         - mug
@@ -1294,7 +1290,7 @@ decorations_data:
         - coffee
         - cafe
     7900:
-      Name: Oak Mug Milk
+      name: Oak Mug Milk
       tags:
         - oak
         - mug
@@ -1305,7 +1301,7 @@ decorations_data:
         - milk
         - cow
     8000:
-      Name: Spruce Mug Beer
+      name: Spruce Mug Beer
       tags:
         - spruce
         - mug
@@ -1316,7 +1312,7 @@ decorations_data:
         - beer
         - bar
     8100:
-      Name: Spruce Mug Coffee
+      name: Spruce Mug Coffee
       tags:
         - spruce
         - mug
@@ -1327,7 +1323,7 @@ decorations_data:
         - coffee
         - cafe
     8300:
-      Name: Spruce Mug Milk
+      name: Spruce Mug Milk
       tags:
         - spruce
         - mug
@@ -1338,7 +1334,7 @@ decorations_data:
         - milk
         - cow
     8600:
-      Name: Warped Mug Beer
+      name: Warped Mug Beer
       tags:
         - warped
         - mug
@@ -2232,312 +2228,282 @@ decorations_data:
         - devil
         - CanBeYourAngelTiramisuOrYourDevilTiramisu
     12401:
-          name: Turkey
+      name: Turkey
     12402:
-          name: Mushroom Hat
+      name: Mushroom Hat
     12403:
-          name: Oak Shelf
+      name: Oak Shelf
     12404:
-          name: Cod
+      name: Cod
     12405:
-          name: Breads
+      name: Breads
     12406:
-          name: Cantaloupe
+      name: Cantaloupe
     12407:
-          name: Cantaloupesmall
+      name: Cantaloupesmall
     12408:
           name: Cantaloupesnot
     12409:
-          name: Barrelapp
+      name: Barrelapp
     12410:
-          name: Fruitbox
+      name: Fruitbox
     12411:
-          name: Potveg 4
+      name: Potveg 4
     12412:
-          name: Barrelpotat
+      name: Barrelpotat
     12413:
-          name: Cantaloupeblock
+      name: Cantaloupeblock
     12414:
-          name: Barrelcarrots
+      name: Barrelcarrots
     12415:
-          name: Cantaloupex4
+      name: Cantaloupex4
     12416:
-          name: Fruitboxbig
+      name: Fruitboxbig
     12417:
-          name: Fruitboxbig2
+      name: Fruitboxbig2
     12418:
-          name: Fruitboxbr
+      name: Fruitboxbr
     12419:
-          name: Fruitboxcan
+      name: Fruitboxcan
     12420:
-          name: Fruitboxban
+      name: Fruitboxban
     12421:
-          name: Fruitboxfish
+      name: Fruitboxfish
     12422:
-          name: Fruitboxpo
+      name: Fruitboxpo
     12423:
-          name: Fruitboxza
+      name: Fruitboxza
     12424:
-          name: Melonslices
+      name: Melonslices
     12425:
-          name: Onions
+      name: Onions
     12426:
-          name: Onions2
+      name: Onions2
     12427:
-          name: Onions3
+      name: Onions3
     12428:
-          name: Plant1
+      name: Plant1
     12429:
-          name: Plant2
+      name: Plant2
     12430:
-          name: Plant2b
+      name: Plant2b
     12431:
-          name: Plates4
+      name: Plates4
     12432:
-          name: Plate
+      name: Plate
     12433:
-          name: Platedirty
+      name: Platedirty
     12434:
-          name: Pot
+      name: Pot
     12435:
-          name: Potatoes
+      name: Potatoes
     12436:
-          name: Potbeet0
+      name: Potbeet0
     12437:
-          name: Potbeet1
+      name: Potbeet1
     12438:
-          name: Potbeet2
+      name: Potbeet2
     12439:
-          name: Potmush 0
+      name: Potmush 0
     12440:
-          name: Potmush 1
+      name: Potmush 1
     12441:
-          name: Potveg 0
+      name: Potveg 0
     12442:
-          name: Purpturnip
+      name: Purpturnip
     12443:
-          name: Purpturnip2
+      name: Purpturnip2
     12444:
-          name: Purpturnip3
+      name: Purpturnip3
     12445:
-          name: Radish
+      name: Radish
     12446:
-          name: Radish2
+      name: Radish2
     12447:
-          name: Radish3
+      name: Radish3
     12448:
-          name: Old Clock
-          solid: true
+      name: Old Clock
+      solid: true
     12449:
-          name: Oak Bench 2
-          solid: true
+      name: Oak Bench 2
+      solid: true
     12450:
-          name: Oak Bench
-          solid: true
+      name: Oak Bench
+      solid: true
     12451:
-          name: Woodenpath1
+      name: Woodenpath1
     12452:
-          name: Meal01
+      name: Meal01
     12453:
-          name: Disneyxmasplush
+      name: Disneyxmasplush
     12454:
-          name: Tenshixmasplush
+      name: Tenshixmasplush
     12455:
-          name: Thunderxmasplush
+      name: Thunderxmasplush
     12456:
-          name: Merguxmasplush
+      name: Merguxmasplush
     12457:
-          name: Sentxmasplush
+      name: Sentxmasplush
     12458:
-          name: Chesterxmasplush
+      name: Chesterxmasplush
     12459:
-          name: Dcaffxmasplush
+      name: Dcaffxmasplush
     12460:
-          name: Fireflyxmasplush
+      name: Fireflyxmasplush
     12461:
-          name: Angelxmasplush
+      name: Angelxmasplush
     12462:
-          name: Kyranxmasplush
+      name: Kyranxmasplush
     12463:
-          name: Porkyxmasplush
+      name: Porkyxmasplush
     12464:
-          name: Monkeyxmasplush
+      name: Monkeyxmasplush
     12465:
-          name: Dracoxmasplush
+      name: Dracoxmasplush
     12466:
-          name: Zazzxmasplush
+      name: Zazzxmasplush
     12467:
-          name: Keatonplush
+      name: Keatonplush
     12468:
-          name: Present 1
+      name: Present 1
     12469:
-          name: Present 2
+      name: Present 2
     12470:
-          name: Present 3
+      name: Present 3
     12471:
-          name: Present 4
+      name: Present 4
     12472:
-          name: Present 5
+      name: Present 5
     12473:
-          name: Present 6
+      name: Present 6
     13000:
-          name: Peppermint Cookie Flip
+      name: Peppermint Cookie Flip
     13100:
-          name: Chuckie
+      name: Chuckie
     13101:
-          name: Xmas Cloth
+      name: Xmas Cloth
     13102:
-          name: Xmas Ornament
+      name: Xmas Ornament
     13103:
-          name: Xmas Ribbon
+      name: Xmas Ribbon
     13104:
-          name: Xmas Magic
+      name: Xmas Magic
     13105:
-          name: Xmas Stuffing
+      name: Xmas Stuffing
     13106:
-          name: Xmas Thread
+      name: Xmas Thread
     13107:
-          name: Xmas Stocking
+      name: Xmas Stocking
     13108:
-          name: Present 7
+      name: Present 7
     13109:
-          name: Present 8
+      name: Present 8
     13110:
-          name: Red Scarf
+      name: Red Scarf
     13111:
-          name: Blue Scarf
+      name: Blue Scarf
     13112:
-          name: Green Scarf
+      name: Green Scarf
     13113:
-          name: Cocoa Mug
+      name: Cocoa Mug
     13114:
-          name: Penguin
+      name: Penguin
     13115:
-          name: Present Pile
+      name: Present Pile
     13116:
-          name: Snowman Hat
+      name: Snowman Hat
     13117:
-          name: Light Crown
+      name: Light Crown
     13118:
-          name: Xmas Lights
+      name: Xmas Lights
     13119:
-          name: Ornament
+      name: Ornament
     13120:
-          name: Stocking
+      name: Stocking
     13121:
-          name: Coldjiro
+      name: Coldjiro
     13122:
-          name: Fairy Fish
+      name: Fairy Fish
     13123:
-          name: Great Fairy Fish
+      name: Great Fairy Fish
     13124:
-          name: Snowflake Seasnake
+      name: Snowflake Seasnake
     13125:
-          name: Spiderbell Crab
+      name: Spiderbell Crab
     13126:
-          name: Ambrosial Amberjack
+      name: Ambrosial Amberjack
     13127:
-          name: Dancing Bream
+      name: Dancing Bream
     13128:
-          name: Giant Emerald Swordfish
+      name: Giant Emerald Swordfish
     13129:
-          name: Skippyjack
+      name: Skippyjack
     13130:
-          name: Bashful Angler
+      name: Bashful Angler
     13131:
-          name: Ninja Flounder
+      name: Ninja Flounder
     13132:
-          name: Rusty Swordfish
+      name: Rusty Swordfish
     13133:
-          name: Goobta Goby
+      name: Goobta Goby
     13134:
-          name: Icy Seasnake
+      name: Icy Seasnake
     13135:
-          name: Jolly Longfin
+      name: Jolly Longfin
     13136:
-          name: Loover
+      name: Loover
     13137:
-          name: Armored Porgy
+      name: Armored Porgy
     13138:
-          name: Mighty Porgy
+      name: Mighty Porgy
     13139:
-          name: Termina Bass
+      name: Termina Bass
     13140:
-          name: Termina Seabass
+      name: Termina Seabass
     13141:
-          name: Frog Lure
+      name: Frog Lure
     13142:
-          name: Popper Lure
+      name: Popper Lure
     13143:
-          name: Sinking Lure
+      name: Sinking Lure
     13144:
-          name: Spinner Lure
+      name: Spinner Lure
     13145:
-          name: Swimmer Lure
+      name: Swimmer Lure
     13196:
-          name: Kafei's Inkwell
+      name: Kafei's Inkwell
     14001:
-          name: Red Fairy Ring
+      name: Red Fairy Ring
     14002:
-          name: Blue Fairy Ring
+      name: Blue Fairy Ring
     14003:
-          name: Yellow Fairy Ring
+      name: Yellow Fairy Ring
     14004:
-          name: Small Stones
+      name: Small Stones
     14005:
-          name: Small Stones
+      name: Small Stones
     14006:
-          name: Small Stones
+      name: Small Stones
     14007:
-          name: Clover Patch
+      name: Clover Patch
     14008:
-          name: Clover Patch
+      name: Clover Patch
     14009:
-          name: Decorative Peach
+      name: Decorative Peach
     14010:
-          name: Red Book
+      name: Red Book
     14011:
-          name: The White Owl
-
-    # 12239:
-    #   name: Teapot
-    #   tags:
-    #     - teapot
-    #     - tea
-    #     - kettle
-    #     - liquid
-    #     - coffee
-    #     - classy
-    #     - indoor
-    #     - briish
-    #     - decor
-    #     - decorations
-    # 12241:
-    #   name: Cry About It
-    #   tags:
-    #     - dcaff
-    #     - chair
-    #     - fearme
-    #     - sitonmemommy
-    #     - dominance
-    #     - cryaboutit
-    #     - youwont
-    #     - cry
-    #     - about
-    #     - it
-    #     - meme
-    #     - dchair
-    #     - GetsMoreAssThanAToiletSeat
+      name: The White Owl
   apple:
     100:
-      Name: Banana
+      name: Banana
       tags:
         - banana
         - food
         - item
         - edible
     200:
-      Name: Candy1
+      name: Candy1
       tags:
         - candy
         - food
@@ -2547,7 +2513,7 @@ decorations_data:
         - sweet
         - treat
     300:
-      Name: Candy2
+      name: Candy2
       tags:
         - candy
         - food
@@ -2557,7 +2523,7 @@ decorations_data:
         - sweet
         - treat
     400:
-      Name: Candy3
+      name: Candy3
       tags:
         - candy
         - food
@@ -2567,7 +2533,7 @@ decorations_data:
         - sweet
         - treat
     500:
-      Name: Candy4
+      name: Candy4
       tags:
         - candy
         - food
@@ -2577,7 +2543,7 @@ decorations_data:
         - sweet
         - treat
     600:
-      Name: Candy5
+      name: Candy5
       tags:
         - candy
         - food
@@ -2587,7 +2553,7 @@ decorations_data:
         - sweet
         - treat
     700:
-      Name: Candy6
+      name: Candy6
       tags:
         - candy
         - food
@@ -2597,7 +2563,7 @@ decorations_data:
         - sweet
         - treat
     800:
-      Name: Candy7
+      name: Candy7
       tags:
         - candy
         - food
@@ -2607,7 +2573,7 @@ decorations_data:
         - sweet
         - treat
     900:
-      Name: Candy8
+      name: Candy8
       tags:
         - candy
         - food
@@ -2617,7 +2583,7 @@ decorations_data:
         - sweet
         - treat
     1000:
-      Name: Candy9
+      name: Candy9
       tags:
         - candy
         - food
@@ -2628,7 +2594,7 @@ decorations_data:
         - treat
   black_dye:
     100:
-      Name: Black Dye Bag
+      name: Black Dye Bag
       tags:
         - black
         - dye
@@ -2638,10 +2604,10 @@ decorations_data:
         - item
   blaze_rod:
     100:
-      Name: Everfire Rod
+      name: Everfire Rod
   blue_dye:
     100:
-      Name: Blue Dye Bag
+      name: Blue Dye Bag
       tags:
         - blue
         - dye
@@ -2651,7 +2617,7 @@ decorations_data:
         - item
   brick:
     100:
-      Name: Study Stone
+      name: Study Stone
       custom_item: zc_study_stone
       tags:
         - study
@@ -2668,7 +2634,7 @@ decorations_data:
         - item
   brown_dye:
     100:
-      Name: Brown Dye Bag
+      name: Brown Dye Bag
       tags:
         - brown
         - dye
@@ -2678,7 +2644,7 @@ decorations_data:
         - item
   clay_ball:
     100:
-      Name: Zelda Bomb
+      name: Zelda Bomb
       solid: true
       tags:
         - bomb
@@ -2691,7 +2657,7 @@ decorations_data:
         - dungeon
         - explode
     200:
-      Name: Zelda Bomb Exploding
+      name: Zelda Bomb Exploding
       solid: true
       tags:
         - bomb
@@ -2707,7 +2673,7 @@ decorations_data:
         - explode
         - animated
     300:
-      Name: Zelda Bomb Exploding Fast
+      name: Zelda Bomb Exploding Fast
       solid: true
       tags:
         - bomb
@@ -2725,10 +2691,10 @@ decorations_data:
         - animated
   cooked_beef:
     100:
-      Name: Dog Food
+      name: Dog Food
   cyan dye:
     100:
-      Name: Cyan Dye Bag
+      name: Cyan Dye Bag
       tags:
         - cyan
         - dye
@@ -2738,7 +2704,7 @@ decorations_data:
         - item
   diamond:
     100:
-      Name: Mythril
+      name: Mythril
       custom_item: zc_myhtril
       tags:
         - mythril
@@ -2752,7 +2718,7 @@ decorations_data:
         - craft
         - item
     200:
-      Name: Mythril Hilt
+      name: Mythril Hilt
       custom_item: zc_myhtril_hilt
       tags:
         - mythril
@@ -2766,118 +2732,118 @@ decorations_data:
         - craft
         - item
     300:
-      Name: Prism Core
+      name: Prism Core
   diamond_axe:
     100:
-      Name: Mythril Axe
+      name: Mythril Axe
       custom_item: zc_myhtril_axe
     200:
-      Name: Swordspirit Axe
+      name: Swordspirit Axe
     300:
-      Name: Diamond Demon Axe
+      name: Diamond Demon Axe
     400:
-      Name: Gravedigger Axe
+      name: Gravedigger Axe
     500:
-      Name: Time Lord Axe
+      name: Time Lord Axe
   diamond_boots:
     100:
-      Name: Power Boots
+      name: Power Boots
       custom_item: zc_power_boots
     200:
-      Name: Courage Boots
+      name: Courage Boots
       custom_item: zc_courage_boots
     300:
-      Name: Wisdom Boots
+      name: Wisdom Boots
       custom_item: zc_wisdom_boots
     400:
-      Name: Mythril Boots
+      name: Mythril Boots
       custom_item: zc_myhtril_boots
   diamond_chestplate:
     100:
-      Name: Power Chestplate
+      name: Power Chestplate
       custom_item: zc_power_chestplate
     200:
-      Name: Courage Chestplate
+      name: Courage Chestplate
       custom_item: zc_courage_chestplate
     300:
-      Name: Wisdom Chestplate
+      name: Wisdom Chestplate
       custom_item: zc_wisdom_chestplate
     400:
-      Name: Mythril Chestplate
+      name: Mythril Chestplate
       custom_item: zc_mythril_chestplate
   diamond_hoe:
     100:
-      Name: Mythril Hoe
+      name: Mythril Hoe
       custom_item: zc_mythril_hoe
     200:
-      Name: Plunger Gang
+      name: Plunger Gang
   diamond_leggings:
     100:
-      Name: Power Leggings
+      name: Power Leggings
       custom_item: zc_power_leggings
     200:
-      Name: Courage Leggings
+      name: Courage Leggings
       custom_item: zc_courage_leggings
     300:
-      Name: Wisdom Leggings
+      name: Wisdom Leggings
       custom_item: zc_wisdom_leggings
     400:
-      Name: Mythril Leggings
+      name: Mythril Leggings
       custom_item: zc_mythril_leggings
   diamond_pickaxe:
     100:
-      Name: Mythril Pickaxe
+      name: Mythril Pickaxe
       custom_item: zc_mythril_pickaxe
     200:
-      Name: Swordspirit Pickaxe
+      name: Swordspirit Pickaxe
     300:
-      Name: Diamond Demon Pickaxe
+      name: Diamond Demon Pickaxe
     400:
-      Name: Gravedigger Pickaxe
+      name: Gravedigger Pickaxe
     500:
-      Name: Time Lord Pickaxe
+      name: Time Lord Pickaxe
   diamond_shovel:
     100:
-      Name: Mythril Shovel
+      name: Mythril Shovel
       custom_item: zc_mythril_shovel
     200:
-      Name: Swordspirit Shovel
+      name: Swordspirit Shovel
     300:
-      Name: Diamond Demon Shovel
+      name: Diamond Demon Shovel
     400:
-      Name: Gravedigger Shovel
+      name: Gravedigger Shovel
     500:
-      Name: Time Lord Shovel
+      name: Time Lord Shovel
   diamond_sword:
     100:
-      Name: Master Sword
+      name: Master Sword
     200:
-      Name: Fierce Deity Sword
+      name: Fierce Deity Sword
     300:
-      Name: Great Fairy Sword
+      name: Great Fairy Sword
     400:
-      Name: Shiekah Gauntlet
+      name: Shiekah Gauntlet
     500:
-      Name: Spirit Sword
+      name: Spirit Sword
     600:
-      Name: Diamond Demon Sword
+      name: Diamond Demon Sword
     700:
-      Name: Gravedigger Scythe
+      name: Gravedigger Scythe
     800:
-      Name: Time Lord Sword
+      name: Time Lord Sword
     900:
-      Name: Demon Carver
+      name: Demon Carver
   elytra:
     100:
-      Name: Navi Wings
+      name: Navi Wings
       custom_item: zc_navi_wings
     200:
-      Name: Broken Navi Wings
+      name: Broken Navi Wings
     400:
-      Name: Dragon Wings
+      name: Dragon Wings
   emerald:
     100:
-      Name: Rupee
+      name: Rupee
       tags:
         - rupee
         - money
@@ -2885,7 +2851,7 @@ decorations_data:
         - currency
         - zelda
     200:
-      Name: 5 Rupee
+      name: 5 Rupee
       tags:
         - rupee
         - money
@@ -2893,7 +2859,7 @@ decorations_data:
         - currency
         - zelda
     300:
-      Name: 20 Rupee
+      name: 20 Rupee
       tags:
         - rupee
         - money
@@ -2901,7 +2867,7 @@ decorations_data:
         - currency
         - zelda
     400:
-      Name: 50 Rupee
+      name: 50 Rupee
       tags:
         - rupee
         - money
@@ -2909,7 +2875,7 @@ decorations_data:
         - currency
         - zelda
     500:
-      Name: 100 Rupee
+      name: 100 Rupee
       tags:
         - rupee
         - money
@@ -2917,7 +2883,7 @@ decorations_data:
         - currency
         - zelda
     600:
-      Name: 200 Rupee
+      name: 200 Rupee
       tags:
         - rupee
         - money
@@ -2925,7 +2891,7 @@ decorations_data:
         - currency
         - zelda
     700:
-      Name: 1000 Rupee
+      name: 1000 Rupee
       tags:
         - rupee
         - money
@@ -2934,82 +2900,82 @@ decorations_data:
         - zelda
   enderpearl:
     100:
-      Name: Spirit Orb
+      name: Spirit Orb
   fermented_spider_eye:
     100:
-      Name: Power Dust Shards
+      name: Power Dust Shards
       custom_item: zc_power_dust
     200:
-      Name: Power Shard
+      name: Power Shard
       custom_item: zc_power_dust_shard
     300:
-      Name: Power Shard Orb
+      name: Power Shard Orb
       custom_item: zc_shard_of_power
   flint:
     100:
-      Name: Dragon Scale
+      name: Dragon Scale
       custom_item: zc_dragon_scale
   glowstone_dust:
     100:
-      Name: Magic Powder
+      name: Magic Powder
   gold_ingot:
     100:
-      Name: Stone Of Knowledge
+      name: Stone Of Knowledge
       custom_item: zc_stone_of_know
     200:
-      Name: Wisdom Shard Orb
+      name: Wisdom Shard Orb
       custom_item: zc_wisdom_shard
     300:
-      Name: Fools Gold
+      name: Fools Gold
       custom_item: fools_gold
   gold_nugget:
     100:
-      Name: Gold Key
+      name: Gold Key
   golden_axe:
     100:
-      Name: Royal Halberd
+      name: Royal Halberd
     200:
-      Name: Swordspirit Axe
+      name: Swordspirit Axe
     300:
-      Name: Diamond Demon Axe
+      name: Diamond Demon Axe
     400:
-      Name: Gravedigger Axe
+      name: Gravedigger Axe
     500:
-      Name: Time Lord Axe
+      name: Time Lord Axe
   golden_pickaxe:
     200:
-      Name: Swordspirit Pickaxe
+      name: Swordspirit Pickaxe
     300:
-      Name: Diamond Demon Pickaxe
+      name: Diamond Demon Pickaxe
     400:
-      Name: Gravedigger Pickaxe
+      name: Gravedigger Pickaxe
     500:
-      Name: Time Lord Pickaxe
+      name: Time Lord Pickaxe
   golden_shovel:
     200:
-      Name: Swordspirit Shovel
+      name: Swordspirit Shovel
     300:
-      Name: Diamond Demon Shovel
+      name: Diamond Demon Shovel
     400:
-      Name: Gravedigger Shovel
+      name: Gravedigger Shovel
     500:
-      Name: Time Lord Shovel
+      name: Time Lord Shovel
   golden_sword:
     100:
-      Name: Goddess Sword
+      name: Goddess Sword
     500:
-      Name: Spirit Sword
+      name: Spirit Sword
     600:
-      Name: Diamond Demon Sword
+      name: Diamond Demon Sword
     700:
-      Name: Gravedigger Scythe
+      name: Gravedigger Scythe
     800:
-      Name: Time Lord Sword
+      name: Time Lord Sword
     900:
-      Name: Demon Carver
+      name: Demon Carver
   gray_dye:
     100:
-      Name: Gray Dye Bag
+      name: Gray Dye Bag
       tags:
         - gray
         - grey
@@ -3020,7 +2986,7 @@ decorations_data:
         - item
   green_dye:
     100:
-      Name: Green Dye Bag
+      name: Green Dye Bag
       tags:
         - green
         - dye
@@ -3030,98 +2996,98 @@ decorations_data:
         - item
   ink_sac:
     100:
-      Name: Phantom Essence
+      name: Phantom Essence
     200:
-      Name: Fire Essence
+      name: Fire Essence
     300:
-      Name: Heart Piece
+      name: Heart Piece
   iron_axe:
     200:
-      Name: Swordspirit Axe
+      name: Swordspirit Axe
     300:
-      Name: Diamond Demon Axe
+      name: Diamond Demon Axe
     400:
-      Name: Gravedigger Axe
+      name: Gravedigger Axe
     500:
-      Name: Time Lord Axe
+      name: Time Lord Axe
   iron_hoe:
     100:
-      Name: Spooky Scythe
+      name: Spooky Scythe
   iron_ingot:
     100:
-      Name: Tempered Iron
+      name: Tempered Iron
   iron_nugget:
     100:
-      Name: Silver Key
+      name: Silver Key
   iron_pickaxe:
     200:
-      Name: Swordspirit Pickaxe
+      name: Swordspirit Pickaxe
     300:
-      Name: Diamond Demon Pickaxe
+      name: Diamond Demon Pickaxe
     400:
-      Name: Gravedigger Pickaxe
+      name: Gravedigger Pickaxe
     500:
-      Name: Time Lord Pickaxe
+      name: Time Lord Pickaxe
   iron_shovel:
     200:
-      Name: Swordspirit Shovel
+      name: Swordspirit Shovel
     300:
-      Name: Diamond Demon Shovel
+      name: Diamond Demon Shovel
     400:
-      Name: Gravedigger Shovel
+      name: Gravedigger Shovel
     500:
-      Name: Time Lord Shovel
+      name: Time Lord Shovel
   iron_sword:
     100:
-      Name: Stop Sign
+      name: Stop Sign
     200:
-      Name: Triforce Blade
+      name: Triforce Blade
       custom_item: zc_triforce_blade
     300:
-      Name: Biggorans Sword
+      name: Biggorans Sword
     500:
-      Name: Spirit Sword
+      name: Spirit Sword
     600:
-      Name: Diamond Demon Sword
+      name: Diamond Demon Sword
     700:
-      Name: Gravedigger Scythe
+      name: Gravedigger Scythe
     800:
-      Name: Time Lord Sword
+      name: Time Lord Sword
     900:
-      Name: Demon Carver
+      name: Demon Carver
   leather_horse_armor:
     100:
-      Name: Wings
+      name: Wings
     200:
-      Name: Kaepora Wings
+      name: Kaepora Wings
     300:
-      Name: Fairywings
+      name: Fairywings
     400:
-      Name: Sephiroth
+      name: Sephiroth
     500:
-      Name: Butterfly Wings
+      name: Butterfly Wings
     600:
-      Name: Crow
+      name: Crow
     700:
-      Name: Batwings
+      name: Batwings
     800:
-      Name: Loftwing
+      name: Loftwing
     900:
-      Name: Backpack
+      name: Backpack
     1000:
-      Name: Bone Dragon
+      name: Bone Dragon
     1100:
-      Name: Hylian Shield
+      name: Hylian Shield
     1200:
-      Name: Flower Crown
+      name: Flower Crown
     1300:
-      Name: Dragon Tail
+      name: Dragon Tail
     1400:
-      Name: Cat Tail
+      name: Cat Tail
     1500:
-      Name: Ghirahim Cape
+      name: Ghirahim Cape
     2400:
-      Name: Curtain
+      name: Curtain
       tags:
         - dyeable
         - dye
@@ -3131,10 +3097,10 @@ decorations_data:
         - item
         - fabric
     2700:
-      Name: Armchair
+      name: Armchair
       solid: true
     2701:
-      Name: Wide Armchair
+      name: Wide Armchair
       solid: true
     21000:
       name: Wood Cushion Chair
@@ -3148,9 +3114,9 @@ decorations_data:
       name: Wood Swinging Loveseat
   light_blue_dye:
     100:
-      Name: Zora Sapphire
+      name: Zora Sapphire
     200:
-      Name: Light Blue Dye Bag
+      name: Light Blue Dye Bag
       tags:
         - light
         - blue
@@ -3161,7 +3127,7 @@ decorations_data:
         - item
   light_gray_dye:
     100:
-      Name: Light Gray Dye Bag
+      name: Light Gray Dye Bag
       tags:
         - light
         - gray
@@ -3173,9 +3139,9 @@ decorations_data:
         - item
   lime_dye:
     100:
-      Name: Kokiri Emerald
+      name: Kokiri Emerald
     200:
-      Name: Lime Dye Bag
+      name: Lime Dye Bag
       tags:
         - lime
         - dye
@@ -3185,7 +3151,7 @@ decorations_data:
         - item
   magenta_dye:
     100:
-      Name: Magenta Dye Bag
+      name: Magenta Dye Bag
       tags:
         - magenta
         - dye
@@ -3195,172 +3161,172 @@ decorations_data:
         - item
   magma_cream:
     100:
-      Name: Triforce Gem
+      name: Triforce Gem
       custom_item: zc_triforce_gem
     200:
-      Name: Ancient Core
+      name: Ancient Core
   milk_bucket:
     100:
-      Name: Bee Bottle
+      name: Bee Bottle
     200:
-      Name: Big Poe Soul
+      name: Big Poe Soul
     300:
-      Name: Blue Potion
+      name: Blue Potion
     400:
-      Name: Bluefire
+      name: Bluefire
     500:
-      Name: Bottled Zora Egg
+      name: Bottled Zora Egg
     600:
-      Name: Breathing Potion
+      name: Breathing Potion
     700:
-      Name: Bug Bottle
+      name: Bug Bottle
     800:
-      Name: Chateau Romani
+      name: Chateau Romani
     900:
-      Name: Chu Jelly
+      name: Chu Jelly
     1000:
-      Name: Chug Jug
+      name: Chug Jug
     1100:
-      Name: Elixer Soup
+      name: Elixer Soup
     1200:
-      Name: Fairy Tears
+      name: Fairy Tears
     1300:
-      Name: Fairybottle
+      name: Fairybottle
     1400:
-      Name: Fishbottle
+      name: Fishbottle
     1500:
-      Name: Forest Fairy
+      name: Forest Fairy
     1600:
-      Name: Forest Water
+      name: Forest Water
     1700:
-      Name: Gold Dust
+      name: Gold Dust
     1800:
-      Name: Good Bee
+      name: Good Bee
     1900:
-      Name: Green Potion
+      name: Green Potion
     2000:
-      Name: Guardian Potion
+      name: Guardian Potion
     2100:
-      Name: Heart Potion
+      name: Heart Potion
     2200:
-      Name: Hot Spring Water
+      name: Hot Spring Water
     2300:
-      Name: Lantern Oil
+      name: Lantern Oil
     2400:
-      Name: Lonlonmilk
+      name: Lonlonmilk
     2500:
-      Name: Mushroom Scent
+      name: Mushroom Scent
     2600:
-      Name: Mushroom Spores
+      name: Mushroom Spores
     2700:
-      Name: Mystery Milk
+      name: Mystery Milk
     2800:
-      Name: Poe Soul
+      name: Poe Soul
     2900:
-      Name: Pumpkin Soup
+      name: Pumpkin Soup
     3000:
-      Name: Purple Potion
+      name: Purple Potion
     3100:
-      Name: Red Potion
+      name: Red Potion
     3200:
-      Name: Revitalizing Potion
+      name: Revitalizing Potion
     3300:
-      Name: Sacred Water
+      name: Sacred Water
     3400:
-      Name: Spring Water
+      name: Spring Water
     3500:
-      Name: Stamina Potion
+      name: Stamina Potion
     3600:
-      Name: Water Bottle
+      name: Water Bottle
   music_disc_13:
     100:
-      Name: Tal Tal Record
+      name: Tal Tal Record
       custom_item: tal_tal_custom_record
     200:
-      Name: Kass Theme Record
+      name: Kass Theme Record
       custom_item: kass_theme_custom_record
     300:
-      Name: Final Hours Record
+      name: Final Hours Record
       custom_item: final_hours_custom_record
   nether_brick:
     100:
-      Name: Softened Iron
+      name: Softened Iron
       custom_item: zc_soft_iron
   nether_star:
     100:
-      Name: Heart Of Fire
+      name: Heart Of Fire
   netherite_axe:
     100:
-      Name: Mythril Axe Netherite
+      name: Mythril Axe Netherite
     600:
-      Name: Incinerator
+      name: Incinerator
     200:
-      Name: Swordspirit Axe
+      name: Swordspirit Axe
     300:
-      Name: Diamond Demon Axe
+      name: Diamond Demon Axe
     400:
-      Name: Gravedigger Axe
+      name: Gravedigger Axe
     500:
-      Name: Time Lord Axe
+      name: Time Lord Axe
   netherite_boots:
     500:
-      Name: Ancient Boots
+      name: Ancient Boots
   netherite_chestplate:
     500:
-      Name: Ancient Chestplate
+      name: Ancient Chestplate
   netherite_helmet:
     500:
-      Name: Ancient Helmet
+      name: Ancient Helmet
   netherite_hoe:
     100:
-      Name: Mythril Hoe Netherite
+      name: Mythril Hoe Netherite
   netherite_leggings:
     500:
-      Name: Ancient Leggings
+      name: Ancient Leggings
   netherite_pickaxe:
     100:
-      Name: Mythril Pickaxe Netherite
+      name: Mythril Pickaxe Netherite
     200:
-      Name: Swordspirit Pickaxe
+      name: Swordspirit Pickaxe
     300:
-      Name: Diamond Demon Pickaxe
+      name: Diamond Demon Pickaxe
     400:
-      Name: Gravedigger Pickaxe
+      name: Gravedigger Pickaxe
     500:
-      Name: Time Lord Pickaxe
+      name: Time Lord Pickaxe
   netherite_shovel:
     100:
-      Name: Mythril Shovel Netherite
+      name: Mythril Shovel Netherite
     200:
-      Name: Swordspirit Shovel
+      name: Swordspirit Shovel
     300:
-      Name: Diamond Demon Shovel
+      name: Diamond Demon Shovel
     400:
-      Name: Gravedigger Shovel
+      name: Gravedigger Shovel
     500:
-      Name: Time Lord Shovel
+      name: Time Lord Shovel
   netherite_sword:
     100:
-      Name: Phantom Ganon Sword
+      name: Phantom Ganon Sword
     200:
-      Name: Twilight Sword
+      name: Twilight Sword
     300:
-      Name: Royal Guards Spear
+      name: Royal Guards Spear
     400:
-      Name: Flame Eternal
+      name: Flame Eternal
     500:
-      Name: Spirit Sword
+      name: Spirit Sword
     600:
-      Name: Diamond Demon Sword
+      name: Diamond Demon Sword
     700:
-      Name: Gravedigger Scythe
+      name: Gravedigger Scythe
     800:
-      Name: Time Lord Sword
+      name: Time Lord Sword
     900:
-      Name: Demon Carver
+      name: Demon Carver
   orange_dye:
     100:
-      Name: Orange Dye Bag
+      name: Orange Dye Bag
       tags:
         - orange
         - dye
@@ -3370,7 +3336,7 @@ decorations_data:
         - item
   pink_dye:
     100:
-      Name: Pink Dye Bag
+      name: Pink Dye Bag
       tags:
         - pink
         - dye
@@ -3380,7 +3346,7 @@ decorations_data:
         - item
   purple_dye:
     100:
-      Name: Purple Dye Bag
+      name: Purple Dye Bag
       tags:
         - purple
         - dye
@@ -3390,9 +3356,9 @@ decorations_data:
         - item
   red_dye:
     100:
-      Name: Goron Ruby
+      name: Goron Ruby
     200:
-      Name: Red Dye Bag
+      name: Red Dye Bag
       tags:
         - red
         - dye
@@ -3402,83 +3368,83 @@ decorations_data:
         - item
   scute:
     100:
-      Name: Courage Shard
+      name: Courage Shard
       custom_item: zc_courage_shell
     200:
-      Name: Courage Shard Orb
+      name: Courage Shard Orb
       custom_item: zc_courage_shard
     300:
-      Name: Shell
+      name: Shell
     400:
-      Name: Shell Orange
+      name: Shell Orange
     500:
-      Name: Shell Purple
+      name: Shell Purple
   slime ball:
     100:
-      Name: Bomb Texture
+      name: Bomb Texture
       custom_item: bomb_item
   steak:
     100:
-      Name: Dog Food
+      name: Dog Food
   stick:
     100:
-      Name: Boomerang
+      name: Boomerang
       custom_item: boomerang_item
     200:
-      Name: Boomerang Throw
+      name: Boomerang Throw
     300:
-      Name: Slingshot
+      name: Slingshot
       custom_item: slingshot
     400:
-      Name: Forest Slingshot
+      name: Forest Slingshot
       custom_item: forestslingshot
   stone_axe:
     100:
-      Name: Ancient Bladesaw
+      name: Ancient Bladesaw
     200:
-      Name: Swordspirit Axe
+      name: Swordspirit Axe
     300:
-      Name: Diamond Demon Axe
+      name: Diamond Demon Axe
     400:
-      Name: Gravedigger Axe
+      name: Gravedigger Axe
     500:
-      Name: Time Lord Axe
+      name: Time Lord Axe
   stone_pickaxe:
     200:
-      Name: Swordspirit Pickaxe
+      name: Swordspirit Pickaxe
     300:
-      Name: Diamond Demon Pickaxe
+      name: Diamond Demon Pickaxe
     400:
-      Name: Gravedigger Pickaxe
+      name: Gravedigger Pickaxe
     500:
-      Name: Time Lord Pickaxe
+      name: Time Lord Pickaxe
   stone_shovel:
     200:
-      Name: Swordspirit Shovel
+      name: Swordspirit Shovel
     300:
-      Name: Diamond Demon Shovel
+      name: Diamond Demon Shovel
     400:
-      Name: Gravedigger Shovel
+      name: Gravedigger Shovel
     500:
-      Name: Time Lord Shovel
+      name: Time Lord Shovel
   stone_sword:
     500:
-      Name: Spirit Sword
+      name: Spirit Sword
     600:
-      Name: Diamond Demon Sword
+      name: Diamond Demon Sword
     700:
-      Name: Gravedigger Scythe
+      name: Gravedigger Scythe
     800:
-      Name: Time Lord Sword
+      name: Time Lord Sword
     900:
-      Name: Demon Carver
+      name: Demon Carver
   turtle_egg:
     100:
-      Name: Easter Egg
+      name: Easter Egg
       custom_item: easter_egg
   white_dye:
     100:
-      Name: White Dye Bag
+      name: White Dye Bag
       tags:
         - white
         - dye
@@ -3488,53 +3454,53 @@ decorations_data:
         - item
   wooden_axe:
     200:
-      Name: Swordspirit Axe
+      name: Swordspirit Axe
     300:
-      Name: Diamond Demon Axe
+      name: Diamond Demon Axe
     400:
-      Name: Gravedigger Axe
+      name: Gravedigger Axe
     500:
-      Name: Time Lord Axe
+      name: Time Lord Axe
   wooden_pickaxe:
     200:
-      Name: Swordspirit Pickaxe
+      name: Swordspirit Pickaxe
     300:
-      Name: Diamond Demon Pickaxe
+      name: Diamond Demon Pickaxe
     400:
-      Name: Gravedigger Pickaxe
+      name: Gravedigger Pickaxe
     500:
-      Name: Time Lord Pickaxe
+      name: Time Lord Pickaxe
   wooden_shovel:
     200:
-      Name: Swordspirit Shovel
+      name: Swordspirit Shovel
     300:
-      Name: Diamond Demon Shovel
+      name: Diamond Demon Shovel
     400:
-      Name: Gravedigger Shovel
+      name: Gravedigger Shovel
     500:
-      Name: Time Lord Shovel
+      name: Time Lord Shovel
   wooden_sword:
     100:
-      Name: Boat Oar
+      name: Boat Oar
     200:
-      Name: Boko Bat
+      name: Boko Bat
     300:
-      Name: Ladle
+      name: Ladle
     500:
-      Name: Spirit Sword
+      name: Spirit Sword
     600:
-      Name: Diamond Demon Sword
+      name: Diamond Demon Sword
     700:
-      Name: Gravedigger Scythe
+      name: Gravedigger Scythe
     800:
-      Name: Time Lord Sword
+      name: Time Lord Sword
     900:
-      Name: Demon Carver
+      name: Demon Carver
     1000:
-      Name: Broom
+      name: Broom
   yellow_dye:
     100:
-      Name: Yellow Dye Bag
+      name: Yellow Dye Bag
       tags:
         - yellow
         - dye
