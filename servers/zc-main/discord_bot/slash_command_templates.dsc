@@ -633,28 +633,28 @@ tempban_cmd_run_once:
           choices:
             1:
               name: 1 hour
-              type: 1h
+              value: 1h
             2:
               name: 1 day
-              type: 1d
+              value: 1d
             3:
               name: 3 days
-              type: 3d
+              value: 3d
             4:
               name: 5 days
-              type: 5d
+              value: 5d
             5:
               name: 7 days
-              type: 7d
+              value: 7d
             6:
               name: 2 weeks
-              type: 14d
+              value: 14d
             7:
               name: 1 month
-              type: 31d
+              value: 31d
             8:
               name: 2 months
-              type: 62d
+              value: 62d
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:tempban "description:Tempban a player for a certain time" options:<[options]>
 
 permban_cmd_run_once:
@@ -709,19 +709,19 @@ mute_cmd_run_once:
           choices:
             1:
               name: 5 minutes
-              type: 5m
+              value: 5m
             2:
               name: 10 minutes
-              type: 10m
+              value: 10m
             3:
               name: 30 minutes
-              type: 30m
+              value: 30m
             4:
               name: 1 hour
-              type: 1h
+              value: 1h
             5:
               name: 2 hours
-              type: 2h
+              value: 2h
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:mute "description:Mute a player ingame" options:<[options]>
 
 jail_cmd_run_once:
@@ -742,17 +742,17 @@ jail_cmd_run_once:
           choices:
             1:
               name: 5 minutes
-              type: 5m
+              value: 5m
             2:
               name: 10 minutes
-              type: 10m
+              value: 10m
             3:
               name: 30 minutes
-              type: 30m
+              value: 30m
             4:
               name: 1 hour
-              type: 1h
+              value: 1h
             5:
               name: 2 hours
-              type: 2h
+              value: 2h
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:jail "description:Put a player into jail" options:<[options]>
