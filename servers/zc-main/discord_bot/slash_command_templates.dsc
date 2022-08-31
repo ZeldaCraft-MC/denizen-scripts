@@ -614,21 +614,22 @@ tempban_cmd_run_once:
   type: task
   debug: false
   script:
+    - ~discordcommand id:zc-info delete group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:tempban
     - definemap options:
         1:
           type: string
           name: ign
-          description: What is the persons ign (in game name)
+          description: The in-game name of the player
           required: true
         2:
           type: string
           name: reason
-          description: What is the reason of the tempban
+          description: The reason for this tempban
           required: true
         3:
           type: string
           name: time
-          description: what is the time of this tempban
+          description: The duration of this tempban
           required: true
           choices:
             1:
@@ -652,25 +653,23 @@ tempban_cmd_run_once:
             7:
               name: 1 month
               value: 31d
-            8:
-              name: 2 months
-              value: 62d
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:tempban "description:Tempban a player for a certain time" options:<[options]>
 
 permban_cmd_run_once:
   type: task
   debug: false
   script:
+    - ~discordcommand id:zc-info delete group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:permban
     - definemap options:
         1:
           type: string
           name: ign
-          description: What is the persons ign (in game name)
+          description: The in-game name of the player
           required: true
         2:
           type: string
           name: reason
-          description: What is the reason of the tempban
+          description: The reason for this permban
           required: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:permban "description:Permban a player" options:<[options]>
 
@@ -678,16 +677,17 @@ warn_cmd_run_once:
   type: task
   debug: false
   script:
+    - ~discordcommand id:zc-info delete group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:warn
     - definemap options:
         1:
           type: string
           name: ign
-          description: What is the persons ign (in game name)
+          description: The in-game name of the player
           required: true
         2:
           type: string
           name: reason
-          description: What is the reason of the tempban
+          description: The reason for this warn
           required: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:warn "description:Warn a player" options:<[options]>
 
@@ -695,16 +695,17 @@ mute_cmd_run_once:
   type: task
   debug: false
   script:
+    - ~discordcommand id:zc-info delete group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:mute
     - definemap options:
         1:
           type: string
           name: ign
-          description: What is the persons ign (in game name)
+          description: The in-game name of the player
           required: true
         2:
           type: string
           name: time
-          description: what is the time of this tempban
+          description: The duration of this mute
           required: true
           choices:
             1:
@@ -728,16 +729,17 @@ jail_cmd_run_once:
   type: task
   debug: false
   script:
+    - ~discordcommand id:zc-info delete group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:jail
     - definemap options:
         1:
           type: string
           name: ign
-          description: What is the persons ign (in game name)
+          description: The in-game name of the player
           required: true
         2:
           type: string
           name: time
-          description: what is the time of this tempban
+          description: The duration of this jail
           required: true
           choices:
             1:
