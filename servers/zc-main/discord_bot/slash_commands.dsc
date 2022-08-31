@@ -860,6 +860,9 @@ tempban_slash_cmd:
         - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Tempban].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
         - stop
       - define player <server.match_offline_player[<context.options.get[ign]>]>
+      - if <[player].groups.contains_any[gm|admin|moderator]>:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Tempban].with[description].as[You are not allowed to ban <[player].name>].with[color].as[red]>"
+        - stop
       - define message <context.options.get[reason]>
       - define time_now <util.time_now>
       - define time <duration[<context.options.get[time]>]>
@@ -897,6 +900,9 @@ permban_slash_cmd:
         - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Permban].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
         - stop
       - define player <server.match_offline_player[<context.options.get[ign]>]>
+      - if <[player].groups.contains_any[gm|admin|moderator]>:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Permban].with[description].as[You are not allowed to ban <[player].name>].with[color].as[red]>"
+        - stop
       - define message <context.options.get[reason]>
       - define time_now <util.time_now>
       - if !<context.interaction.user.has_flag[mc_link]>:
@@ -931,6 +937,9 @@ warn_slash_cmd:
         - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Warn].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
         - stop
       - define player <server.match_offline_player[<context.options.get[ign]>]>
+      - if <[player].groups.contains_any[gm|admin|moderator]>:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Warn].with[description].as[You are not allowed to warn <[player].name>].with[color].as[red]>"
+        - stop
       - define message <context.options.get[reason]>
       - define time_now <util.time_now>
       - if !<context.interaction.user.has_flag[mc_link]>:
@@ -970,9 +979,12 @@ mute_slash_cmd:
         - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Mute].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
         - stop
       - define player <server.match_offline_player[<context.options.get[ign]>]>
+      - if <[player].groups.contains_any[gm|admin|moderator]>:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Mute].with[description].as[You are not allowed to mute <[player].name>].with[color].as[red]>"
+        - stop
       - define dur <duration[<context.options.get[time]>]>
-      - adjust <[player]> is_muted:true|<[dur]>
-      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[mute].with[description].as[<[player].name> has been muted for <[dur].formatted>].with[color].as[aqua]>"
+      - execute as_server "mute <[player].name> <context.options.get[time]>"
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Mute].with[description].as[<[player].name> has been muted for <[dur].formatted>].with[color].as[aqua]>"
 
 jail_slash_cmd:
   type: world
@@ -984,7 +996,10 @@ jail_slash_cmd:
         - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Jail].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
         - stop
       - define player <server.match_offline_player[<context.options.get[ign]>]>
-      - define time <context.options.get[time]>
+      - if <[player].groups.contains_any[gm|admin|moderator]>:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Jail].with[description].as[You are not allowed to jail <[player].name>].with[color].as[red]>"
+        - stop
+      - define time <context.options.get[time].as[duration]>
       - define jail cell1
       - define time_now <util.time_now>
       - if !<context.interaction.user.has_flag[mc_link]>:
