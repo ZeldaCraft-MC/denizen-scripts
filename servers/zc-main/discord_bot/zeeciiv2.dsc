@@ -1153,7 +1153,7 @@ non_discord_events_w:
           - inventory update
           - narrate "you cannot store the suggestions book" format:zc_text
     on player signs book:
-    - if <context.book.script.if_null[no_script]> == <script[suggestions_i]>:
+    - if <context.book.script.name.if_null[no_script]> == suggestions_i:
       - flag player dis_sug:++ expire:1h
       - if <player.flag[dis_sug].if_null[0]> > 3:
         - narrate "You cannot post more then 3 suggestions in 1 hour" format:zc_text
