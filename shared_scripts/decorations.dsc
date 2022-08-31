@@ -1,3 +1,6 @@
+# For furniture items
+# Needs a major re-work because this is out of hand
+
 decoration_events:
   type: world
   debug: false
