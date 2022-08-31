@@ -14,38 +14,30 @@
 #-------------#
 # warp command
 #-------------#
-warp_cmd:
-  type: command
-  name: warp
+
+warp_task:
+  type: task
   debug: false
-  description: used to warp to certain areas
-  usage: /warp (name)
-  tab completions:
-    1: <server.flag[warps].keys.alphabetical.parse[to_lowercase]>
-    2: <server.online_players.parse[name]>
+  definitions: name|player_name
   script:
-    - if <context.args.first||<empty>> == <empty>:
-      - narrate "PLease enter a warp name"
+    - if !<server.flag[warps].keys.contains[<[name]>]>:
+      - narrate "<&c>This does not seem to be a valid warp."
       - stop
-    - if !<server.flag[warps].keys.contains[<context.args.first||empty>]>:
-      - narrate "This does not seem to be a valid warp"
-      - stop
-    - define name <context.args.first>
     - define loc <server.flag[warps].get[<[name]>]>
     - if <player.is_op>:
-      - if <context.args.get[2]||null> == null:
+      - if !<[player_name].exists>:
         - narrate "<&6>Warping to <&c><[name]><&6>."
         - teleport <player> <[loc]>
         - stop
-      - define player <server.match_player[<context.args.get[2]>]||noone>
+      - define player <server.match_player[<[player_name]>]||noone>
       - if <[player]> == noone:
-        - narrate "<&4>No player was found with <context.args.get[2]>"
+        - narrate "<&4>No player was found with the name <[player_name]>"
         - stop
       - narrate "<&6>Teleporting <&a><[player].name> <&6>to <&c><[name]><&6>."
       - narrate "<&6>Warping to <&c><[name]><&6>." targets:<[player]>
       - teleport <[player]> <[loc]>
       - stop
-    - narrate "<&6>Teleportation will commence in <&c>2 seconds<&6>. Don't move"
+    - narrate "<&6>Teleportation will commence in <&c>2 seconds<&6>. Don't move."
     - define ol_loc <player.location.block>
     - wait 2s
     - if <player.location.block> != <[ol_loc]>:
@@ -53,6 +45,25 @@ warp_cmd:
       - stop
     - teleport <player> <[loc]>
     - narrate "<&6>Warping to <&c><[name]>"
+
+warp_cmd:
+  type: command
+  name: warp
+  debug: false
+  description: Used to warp to certain areas
+  usage: /warp (name)
+  tab completions:
+    1: <server.flag[warps].keys.alphabetical.parse[to_lowercase]>
+    2: <server.online_players.parse[name]>
+  script:
+    - if !<context.args.first.exists>:
+      - narrate "<&c>Please enter a warp name"
+      - stop
+    - if <context.args.get[2].exists>:
+      - run warp_task def:<context.args.first>|<context.args.get[2]>
+    - else:
+      - run warp_task def:<context.args.first>
+
 create_warp_cmd:
   type: command
   name: createwarp
@@ -74,6 +85,7 @@ create_warp_cmd:
     - else:
       - flag server warp_menu_items.<context.args.first>:<context.args.get[2]>
     - narrate "<&6>Warp <&c><context.args.first><&6> has been <&a>created<&6>!"
+
 del_warp_cmd:
   type: command
   name: delwarp
@@ -93,6 +105,7 @@ del_warp_cmd:
     - flag server warps.<context.args.first>:!
     - flag server warp_menu_items.<context.args.first>:!
     - narrate "<&6>Warp <&c><context.args.first><&6> has been <&c>removed<&6>!"
+
 warps_command:
   type: command
   debug: false
@@ -101,6 +114,8 @@ warps_command:
   usage: /warps (page number)
   script:
   - define page <context.args.first||1>
+  - if !<[page].is_integer>:
+    - define page 1
   - define max_page <server.flag[warps].keys.size.div[20].round_up>
   - if <[page]> > <[max_page]>:
     - narrate "<&4>You cannot go that high"
@@ -124,6 +139,7 @@ warps_command:
     - narrate "<[left_ar]> <&6>Page <&c><[page]>/<[max_page]> <&6><&chr[25B7]>"
     - stop
   - narrate "<[left_ar]> <&6>Page <&c><[page]>/<[max_page]> <[right_ar]>"
+
 #------------#
 # warp signs
 #-----------#
@@ -153,4 +169,4 @@ warp_sign_world:
       - narrate "Seems like this warp no longer exsist." format:zc_text
       - narrate "Notify an admin if you think this is incorrect." format:zc_text
       - stop
-    - execute as_player "warp <context.location.sign_contents.get[2].to_lowercase.strip_color>"
+    - run warp_task def:<context.location.sign_contents.get[2].to_lowercase.strip_color||null>
