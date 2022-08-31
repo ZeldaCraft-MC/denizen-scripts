@@ -740,19 +740,19 @@ jail_cmd_run_once:
           description: what is the time of this tempban
           required: true
           choices:
-           1:
-             name: 5 minutes
-             type: 5m
-           2:
-             name: 10 minutes
-             type: 10m
-           3:
-             name: 30 minutes
-             type: 30m
-           4:
-             name: 1 hour
-             type: 1h
-           5:
-             name: 2 hours
-             type: 2h
+            1:
+              name: 5 minutes
+              type: 5m
+            2:
+              name: 10 minutes
+              type: 10m
+            3:
+              name: 30 minutes
+              type: 30m
+            4:
+              name: 1 hour
+              type: 1h
+            5:
+              name: 2 hours
+              type: 2h
     - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:jail "description:Put a player into jail" options:<[options]>
