@@ -655,7 +655,7 @@ tempban_cmd_run_once:
             8:
               name: 2 months
               type: 62d
-    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:tempban "description:Tempban a player for a certain time" options:<[options]>
+    - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:tempban "description:Tempban a player for a certain time" options:<[options]>
 
 permban_cmd_run_once:
   type: task
@@ -672,7 +672,7 @@ permban_cmd_run_once:
           name: reason
           description: What is the reason of the tempban
           required: true
-    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:permban "description:Permban a player" options:<[options]>
+    - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:permban "description:Permban a player" options:<[options]>
 
 warn_cmd_run_once:
   type: task
@@ -689,7 +689,7 @@ warn_cmd_run_once:
           name: reason
           description: What is the reason of the tempban
           required: true
-    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:warn "description:Warn a player" options:<[options]>
+    - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:warn "description:Warn a player" options:<[options]>
 
 mute_cmd_run_once:
   type: task
@@ -722,7 +722,7 @@ mute_cmd_run_once:
             5:
               name: 2 hours
               type: 2h
-    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:mute "description:Mute a player ingame" options:<[options]>
+    - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:mute "description:Mute a player ingame" options:<[options]>
 
 jail_cmd_run_once:
   type: task
@@ -755,4 +755,4 @@ jail_cmd_run_once:
             5:
               name: 2 hours
               type: 2h
-    - ~discordcommand id:zc-info group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:jail "description:Put a player into jail" options:<[options]>
+    - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:jail "description:Put a player into jail" options:<[options]>
