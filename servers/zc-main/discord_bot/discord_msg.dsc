@@ -554,7 +554,7 @@ d_messages:
       - <map.with[title].as[Stop].with[value].as[You can stop this application by clicking the stop button]>
   helper_post_msg:
     title: Helper Application
-    description: Thank you for applying to become a helper.<&nl>Your application has been posted and will be voted on by the staff team.<&nl>Updates on the vorting can be seen in the application message
+    description: Thank you for applying to become a helper.<&nl>Your application has been posted and will be voted on by the staff team.<&nl>Updates on the voting can be seen in the application message
     fields:
       - <map.with[title].as[Helpers get priveleges:].with[value].as[:large_blue_diamond: Access to /tpo<&nl>`Teleport to anyone anytime!`<&nl><&nl>:large_blue_diamond: Limited access to /co<&nl>`Our logging system`].with[inline].as[false]>
       - <map.with[title].as[Helpers should follow the same rules as Mods].with[value].as[:large_orange_diamond: Rules<&nl>`Make sure you know the server rules.`<&nl><&nl>:large_orange_diamond: Respect<&nl>`Be respectful to other players - don't bully/abuse them.`<&nl><&nl>:large_orange_diamond: UNbiased<&nl>`Be impartial (i.e. unbiased) towards players.`<&nl><&nl>:large_orange_diamond: Mature<&sp>`Be mature and repsonsible`]>
