@@ -84,7 +84,7 @@ home_command:
     - if !<[player].flag[homes].keys.contains[<[name]>]||false>:
       - narrate "You cannot teleport to a home <tern[<[is_admin]>].pass[<[player].name> does].fail[you do]> not have" format:zc_home_text
       - stop
-    - if !<server.worlds.contains[<[player].flag[homes.<[name]>].world>]>:
+    - if !<server.worlds.contains[<[player].flag[homes.<[name]>].world.if_null[none]>]>:
       - narrate "The world this home was in has been unloaded" format:zc_home_text
       - stop
     - if <[player].flag[homes.<[name]>].world.name> == s3:
