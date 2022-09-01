@@ -1613,7 +1613,7 @@ unban_co:
       - flag <[player]> moderate.unban.<[num]>.created:<[created]>
     - flag <[player]> moderate.unban.<[num]>.was_ip:false
     - ban <[player]> remove source:<player.name||server>
-    - if <player.is_online>:
+    - if <player.is_online||false>:
       - narrate "<&8>Unban <&7>recorded<&nl>"
       - narrate "<&7>Player: <&f><[player].name>"
       - narrate "<&7>Time: <&f><util.time_now.format><&nl>"
