@@ -782,3 +782,15 @@ unban_cmd_run_once:
           description: The in-game name of the player
           required: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:unban "description:Unban a certain player" options:<[options]>
+
+unmute_cmd_run_once:
+  type: task
+  debug: false
+  script:
+    - definemap options:
+        1:
+          type: string
+          name: ign
+          description: The in-game name of the player
+          required: true
+    - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:unmute "description:Unmute a certain player" options:<[options]>
