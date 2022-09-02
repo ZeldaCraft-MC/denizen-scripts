@@ -1027,3 +1027,75 @@ jail_slash_cmd:
         - narrate "<&c>You do the crime, you do the time." format:zc_text targets:<[player]>
         - narrate "<[by_player].name> has jailed <[player].name> in <&e><[jail]> <&f>for <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<server.online_players.filter[has_permission[zc.mod]]>
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Jail].with[description].as[Succesfully jailed <[player].name> in <[jail]> for <[time].formatted>].with[color].as[aqua]>"
+      
+unjail_slash_command:
+  type: world
+  debug: false
+  events:
+    on discord slash command name:unjail:
+      - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - if <server.match_offline_player[<context.options.get[ign]>].if_null[error]> == error:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnJail].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
+        - stop
+      - define player <server.match_offline_player[<context.options.get[ign]>]>
+      - if !<[player].has_flag[jailed]>:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnJail].with[description].as[<[player].name> does not seem to be jailed].with[color].as[red]>"
+        - stop
+      - define tel <[player].flag[jailed]>
+      - define num <[player].flag[moderate.unjail].size.add[1]||1>
+      - if !<context.interaction.user.has_flag[mc_link]>:
+        - define by_player <server.match_offline_player[Zeldacraft]>
+      - else:
+        - define by_player <context.interaction.user.flag[mc_link]>
+      - flag <[player]> moderate.unjail.<[num]>.by_player:<[by_player]>
+      - flag <[player]> moderate.unjail.<[num]>.expire:<[player].flag_expiration[jailed]>
+      - flag <[player]> moderate.unjail.<[num]>.time_now:<util.time_now>
+      - flag <[player]> jailed:!
+      - teleport <[player]> <[tel]>
+      - narrate "You have been unjailed!" format:zc_text targets:<[player]>
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnJail].with[description].as[You succesfully unjailed <[player].name].with[color].as[aqua]>"
+      - narrate "[Discord]<context.interaction.user.name> unjailed <[player].name>" format:zc_text targets:<server.online_players.filter[has_permission[zc.mod]]>
+  
+ unban_slash_command:
+  type: world
+  debug: false
+  events:
+    on discord slash command name:unban:
+      - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - if <server.match_offline_player[<context.options.get[ign]>].if_null[error]> == error:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnBan].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
+        - stop
+      - define player <server.match_offline_player[<context.options.get[ign]>]>
+      - if !<[player].is_banned>:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnBan].with[description].as[<[player].name> does not seem to be banned].with[color].as[red]>"
+        - stop
+      - define num <[player].flag[moderate.unban].size.add[1]||1>
+      - define discord no_ban
+      - define discord ban
+      - define reason <[player].ban_reason>
+      - define source <[player].ban_source>
+      - if <[player].ban_expiration_time||never> != never:
+        - define discord ban_expiration
+        - define expiration <[player].ban_expiration_time>
+      - define created <[player].ban_created_time>
+      - if !<context.interaction.user.has_flag[mc_link]>:
+        - define by_player <server.match_offline_player[Zeldacraft]>
+      - else:
+        - define by_player <context.interaction.user.flag[mc_link]>
+      - flag <[player]> moderate.unban.<[num]>.by_player:<[by_player]>
+      - flag <[player]> moderate.unban.<[num]>.time:<util.time_now>
+      - flag <[player]> moderate.unban.<[num]>.reason:<[reason]>
+      - flag <[player]> moderate.unban.<[num]>.source:<[source]>
+      - if <[player].ban_expiration_time||never> != never:
+        - flag <[player]> moderate.unban.<[num]>.expiration:<[expiration]>
+      - flag <[player]> moderate.unban.<[num]>.created:<[created]>
+      - flag <[player]> moderate.unban.<[num]>.was_ip:false
+      - ban <[player]> remove source:<[by_player].name>
+      - choose <[discord]>:
+        - case no_ban:
+          - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has unbanned <[player].name>].add_field[Time of unban:].value[<util.time_now.format>].add_field[Ip unban].value[false].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[gray].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
+        - case ban:
+          - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has unbanned <[player].name>].add_field[Time of unban:].value[<util.time_now.format>].add_field[Ban reason:].value[<[reason]>].add_field[Ban source:].value[<[source]>].add_inline_field[Ban creation time:].value[<[created].format>].add_field[Ip unban].value[false].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[gray].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
+        - case ban_expiration:
+          - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has unbanned <[player].name>].add_field[Time of unban:].value[<util.time_now.format>].add_field[Ban reason:].value[<[reason]>].add_field[Ban source:].value[<[source]>].add_inline_field[Ban creation time:].value[<[created].format>].add_inline_field[Ban expiration time].value[<[expiration].format> (<[expiration].duration_since[<[created]>].formatted>)].add_field[Ip unban].value[false].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[gray].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
+ 
