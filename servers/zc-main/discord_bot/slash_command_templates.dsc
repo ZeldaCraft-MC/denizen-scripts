@@ -758,3 +758,27 @@ jail_cmd_run_once:
               name: 2 hours
               value: 2h
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:jail "description:Put a player into jail" options:<[options]>
+
+unjail_cmd_run_once:
+  type: task
+  debug: false
+  script:
+    - definemap options:
+        1:
+          type: string
+          name: ign
+          description: The in-game name of the player
+          required: true
+    - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:unjail "description:Unjail a certain player" options:<[options]>
+
+unban_cmd_run_once:
+  type: task
+  debug: false
+  script:
+    - definemap options:
+        1:
+          type: string
+          name: ign
+          description: The in-game name of the player
+          required: true
+    - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:unban "description:Unban a certain player" options:<[options]>
