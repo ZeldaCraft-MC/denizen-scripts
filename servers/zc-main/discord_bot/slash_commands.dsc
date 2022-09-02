@@ -1091,6 +1091,7 @@ unjail_slash_command:
       - flag <[player]> moderate.unban.<[num]>.created:<[created]>
       - flag <[player]> moderate.unban.<[num]>.was_ip:false
       - ban <[player]> remove source:<[by_player].name>
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnBan].with[description].as[<[player].name> has succesfully been unbanned].with[color].as[aqua]>"
       - choose <[discord]>:
         - case no_ban:
           - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has unbanned <[player].name>].add_field[Time of unban:].value[<util.time_now.format>].add_field[Ip unban].value[false].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[gray].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
@@ -1099,3 +1100,19 @@ unjail_slash_command:
         - case ban_expiration:
           - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has unbanned <[player].name>].add_field[Time of unban:].value[<util.time_now.format>].add_field[Ban reason:].value[<[reason]>].add_field[Ban source:].value[<[source]>].add_inline_field[Ban creation time:].value[<[created].format>].add_inline_field[Ban expiration time].value[<[expiration].format> (<[expiration].duration_since[<[created]>].formatted>)].add_field[Ip unban].value[false].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[gray].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
  
+unmute_slash_command:
+  type: world
+  debug: false
+  events:
+    on discord slash command name:unmute:
+      - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - if <server.match_offline_player[<context.options.get[ign]>].if_null[error]> == error:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnMute].with[description].as[The player name you included does not seem to be valid.].with[color].as[red]>"
+        - stop
+      - define player <server.match_offline_player[<context.options.get[ign]>]>
+      - if !<[player].is_muted>:
+        - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnMute].with[description].as[<[player].name> does not seem to be mutes].with[color].as[red]>"
+        - stop
+      - adjust <[player]> is_muted:false
+      - ~discordinteraction reply interaction:<context.interaction> "discord_embed.with[title].as[UnMute].with[description].as[<[player].name> has succesfully been unmuted].with[color].as[aqua]>"
+
