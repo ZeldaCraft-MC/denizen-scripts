@@ -1012,22 +1012,28 @@ jail_slash_cmd:
       - flag <[player]> moderate.jail.<[num]>.time_till:<[time]>
       - flag <[player]> moderate.jail.<[num]>.time_now:<[time_now]>
       - if <[player].has_flag[jailed]>:
-        - teleport <[player]> <server.flag[jails.<[jail]>]>
         - define tel <[player].flag[jailed]>
         - flag <[player]> jailed:<[tel]> expire:<[time]>
         - flag <[player]> moderate.jail.<[num]>.is_change:true
-        - narrate "Your jail time has been changed to <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<[player]>
+        - if <[player].is_online>:
+          - teleport <[player]> <server.flag[jails.<[jail]>]>
+          - narrate "Your jail time has been changed to <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<[player]>
+        - else:
+          - adjust <[player]> location:<server.flag[jails.<[jail]>]>
         - narrate "<[player].name>'s jail time has been changed to <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted> <&f>inside <&e><[jail]> <&f>by <[by_player].name>" format:zc_text targets:<server.online_players.filter[has_permission[zc.mod]]>
       - else:
         - define tel <[player].location>
-        - teleport <[player]> <server.flag[jails.<[jail]>]>
         - flag <[player]> jailed:<[tel]> expire:<[time]>
         - flag <[player]> moderate.jail.<[num]>.is_change:false
-        - narrate "<&f>You have been <&4>jailed <&f>for <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<[player]>
-        - narrate "<&c>You do the crime, you do the time." format:zc_text targets:<[player]>
+        - if <[player].is_online>:
+          - teleport <[player]> <server.flag[jails.<[jail]>]>
+          - narrate "<&f>You have been <&4>jailed <&f>for <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<[player]>
+          - narrate "<&c>You do the crime, you do the time." format:zc_text targets:<[player]>
+        - else:
+          - adjust <[player]> location:<server.flag[jails.<[jail]>]>
         - narrate "<[by_player].name> has jailed <[player].name> in <&e><[jail]> <&f>for <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<server.online_players.filter[has_permission[zc.mod]]>
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Jail].with[description].as[Succesfully jailed <[player].name> in <[jail]> for <[time].formatted>].with[color].as[aqua]>"
-      
+
 unjail_slash_command:
   type: world
   debug: false
@@ -1051,12 +1057,15 @@ unjail_slash_command:
       - flag <[player]> moderate.unjail.<[num]>.expire:<[player].flag_expiration[jailed]>
       - flag <[player]> moderate.unjail.<[num]>.time_now:<util.time_now>
       - flag <[player]> jailed:!
-      - teleport <[player]> <[tel]>
-      - narrate "You have been unjailed!" format:zc_text targets:<[player]>
-      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnJail].with[description].as[You succesfully unjailed <[player].name].with[color].as[aqua]>"
+      - if <[player].is_online>:
+        - teleport <[player]> <[tel]>
+        - narrate "You have been unjailed!" format:zc_text targets:<[player]>
+      - else:
+        - adjust <[player]> location:<[tel]>
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnJail].with[description].as[You succesfully unjailed <[player].name>].with[color].as[aqua]>"
       - narrate "[Discord]<context.interaction.user.name> unjailed <[player].name>" format:zc_text targets:<server.online_players.filter[has_permission[zc.mod]]>
-  
- unban_slash_command:
+
+unban_slash_command:
   type: world
   debug: false
   events:
@@ -1099,7 +1108,7 @@ unjail_slash_command:
           - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has unbanned <[player].name>].add_field[Time of unban:].value[<util.time_now.format>].add_field[Ban reason:].value[<[reason]>].add_field[Ban source:].value[<[source]>].add_inline_field[Ban creation time:].value[<[created].format>].add_field[Ip unban].value[false].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[gray].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
         - case ban_expiration:
           - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<[player].name>].with[author_url].as[https://minecraft-statistic.net/en/player/<[player].name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[description].as[<[by_player].name> has unbanned <[player].name>].add_field[Time of unban:].value[<util.time_now.format>].add_field[Ban reason:].value[<[reason]>].add_field[Ban source:].value[<[source]>].add_inline_field[Ban creation time:].value[<[created].format>].add_inline_field[Ban expiration time].value[<[expiration].format> (<[expiration].duration_since[<[created]>].formatted>)].add_field[Ip unban].value[false].add_inline_field[Warnings].value[<[player].flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<[player].flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<[player].flag[moderate.permban].size||0> Permbans].with[color].as[gray].with[footer].as[<[by_player].name>].with[footer_icon].as[https://cravatar.eu/helmavatar/<[by_player].name>/190.png].with[timestamp].as[<util.time_now>]>"
- 
+
 unmute_slash_command:
   type: world
   debug: false
@@ -1114,5 +1123,5 @@ unmute_slash_command:
         - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnMute].with[description].as[<[player].name> does not seem to be mutes].with[color].as[red]>"
         - stop
       - adjust <[player]> is_muted:false
-      - ~discordinteraction reply interaction:<context.interaction> "discord_embed.with[title].as[UnMute].with[description].as[<[player].name> has succesfully been unmuted].with[color].as[aqua]>"
+      - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnMute].with[description].as[<[player].name> has succesfully been unmuted].with[color].as[aqua]>"
 
