@@ -1,5 +1,7 @@
 balance_command:
   type: command
+  description: Shows your balance.
+  usage: /balance
   name: balance
   aliases:
     - bal

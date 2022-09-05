@@ -47,10 +47,10 @@ use_bookshelf_w:
       - give <context.item> to:<player.inventory>
       - take slot:<context.slot> quantity:64 from:<context.inventory>
       - define items <context.inventory.list_contents>
-      - flag <player.flag[current_bookshelf.p].as_player> bookshelfs.<player.flag[current_bookshelf.num]>.inv:<[items]>
+      - flag <player.flag[current_bookshelf.p].as[player]> bookshelfs.<player.flag[current_bookshelf.num]>.inv:<[items]>
       - foreach <server.online_players_flagged[current_bookshelf]> as:p:
         - if <[p].flag[current_bookshelf.p]> == <player.flag[current_bookshelf.p]> && <[p].flag[current_bookshelf.num]> == <player.flag[current_bookshelf.num]>:
-          - flag <[p]> current_bookshelf.items:<player.flag[current_bookshelf.p].as_player.flag[bookshelfs.<player.flag[current_bookshelf.num]>.inv]>
+          - flag <[p]> current_bookshelf.items:<player.flag[current_bookshelf.p].as[player].flag[bookshelfs.<player.flag[current_bookshelf.num]>.inv]>
           - flag <[p]> no_close_e expire:2t
           - inventory open d:use_bookshelf_inv player:<[p]>
     - else:
@@ -59,21 +59,21 @@ use_bookshelf_w:
       - give <context.item> to:<context.inventory>
       - take slot:<context.slot> quantity:64 from:<player.inventory>
       - define items <context.inventory.list_contents>
-      - flag <player.flag[current_bookshelf.p].as_player> bookshelfs.<player.flag[current_bookshelf.num]>.inv:<[items]>
+      - flag <player.flag[current_bookshelf.p].as[player]> bookshelfs.<player.flag[current_bookshelf.num]>.inv:<[items]>
       - foreach <server.online_players_flagged[current_bookshelf]> as:p:
         - if <[p].flag[current_bookshelf.p]> == <player.flag[current_bookshelf.p]> && <[p].flag[current_bookshelf.num]> == <player.flag[current_bookshelf.num]>:
-          - flag <[p]> current_bookshelf.items:<player.flag[current_bookshelf.p].as_player.flag[bookshelfs.<player.flag[current_bookshelf.num]>.inv]>
+          - flag <[p]> current_bookshelf.items:<player.flag[current_bookshelf.p].as[player].flag[bookshelfs.<player.flag[current_bookshelf.num]>.inv]>
           - flag <[p]> no_close_e expire:2t
           - inventory open d:use_bookshelf_inv player:<[p]>
     on player closes use_bookshelf_inv:
     - if <player.has_flag[no_close_e]>:
       - stop
     - define items <context.inventory.list_contents>
-    - if !<player.has_flag[current_bookshelf]> || !<player.flag[current_bookshelf.p].as_player.has_flag[bookshelfs.<player.flag[current_bookshelf.num]>]>:
+    - if !<player.has_flag[current_bookshelf]> || !<player.flag[current_bookshelf.p].as[player].has_flag[bookshelfs.<player.flag[current_bookshelf.num]>]>:
       - narrate "Something went wrong we gave you the books back just incase!"
       - give <[items]>
       - stop
-    - flag <player.flag[current_bookshelf.p].as_player> bookshelfs.<player.flag[current_bookshelf.num]>.inv:<[items]>
+    - flag <player.flag[current_bookshelf.p].as[player]> bookshelfs.<player.flag[current_bookshelf.num]>.inv:<[items]>
     - flag player current_bookshelf:!
     on bookshelf burns location_flagged:bookshelf:
     - run return_books def:<context.location>
@@ -111,7 +111,7 @@ return_books:
     - if <[loc].material.name> != bookshelf:
       - flag <[loc]> bookshelf:!
       - stop
-    - define p <[loc].flag[bookshelf].keys.first.as_player>
+    - define p <[loc].flag[bookshelf].keys.first.as[player]>
     - define num <[loc].flag[bookshelf].get[<[p]>]>
     - if <[p].is_online>:
       - if !<[p].flag[bookshelfs.<[num]>.inv].is_empty>:

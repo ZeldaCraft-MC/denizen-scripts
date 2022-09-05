@@ -74,8 +74,8 @@ server_swap_events:
   debug: false
   events:
     on redis pubsub message channel:global_server_swap_request:
-      - announce to_console "got server_swap_request, <context.message>, <context.message.as_map>"
-      - define map <context.message.as_map>
+      - announce to_console "got server_swap_request, <context.message>, <context.message.as[map]>"
+      - define map <context.message.as[map]>
       - if <bungee.server> != <[map].get[to]>:
         - stop
       - flag <player[<[map].get[uuid]>]> from_server_swap duration:5s
@@ -83,7 +83,7 @@ server_swap_events:
         - chunkload <location[<[map].get[loc]>].chunk> duration:5m
         - define loc <location[<[map].get[loc]>]>
         - flag server tp_on_join.<[map].get[uuid]>:<[loc].highest.center.above[2].with_pose[<[loc].pitch>,<[loc].yaw>]||null> duration:5s
-      - if !<server.has_file[inventories/<[map].get[uuid]>.yml]>:
+      - if !<util.has_file[inventories/<[map].get[uuid]>.yml]>:
         - yaml create id:<[map].get[uuid]>_inventories
       - else:
         - ~yaml load:inventories/<[map].get[uuid]>.yml id:<[map].get[uuid]>_inventories
@@ -94,7 +94,7 @@ server_swap_events:
       - redis id:publisher publish:global_server_swap_accept message:<[msg]>
 
     on redis pubsub message channel:global_server_swap_accept:
-      - define map <context.message.as_map>
+      - define map <context.message.as[map]>
       - if <bungee.server> != <[map].get[to]>:
         - stop
       - define player <player[<[map].get[uuid]>]>

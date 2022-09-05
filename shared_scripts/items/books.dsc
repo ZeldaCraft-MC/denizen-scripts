@@ -14,7 +14,7 @@ loot_book_vol_1:
       author: ZeldaCraft
       title: Vol 1<&co> Poes
       pages:
-        - Poes are spirits of the dead that became monsters because of an unresolved attachment to the mortal world. It's said that in the Era of Time that The Hero of Time met Poe brothers. The pair of composers taught him the mythical "Song of Storms". When we look to the sky and see clouds
+        - Poes are spirits of the dead that became monsters because of an unresolved attachment to the mortal world. It's said that in the Era of Time that The Hero of Time met Poe brothers. The pair of composers taught him the mythical <&dq>Song of Storms<&dq>. When we look to the sky and see clouds
         - of rain, I like to think that the Hero is up there playing that song for us.
 
 loot_book_vol_2:
@@ -77,7 +77,7 @@ loot_book_vol_6:
         - Under the leadership of Igos du Ikana, the kingdom of Ikana fought in the Great War of Ikana. Eventually, Igos du Ikana died, as did the rest of the kingdom's inhabitants, and Ikana became a haunted, barren wasteland.
         - Despite the fact that he died, the king and his servants were re-animated by the power of a curse from Stone Tower Temple, which had been opened by the Skull Kid under the possession of the mythical Majoras Mask.
         - Now a skeletal being, he ruled over whatever was left of Ikana with his undead guards.<n>The Hero of Time on his quest to save Termina had encountered the skeletal king and defeated him with the power of Sunlight and the fabled
-        - Mirror Shield. Realizing the Hero's true potential, Igos du Ikana teaches the ancient melody of the "Elegy of Emptiness" to the Hero who uses the shells left behind to climb his way up the Stone Tower Temple and defeat the darkness inside.
+        - Mirror Shield. Realizing the Hero's true potential, Igos du Ikana teaches the ancient melody of the <&dq>Elegy of Emptiness<&dq> to the Hero who uses the shells left behind to climb his way up the Stone Tower Temple and defeat the darkness inside.
 
 loot_book_vol_7:
   type: item

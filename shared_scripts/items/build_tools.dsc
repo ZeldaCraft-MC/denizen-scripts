@@ -173,7 +173,7 @@ sp_schematic_load:
   type: task
   debug: false
   script:
-    - foreach <server.list_files[/schematics].alphabetical>:
+    - foreach <util.list_files[/schematics].alphabetical>:
       - if !<schematic.list.contains[<[value].replace[.schem].with[]>]>:
         - schematic load name:<[value].replace[.schem].with[]>
         - flag server temp_sp_load:|:<[value].replace[.schem].with[]>
@@ -192,7 +192,7 @@ midair_placer:
   material: phantom_membrane
   display name: <aqua>Mid-Air Placer
   lore:
-  - "Hold in offhand to place any block in main hand, even in midair"
+  - Hold in offhand to place any block in main hand, even in midair
 
 schematic_placer:
   type: item
@@ -200,11 +200,11 @@ schematic_placer:
   material: paper
   display name: <aqua>Schematic placer
   lore:
-  - "Preview and place schematics!"
-  - "<green>Right click to place"
-  - "<red>Scroll to change elevation"
-  - "<gold>Left click to rotate"
-  - "<yellow>Drop to cancel"
+  - Preview and place schematics!
+  - <green>Right click to place
+  - <red>Scroll to change elevation
+  - <gold>Left click to rotate
+  - <yellow>Drop to cancel
 
 physics_freezer:
   type: item
@@ -212,8 +212,8 @@ physics_freezer:
   material: ender_eye
   display name: <green>Physics freezer
   lore:
-  - "Physics, BEGONE!"
-  - "Place any block, anywhere!"
+  - Physics, BEGONE!
+  - Place any block, anywhere!
 
 coral_meal:
   type: item
@@ -223,8 +223,8 @@ coral_meal:
   flags:
       nodeath_coral: true
   lore:
-  - "Hold in offhand & any coral placed will stay alive"
-  - "Use on dead coral to revive!"
+  - Hold in offhand & any coral placed will stay alive
+  - Use on dead coral to revive!
 
 grass_only_bonemeal:
     type: item
@@ -232,7 +232,7 @@ grass_only_bonemeal:
     material: bone_meal
     display name: <green>Grass only bonemeal
     lore:
-    - "All green, everyday"
+    - All green, everyday
 
 flower_only_bonemeal:
     type: item
@@ -240,7 +240,7 @@ flower_only_bonemeal:
     material: bone_meal
     display name: <light_purple>Flower only bonemeal
     lore:
-    - "True flower power"
+    - True flower power
 
 fire_placer:
     type: item
@@ -248,7 +248,7 @@ fire_placer:
     material: fire_charge
     display name: <red>Fire Placer
     lore:
-    - "<red>BURN"
+    - <red>BURN
 
 invisible_item_frame:
     type: item
@@ -262,7 +262,7 @@ schematic_asset:
     material: paper
     display name: <red>PLACEHOLDER
     lore:
-    - "<red>TEST"
+    - <red>TEST
 
 sp_back:
     type: item

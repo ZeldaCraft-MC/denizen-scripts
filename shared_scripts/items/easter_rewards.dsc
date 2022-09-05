@@ -32,7 +32,7 @@ bunny_hood:
     custom_model_data: 600
   lore:
     - <&6>Use <&c>/hat <&6>to equip!
-    - ""
+    - <empty>
     - <&6>Earned as a part of the
     - <&e>2022 Easter event
   flags:
@@ -69,14 +69,14 @@ easter_events:
     on inventory picks up fake_egg:
       - determine cancelled
     on player right clicks block with:easter_firework using:either_hand:
-      - if <player.is_gliding>:
+      - if <player.gliding>:
         - determine cancelled
     on firework bursts:
       - if <context.item.script.name||none> != easter_firework:
         - stop
       - wait 1t
       - repeat 20:
-        - define velocity <util.random.decimal[-0.3].to[0.3]>,<util.random.decimal>,<util.random.decimal[-0.3].to[0.3]>
+        - define velocity <util.random.decimal[-0.3].to[0.3]>,<util.random_decimal>,<util.random.decimal[-0.3].to[0.3]>
         - spawn dropped_item[item=fake_egg;pickup_delay=<util.int_max>;time_lived=4.90m;velocity=<[velocity]>] <context.location>
     on player right clicks block with:easter_egg using:either_hand:
       - determine passively cancelled
@@ -94,5 +94,5 @@ random_bunny_spawn:
   script:
     - if <[hit_entities].get[1].is_player||false> && !<[hit_entities].get[1].is_inside_vehicle>:
       - mount <[hit_entities].get[1]>|rabbit
-    - else if <util.random.decimal> < 0.10:
+    - else if <util.random_decimal> < 0.10:
       - spawn rabbit[age=baby] <[location]>

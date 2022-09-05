@@ -4,12 +4,12 @@ morshu_record:
     material: music_disc_13
     display name: <aqua>Music Disc
     lore:
-        - "<&7>APUM SARRA BUTE TI PUH EH TIPUH"
-        - "<&7>ATU PATA TAH TUH TAH TUH TUM SAPUM"
-        - "<&7>TETE PU ETI PO SABUTEH APOH TUM,"
-        - "<&7>APUM SARRA BUTE TI PUH EH TIPUH ATU"
-        - "<&7>PATA TAH TUH TAH TUH TUM SAPUM TETE"
-        - "<&7>PU ETI PO SABUTEH APOH TUM"
+        - <&7>APUM SARRA BUTE TI PUH EH TIPUH
+        - <&7>ATU PATA TAH TUH TAH TUH TUM SAPUM
+        - <&7>TETE PU ETI PO SABUTEH APOH TUM,
+        - <&7>APUM SARRA BUTE TI PUH EH TIPUH ATU
+        - <&7>PATA TAH TUH TAH TUH TUM SAPUM TETE
+        - <&7>PU ETI PO SABUTEH APOH TUM
     mechanisms:
         custom_model_data: 600
         hides: item_data
@@ -22,7 +22,7 @@ tal_tal_custom_record:
     material: music_disc_13
     display name: <aqua>Music Disc
     lore:
-        - "<gray>Link's Awakening (2019) - Tal Tal Heights"
+        - <gray>Link's Awakening (2019) - Tal Tal Heights
     mechanisms:
         custom_model_data: 100
         hides: item_data
@@ -35,7 +35,7 @@ kass_theme_custom_record:
     material: music_disc_13
     display name: <aqua>Music Disc
     lore:
-        - "<gray>Breath of the Wild - Kass' Theme"
+        - <gray>Breath of the Wild - Kass' Theme
     mechanisms:
         custom_model_data: 200
         hides: item_data
@@ -48,7 +48,7 @@ final_hours_custom_record:
     material: music_disc_13
     display name: <aqua>Music Disc
     lore:
-        - "<gray>Majora's Mask - Final Hours"
+        - <gray>Majora's Mask - Final Hours
     mechanisms:
         custom_model_data: 300
         hides: item_data
@@ -61,7 +61,7 @@ frozen_hyrule_custom_record:
     material: music_disc_13
     display name: <aqua>Music Disc
     lore:
-        - "<gray>Four Swords Adventures - Frozen Hyrule"
+        - <gray>Four Swords Adventures - Frozen Hyrule
     mechanisms:
         custom_model_data: 500
         hides: item_data
@@ -75,7 +75,7 @@ blizetta_battle_custom_record:
     material: music_disc_13
     display name: <aqua>Music Disc
     lore:
-        - "<gray>Twilight Princess - Blizetta Battle"
+        - <gray>Twilight Princess - Blizetta Battle
     mechanisms:
         custom_model_data: 400
         hides: item_data

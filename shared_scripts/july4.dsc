@@ -2,7 +2,7 @@ freedom_firework:
   type: item
   debug: false
   material: firework_rocket
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Firework].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Firework].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     firework: 1|true,true,BALL,240,240,240,240,240,240|true,true,BALL,240,0,0,240,0,0|true,true,STAR,0,0,240,0,0,240
     hides: all
@@ -11,7 +11,7 @@ freedom_flag:
   type: item
   debug: false
   material: paper
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Flag].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Flag].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     custom_model_data: 14012
   lore:
@@ -22,7 +22,7 @@ freedom_blade:
   type: item
   debug: false
   material: netherite_sword
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Blade].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Blade].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     custom_model_data: 2600
 
@@ -30,7 +30,7 @@ freedom_pickaxe:
   type: item
   debug: false
   material: netherite_pickaxe
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Pickaxe].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Pickaxe].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     custom_model_data: 700
 
@@ -38,7 +38,7 @@ freedom_axe:
   type: item
   debug: false
   material: netherite_axe
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Axe].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Axe].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     custom_model_data: 700
 
@@ -46,7 +46,7 @@ freedom_shovel:
   type: item
   debug: false
   material: netherite_shovel
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Shovel].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Shovel].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     custom_model_data: 900
 
@@ -54,7 +54,7 @@ freedom_hoe:
   type: item
   debug: false
   material: netherite_hoe
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Hoe].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Hoe].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     custom_model_data: 200
 
@@ -62,7 +62,7 @@ freedom_bow:
   type: item
   debug: false
   material: bow
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Bow].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Bow].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     custom_model_data: 500
 
@@ -70,7 +70,7 @@ freedom_rod:
   type: item
   debug: false
   material: fishing_rod
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Rod].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Rod].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     custom_model_data: 100
 
@@ -78,7 +78,7 @@ freedom_shield:
   type: item
   debug: false
   material: shield
-  display name: "<element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Shield].color_gradient[from=<&f>;to=<&9>]>"
+  display name: <element[Freedom].color_gradient[from=<&c>;to=<&f>]> <element[Shield].color_gradient[from=<&f>;to=<&9>]>
   mechanisms:
     custom_model_data: 300
 

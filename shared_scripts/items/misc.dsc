@@ -6,9 +6,9 @@ lens_oftruth:
   - lure:1
   mechanisms:
     hides: ENCHANTS
-  display name: "<&d>Shard <&f>of <&5>Truth"
+  display name: <&d>Shard <&f>of <&5>Truth
   lore:
-  - "<&f>Shows you hidden enemies"
+  - <&f>Shows you hidden enemies
 
 suggestions_i:
   type: item
@@ -20,7 +20,7 @@ suggestions_i:
     hides: ENCHANTS
   display name: Suggestion
   lore:
-  - "<&f>Write your suggestion in here"
+  - <&f>Write your suggestion in here
 
 candy_axe:
     type: item

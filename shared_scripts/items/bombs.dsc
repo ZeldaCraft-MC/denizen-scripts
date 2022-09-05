@@ -1,46 +1,46 @@
 bomb_item:
   type: item
   debug: false
-  material: slime_ball[nbt=li@Fuse_time/8s]
+  material: slime_ball[nbt=Fuse_time/8s]
   display name: Bomb
   lore:
-    - "Fuse: 8s"
+    - Fuse: 8s
   mechanisms:
-    custom_model_data: '100'
+    custom_model_data: 100
 
 water_bomb_item:
   type: item
   debug: false
-  material: slime_ball[nbt=li@Fuse_time/10s]
+  material: slime_ball[nbt=Fuse_time/10s]
   display name: Water Bomb
   lore:
-    - "Fuse: 10s"
+    - Fuse: 10s
   mechanisms:
-    custom_model_data: '100'
+    custom_model_data: 100
 
 bomb_item_model:
   type: item
   debug: false
-  material: i@clay_ball
+  material: clay_ball
   display name: Bomb
   lore:
-    - "Fuse: 8s"
+    - Fuse: 8s
   mechanisms:
-    custom_model_data: '100'
+    custom_model_data: 100
 
 defused_bomb_item:
   type: item
   debug: false
-  material: i@slime_ball
+  material: slime_ball
   display name: Defused Bomb
-  disabled_slots: HEAD|CHEST|LEGS|FEET|HAND/ALL|HAND/REMOVE
   lore:
-    - "NoFuse"
+    - NoFuse
   mechanisms:
-    custom_model_data: '100'
+    disabled_slots: HEAD|CHEST|LEGS|FEET|HAND/ALL|HAND/REMOVE
+    custom_model_data: 100
 
 fire_arrow:
   type: item
   debug: false
-  material: i@arrow
-  display name: <red>fire arrow
+  material: arrow
+  display name: <red>Fire arrow

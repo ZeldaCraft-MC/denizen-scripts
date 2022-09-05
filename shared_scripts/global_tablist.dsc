@@ -26,19 +26,19 @@ tablist_config:
   type: data
   debug: false
   newbie:
-    - " <&7>Hi <&a><player.name><&7>! Thanks for joining! "
+    - <&f> <&7>Hi <&a><player.name><&7>! Thanks for joining! <&f>
     - <&a>/warp s1<&7> to play survival
-    - " <&a>/warp dungeons<&7> for dungeons "
+    - <&a>/warp dungeons<&7> for dungeons
     - <empty>
   other:
-    - " <&7>Hi <&a><player.name><&7>! Welcome back!"
+    - <&f> <&7>Hi <&a><player.name><&7>! Welcome back! <&f>
   header:
     - <empty>
     - <element[ZeldaCraft].proc[gradient].context[#00ff00|#0000ff|<&l>]>
     - <&7>[<[total_players]> Online]
     - <empty>
     - <player.groups.size.equals[1].if_true[<script[tablist_config].parsed_key[newbie].separated_by[<n>]>].if_false[<script[tablist_config].parsed_key[other].separated_by[<n>]>]>
-    - " <player.formatted_money.proc[gradient].context[#ffaa00|#ffff55]><&7> / <element[<player.statistic[play_one_minute].div[20].div[3600].round_down>h played].proc[gradient].context[#ffff55|#ffaa00]> "
+    - <&f> <player.formatted_money.proc[gradient].context[#ffaa00|#ffff55]><&7> / <element[<player.statistic[play_one_minute].div[20].div[3600].round_down>h played].proc[gradient].context[#ffff55|#ffaa00]> <&f>
     - <empty>
   footer:
     - <&sp>
@@ -73,7 +73,7 @@ player_list_name_2:
           - define list_name "<&7> [<[d].get[color]><[d].get[name]><&7>] <&r><[player].name>"
           - foreach stop
     - if <player.has_flag[pronouns]>:
-      - define list_name "<[list_name]><&7><player.flag[pronouns].font[superscript]>"
+      - define list_name <[list_name]><&7><player.flag[pronouns].font[superscript]>
     - determine <[list_name]>
 
 set_team_nameplates:
@@ -126,7 +126,7 @@ tablist_handler:
         - if <[value].get[uuid]> not in <[prev_uuids]>:
           - define to_add:->:<[value]>
       - foreach <[to_rem]>:
-        - if <[value].as_player.is_online||false>:
+        - if <[value].as[player].is_online||false>:
           - foreach next
         - foreach <server.online_players> as:__player:
           - old_tablist action:remove_player id:<[value]> name:+REMOVEME
