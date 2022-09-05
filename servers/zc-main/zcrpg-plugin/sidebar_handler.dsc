@@ -1,7 +1,7 @@
 sidebar_command:
   type: command
   name: sidebar
-  description: "Used to toggle the sidebar shown in dungeons"
+  description: Used to toggle the sidebar shown in dungeons
   usage: /sidebar (on/off/toggle)
   tab completions:
     1: on|off|toggle
@@ -65,9 +65,9 @@ dungeons_sidebar_task:
       - stop
     - waituntil <yaml.list.contains[<[player].uuid>]>
     - define pvp_points <yaml[<[player].uuid>].read[pvppoints]>
-    - foreach <script[show_profile].list_keys[pvp_ranks].sort_by_number[].reverse> as:score:
+    - foreach <script[show_profile].list_keys[data.pvp_ranks].sort_by_number[].reverse> as:score:
       - if <[pvp_points]> >= <[score]>:
-        - define rank <script[show_profile].yaml_key[pvp_ranks.<[score]>]>
+        - define rank <script[show_profile].data_key[data.pvp_ranks.<[score]>]>
         - foreach stop
     - define max_magic <yaml[<[player].uuid>].read[completed_dungeons].size.mul[3].add[<yaml[<[player].uuid>].read[completed_secrets].size>].add[100]>
     - define "text:->: <&7>Race: <&e><yaml[<[player].uuid>].read[race].to_titlecase>"

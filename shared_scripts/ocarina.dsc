@@ -45,7 +45,7 @@ ocarina_events:
       - if <player.has_permission[op]>:
           - stop
       - foreach <script[disabled_commands_data].data_key[cmds]> as:cmd:
-        - if <context.command.advanced_matches[*<[cmd]>*]> :
+        - if <context.command.advanced_matches[*<[cmd]>*]>:
           - narrate "<&c>You cannot use that command in here!"
           - determine fulfilled
 

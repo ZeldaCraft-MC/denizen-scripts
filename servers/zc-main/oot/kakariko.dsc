@@ -15,7 +15,6 @@ kakariko_region_protection:
         - ~log "Player <player.name> (<player.uuid>) caught outside of kakariko_build! Pos: <context.location.simple>" file:boundary_breaks.log
     after player exits kakariko_build:
       - if <player.is_online> && <player.world.name> == oot && <player.is_spawned>:
-        - narrate "<player.location>"
         - teleport <player> <server.flag[warps.kakariko]>
         - narrate "<&c>You should not be out here. This incident has been logged for admin review."
         - ~log "Player <player.name> (<player.uuid>) caught outside of kakariko_build! From: <context.from.simple||null> To: <context.to.simple||null>" file:boundary_breaks.log

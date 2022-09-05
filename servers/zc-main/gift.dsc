@@ -62,7 +62,7 @@ open_gifts:
         - define present_item <server.flag[<[gift_map.present]>]>
         - adjust def:present_item "display:<[c]>A gift for you!"
         - adjust def:present_item "lore:<&7>Sent by <[c]><[gift_map.sender]>||<&7>Note:|<&7><[gift_map.note]>||<&7>Contains:|<[c]><[gift_map.value].size>x Item(s)"
-        - adjust def:present_item flag:uniq:<util.random.uuid>
+        - adjust def:present_item flag:uniq:<util.random_uuid>
         - give <[present_item]> to:<[inv]>
     - inventory open d:<[inv]>
 

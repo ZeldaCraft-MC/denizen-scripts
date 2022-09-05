@@ -2,7 +2,7 @@ held_animal:
   type: item
   material: pig_spawn_egg
   flags:
-    uniq: <util.random.uuid>
+    uniq: <util.random_uuid>
 
 pickup_animals_events:
   type: world

@@ -1,6 +1,5 @@
 # A comphrehensive list of zcrpg commands
 
-# TODO: Restrict player-only command access from console (Existing feature)
 fill_magic:
   type: command
   name: fillmagic
@@ -11,12 +10,13 @@ fill_magic:
   script:
     - narrate "Your magic has been filled" format:zc_text
     - yaml set magicmeter:<yaml[<player.uuid>].read[completed_dungeons].size.mul[3].add[<yaml[<player.uuid>].read[completed_secrets].size>].add[100]> id:<player.uuid>
+
 zeldacraft_command:
   type: command
   name: zeldacraft
   description: The main ZeldaCraft command.
   permission: zc.default
-  usage: Please type /zc help to get started with the ZeldaCraft RPG
+  usage: /zeldacraft
   debug: false
   aliases:
     - zc
@@ -34,15 +34,15 @@ zeldacraft_command:
 
     - if <[args].size> == 2:
       - choose <[args].get[1]>:
-        - case "bind" "spell":
+        - case bind spell:
           - determine <yaml[zcrpg_config].read[spell_list].filter[starts_with[<[args].get[2]>]]>
-        - case "race" "changerace":
+        - case race changerace:
           - determine <yaml[zcrpg_config].list_keys[races].filter[starts_with[<[args].get[2]>]]>
-        - case "secrets":
+        - case secrets:
           - determine <yaml[zcrpg_config].list_keys[dungeons].filter[starts_with[<[args].get[2]>]]>
-        - case "stats":
-          - determine <server.list_online_players.parse[name].filter[starts_with[<[args].get[2]>]]>
-        - case "help":
+        - case stats:
+          - determine <server.online_players.parse[name].filter[starts_with[<[args].get[2]>]]>
+        - case help:
           - determine <list[1|2|3].filter[starts_with[<[args].get[2]>]]>
 
   script:
@@ -51,33 +51,33 @@ zeldacraft_command:
       - stop
 
     - choose <context.args.get[1]||null>:
-      - case "bind":
+      - case bind:
         - run zc_bind def:<context.args.get[2].to_lowercase||null>
-      - case "changerace":
+      - case changerace:
         - run zc_changerace def:<context.args.get[2].to_lowercase||null>
-      - case "checkpoint":
+      - case checkpoint:
         - run zc_checkpoint
-      - case "finished":
+      - case finished:
         - run zc_finished
-      - case "help":
+      - case help:
         - run zc_help def:<context.args.get[2].round_down||1>
-      - case "race":
+      - case race:
         - run zc_race def:<context.args.get[2].to_lowercase||null>
-      - case "races":
+      - case races:
         - run zc_races
-      - case "reload":
+      - case reload:
         - run zc_reload
-      - case "secrets":
+      - case secrets:
         - run zc_secrets def:<context.args.get[2].to_lowercase||null>
-      - case "spell":
+      - case spell:
         - run zc_spell def:<context.args.get[2].to_lowercase||null>
-      - case "spells":
+      - case spells:
         - run zc_spells def:<context.args.get[2].round_down||1>
-      - case "stats":
+      - case stats:
         - run zc_stats def:<context.args.get[2]||null>
-      - case "toppvp":
+      - case toppvp:
         - run zc_toppvp
-      - case "unbind":
+      - case unbind:
         - run zc_unbind
       - default:
         - define fail true
@@ -106,9 +106,9 @@ zc_bind:
       - stop
 
     - if !<player.item_in_hand.has_nbt[spell]>:
-        - if <player.item_in_hand.has_script> || !<player.item_in_hand.nbt_keys.exclude[spell].is_empty> || <player.item_in_hand.has_lore>:
-          - narrate "<&c>Can't bind a spell to a custom item!"
-          - stop
+      - if <player.item_in_hand.script.exists> || !<player.item_in_hand.nbt_keys.exclude[spell].is_empty> || <player.item_in_hand.has_lore>:
+        - narrate "<&c>Can't bind a spell to a custom item!"
+        - stop
 
     - define dungeon_points <yaml[zcrpg_config].read[spells.<[spell]>.dp]||0>
     - if <yaml[<player.uuid>].read[completed_dungeons].size> < <[dungeon_points]>:
@@ -130,7 +130,7 @@ zc_bind:
     - foreach <yaml[zcrpg_config].read[spells.<[spell]>.description].split_lines_by_width[150].split[<&nl>]>:
       - define lore:|:<&7><[value]>
     - take iteminhand quantity:1
-    - give <[item].with[nbt=spell/<[spell]>|uniquifier/<util.random.uuid>;lore=<[lore]>]> quantity:1
+    - give <[item].with[nbt=spell/<[spell]>|uniquifier/<util.random_uuid>;lore=<[lore]>]> quantity:1
 
     - narrate "<&e>The spell has been bound successfully."
     - narrate "<&e>It will now be cast whenever you use the item you placed it on."
@@ -160,7 +160,7 @@ zc_checkpoint:
   script:
     - define uuid <player.uuid>
     - define loc <location[<yaml[<[uuid]>].read[checkpoint_x]>,<yaml[<[uuid]>].read[checkpoint_y]>,<yaml[<[uuid]>].read[checkpoint_z]>,dungeons]>
-    - if <[loc].simple> == "0,0,0,dungeons":
+    - if <[loc].simple> == 0,0,0,dungeons:
       - narrate "<&c>You don't have a checkpoint set."
       - stop
     - teleport <player> <[loc]>
@@ -245,7 +245,7 @@ zc_secrets:
       - narrate "<&c>The dungeon you specified could not be found."
       - stop
 
-    - define secrets <yaml[zcrpg_config].read[dungeons.<[dungeon]>.secrets].as_list.exclude[none]>
+    - define secrets <yaml[zcrpg_config].read[dungeons.<[dungeon]>.secrets].exclude[none]>
     - if <[secrets].size> == 1:
       - narrate "<&3>There is <&e>1<&3> secret in <[dungeon].to_titlecase>"
     - else:
@@ -280,7 +280,7 @@ zc_spell:
       - narrate "<&b>Requires <&e><yaml[zcrpg_config].read[spells.<[spell]>.sp]><&b> Secret Points"
     - if <yaml[zcrpg_config].contains[spells.<[spell]>.pvp]>:
       - narrate "<&b>Requires <&e><yaml[zcrpg_config].read[spells.<[spell]>.pvp]><&b> PVP Score"
-    - narrate "<&a><yaml[zcrpg_config].read[spells.<[spell]>.description]>"
+    - narrate <&a><yaml[zcrpg_config].read[spells.<[spell]>.description]>
 
 zc_spells:
   type: task
@@ -310,7 +310,6 @@ zc_stats:
       - run show_profile def:<player>
       - stop
 
-    # TODO: Make this handle offline players (NEW feature)
     - define player <server.match_player[<[name]>]||null>
     - if <[player]> == null || <[player].name> != <[name]>:
       - define player <server.match_offline_player[<[name]>]||null>
@@ -320,16 +319,15 @@ zc_stats:
 
     - run show_profile def:<[player]>
 
-# TODO
 zc_toppvp:
   type: task
   debug: false
   script:
-    - ~webget "http://localhost:8080/toppvp" save:request
+    - ~webget http://localhost:8080/toppvp save:request
     - yaml loadtext:<entry[request].result> id:<player.uuid>-toppvp
 
     - narrate "<&d>Top 5 PVP Scores"
-    - narrate "<yaml[<player.uuid>-toppvp].read[result].separated_by[<&nl>].parse_color>"
+    - narrate <yaml[<player.uuid>-toppvp].read[result].separated_by[<n>].parse_color>
 
     - yaml unload id:<player.uuid>-toppvp
 
@@ -351,35 +349,36 @@ show_profile:
   type: task
   definitions: player
   debug: false
-  pvp_ranks:
-    0: "Deku Scrub"
-    100: "Octorok"
-    300: "Tektite"
-    600: "Armos"
-    1000: "Moblin"
-    1400: "Wolfos"
-    2000: "Stalfos"
-    2600: "ReDead"
-    3200: "Gibdo"
-    3800: "Darknut"
-    4400: "Iron Knuckle"
-    5000: "Bongo Bongo"
-    5500: "Phantom Ganon"
-    6000: "Dark Link"
-    6600: "Morpha"
-    7200: "Zant"
-    7800: "Ghirahim"
-    8400: "Majora"
-    9000: "Agahnim"
-    10000: "Nightmare"
-    12000: "Yuga Ganon"
-    14000: "Ganondorf"
-    16000: "Ganon"
-    19999: "Return of Ganon"
+  data:
+    pvp_ranks:
+      0: Deku Scrub
+      100: Octorok
+      300: Tektite
+      600: Armos
+      1000: Moblin
+      1400: Wolfos
+      2000: Stalfos
+      2600: ReDead
+      3200: Gibdo
+      3800: Darknut
+      4400: Iron Knuckle
+      5000: Bongo Bongo
+      5500: Phantom Ganon
+      6000: Dark Link
+      6600: Morpha
+      7200: Zant
+      7800: Ghirahim
+      8400: Majora
+      9000: Agahnim
+      10000: Nightmare
+      12000: Yuga Ganon
+      14000: Ganondorf
+      16000: Ganon
+      19999: Return of Ganon
   script:
     - define uuid <[player].uuid>
     - if !<yaml.list.contains[<[uuid]>]>:
-      - ~webget "http://localhost:8080/players/<[uuid]>" save:request
+      - ~webget http://localhost:8080/players/<[uuid]> save:request
       - if <entry[request].failed>:
         - narrate "<&c>This player isn't registered to ZC."
         - stop
@@ -388,18 +387,18 @@ show_profile:
 
     - define pvp_points <yaml[<[uuid]>].read[pvppoints]>
     - define max_magic <yaml[<[uuid]>].read[completed_dungeons].size.mul[3].add[<yaml[<[uuid]>].read[completed_secrets].size>].add[100]>
-    - foreach <script.list_keys[pvp_ranks].sort_by_number[].reverse> as:score:
+    - foreach <script.list_keys[data.pvp_ranks].sort_by_number[].reverse> as:score:
       - if <[pvp_points]> >= <[score]>:
-        - define rank <script.yaml_key[pvp_ranks.<[score]>]>
+        - define rank <script.data_key[pvp_ranks.<[score]>]>
         - foreach stop
 
     - narrate "<&3><[player].name> (<yaml[<[uuid]>].read[race]>)"
-    - narrate "<&3>~~~~~~~~~~~~~~~~~~~"
+    - narrate <&3>~~~~~~~~~~~~~~~~~~~
     - narrate "<&e>Dungeon Points: <&a><yaml[<[uuid]>].read[completed_dungeons].size>"
     - narrate "<&e>Secret Points: <&a><yaml[<[uuid]>].read[completed_secrets].size>"
     - if <player.uuid> == <[uuid]>:
       - narrate "<&e>Magic Meter: <&a><yaml[<[uuid]>].read[magicmeter]>/<[max_magic]>"
-    - narrate "<&3>~~~~~~~~~~~~~~~~~~~"
+    - narrate <&3>~~~~~~~~~~~~~~~~~~~
     - narrate "<&e>PVP Points: <&a><[pvp_points]> <&e>| Rank: <&a><[rank]>"
 
     - if <[unload]||false>:

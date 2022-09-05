@@ -1877,8 +1877,8 @@ populate_shops:
       #- define prices <script[shops_script].data_key[shops.<[shops]>].values>
       - foreach <[items]>:
         - define item <[items].get[<[loop_index]>]>
-        - define lore "<&e>Price: $<[item].get[price]||9999>|<&a>Left click to buy 1|<&c>Right click to buy <[item].get[item].as_item.material.max_stack_size||1>"
-        - define list <[list].include[<[item].get[item].as_item.with_flag[Price:<[item].get[price]>].with[lore=<[lore]>].if_null[air]>]>
+        - define lore "<&e>Price: $<[item].get[price]||9999>|<&a>Left click to buy 1|<&c>Right click to buy <[item].get[item].as[item].material.max_stack_size||1>"
+        - define list <[list].include[<[item].get[item].as[item].with_flag[Price:<[item].get[price]>].with[lore=<[lore]>].if_null[air]>]>
       - define inv <inventory[inventory_script]>
       - inventory set d:<[inv]> o:<[list].get[<[page].sub[1].mul[45].max[1]>].to[<[page].mul[45]>]>
       - if <[page]> > 1:
@@ -1909,7 +1909,7 @@ npc_assign_event:
             - if <context.item.has_display>:
               - give <context.item.with[lore=].with[display=<&f><context.item.display||<context.item.material.name.replace_text[_].with[<&sp>].to_titlecase>>]> quantity:<context.item.material.max_stack_size>
             - else:
-              - give <context.item.material.name.as_item> quantity:<context.item.material.max_stack_size>
+              - give <context.item.material.name> quantity:<context.item.material.max_stack_size>
             - narrate "<green>Bought <gold>x<context.item.material.max_stack_size> <context.item.display||<context.item.material.translated_name>><green> for <gold>$<context.item.flag[price].mul[<context.item.material.max_stack_size>]><green>" targets:<player> format:zc_text
             - narrate "<aqua>Remaining Balance: <gold><player.formatted_money>" targets:<player> format:zc_text
             - if <player.flag[npc_shops]> == beedle_shop:
@@ -1923,7 +1923,7 @@ npc_assign_event:
           - if <context.item.has_display>:
             - give <context.item.with[lore=].with[display=<&f><context.item.display||<context.item.material.name.replace_text[_].with[<&sp>].to_titlecase>>]>
           - else:
-            - give <context.item.material.name.as_item>
+            - give <context.item.material.name>
           - narrate "<green>Bought <gold>x1 <context.item.display||<context.item.material.translated_name>><green> for <gold>$<context.item.flag[price]>" targets:<player> format:zc_text
           - narrate "<aqua>Remaining Balance: <gold><player.formatted_money>" targets:<player> format:zc_text
           - if <player.flag[npc_shops]> == beedle_shop:

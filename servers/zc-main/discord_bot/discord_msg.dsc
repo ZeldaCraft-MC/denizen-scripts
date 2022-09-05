@@ -203,14 +203,14 @@ d_messages:
     author_name: <[p].name> Moderator Application
     author_icon_url: https://cravatar.eu/helmavatar/<[p].name||error>/190.png
     author_url: https://minecraft-statistic.net/en/player/<[p].name>.html
-    description: Time Zone<&co> **<[time]>**<&nl>Age<&co> **<[age]>**<&nl>Total time played<&co> **<[p].statistic[play_one_minute].div[20].as_duration.formatted||error>**<&nl>First login<&co> **<[p].first_played_time.format||error>**
+    description: Time Zone<&co> **<[time]>**<&nl>Age<&co> **<[age]>**<&nl>Total time played<&co> **<[p].statistic[play_one_minute].div[20].as[duration].formatted||error>**<&nl>First login<&co> **<[p].first_played_time.format||error>**
     color: aqua
     footer: Posted by <context.interaction.user.name>
   mod_app_msg:
     author_name: <[p].name> Moderator Application
     author_icon_url: https://cravatar.eu/helmavatar/<[p].name||error>/190.png
     author_url: https://minecraft-statistic.net/en/player/<[p].name>.html
-    description: Time Zone<&co> **<[time]>**<&nl>Age<&co> **<[age]>**<&nl>Total time played<&co> **<[p].statistic[play_one_minute].div[20].as_duration.formatted||error>**<&nl>First login<&co> **<[p].first_played_time.format||error>**
+    description: Time Zone<&co> **<[time]>**<&nl>Age<&co> **<[age]>**<&nl>Total time played<&co> **<[p].statistic[play_one_minute].div[20].as[duration].formatted||error>**<&nl>First login<&co> **<[p].first_played_time.format||error>**
     color: aqua
     footer: Posted by <context.new_message.author.name>
   cracked_msg:
@@ -692,7 +692,7 @@ d_messages:
     author_name: <[player].name>
     description: Underneath are all the relevant timings we could find.<&nl>The latest date we can go to is 2016/07/05 09:21:55
     fields:
-      - <map.with[title].as[Total time played:].with[value].as[<[player].statistic[play_one_minute].div[20].as_duration.formatted||error>].with[inline].as[false]>
+      - <map.with[title].as[Total time played:].with[value].as[<[player].statistic[play_one_minute].div[20].as[duration].formatted||error>].with[inline].as[false]>
       - <map.with[title].as[First login:].with[value].as[<[player].first_played_time.format||error>].with[inline].as[false]>
       - <map.with[title].as[Last login:].with[value].as[<[player].last_played_time.format||error>].with[inline].as[false]>
       - <map.with[title].as[Time between first & last login].with[value].as[<[player].last_played_time.duration_since[<[player].first_played_time>].formatted||error>].with[inline].as[false]>

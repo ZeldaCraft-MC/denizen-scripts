@@ -29,14 +29,17 @@ openec_command:
       - narrate "Must provide a valid gamemode."
       - stop
 
+    - define inv <inventory[players_ender_chest]>
+    - adjust <[inv]> "title:<[target].name||error>, <[group]||error>, <[gamemode]||error>"
     - if <[target].is_online>:
-      - inventory open d:players_ender_chest
+      - inventory open d:<[inv]>
       - inventory set d:<player.open_inventory> o:<yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.enderchest]||<map>>
     - else:
       - ~yaml load:inventories/<[target].uuid>.yml id:<[target].uuid>_inventories
-      - inventory open d:players_ender_chest
+      - inventory open d:<[inv]>
       - inventory set d:<player.open_inventory> o:<yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.enderchest]||<map>>
       - yaml unload id:<[target].uuid>_inventories
+
 openinv_command:
   type: command
   description: Opens an inventory
@@ -77,6 +80,8 @@ openinv_command:
       - narrate "Must provide a valid gamemode."
       - stop
 
+    - define inv <inventory[players_inventory]>
+    - adjust <[inv]> "title:<[target].name||error>, <[group]||error>, <[gamemode]||error>"
     - if <[target].is_online>:
       #- if groups.<[group]>.<[gamemode]> == <yaml[<[target].uuid>_inventories].read[current_inventory]>:
       #  - inventory open d:<[target].inventory>
@@ -86,7 +91,7 @@ openinv_command:
       - define leggings <yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.equipment.leggings]||air>
       - define boots <yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.equipment.boots]||air>
       - define offhand <yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.offhand]||air>
-      - inventory open d:players_inventory
+      - inventory open d:<[inv]>
       - inventory set d:<player.open_inventory> o:<yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.inventory]||<map>>
     - else:
       - ~yaml load:inventories/<[target].uuid>.yml id:<[target].uuid>_inventories
@@ -95,7 +100,7 @@ openinv_command:
       - define leggings <yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.equipment.leggings]||air>
       - define boots <yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.equipment.boots]||air>
       - define offhand <yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.offhand]||air>
-      - inventory open d:players_inventory
+      - inventory open d:<[inv]>
       - inventory set d:<player.open_inventory> o:<yaml[<[target].uuid>_inventories].read[groups.<[group]>.<[gamemode]>.inventory]||<map>>
       - yaml unload id:<[target].uuid>_inventories
 
@@ -170,22 +175,22 @@ openinv_world:
     - ~yaml savefile:inventories/<[player].uuid>.yml id:<[id]>
     - yaml unload id:<[id]>
     - narrate "succesfully edited the players inventory" format:zc_text
+
 players_ender_chest:
   type: inventory
   inventory: chest
   size: 27
   debug: false
-  title: <[target].name||error>, <[group]||error>, <[gamemode]||error>
+
 players_inventory:
   type: inventory
   inventory: chest
   debug: false
   size: 54
-  title: <[target].name||error>, <[group]||error>, <[gamemode]||error>
   slots:
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
-    - "[leather_helmet[display=<&f>Head Slot]] [leather_chestplate[display=<&f>Chest Slot]] [leather_leggings[display=<&f>Pants Slot]] [leather_boots[display=<&f>Boots Slot]] [shield[display=<&f>Offhand]] [gray_stained_glass_pane[display=<&f>]] [gray_stained_glass_pane[display=<&f>]] [gray_stained_glass_pane[display=<&f>]] [gray_stained_glass_pane[display=<&f>]]"
+    - [leather_helmet[display=<&f>Head Slot]] [leather_chestplate[display=<&f>Chest Slot]] [leather_leggings[display=<&f>Pants Slot]] [leather_boots[display=<&f>Boots Slot]] [shield[display=<&f>Offhand]] [gray_stained_glass_pane[display=<&f>]] [gray_stained_glass_pane[display=<&f>]] [gray_stained_glass_pane[display=<&f>]] [gray_stained_glass_pane[display=<&f>]]
     - [<[helmet]||air>] [<[chestplate]||air>] [<[leggings]||air>] [<[boots]||air>] [<[offhand]||air>] [gray_stained_glass_pane[display=<&f>]] [gray_stained_glass_pane[display=<&f>]] [gray_stained_glass_pane[display=<&f>]] [gray_stained_glass_pane[display=<&f>]]

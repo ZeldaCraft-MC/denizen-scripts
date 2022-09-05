@@ -362,9 +362,9 @@ del_fake_shot_egg:
       - random:
         - playsound sound:entity_turtle_egg_crack <[location]> pitch:<util.random.decimal[0.8].to[1.9]> volume:0.02 sound_category:blocks
         - playsound sound:entity_turtle_egg_break <[location]> pitch:<util.random.decimal[0.8].to[1.9]> volume:0.02 sound_category:blocks
-      #- playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find.players.within[1].exclude[<player>]> volume:0.4 sound_category:blocks
+      #- playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find_players_within[1].exclude[<player>]> volume:0.4 sound_category:blocks
     # - else:
-    #   - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find.players.within[1]> volume:0.4 sound_category:blocks
+    #   - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find_players_within[1]> volume:0.4 sound_category:blocks
 
 
 seashell_shooter_events:
@@ -512,6 +512,6 @@ del_fake_shot_candy:
       - playsound sound:block_campfire_crackle <[location]> pitch:<util.random.decimal[1.5].to[1.9]> volume:0.12 sound_category:blocks
       - playsound sound:BLOCK_POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON <[location]> pitch:<util.random.decimal[0.8].to[1.9]> volume:0.1 sound_category:blocks
       - playsound sound:particle_soul_escape <[location]> pitch:<util.random.decimal[0.5].to[1.9]> volume:0.2 sound_category:blocks
-      #- playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find.players.within[1].exclude[<player>]> volume:0.4 sound_category:blocks
+      #- playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find_players_within[1].exclude[<player>]> volume:0.4 sound_category:blocks
     # - else:
-    #   - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find.players.within[1]> volume:0.4 sound_category:blocks
+    #   - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find_players_within[1]> volume:0.4 sound_category:blocks

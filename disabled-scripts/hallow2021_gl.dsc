@@ -1363,7 +1363,7 @@ hallow2021_bucket_i:
     custom_model_data: 10600
   flags:
     candy_storage: 0
-    custom_uuid: <util.random.uuid>
+    custom_uuid: <util.random_uuid>
   lore:
     - <&f>This bucket seems to be empty
     - <&f>Collect candy to fill it

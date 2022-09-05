@@ -426,7 +426,7 @@ Builds_events:
             - wait 3t
             - shoot <player> origin:<location[clocktown_playground_entrance_loc]> destination:<location[clocktown_playground_entrance_loc].add[2,4,-2]>
             - playsound <player> sound:zc_sfx.oot.oot_warp_portal_in custom pitch:1 volume:0.8
-        after entity exits entity_tether_* :
+        after entity exits entity_tether_*:
           - if !<context.entity.has_flag[tether_location]>:
             - stop
           - ratelimit <context.entity> 1s

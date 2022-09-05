@@ -18,7 +18,7 @@ stack_items:
       - else:
         # Handle stacks of unstackable items... just in case
         # Make sure we do not combine stacks of unstackables into even bigger stacks
-        - define item_map.<[item].with_flag[nostack_removeme:<util.random.uuid>].escaped> <[item].quantity>
+        - define item_map.<[item].with_flag[nostack_removeme:<util.random_uuid>].escaped> <[item].quantity>
     - define stacked_items <list>
     - foreach <[item_map]> key:esc_item as:quantity:
       - define stacked_items:->:<[esc_item].unescaped.as_item.with[quantity=<[quantity]>]>

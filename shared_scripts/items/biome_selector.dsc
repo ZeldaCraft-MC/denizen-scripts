@@ -38,7 +38,7 @@ biome_command:
       - narrate "<&b>Selected region too large. Max area is 1000 blocks."
       - stop
     - adjust <[cuboid].blocks> biome:<biome[<[biome]>]>
-    - foreach <player.location.find.players.within[50]> as:player:
+    - foreach <player.location.find_players_within[50]> as:player:
       - adjust <[player]> skin_blob:<[player].skin_blob>
 
 biome_events:

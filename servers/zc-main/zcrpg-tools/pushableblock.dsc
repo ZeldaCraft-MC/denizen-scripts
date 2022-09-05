@@ -50,7 +50,7 @@ moving_block_handler:
           - define temp <[new_loc].add[<[direction]>]>
           - if <[temp].material.name> != air && <[temp].material.name> != water && !<[temp].material.name.contains[pressure_plate]>:
             - while stop
-          - if !<[temp].find.entities[pushable_block].within[0.45].is_empty>:
+          - if !<[temp].find_entities[pushable_block].within[0.45].is_empty>:
             - while stop
           - define new_loc <[temp]>
         - teleport <context.entity>|<context.entity.flag[link]> <[new_loc]>
@@ -62,7 +62,7 @@ moving_block_handler:
         - stop
       - wait 7t
       - while <[new_loc].below.material.name> == air || <[new_loc].below.material.name> == water || <[new_loc].below.material.name.contains[pressure_plate]>:
-        - if !<[new_loc].below.find.entities[pushable_block].within[0.45].is_empty>:
+        - if !<[new_loc].below.find_entities[pushable_block].within[0.45].is_empty>:
           - while stop
         - define new_loc <[new_loc].below>
       - teleport <context.entity>|<context.entity.flag[link]> <[new_loc]>
@@ -75,8 +75,9 @@ pushable_block:
   type: entity
   debug: false
   entity_type: shulker
-  has_ai: false
-  invulnerable: true
+  mechanisms:
+    has_ai: false
+    invulnerable: true
 
 spawn_pushable_block:
   type: command

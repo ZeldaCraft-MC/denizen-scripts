@@ -3,10 +3,12 @@
 rav_format:
   type: format
   debug: false
-  format: <&a>[Ravioli] <&7><text>
+  format: <&a>[Ravioli] <&7><[text]>
 
 easter_npc_cmd:
   type: command
+  description: Created an easter NPC
+  usage: /easter_npc
   debug: false
   name: easter_npc
   permission: zc.create_easter_npc
@@ -277,7 +279,7 @@ easter_stop_hiding:
     - adjust <player> gamemode:survival
     - if !<[logging_out]||false>:
       - if <player.is_on_ground> || <player.location.material.name> == water:
-        - define egg_id <util.random.uuid>
+        - define egg_id <util.random_uuid>
         - flag <player.flag[easter_npc]> hidden_eggs.<player>.<[egg_id]>.location:<player.location>
         - flag <player.flag[easter_npc]> hidden_eggs.<player>.<[egg_id]>.attempts:0
         - flag <player.flag[easter_npc]> hidden_eggs.<player>.<[egg_id]>.time:<element[60].sub[<[time]>]>
@@ -506,7 +508,7 @@ easter_npc_events:
       - flag <player.flag[easter_npc]> hidden_eggs.<context.item.flag[player]>.<context.item.flag[easter_id]>.is_being_found
       - define egg_info <player.flag[easter_npc].flag[hidden_eggs.<context.item.flag[player]>.<context.item.flag[easter_id]>]>
       - flag player finding_eggs:<[egg_info]>
-      - define random_id <util.random.uuid>
+      - define random_id <util.random_uuid>
       - flag player easter_unique:<[random_id]> duration:1.5m
       - adjust <player> hide_from_players
       - adjust <player> gamemode:adventure
@@ -542,7 +544,7 @@ easter_npc_events:
       - inventory set d:<player.open_inventory> o:<[items]>
     on player clicks item_flagged:warp in easter_other_locations_inventory:
       - inventory close
-      - execute as_player "warp <context.item.flag[warp]>"
+      - run warp_task def:<context.item.flag[warp]>
     on player clicks easter_my_eggs_item in easter_menu_1:
       - inventory open d:easter_my_eggs_inventory
       - define items <list[]>
@@ -603,7 +605,7 @@ easter_npc_events:
         - narrate "<&c>You already have 9 active eggs! You must wait for them to be found or remove them!" format:rav_format
         - stop
       - execute as_server "/lp user <player.name> permission set essentials.signs.use.warp false server=zc-main"
-      - define random_id <util.random.uuid>
+      - define random_id <util.random_uuid>
       - flag player easter_unique:<[random_id]> duration:1.5m
       - flag player hiding_eggs
       - adjust <player> hide_from_players

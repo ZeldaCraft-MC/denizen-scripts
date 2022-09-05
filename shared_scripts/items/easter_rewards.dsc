@@ -36,7 +36,7 @@ bunny_hood:
     - <&6>Earned as a part of the
     - <&e>2022 Easter event
   flags:
-    unique: <util.random.uuid>
+    unique: <util.random_uuid>
 
 easter_firework:
   type: item

@@ -8,13 +8,13 @@ zcrpg_playerdata_events:
       - ~yaml load:zcrpg_config.yml id:zcrpg_config
 
     on player joins:
-      - ~webget "http://localhost:8080/players/<player.uuid>?name=<player.name>" save:request
+      - ~webget http://localhost:8080/players/<player.uuid>?name=<player.name> save:request
       - yaml loadtext:<entry[request].result> id:<player.uuid>
       - if <player.name> != <yaml[<player.uuid>].read[name]>:
         - yaml set name:<player.name> id:<player.uuid>
     after player changes world to dungeons:
       - wait 2s
-      - if !<player.inventory.contains.scriptname[heros_bow]> && <player.world.name> == dungeons:
+      - if !<player.inventory.contains_item[heros_bow]> && <player.world.name> == dungeons:
         - give heros_bow
         - give arrow quantity:64
 
@@ -47,14 +47,14 @@ zcrpg_playerdata_events:
       - if !<yaml.list.contains[<[uuid]>]>:
         - stop
 
-      - define r <util.random.decimal>
+      - define r <util.random_decimal>
       - if <[r]> < 0.2:
         - define curr_magic <yaml[<[uuid]>].read[magicmeter]>
         - define max_magic <yaml[<[uuid]>].read[completed_dungeons].size.mul[3].add[<yaml[<[uuid]>].read[completed_secrets].size>].add[100]>
         - if <[curr_magic]> < <[max_magic]>:
           - drop magic_jar <context.entity.location> save:e
           - adjust <entry[e].dropped_entity> "custom_name:<&a>Magic Jar"
-          - adjust <entry[e].dropped_entity> "custom_name_visible:true"
+          - adjust <entry[e].dropped_entity> custom_name_visible:true
 
     on inventory picks up magic_jar:
       - determine passively cancelled
@@ -79,17 +79,17 @@ zcrpg_playerdata_events:
         - actionbar "<&a>[Magic] <&a><element[].pad_right[<[percent]>].with[|]><&2><element[].pad_right[<element[100].sub[<[percent]>]>].with[|]> <&2>[<[curr_magic]>/<[max_magic]>]"
 
     on delta time minutely:
-      - foreach <server.list_online_players> as:player:
+      - foreach <server.online_players> as:player:
         - if !<yaml.list.contains[<[player].uuid>]>:
           - stop
 
-        - webget "http://localhost:8080/players/<[player].uuid>" "post:<yaml[<[player].uuid>].to_json>" "headers:Content-type/application/json"
+        - webget http://localhost:8080/players/<[player].uuid> post:<yaml[<[player].uuid>].to_json> headers:<map[Content-type=application/json]>
 
     on player quits:
       - if !<yaml.list.contains[<player.uuid>]>:
         - stop
 
-      - webget "http://localhost:8080/players/<player.uuid>" "post:<yaml[<player.uuid>].to_json>" "headers:Content-type/application/json"
+      - webget http://localhost:8080/players/<player.uuid> post:<yaml[<player.uuid>].to_json> headers:<map[Content-type=application/json]>
       - yaml unload id:<player.uuid>
 
     on player right clicks block:
@@ -121,7 +121,6 @@ zcrpg_playerdata_events:
         - narrate "<&c>Your secret points are too low to use this spell! Requires <[secret_points]> secret points."
         - stop
 
-      # TODO: Quest points
       #- define pvp_points <yaml[zcrpg_config].read[spells.<[spell]>.pvp]||0>
       #- if <yaml[<player.uuid>].read[pvppoints]> < <[pvp_points]>:
       #  - narrate "<&c>Your pvp points are too low to use this spell! Requires <[pvp_points]> pvp points."
@@ -185,7 +184,7 @@ zcrpg_playerdata_events:
       - define pos <[contents].find_partial[finish]>
       - if <[pos]> >= 0:
         - define dungeon <[contents].get[<[pos].add[1]>].strip_color.trim.to_lowercase||null>
-        - if <[dungeon]> == null || <[dungeon]> == "" || <[dungeon].split.size> > 1 || <[contents].get[<[pos]>].split.size> > 1:
+        - if <[dungeon]> == null || <[dungeon]> == <empty> || <[dungeon].split.size> > 1 || <[contents].get[<[pos]>].split.size> > 1:
           - stop
 
         - if !<yaml[zcrpg_config].contains[dungeons.<[dungeon]>]>:
@@ -210,12 +209,12 @@ zcrpg_playerdata_events:
       - define pos <[contents].find_partial[secret]>
       - if <[pos]> >= 0:
         - define secret <[contents].get[<[pos].add[1]>].strip_color.trim.to_lowercase||null>
-        - if <[secret]> == null || <[secret]> == "" || <[secret].split.size> > 1 || <[contents].get[<[pos]>].split.size> > 1:
+        - if <[secret]> == null || <[secret]> == <empty> || <[secret].split.size> > 1 || <[contents].get[<[pos]>].split.size> > 1:
           - stop
 
         - define secrets <list[]>
         - foreach <yaml[zcrpg_config].list_keys[dungeons]>:
-          - define secrets <[secrets].include[<yaml[zcrpg_config].read[dungeons.<[value]>.secrets].as_list.exclude[none]>]>
+          - define secrets <[secrets].include[<yaml[zcrpg_config].read[dungeons.<[value]>.secrets].exclude[none]>]>
 
         - if !<[secrets].contains[<[secret]>]>:
           - narrate "<&c>This secret does not exist! Please get in touch with an admin."

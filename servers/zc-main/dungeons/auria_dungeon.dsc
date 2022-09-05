@@ -207,7 +207,7 @@ island_world:
         - if !<server.online_players.parse[has_flag[target_practice]].contains_any_text[true]>:
             - stop
         - repeat 7:
-          - if <server.flag[entity_target<[value]>].as_entity.is_truthy>:
+          - if <server.flag[entity_target<[value]>].is_truthy>:
             - teleport <server.flag[entity_target<[value]>]> <location[<list[target<[value]>.1|target<[value]>.2|target<[value]>.3].random>].center>
         on player enters hottub:
         - if <player.has_flag[steamer_lit]>:

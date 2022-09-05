@@ -15,7 +15,7 @@ hallow2021_bucket_prize:
   mechanisms:
     custom_model_data: 11100
   flags:
-    custom_uuid: <util.random.uuid>
+    custom_uuid: <util.random_uuid>
   lore:
     - <&f>This bucket shows how much candy
     - <&f>You have donated during the halloween 2021 event!

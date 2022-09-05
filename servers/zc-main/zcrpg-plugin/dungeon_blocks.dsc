@@ -218,17 +218,19 @@ timer_block_holo1:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&a><&l>Step here to start the timer!
-  custom_name_visible: true
+  mechanisms:
+    visible: false
+    custom_name: <&a><&l>Step here to start the timer!
+    custom_name_visible: true
 
 timer_block_holo2:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&e><&l>Your previous time was 00:00:000!
-  custom_name_visible: true
+  mechanisms:
+    visible: false
+    custom_name: <&e><&l>Your previous time was 00:00:000!
+    custom_name_visible: true
 
 finish_block:
   type: item
@@ -243,17 +245,19 @@ finish_block_holo1:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&a><&l>You finished <&e><&l>dungeon name<&a><&l>!
-  custom_name_visible: true
+  mechanisms:
+    visible: false
+    custom_name: <&a><&l>You finished <&e><&l>dungeon name<&a><&l>!
+    custom_name_visible: true
 
 finish_block_holo2:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&e><&l>Stand here to earn <&c><&l>1<&e><&l> Dungeon Point!
-  custom_name_visible: true
+  mechanisms:
+    visible: false
+    custom_name: <&e><&l>Stand here to earn <&c><&l>1<&e><&l> Dungeon Point!
+    custom_name_visible: true
 
 scoreboard_block:
   type: item
@@ -268,10 +272,11 @@ scoreboard_block_holo:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&3><&l>1.
-  custom_name_visible: true
-  marker: true
+  mechanisms:
+    visible: false
+    custom_name: <&3><&l>1.
+    custom_name_visible: true
+    marker: true
 
 get_best_times:
   type: task
@@ -302,7 +307,7 @@ stop_time_c:
   type: command
   name: stop_timer
   debug: false
-  description: "Lets you stop a current timer"
+  description: Lets you stop a current timer
   usage: /stop_timer (dungeon)
   script:
     - if <context.args.first||empty> == empty:

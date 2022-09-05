@@ -50,7 +50,7 @@ decoration_events:
       - if <context.hit_entity.fixed>:
         - determine cancelled
     on player right clicks barrier location_flagged:deco_block:
-      - if <context.location.flag[deco_block].exists> && <player.is_sneaking> && ( <player.worldguard.can_build[<context.location>]> && <player.gamemode> != adventure || <player.groups.contains_any[admin|gm]> ) :
+      - if <context.location.flag[deco_block].exists> && <player.is_sneaking> && ( <player.worldguard.can_build[<context.location>]> && <player.gamemode> != adventure || <player.groups.contains_any[admin|gm]> ):
         - determine passively cancelled
         - choose <context.location.flag[deco_block].framed_item_rotation>:
           - case none:
