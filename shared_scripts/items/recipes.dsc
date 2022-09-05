@@ -9,10 +9,18 @@ recipe_command:
 
 zc2_recipes_inv:
   type: inventory
+  debug: false
   inventory: hopper
   title: Recipes
   slots:
   - [] [modified_ct] [] [custom_ct] []
+
+take_illegal_recipe_items:
+  type: task
+  debug: false
+  script:
+    - while <player.inventory.contains_item[item_flagged:remove]>:
+      - take flagged:remove quantity:64
 
 zc_recipes_world:
   type: world
@@ -113,28 +121,24 @@ zc_recipes_world:
       - stop
     - flag player recipe_inv:!
     - adjust <player.open_inventory> matrix:<list[air|]>
-    - if <player.inventory.contains.nbt[remove]>:
-      - take item:<player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
+    - inject take_illegal_recipe_items
     - wait 1t
     - inventory update
 
     on player closes furnace:
     - if <player.has_flag[recipe_inv]>:
       - flag player recipe_inv:!
-      - if <player.inventory.contains.nbt[remove]>:
-        - take item:<player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
+      - inject take_illegal_recipe_items
 
     on player closes blast_furnace:
     - if <player.has_flag[recipe_inv]>:
       - flag player recipe_inv:!
-      - if <player.inventory.contains.nbt[remove]>:
-        - take item:<player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
+      - inject take_illegal_recipe_items
 
     on player closes smoker:
     - if <player.has_flag[recipe_inv]>:
       - flag player recipe_inv:!
-      - if <player.inventory.contains.nbt[remove]>:
-        - take item:<player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
+      - inject take_illegal_recipe_items
 
     on player drags in other_recipes_inv:
     - determine passively cancelled
@@ -213,23 +217,23 @@ switch_inv:
     - if <server.recipe_type[<[id]>]> == furnace:
       - inventory open d:furnace
       - flag player recipe_inv:<player.open_inventory.id_type>
-      - adjust <player.open_inventory> fuel:<item[coal].with[nbt=remove/true]>
-      - adjust <player.open_inventory> input:<server.recipe_items[<[id]>].first.with[nbt=remove/true]>
-      - adjust <player.open_inventory> result:<context.item.with[nbt=remove/true]>
+      - adjust <player.open_inventory> fuel:<item[coal].with_flag[remove]>
+      - adjust <player.open_inventory> input:<server.recipe_items[<[id]>].first.with_flag[remove]>
+      - adjust <player.open_inventory> result:<context.item.with_flag[remove]>
       - stop
     - if <server.recipe_type[<[id]>]> == blasting:
       - inventory open d:furnace[title=Blast<&sp>Furnace]
       - flag player recipe_inv:<player.open_inventory.id_type>
-      - adjust <player.open_inventory> fuel:<item[coal].with[nbt=remove/true]>
-      - adjust <player.open_inventory> input:<server.recipe_items[<[id]>].first.with[nbt=remove/true]>
-      - adjust <player.open_inventory> result:<context.item.with[nbt=remove/true]>
+      - adjust <player.open_inventory> fuel:<item[coal].with_flag[remove]>
+      - adjust <player.open_inventory> input:<server.recipe_items[<[id]>].first.with_flag[remove]>
+      - adjust <player.open_inventory> result:<context.item.with_flag[remove]>
       - stop
     - if <server.recipe_type[<[id]>]> == smoking:
       - inventory open d:smoker
       - flag player recipe_inv:<player.open_inventory.id_type>
-      - adjust <player.open_inventory> fuel:<item[coal].with[nbt=remove/true]>
-      - adjust <player.open_inventory> input:<server.recipe_items[<[id]>].first.with[nbt=remove/true]>
-      - adjust <player.open_inventory> result:<context.item.with[nbt=remove/true]>
+      - adjust <player.open_inventory> fuel:<item[coal].with_flag[remove]>
+      - adjust <player.open_inventory> input:<server.recipe_items[<[id]>].first.with_flag[remove]>
+      - adjust <player.open_inventory> result:<context.item.with_flag[remove]>
       - stop
     # workbenches
     - inventory open d:workbench
@@ -249,7 +253,7 @@ switch_inv:
             - foreach next
           - if <[value].starts_with[material:]>:
             - define value <[value].after[:].as[item]>
-          - define items:->:<[value].with[nbt=remove/true]||null>
+          - define items:->:<[value].with_flag[remove]||null>
     - else:
       - foreach <server.recipe_items[<[id]>]>:
         - if <[value].material.name> == air:
@@ -257,5 +261,5 @@ switch_inv:
           - foreach next
         - if <[value].starts_with[material:]>:
           - define value <[value].after[:].as[item]>
-        - define items:->:<[value].with[nbt=remove/true]||null>
+        - define items:->:<[value].with_flag[remove]||null>
     - adjust <player.open_inventory||null> matrix:<[items]||null>

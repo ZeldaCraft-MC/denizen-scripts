@@ -1,5 +1,6 @@
 jobs_command:
   type: command
+  debug: false
   description: Opens the jobs menu
   usage: /jobs
   name: jobs

@@ -1,5 +1,6 @@
 tips:
   type: data
+  debug: false
   data:
     all:
     - This server has dozens of custom crafting recipes you can learn with /recipes!

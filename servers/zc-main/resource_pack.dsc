@@ -1,5 +1,6 @@
 test_rp_command:
   type: command
+  debug: false
   name: testrp
   usage: /testrp (url)
   description: Swaps your resource pack to the given url.
@@ -15,6 +16,7 @@ test_rp_command:
 
 rp_prompt:
   type: data
+  debug: false
   data:
     - <empty>
     - <&8><&m>---------------

@@ -1,5 +1,6 @@
 game_masters:
   type: data
+  debug: false
   data:
     players:
       # Mergu
@@ -7,6 +8,7 @@ game_masters:
 
 sudo_command:
   type: command
+  debug: false
   name: $
   description: Execute commands as if you were opped
   usage: /$ (cmd)
@@ -17,6 +19,7 @@ sudo_command:
 
 su_command:
   type: command
+  debug: false
   name: su
   description: Swaps to another rank
   usage: /su (rank)

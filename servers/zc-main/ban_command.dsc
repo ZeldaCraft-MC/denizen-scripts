@@ -1772,6 +1772,7 @@ list_warns_co:
 
 books_data:
   type: data
+  debug: false
   books:
     - warn_book
     - tempban_book

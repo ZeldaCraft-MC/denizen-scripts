@@ -214,7 +214,7 @@ zcrpg_playerdata_events:
 
         - define secrets <list[]>
         - foreach <yaml[zcrpg_config].list_keys[dungeons]>:
-          - define secrets <[secrets].include[<yaml[zcrpg_config].read[dungeons.<[value]>.secrets].exclude[none]>]>
+          - define secrets <[secrets].include[<yaml[zcrpg_config].read[dungeons.<[value]>.secrets].as[list].exclude[none]>]>
 
         - if !<[secrets].contains[<[secret]>]>:
           - narrate "<&c>This secret does not exist! Please get in touch with an admin."

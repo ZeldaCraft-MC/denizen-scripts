@@ -1,5 +1,6 @@
 rankups_menu:
   type: inventory
+  debug: false
   inventory: chest
   size: 54
   gui: true
@@ -13,6 +14,7 @@ rankups_menu:
 
 ranks_command:
   type: command
+  debug: false
   description: View ranks
   usage: /ranks
   name: ranks
@@ -22,6 +24,7 @@ ranks_command:
 
 rankup_ranks:
   type: data
+  debug: false
   data:
     ranks:
       1:

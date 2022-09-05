@@ -1,5 +1,6 @@
 ping_command:
   type: command
+  debug: false
   description: Check your ping
   usage: /ping
   name: ping

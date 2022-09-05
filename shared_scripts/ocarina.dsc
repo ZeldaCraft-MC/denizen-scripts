@@ -1,5 +1,6 @@
 disabled_commands_data:
   type: data
+  debug: false
   cmds:
     - tp
     - sethome
@@ -9,6 +10,7 @@ disabled_commands_data:
 
 ocarina_events:
   type: world
+  debug: false
   events:
     on player right clicks block with:ocarina_prelude_of_light:
       - if !<player.is_on_ground>:

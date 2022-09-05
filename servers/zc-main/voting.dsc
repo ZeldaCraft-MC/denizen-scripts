@@ -530,6 +530,7 @@ vote_holo_common:
 
 vote_holo_rare:
   type: entity
+  debug: false
   entity_type: armor_stand
   mechanisms:
     custom_name: <&color[#D4AF37]>Rare <&e>Vote Crate

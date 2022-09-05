@@ -103,6 +103,7 @@ flair_command:
 
 clear_flair:
   type: task
+  debug: false
   script:
     - if !<player.has_permission[zc.flair]>:
       - stop
@@ -111,6 +112,7 @@ clear_flair:
 
 set_flair:
   type: task
+  debug: false
   definitions: char
   script:
     - if !<player.has_permission[zc.flair]>:

@@ -1,5 +1,6 @@
 skin_command:
   type: command
+  debug: false
   name: skin
   usage: /skin [args]
   description: Test
