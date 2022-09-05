@@ -110,22 +110,22 @@ server_swap_events:
         - flag server tp_on_join.<player.uuid>:!
 
       # Load their global flags
-      - define route "GET /players/<player.uuid>"
-      - inject mongo_webget
-      - if <[status_code]> == 200:
-        - flag <player> global_flags:<[result]>
-      - else if <[status_code]> == 404:
-        - flag <player> global_flags:<map>
-        - define route "PUT /players/<player.uuid>?wm=upsert"
-        - define data <player.flag[global_flags]>
-        - inject mongo_webget
-      - else:
-        - narrate "<&c>Unable to load player data. Please contact Mergu."
-        - announce to_console "MERGU: <[status_code]> - <[result]> (<player.name> - <player.uuid>)"
+      #- define route "GET /players/<player.uuid>"
+      #- inject mongo_webget
+      #- if <[status_code]> == 200:
+      #  - flag <player> global_flags:<[result]>
+      #- else if <[status_code]> == 404:
+      #  - flag <player> global_flags:<map>
+      #  - define route "PUT /players/<player.uuid>?wm=upsert"
+      #  - define data <player.flag[global_flags]>
+      #  - inject mongo_webget
+      #- else:
+      #  - narrate "<&c>Unable to load player data. Please contact Mergu."
+      #  - announce to_console "MERGU: <[status_code]> - <[result]> (<player.name> - <player.uuid>)"
 
     on player quits bukkit_priority:highest:
       - determine passively none
-      - if !<player.has_flag[swapping_servers]> && <player.has_flag[global_flags]>:
-        - define route "PUT /players/<player.uuid>?wm=upsert"
-        - define data <player.flag[global_flags]>
-        - inject mongo_webget
+      #- if !<player.has_flag[swapping_servers]> && <player.has_flag[global_flags]>:
+      #  - define route "PUT /players/<player.uuid>?wm=upsert"
+      #  - define data <player.flag[global_flags]>
+      #  - inject mongo_webget
