@@ -1,5 +1,6 @@
 finish_block_dep:
   type: item
+  debug: false
   material: emerald_block
   display name: <&a><&l>Finish Block
   lore:
@@ -7,6 +8,7 @@ finish_block_dep:
 
 finish_block_holo1_dep:
   type: entity
+  debug: false
   entity_type: armor_stand
   mechanisms:
     visible: false
@@ -15,6 +17,7 @@ finish_block_holo1_dep:
 
 finish_block_holo2_dep:
   type: entity
+  debug: false
   entity_type: armor_stand
   mechanisms:
     visible: false

@@ -1,5 +1,6 @@
 gifts_inv:
   type: inventory
+  debug: false
   title: Your Gifts
   inventory: chest
   gui: true
@@ -15,12 +16,14 @@ gifts_inv:
 
 rupee:
   type: item
+  debug: false
   material: emerald
   mechanisms:
     custom_model_data: 100
 
 gift_inv:
   type: inventory
+  debug: false
   inventory: chest
   gui: true
   definitions:
@@ -54,6 +57,7 @@ gift_inv:
 
 open_gifts:
   type: task
+  debug: false
   script:
     - define inv <inventory[gifts_inv]>
     - foreach <player.flag[gifts]> as:gift_map:
@@ -68,6 +72,7 @@ open_gifts:
 
 gifts_command:
   type: command
+  debug: false
   name: gifts
   usage: /gifts
   description: Send and receive gifts.
@@ -99,6 +104,7 @@ match_player:
 
 gift_command:
   type: command
+  debug: false
   name: gift
   usage: /gift (user)
   description: Send a gift to another player!

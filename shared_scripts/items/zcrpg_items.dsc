@@ -1,5 +1,6 @@
 heros_bow:
   type: item
+  debug: false
   material: bow
   display name: <&e><&l>Hero's Bow
   lore:
@@ -13,6 +14,7 @@ heros_bow:
 
 magic_jar:
   type: item
+  debug: false
   material: experience_bottle
   mechanisms:
     nbt: uniquifier/<util.random_uuid>

@@ -10,6 +10,7 @@ hallow2021_candy_prize:
 
 hallow2021_bucket_prize:
   type: item
+  debug: false
   material: paper
   display name: <&e>Candy Bucket
   mechanisms:

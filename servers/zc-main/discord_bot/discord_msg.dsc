@@ -47,7 +47,7 @@ d_messages:
     color: aqua
   help_total_votes_msg:
     title: Total_votes command
-    description: **Usage:** `<script[zc_bot_info].parsed_key[prefix]>total_votes` in <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].channel[<script[zc_bot_info].data_key[bot_channel].get[name]>].mention> or `/total_votes`<&nl><&nl>Gives the amount of total votes the server has recieved.
+    description: **Usage:** `<script[zc_bot_info].parsed_key[prefix]>total_votes` in <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].channel[<script[zc_bot_info].data_key[bot_channel].get[name]>].mention> or `/total_votes`<&nl><&nl>Gives the amount of total votes the server has received.
     color: aqua
   help_linkmc_msg:
     title: Linkmc command
@@ -131,7 +131,7 @@ d_messages:
     title: Direct Message
     description: I have sent you a direct message(DM)
     fields:
-      - <map.with[title].as[Didn't recieve it.].with[value].as[If you didn't recieve a dm, make sure you allow direct messages from server members.]>
+      - <map.with[title].as[Didn't receive it.].with[value].as[If you didn't receive a dm, make sure you allow direct messages from server members.]>
     color: aqua
   too_many_int_msg:
     title: Interactions

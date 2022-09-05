@@ -1,5 +1,6 @@
 rename_command:
   type: command
+  debug: false
   description: Rename an item in your hand.
   usage: /rename
   name: rename

@@ -388,8 +388,9 @@ xmas_claim_cmd:
     # - if <[unlocks]> == 1:
     #   - narrate "<aqua>You can still earn <bold><red>one more<aqua> amazing prize by completing <bold><gold>all 68 <aqua>advancements, talk to buddy in Santa's grotto!"
 
-Xmas_data:
+xmas_data:
   type: data
+  debug: false
   textures:
     - eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDA3ZDMyMjQxOWNhMGNjMTlmZmFiNzBkMTVhMTU0NTQ4MTM0YWEwMjEwNjdmN2NjMTBkYjUxN2EwMjc4Mzc4MiJ9fX0=
     - eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTA5MTZmNjQzODQ3YjU2YmE2NGVhMjgzMzcxZjQ4OTU1ZDYyZmE0YTgxYmY3MzA1MDE3YWVlOGVlODIzOTlkIn19fQ==

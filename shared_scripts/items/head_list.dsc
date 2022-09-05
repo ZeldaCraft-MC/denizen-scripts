@@ -1,5 +1,6 @@
 head_list_arrow_left_item:
   type: item
+  debug: false
   material: player_head
   display name: Previous Page
   mechanisms:
@@ -7,6 +8,7 @@ head_list_arrow_left_item:
 
 head_list_arrow_right_item:
   type: item
+  debug: false
   material: player_head
   display name: Next Page
   mechanisms:
@@ -14,6 +16,7 @@ head_list_arrow_right_item:
 
 head_list_favourites:
   type: item
+  debug: false
   material: player_head
   display name: Favourites
   mechanisms:

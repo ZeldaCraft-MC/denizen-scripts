@@ -520,6 +520,7 @@ fly_world:
 
 vote_holo_common:
   type: entity
+  debug: false
   entity_type: armor_stand
   mechanisms:
     custom_name: <&color[#C0C0C0]>Common <&e>Vote Crate

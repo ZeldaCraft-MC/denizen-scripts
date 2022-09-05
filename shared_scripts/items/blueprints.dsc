@@ -1,5 +1,6 @@
 blueprint:
   type: item
+  debug: false
   material: paper
   display name: <&b>Blueprint
   flags:
@@ -9,6 +10,7 @@ blueprint:
 
 color_map:
   type: data
+  debug: false
   colors:
     white: #ffffff
     orange: #ff9100
@@ -29,6 +31,7 @@ color_map:
 
 blueprint_angle_map:
   type: data
+  debug: false
   south: 0
   west: 90
   north: 180
@@ -36,6 +39,7 @@ blueprint_angle_map:
 
 blueprint_printer:
   type: task
+  debug: false
   definitions: schem|loc|dir
   script:
     - if !<player.has_flag[blueprint_preview]>:
@@ -82,6 +86,7 @@ blueprint_printer:
 
 blueprint_cancel:
   type: task
+  debug: false
   script:
     - if <player.has_flag[blueprint_preview]>:
       - flag player blueprint_preview:!
@@ -89,6 +94,7 @@ blueprint_cancel:
 
 blueprint_color:
   type: task
+  debug: false
   definitions: color
   script:
     - if <player.has_flag[blueprint_preview]>:

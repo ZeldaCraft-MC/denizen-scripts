@@ -1,5 +1,6 @@
 portal_activate_button:
   type: item
+  debug: false
   material: ender_eye
   lore:
     - What wonders await you
@@ -11,11 +12,13 @@ portal_activate_button:
 
 empty_portal_slot:
   type: item
+  debug: false
   material: gray_stained_glass_pane
   display name: <&f>
 
 portal_gui:
   type: inventory
+  debug: false
   inventory: chest
   title: <&d><&l>Dimensional Stone
   size: 27

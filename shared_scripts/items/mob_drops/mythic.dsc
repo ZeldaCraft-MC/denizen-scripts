@@ -30,6 +30,7 @@ master_sword:
 
 master_sword_events:
   type: world
+  debug: false
   events:
     on player damages entity with:master_sword:
       - narrate <context.final_damage>

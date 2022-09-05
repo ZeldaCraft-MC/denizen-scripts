@@ -1,26 +1,27 @@
 jobs_config:
   type: data
+  debug: false
   data:
     default:
-        colors:
-          chat: #ffffff
-          bossbar: blue
-        income_eqn: <[base_price].mul[<element[1.05].power[<[level].sub[1]>]>]>
-        exp_eqn: <[base_exp].mul[<element[1.05].power[<[level].sub[1]>]>]>
-        leveling_eqn: <element[1.13].power[<[level].sub[1]>].mul[100]>
+      colors:
+        chat: #ffffff
+        bossbar: blue
+      income_eqn: <[base_price].mul[<element[1.05].power[<[level].sub[1]>]>]>
+      exp_eqn: <[base_exp].mul[<element[1.05].power[<[level].sub[1]>]>]>
+      leveling_eqn: <element[1.13].power[<[level].sub[1]>].mul[100]>
     lumberjack:
-        name: Lumberjack
-        description: Earn money by cutting and planting trees.
-        colors:
-          chat: #ffffff
-          bossbar: blue
-        income_eqn: <[base_price].mul[<element[1.05].power[<[level].sub[1]>]>]>
-        exp_eqn: <[base_exp].mul[<element[1.05].power[<[level].sub[1]>]>]>
-        leveling_eqn: <element[1.13].power[<[level].sub[1]>].mul[100]>
-        break:
-          log:
-            income: 0.20
-            exp: 0.20
+      name: Lumberjack
+      description: Earn money by cutting and planting trees.
+      colors:
+        chat: #ffffff
+        bossbar: blue
+      income_eqn: <[base_price].mul[<element[1.05].power[<[level].sub[1]>]>]>
+      exp_eqn: <[base_exp].mul[<element[1.05].power[<[level].sub[1]>]>]>
+      leveling_eqn: <element[1.13].power[<[level].sub[1]>].mul[100]>
+      break:
+        log:
+          income: 0.20
+          exp: 0.20
     #miner:
     #builder:
     #terraformer:

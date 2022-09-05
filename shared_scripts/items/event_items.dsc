@@ -166,19 +166,21 @@ zc_ves_hallow_end:
       - A craftable form of essence.
 
 grave_digger_i:
-    type: item
-    material: golden_shovel
-    display name: <&8>Grave <&7>Digger
-    mechanisms:
-        unbreakable: true
-    lore:
-    - <&f>Has a chance to trick or treat you
-    - <&f>While you use it.
-    - <empty>
-    - dampe's greatest gift
+  type: item
+  debug: false
+  material: golden_shovel
+  display name: <&8>Grave <&7>Digger
+  mechanisms:
+      unbreakable: true
+  lore:
+  - <&f>Has a chance to trick or treat you
+  - <&f>While you use it.
+  - <empty>
+  - dampe's greatest gift
 
 hallowe2020_i_1:
   type: item
+  debug: false
   material: netherite_hoe
   display name: <&color[#E25822]>Flaming <&8>Scythe
   mechanisms:
@@ -191,6 +193,7 @@ hallowe2020_i_1:
 
 hallowe2020_i_2:
   type: item
+  debug: false
   material: netherite_sword
   display name: <&color[#E25822]>Flaming <&8>Sword
   mechanisms:
@@ -203,6 +206,7 @@ hallowe2020_i_2:
 
 hallowe2020_i_3:
   type: item
+  debug: false
   material: netherite_axe
   display name: <&color[#E25822]>Flaming <&8>Axe
   mechanisms:
@@ -215,6 +219,7 @@ hallowe2020_i_3:
 
 chokehold:
   type: item
+  debug: false
   material: lead
   display name: <dark_red>The Chokehold
   lore:
@@ -222,6 +227,7 @@ chokehold:
 
 vday_rose:
   type: item
+  debug: false
   material: poppy
   display name: <red>Valentine's Rose
   lore:
@@ -229,6 +235,7 @@ vday_rose:
 
 vday_wilted_rose:
   type: item
+  debug: false
   material: wither_rose
   display name: <dark_red>Wilted Valentine's Rose
   lore:

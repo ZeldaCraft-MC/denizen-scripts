@@ -1,5 +1,6 @@
 back_item_entity:
   type: entity
+  debug: false
   entity_type: armor_stand
   mechanisms:
     has_ai: false
@@ -10,6 +11,7 @@ back_item_entity:
 
 test_wings:
   type: command
+  debug: false
   description: Tests wings
   usage: /testwings
   name: testwings
