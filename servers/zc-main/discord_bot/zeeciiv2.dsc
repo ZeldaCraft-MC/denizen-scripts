@@ -1151,7 +1151,7 @@ non_discord_events_w:
   debug: false
   events:
     after player completes advancement:
-    - if <context.advancement.contains_any_text[recipes]> || <context.advancement.contains_any_text[root]>:
+    - if <context.advancement.contains_text[recipes]> || <context.advancement.contains_text[root]>:
       - stop
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[chat_channel].get[id]> "<discord_embed.with[author_name].as[<player.name> has made the advancement <context.advancement.after_last[/].replace_text[_].with[ ]>!].with[author_icon_url].as[https://cravatar.eu/helmavatar/<player.name>/190.png].with[color].as[yellow]>"
     on system time secondly every:10:
