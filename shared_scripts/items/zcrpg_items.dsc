@@ -16,5 +16,5 @@ magic_jar:
   type: item
   debug: false
   material: experience_bottle
-  mechanisms:
-    nbt: uniquifier/<util.random_uuid>
+  flags:
+    uniquifier: <util.random_uuid>

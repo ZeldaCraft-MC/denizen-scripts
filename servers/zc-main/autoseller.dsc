@@ -12,11 +12,11 @@ autosell_all_task:
 #      - take <[item]> quantity:<[item].quantity> from:<[inventory]>
 #    - if <[total]> > 0 && <player.is_online>:
 #      - narrate '<&a>You made $<[total]> from your autoseller!'
-    - foreach <[inventory].list_contents||<list[]>> as:item:
-      - if !<[item].script.name> && <[item].worth||null> != null:
+    - foreach <[inventory].map_slots||<map>> key:slot as:item:
+      - if !<[item].script.exists> && <[item].worth.exists>:
         - money give quantity:<[item].worth.mul[<[item].quantity>]>
         - define total:+:<[item].worth.mul[<[item].quantity>]>
-        - take slot:<[loop_index]> quantity:<[item].quantity> from:<[inventory]>
+        - take slot:<[slot]> quantity:<[item].quantity> from:<[inventory]>
     - if <[total]> > 0 && <player.is_online>:
       - narrate '<&a>You made $<[total]> from your autoseller!'
 
