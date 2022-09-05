@@ -19,7 +19,7 @@ test_wings:
   script:
     - if <player.gamemode> != creative:
       - stop
-    - if <context.args.get[1]||null> == null || !<context.args.get[1].is_integer>:
+    - if !<context.args.get[1].exists> || !<context.args.get[1].is_integer>:
       - narrate "Usage: /testwings (custom_model_data)"
       - stop
     - give wing_item[custom_model_data=<context.args.get[1]>]

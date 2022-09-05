@@ -763,7 +763,7 @@ pbdungeon_world:
         - if <player.fake_block[<context.location>]||null> != null:
             - stop
         - showfake bookshelf <context.location> players:<player> d:100h
-        - take scriptname:old_book
+        - take item:old_book
         - flag player p2_books:++
         - actionbar "<player.flag[p2_books]>/16 bookshelves restored"
         - if <player.flag[p2_books]> == 16:
@@ -1027,7 +1027,7 @@ pbdungeon_world:
         - if <player.has_effect[speed]>:
             - cast speed remove
         - if <player.inventory.contains_item[old_book]>:
-            - take scriptname:old_book quantity:64
+            - take item:old_book quantity:64
         - run pb_reset
         - foreach <player.fake_entities>:
             - fakespawn <[value]> cancel
@@ -1068,7 +1068,7 @@ pbdungeon_world:
         - if <player.has_effect[speed]>:
             - cast speed remove
         - if <player.inventory.contains_item[old_book]>:
-            - take scriptname:old_book quantity:64
+            - take item:old_book quantity:64
         - foreach <player.fake_entities>:
             - fakespawn <[value]> cancel
         - showfake <player.standing_on.material> <player.standing_on> players:<player>

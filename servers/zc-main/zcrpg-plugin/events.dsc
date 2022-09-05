@@ -282,7 +282,7 @@ zcrpg_playerdata_events:
 
     #on player crafts item:
     #  - if <context.item.has_script>:
-    #    - yaml set 'statsd.player~event~craft~<context.item.scriptname.to_lowercase>:+:<context.item.quantity>' id:stats_log
+    #    - yaml set 'statsd.player~event~craft~<context.item.script.name.to_lowercase>:+:<context.item.quantity>' id:stats_log
     #  - else:
     #    - yaml set 'statsd.player~event~craft~<context.item.material.name.to_lowercase>:+:<context.item.quantity>' id:stats_log
 

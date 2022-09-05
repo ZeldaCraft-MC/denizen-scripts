@@ -72,15 +72,11 @@ create_warp_cmd:
   usage: /createwarp (name)
   permission: zc.admin
   script:
-    - if <context.args.first||<empty>> == <empty>:
+    - if !<context.args.first.exists>:
       - narrate "<&4>Did you forget to put a name in?"
       - stop
-    # no need for check, flag will just override if name already exists
-    # - if <server.flag[warps].keys.contains[<context.args.first>]>:
-    #   - narrate "<&4>This warp already exists! Remove the warp before creating a new one."
-    #   - stop
     - flag server warps.<context.args.first>:<player.location>
-    - if <context.args.get[2]||<empty>> == <empty>:
+    - if !<context.args.get[2].exists>:
       - narrate "<&4>No warp menu item defined, warp will be created, but will not appear in the warps menu."
     - else:
       - flag server warp_menu_items.<context.args.first>:<context.args.get[2]>
@@ -96,7 +92,7 @@ del_warp_cmd:
   tab completions:
     1: <server.flag[warps].keys.alphabetical.parse[to_lowercase]>
   script:
-    - if <context.args.first||<empty>> == <empty>:
+    - if !<context.args.first.exists>:
       - narrate "<&4>Did you forget to put a name in?"
       - stop
     - if !<server.flag[warps].keys.contains[<context.args.first>]>:

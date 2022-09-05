@@ -55,7 +55,7 @@ twitch_command:
       - stop
     - narrate "<&7>Use <&color[#9146ff]>/twitch start/end<&7> to display the top banner!"
     - if <context.args.get[1]||null> == start:
-      - if <context.args.get[2]||null> == null || <context.args.get[2]> not in <script[streamers].data_key[list].keys>:
+      - if !<context.args.get[2].exists> || <context.args.get[2]> not in <script[streamers].data_key[list].keys>:
         - narrate "<&7>Usage: /twitch start <script[streamers].data_key[list].keys.separated_by[/]>"
         - stop
       - define name <context.args.get[2].to_lowercase>
@@ -66,7 +66,7 @@ twitch_command:
         - bossbar create id:twitch "title:<&color[#9146ff]><&l><script[streamers].data_key[list.<[name]>.name]> is now live on Twitch! Use <&f>/twitch<&color[#9146ff]><&l> to watch!" players:<server.online_players>
       - flag server twitch:->:<[name]>
     - else if <context.args.get[1]||null> == end:
-      - if <context.args.get[2]||null> == null || <context.args.get[2]> not in <script[streamers].data_key[list].keys>:
+      - if !<context.args.get[2].exists> || <context.args.get[2]> not in <script[streamers].data_key[list].keys>:
         - narrate "<&7>Usage: /twitch end <script[streamers].data_key[list].keys.separated_by[/]>"
         - stop
       - define name <context.args.get[2].to_lowercase>

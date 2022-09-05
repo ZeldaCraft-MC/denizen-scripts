@@ -215,7 +215,7 @@ vday_items:
         - determine passively cancelled
         - wait 1t
         - flag <context.item> vday_gifter:<player>
-        - take scriptname:vday_rose quantity:1
+        - take item:vday_rose quantity:1
         - define ditem <context.item>
         - if !<server.has_flag[vday_rose_bloom]>:
           - if <context.item.is_enchanted>:
@@ -255,7 +255,7 @@ vday_items:
           - if <context.item.material.name> == poppy:
             - heal <player>
             - if !<server.has_flag[vday_rose_bloom]>:
-              - take scriptname:vday_rose
+              - take item:vday_rose
               - define wlore "<gray>This once special rose has wilted<&nl><gray>but does your bond with <context.item.lore.get[1].after[by<&sp>]||your<&sp>admirer><gray> blossom still?"
               - give <item[vday_wilted_rose].with[lore=<[wlore]>;enchantments=unbreaking,1;hides=enchants]>
     after player right clicks entity with:chokehold:

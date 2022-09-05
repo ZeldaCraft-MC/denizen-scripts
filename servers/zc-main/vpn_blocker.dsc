@@ -5,7 +5,7 @@ vpn_blocker_events:
   debug: false
   events:
     on player prelogin:
-      - if <player.name||null> != null:
+      - if <player.name.exists>:
         - stop
       - define name <context.name>
       - determine passively <queue>

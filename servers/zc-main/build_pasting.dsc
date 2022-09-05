@@ -121,9 +121,10 @@ we_huge_delete:
             - define z2 <[max].z>
           - else:
             - define z2 <[min].z.add[<element[25].mul[<[num3]>]>]>
-          - if <[w]||null> == null || <[y1]||null> == null || <[y2]||null> == null || <[x1]||null> == null || <[x2]||null> == null || <[z1]||null> == null || <[z2]||null> == null:
+          - if !<[w].exists> || !<[y1].exists> || !<[y2].exists> || !<[x1].exists> || !<[x2].exists> || !<[z1].exists> || !<[z2].exists>:
             - narrate "something went wrong. script not running!"
             - narrate "Cuboid it went wrong on: <[w]>,<[x1]>,<[y1]>,<[z1]>,<[x2]>,<[y2]>,<[z2]>"
+            - stop
           - define cub <cuboid[<[w]>,<[x1]>,<[y1]>,<[z1]>,<[x2]>,<[y2]>,<[z2]>]>
           - define cuboids <[cuboids].include[<[cub]>]>
     - narrate "<yellow>all smaller cuboids created. deletion beginning!"

@@ -79,7 +79,7 @@ flair_command:
       - 2716
       - 2717
   script:
-    - if <context.args.get[1]||null> != null:
+    - if <context.args.get[1].exists>:
       - define color <context.args.get[1].parse_color>
       - if <[color].strip_color.length> > 0:
         - narrate "<&c>You can only use valid essentials color codes such as &a, &o, &#abc123, ..."
