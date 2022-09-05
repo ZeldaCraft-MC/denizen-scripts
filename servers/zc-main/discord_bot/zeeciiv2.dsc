@@ -143,6 +143,8 @@ reply_sug_task:
       - define admins <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[Admin]>]>]>
       - define users <list[<[owners]>].include[<[admins]>].deduplicate>
       - foreach <[users]> as:user:
+        - if !<[user].id.is_truthy:
+          - foreach next
         - adjust <entry[thread].created_thread> add_thread_member:<[user]>
       - wait <[users].size.div[1.4]>s
       - if <[msg2].embed.first.map.contains[fields]>:
@@ -182,6 +184,8 @@ reply_bug_task:
       - if <[msg2].has_flag[user]>:
         - define users <[users].include[<[msg2].flag[user]>].deduplicate>
       - foreach <[users]> as:user:
+        - if !<[user].id.is_truthy:
+          - foreach next
         - adjust <entry[thread].created_thread> add_thread_member:<[user]>
       - wait <[users].size.div[1.4]>s
       - flag <[msg2]> reply_thread:<entry[thread].created_thread>
