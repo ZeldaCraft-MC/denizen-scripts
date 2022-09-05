@@ -655,7 +655,7 @@ ea_items_world:
       - flag player easterpref_<[num]>
       - narrate "You got the prefix <context.item.lore.first>" format:zc_text
       - narrate "Do /prefix update so it shows up in /prefix set!" format:zc_text
-      - take item:<context.item.with[quantity=1]>
+      - take item:<context.item.script.name>
 
 su_items_world:
   type: world
@@ -672,4 +672,4 @@ su_items_world:
       - flag player summerpref_<[num]>
       - narrate "You got the prefix <context.item.lore.first>" format:zc_text
       - narrate "Do /prefix update so it shows up in /prefix set!" format:zc_text
-      - take item:<context.item.with[quantity=1]>
+      - take item:<context.item.script.name>
