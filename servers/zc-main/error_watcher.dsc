@@ -40,6 +40,25 @@ error_handler_conf:
 #    - if true:
 #      - debug exception 'This is an example'
 
+debug_alert:
+  type: world
+  debug: false
+  events:
+    on system time hourly:
+      - define debug_enabled:|:<util.scripts.filter[data_key[debug]]>
+      - define debug_enabled:|:<util.scripts.filter[list_keys.contains[debug].not]>
+      - if <[debug_enabled].is_empty>:
+        - stop
+      - define padding <[debug_enabled].highest[name.length].name.length>
+      - define message "Found <[debug_enabled].size> script(s) with debug enabled<&co>"
+      - define scripts <[debug_enabled].parse_tag[<[parse_value].name.pad_right[<[padding].add[5]>]>(<[parse_value].relative_filename>)].separated_by[<n>]>
+      - define bot_id <script[error_handler_conf].parsed_key[data.bot_id]>
+      - define channel <script[error_handler_conf].parsed_key[data.channel_id]>
+      - if <[debug_enabled].size> <= 10:
+        - ~discordmessage id:<[bot_id]> channel:<[channel]> <[message]>
+      - else:
+        - ~discordmessage id:<[bot_id]> channel:<[channel]> <[message]> attach_file_name:error.txt attach_file_text:<[scripts]>
+
 error_handlers:
   type: world
   debug: false
