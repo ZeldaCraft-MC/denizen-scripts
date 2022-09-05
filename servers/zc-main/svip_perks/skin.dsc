@@ -13,6 +13,7 @@ skin_command:
 
 skin_inventory:
   type: inventory
+  debug: false
   inventory: chest
   title: Test
   size: <player.flag[saved_skins].size.div_int[9].add[2].mul[9].min[54]>

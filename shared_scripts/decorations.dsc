@@ -235,7 +235,7 @@ custom_items_inv_world:
 #-----------------#
 fake_sign_w:
   type: world
-  debug: true
+  debug: false
   events:
     on player changes sign:
       - if !<player.has_flag[deco_searching]>:

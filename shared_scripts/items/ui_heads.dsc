@@ -1,5 +1,6 @@
 search_sign:
   type: item
+  debug: false
   material: oak_sign
   display name: <&e><&l>Searching
   lore:
@@ -7,6 +8,7 @@ search_sign:
 
 custom_items_arrow_left_item:
   type: item
+  debug: false
   material: player_head
   display name: Previous Page
   mechanisms:
@@ -14,6 +16,7 @@ custom_items_arrow_left_item:
 
 custom_items_arrow_right_item:
   type: item
+  debug: false
   material: player_head
   display name: Next Page
   mechanisms:
@@ -21,6 +24,7 @@ custom_items_arrow_right_item:
 
 custom_items_favourites:
   type: item
+  debug: false
   material: player_head
   display name: Favourites
   mechanisms:

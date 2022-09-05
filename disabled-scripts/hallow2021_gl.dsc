@@ -385,7 +385,7 @@ hallow2021_info_book:
   - <&click[1].type[change_page]><&color[#FF8000]><&l>Halloween <&0><&l>Info<&end_click><p>The more players collect candy together the more events are going to happen the same time. These events are randomized each day.
   - <&click[1].type[change_page]><&color[#FF8000]><&l>Halloween <&0><&l>Info<&end_click><p>So each day there are 5 random warps with 5 random events. Each small event is the same through all the warps.
   - <&click[1].type[change_page]><&color[#FF8000]><&l>Halloween <&0><&l>Info<&end_click><p>Go and explore the different events. Each event gives you candy, use this candy to climb the top 10 candy collecters
-  - <&click[1].type[change_page]><&color[#FF8000]><&l>Halloween <&0><&l>Info<&end_click><p>because the #1, #2 and #3 will recieve a special prize no one else will get.<p>Right click this ghost while sneaking to deposit candy<n>do the same with a candy bucket to deposit its candy
+  - <&click[1].type[change_page]><&color[#FF8000]><&l>Halloween <&0><&l>Info<&end_click><p>because the #1, #2 and #3 will receive a special prize no one else will get.<p>Right click this ghost while sneaking to deposit candy<n>do the same with a candy bucket to deposit its candy
   - <&click[1].type[change_page]><&color[#FF8000]><&l>Halloween <&0><&l>Info<&end_click><p>In total there currently are 9 different events.<n>In the next few pages i will explain to you what each event does, and what you need to do to get candy from it.
   - <&click[1].type[change_page]><&color[#FF8000]><&l>Halloween <&0><&l>Info<&end_click><p><&l>Graveyard:<&r> is kakariko specific, Go into the graveyard and open containers<n><&l>Candy fishing:<&r> is limited to only the warps that contain water. Each time you catch something it becomes a(or more) candy instead.
   - <&click[1].type[change_page]><&color[#FF8000]><&l>Halloween <&0><&l>Info<&end_click><p><&l>Raining candy:<&r> it rains candy within this warp, pick them up<p><&l>Sorting candy:<&r> speak to the very old lady in this warp to sort out her chest. she gives candy as a reward.
@@ -1173,6 +1173,7 @@ hallow2021_fm_format:
 
 hallow2021_Weapon:
   type: item
+  debug: false
   material: iron_sword
   display name: <&e>Weapons
   lore:
@@ -1180,6 +1181,7 @@ hallow2021_Weapon:
 
 hallow2021_Armor:
   type: item
+  debug: false
   material: leather_helmet
   display name: <&a>Armor
   lore:
@@ -1187,6 +1189,7 @@ hallow2021_Armor:
 
 hallow2021_Tool:
   type: item
+  debug: false
   material: iron_hoe
   display name: <&b>Tools
   lore:
@@ -1194,6 +1197,7 @@ hallow2021_Tool:
 
 hallow2021_Glass:
   type: item
+  debug: false
   material: glass
   display name: <&d>Glass
   lore:
@@ -1201,6 +1205,7 @@ hallow2021_Glass:
 
 hallow2021_Wool:
   type: item
+  debug: false
   material: white_wool
   display name: <&5>Wools
   lore:
@@ -1208,6 +1213,7 @@ hallow2021_Wool:
 
 hallow2021_Food:
   type: item
+  debug: false
   material: bread
   display name: <&2>Food
   lore:
@@ -1215,6 +1221,7 @@ hallow2021_Food:
 
 hallow2021_Bucket:
   type: item
+  debug: false
   material: bucket
   display name: <&7>Buckets
   lore:
@@ -1222,6 +1229,7 @@ hallow2021_Bucket:
 
 hallow2021_Redstone:
   type: item
+  debug: false
   material: redstone
   display name: <&c>Redstone
   lore:
@@ -1229,6 +1237,7 @@ hallow2021_Redstone:
 
 hallow2021_Ore:
   type: item
+  debug: false
   material: raw_copper
   display name: <&8>Ores
   lore:
@@ -1236,6 +1245,7 @@ hallow2021_Ore:
 
 hallow2021_confirm:
   type: item
+  debug: false
   material: lime_concrete
   display name: <&a>Confirm!
   lore:

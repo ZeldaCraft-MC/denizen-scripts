@@ -21,6 +21,7 @@
 
 ban_tools_messaging:
   type: data
+  debug: false
   messages:
     notify:
       permban:

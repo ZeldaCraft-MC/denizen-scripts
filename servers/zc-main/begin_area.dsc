@@ -1,5 +1,6 @@
 beginners_book:
   type: book
+  debug: false
   title: beginners book
   author: <&a>Zelda<&2>Craft
   signed: true

@@ -1,5 +1,6 @@
 held_animal:
   type: item
+  debug: false
   material: pig_spawn_egg
   flags:
     uniq: <util.random_uuid>

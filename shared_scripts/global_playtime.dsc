@@ -1,5 +1,6 @@
 global_playtime_events:
   type: world
+  debug: false
   events:
     after player joins:
       - definemap msg:

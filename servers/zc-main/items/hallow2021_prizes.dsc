@@ -5,11 +5,12 @@ green_was_too_dumb:
     - foreach <server.flag[hallow2021_topall].sort_by_value.keys.reverse.exclude[<server.match_offline_player[pir_te]>]> as:p:
       - flag <[p]> hallow2021_top_spot:<[loop_index]>
 
-hallow2021_recieve_command:
+hallow2021_receive_command:
   type: command
-  name: recieve
-  usage: /recieve
-  description: recieves halloween rewards.
+  debug: false
+  name: receive
+  usage: /receive
+  description: Receive your halloween rewards.
   script:
     - if <player.name> == Pir_te:
       - stop

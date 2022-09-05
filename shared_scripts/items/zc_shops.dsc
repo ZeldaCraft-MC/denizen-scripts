@@ -1,5 +1,6 @@
 left_arrow:
   type: item
+  debug: false
   material: player_head
   display name: Previous Page
   mechanisms:
@@ -7,6 +8,7 @@ left_arrow:
 
 right_arrow:
   type: item
+  debug: false
   material: player_head
   display name: Next Page
   mechanisms:

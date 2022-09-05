@@ -16,6 +16,7 @@ lookup_command_conf:
 
 lookup_command:
   type: command
+  debug: false
   description: Look into another player
   usage: /lookup
   name: lookup
@@ -40,6 +41,7 @@ lookup_command:
 
 peek_inventory:
   type: inventory
+  debug: false
   inventory: chest
   title: <player.name>'s inventory
   size: 36
@@ -47,6 +49,7 @@ peek_inventory:
 
 peek_inventory_task:
   type: task
+  debug: false
   definitions: action|peeker|uniq
   script:
     - ratelimit <player>,<[uniq]> 1m

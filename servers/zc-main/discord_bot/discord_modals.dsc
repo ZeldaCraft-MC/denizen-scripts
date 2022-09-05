@@ -1,6 +1,6 @@
 d_modals_world:
   type: world
-  debug: true
+  debug: false
   events:
     on discord modal submitted name:ban_appeal for:zc-info:
     - ~discordinteraction defer interaction:<context.interaction> ephemeral:true

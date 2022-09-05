@@ -1,5 +1,6 @@
 grant_bonus_claim_blocks:
   type: task
+  debug: false
   script:
     - define hours_played <player.statistic[play_one_minute].div[72000].round_down>
     - define bonus_blocks <[hours_played].mul[30]>
@@ -14,6 +15,7 @@ grant_bonus_claim_blocks:
 
 grant_bonus_claim_blocks_events:
   type: world
+  debug: false
   events:
     after player joins:
     - if <player.statistic[play_one_minute].div[72000].round_down||0> <= 1:
