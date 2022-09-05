@@ -34,12 +34,12 @@ vpn_blocker_events:
 #        - define username <context.args.get[2]||null>
 #        - if <def[username].is[==].to[null]> {
 #          - narrate "<&7>Usage<&co> <&a>/vpn bypass <&lt>username<&gt>"
-#          - queue clear
+#          - stop
 #          }
 #        - define player <server.match_offline_player[%username%]||null>
 #        - if <def[player].is[==].to[null]> {
 #          - narrate "<&c>Could not find player."
-#          - queue clear
+#          - stop
 #          }
 #        - narrate "<&7>Found player <&a><def[player].name><&7>. Are you sure you want to allow this player to bypass the VPN blocker?"
 #        - narrate "<&7>Type <&e>/vpn confirm <&7>to accept."

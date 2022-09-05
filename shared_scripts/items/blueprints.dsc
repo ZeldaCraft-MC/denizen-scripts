@@ -10,22 +10,22 @@ blueprint:
 color_map:
   type: data
   colors:
-    white: "#ffffff"
-    orange: "#ff9100"
-    magenta: "#bf00ff"
-    light_blue: "#00d0ff"
-    yellow: "#ffdd00"
-    lime: "#5eff00"
-    pink: "#ff9eda"
-    gray: "#707070"
-    light_gray: "#9e9e9e"
-    cyan: "#08a4a7"
-    purple: "#9000ff"
-    blue: "#0004ff"
-    brown: "#7a5230"
-    green: "#008a22"
-    red: "#ff0000"
-    black: "#4f4f4f"
+    white: #ffffff
+    orange: #ff9100
+    magenta: #bf00ff
+    light_blue: #00d0ff
+    yellow: #ffdd00
+    lime: #5eff00
+    pink: #ff9eda
+    gray: #707070
+    light_gray: #9e9e9e
+    cyan: #08a4a7
+    purple: #9000ff
+    blue: #0004ff
+    brown: #7a5230
+    green: #008a22
+    red: #ff0000
+    black: #4f4f4f
 
 blueprint_angle_map:
   type: data
@@ -113,25 +113,25 @@ blueprint_events:
       - if <[loc]> == null:
         - stop
       - if !<list[north|south|east|west].contains[<player.location.direction>]>:
-        - inject locally fail
+        - inject <script> path:fail
       - if !<context.item.has_flag[schem]>:
-        - inject locally fail
+        - inject <script> path:fail
 
       - define schem <context.item.flag[schem.name]>_<player.location.direction>
       - if !<schematic[<[schem]>].exists>:
         - ~schematic load name:<[schem]>
       - define cuboid <schematic[<[schem]>].cuboid[<[loc]>]>
       - if <[cuboid].has_region>:
-        - inject locally fail
+        - inject <script> path:fail
       - if !<[cuboid].blocks.filter[material.is_solid].is_empty>:
-        - inject locally fail
+        - inject <script> path:fail
       - if <player.has_flag[blueprint_preview]>:
-        - inject locally fail
+        - inject <script> path:fail
 
       - define loc_below <[cuboid].min.below[1]>
       - define cuboid_below <[loc_below].to_cuboid[<[cuboid].max.with_y[<[loc_below].y>]>]>
       - if !<[cuboid_below].blocks.filter[material.is_solid.not].is_empty>:
-        - inject locally fail
+        - inject <script> path:fail
 
       - clickable blueprint_printer def:<[schem]>|<[loc]>|<player.location.direction> usages:1 for:<player> save:yes
       - clickable blueprint_cancel usages:1 for:<player> save:no
@@ -143,7 +143,7 @@ blueprint_events:
           - define hover "<&7>Click to change the color to <&color[<[value]>]><[color]><&7>!"
           - define color_selection "<[color_selection]> <&color[<[value]>]><element[<&lb><[color]><&rb>].on_click[<entry[color].command>].on_hover[<[hover]>]>"
           - if <[loop_index].sub[1].mod[6]> == 5:
-            - define color_selection "<[color_selection]><n>"
+            - define color_selection <[color_selection]><n>
         - narrate "<n><&7>Select a color below and click continue to place your blueprint!"
         - narrate <[color_selection]>
       - else:
@@ -159,14 +159,3 @@ blueprint_events:
           - if <[loop_index].mod[5]> == 0:
             - light <[value]> 0 duration:1t
         - wait 1s
-
-
-
-
-
-
-
-
-
-
-

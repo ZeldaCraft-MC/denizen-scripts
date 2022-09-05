@@ -1,23 +1,19 @@
-deleteme_test:
-  type: command
-  name: hmm
-  permission: asndkads
-  script:
-    - flag <player> in_cosmetics_menu
-    - bossbar
-
 back_item_entity:
   type: entity
   entity_type: armor_stand
-  has_ai: false
-  marker: true
+  mechanisms:
+    has_ai: false
+    marker: true
   #visible: false
   flags:
     stay_mounted: true
 
 test_wings:
   type: command
+  description: Tests wings
+  usage: /testwings
   name: testwings
+  permission: aaaaaa
   script:
     - if <player.gamemode> != creative:
       - stop
@@ -28,7 +24,10 @@ test_wings:
 
 equip_command:
   type: command
+  description: Equips wings
+  usage: /equip
   name: equip
+  permission: aaaaa
   script:
     - if <player.gamemode> != creative:
       - stop

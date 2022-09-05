@@ -6,7 +6,7 @@ magic_saddle:
   enchantments:
   - LUCK:1
   lore:
-  - "If it fits, I sits"
+  - If it fits, I sits
   mechanisms:
     hides:
       - ENCHANTS
@@ -16,12 +16,12 @@ magic_saddle_command:
   type: command
   name: magicsaddle
   permission: zcrpg.magicsaddle
-  description: "Gives you a magic saddle that lets you ride any passive mobs and players!"
+  description: Gives you a magic saddle that lets you ride any passive mobs and players!
   usage: /magicsaddle
   script:
   - if <player.world.name> == dungeons:
     - narrate "<&c>I'm sorry, you can't use that command here."
-    - queue clear
+    - stop
   - give magic_saddle
 
 #magic_saddle_events:
@@ -32,9 +32,9 @@ magic_saddle_command:
 #    - determine passively cancelled
 #    - if <player.world.name> == dungeons:
 #      - narrate "<&c>I'm sorry, you can't use that command here."
-#      - queue clear
+#      - stop
 #    - if !<player.has_permission[zcrpg.magicsaddle]> || !<context.entity.is_living> || <context.entity.is_monster>:
-#      - queue clear
+#      - stop
 #    - mount <player>|<context.entity>
 #
 #    on player clicks magic_saddle in inventory:

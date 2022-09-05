@@ -10,7 +10,7 @@ zc_demon_carver:
   mechanisms:
     custom_model_data: 900
   lore:
-    - "A lethal weapon forged by the Yiga."
+    - A lethal weapon forged by the Yiga.
   recipes:
     1:
        type: shaped

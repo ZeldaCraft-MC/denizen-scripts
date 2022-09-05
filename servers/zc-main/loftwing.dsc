@@ -1,8 +1,9 @@
 loftwing:
   type: entity
   entity_type: parrot
-  custom_name: Loftwing
-  custom_name_visible: true
+  mechanisms:
+    custom_name: Loftwing
+    custom_name_visible: true
 
 loftwing_events:
   type: world

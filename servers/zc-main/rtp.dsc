@@ -6,7 +6,7 @@ random_donut:
     - define noise 3.5
     - define angle <util.random.decimal[0].to[360].to_radians>
     - define offset <location[1,0,0].rotate_around_y[<[angle]>]>
-    - determine <[offset].add[<util.random.gauss.div[3.5]>,0,<util.random.gauss.div[3.5]>].mul[<[worldsize]>]>
+    - determine <[offset].add[<util.random_gauss.div[3.5]>,0,<util.random_gauss.div[3.5]>].mul[<[worldsize]>]>
 
 rtp_command:
   type: command

@@ -18,7 +18,7 @@ hween_item:
   material: leather_helmet[unbreakable=true;dye=249,129,29;hides=ATTRIBUTES]
   display name: SpoopyHelm
   lore:
-    - "Keeps the Creepy Crawlies Away!"
+    - Keeps the Creepy Crawlies Away!
 
 snowfall_staff:
   debug: false
@@ -56,8 +56,8 @@ slowfall_item:
   material: bow
   display name: Bow
   lore:
-    - "<&7>Slow Fall I"
-    - "Fall Super Slow!"
+    - <&7>Slow Fall I
+    - Fall Super Slow!
 
 flingshot_item:
   type: item
@@ -65,31 +65,31 @@ flingshot_item:
   material: bow
   display name: Bow
   lore:
-    - "<&7>Flingshot I"
+    - <&7>Flingshot I
 
 xmas_item:
   type: item
   debug: false
   material: leather_boots[unbreakable=true;dye=94,124,22]
-  display name: "Elf Shoes"
+  display name: Elf Shoes
   lore:
-    - "His toes must be cold!"
+    - His toes must be cold!
 
 lump_of_coal:
   type: item
   debug: false
   material: coal
-  display name: "Lump o' Coal"
+  display name: Lump o' Coal
   lore:
-    - "You naughty child you!"
+    - You naughty child you!
 
 2018xmas:
   type: item
   debug: false
   material: iron_sword
-  display name: "<&e><&l>Master Sword of Resurrection"
+  display name: <&e><&l>Master Sword of Resurrection
   lore:
-    - "Blade of Evil's Bane"
+    - Blade of Evil's Bane
   enchantments:
     - damage_all:9
     - durability:4
@@ -98,17 +98,17 @@ forgotten_prize:
   type: item
   debug: false
   material: leather_helmet[unbreakable=true;dye=120,34,99;nbt_attributes=generic.attackSpeed/head/1/0.07]
-  display name: "<&b>The Helmet of the Forgotten"
+  display name: <&b>The Helmet of the Forgotten
   lore:
-    - "That's why they can attack perfectly"
+    - That's why they can attack perfectly
 
 GoronPick:
   type: item
   debug: false
   material: iron_pickaxe
-  display name: "<&c><&l>Goron's Pickaxe"
+  display name: <&c><&l>Goron's Pickaxe
   lore:
-    - "Forged with Goron's Strenght"
+    - Forged with Goron's Strenght
   enchantments:
     - dig_speed:7
 
@@ -117,65 +117,65 @@ zc_ess_hallow_end:
   type: item
   debug: false
   material: blaze_powder
-  display name: "<&c>Essence of Hallows End"
+  display name: <&c>Essence of Hallows End
   enchantments:
     - LUCK: 1
   mechanisms:
     hides:
       - ENCHANTS
   lore:
-    - "A craftable form of essence."
+    - A craftable form of essence.
 
 zc_core_hallow_end:
   type: item
   debug: false
   material: ender_eye
-  display name: "<&4>Core of Hallows End"
+  display name: <&4>Core of Hallows End
   enchantments:
     - LUCK: 1
   mechanisms:
     hides:
       - ENCHANTS
     lore:
-      - "A craftable form of essence."
+      - A craftable form of essence.
 
 zc_emo_hallow_end:
   type: item
   debug: false
   material: phantom_membrane
-  display name: "<&7>Emotions of Hallows End"
+  display name: <&7>Emotions of Hallows End
   enchantments:
     - LUCK: 1
   mechanisms:
     hides:
       - ENCHANTS
     lore:
-      - "A craftable form of essence."
+      - A craftable form of essence.
 
 zc_ves_hallow_end:
   type: item
   debug: false
   material: wither_rose
-  display name: "<&3><&o>Vessel of Hallows End"
+  display name: <&3><&o>Vessel of Hallows End
   enchantments:
     - LUCK: 1
   mechanisms:
     hides:
       - ENCHANTS
     lore:
-      - "A craftable form of essence."
+      - A craftable form of essence.
 
 grave_digger_i:
     type: item
     material: golden_shovel
-    display name: "<&8>Grave <&7>Digger"
+    display name: <&8>Grave <&7>Digger
     mechanisms:
         unbreakable: true
     lore:
-    - "<&f>Has a chance to trick or treat you"
-    - "<&f>While you use it."
-    - ""
-    - "dampe's greatest gift"
+    - <&f>Has a chance to trick or treat you
+    - <&f>While you use it.
+    - <empty>
+    - dampe's greatest gift
 
 hallowe2020_i_1:
   type: item
@@ -184,9 +184,9 @@ hallowe2020_i_1:
   mechanisms:
     enchantments: sharpness,5|fire_aspect,3
   lore:
-  - "<&f>Right click for special attack"
-  - "<&f>Uses <&d>13 <&f>Magic"
-  - ""
+  - <&f>Right click for special attack
+  - <&f>Uses <&d>13 <&f>Magic
+  - <empty>
   - <&f>Shoots the flaming pumpkins head when it is right clicked
 
 hallowe2020_i_2:
@@ -196,9 +196,9 @@ hallowe2020_i_2:
   mechanisms:
     enchantments: sharpness,5|fire_aspect,3
   lore:
-  - "<&f>Right click for special attack"
-  - "<&f>Uses <&d>13 <&f>Magic"
-  - ""
+  - <&f>Right click for special attack
+  - <&f>Uses <&d>13 <&f>Magic
+  - <empty>
   - <&f>Shoots the flaming pumpkins head when it is right clicked
 
 hallowe2020_i_3:
@@ -208,71 +208,71 @@ hallowe2020_i_3:
   mechanisms:
     enchantments: sharpness,5|fire_aspect,3
   lore:
-  - "<&f>Right click for special attack"
-  - "<&f>Uses <&d>13 <&f>Magic"
-  - ""
+  - <&f>Right click for special attack
+  - <&f>Uses <&d>13 <&f>Magic
+  - <empty>
   - <&f>Shoots the flaming pumpkins head when it is right clicked
 
 chokehold:
   type: item
   material: lead
-  display name: "<dark_red>The Chokehold"
+  display name: <dark_red>The Chokehold
   lore:
-    - "<gray><italic>You're mine"
+    - <gray><italic>You're mine
 
 vday_rose:
   type: item
   material: poppy
-  display name: "<red>Valentine's Rose"
+  display name: <red>Valentine's Rose
   lore:
-    - "<light_purple>The perfect gift for someone special.."
+    - <light_purple>The perfect gift for someone special..
 
 vday_wilted_rose:
   type: item
   material: wither_rose
-  display name: "<dark_red>Wilted Valentine's Rose"
+  display name: <dark_red>Wilted Valentine's Rose
   lore:
-    - "<gray>This once special rose has wilted"
-    - "<gray>It's purpose left unfulfilled.."
+    - <gray>This once special rose has wilted
+    - <gray>It's purpose left unfulfilled..
 
 cupid_bow:
-    type: item
-    debug: false
-    material: bow[enchantments=infinity,1]
-    display name: "<light_purple>Cupid's Bow"
-    lore:
-        - "<red>A single shot from this bow"
-        - "<red>will open the target's heart to love"
-    mechanisms:
-        unbreakable: true
-        custom_model_data: 1
+  type: item
+  debug: false
+  material: bow[enchantments=infinity,1]
+  display name: <light_purple>Cupid's Bow
+  lore:
+    - <red>A single shot from this bow
+    - <red>will open the target's heart to love
+  mechanisms:
+    unbreakable: true
+    custom_model_data: 1
 
 Fools_Gold:
-    type: item
-    debug: false
-    material: gold_ingot
-    display name: Fool's Gold
-    mechanisms:
-        custom_model_data: 300
+  type: item
+  debug: false
+  material: gold_ingot
+  display name: Fool's Gold
+  mechanisms:
+    custom_model_data: 300
 
 soup_ladle:
-    type: item
-    debug: false
-    material: wooden_sword
-    display name: Soup Ladle
-    lore:
-    - "A Legendary relic, used to cook up a storm!"
-    mechanisms:
-        custom_model_data: '300'
+  type: item
+  debug: false
+  material: wooden_sword
+  display name: Soup Ladle
+  lore:
+  - A Legendary relic, used to cook up a storm!
+  mechanisms:
+    custom_model_data: 300
 
 egg_shooter:
   debug: false
   type: item
   material: player_head[skull_skin=easter|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTg5ZDY1YWM3NTg2YTI3YzBjNWQyMjZmZDYzY2I5ODliZWU3YzYyYTRlODBkZDFmMWFlYTJlMjJjMTYxMWNkZiJ9fX0=]
-  display name: "<yellow><bold>Egg Shooter"
+  display name: <yellow><bold>Egg Shooter
   lore:
-    - "<&c>Right click<&6> to fire Easter eggs!"
-    - ""
+    - <&c>Right click<&6> to fire Easter eggs!
+    - <empty>
     - <&6>Earned as part of the
     - <&e><&l>2022 Easter event
 
@@ -280,7 +280,7 @@ fake_shot_egg:
   debug: false
   type: item
   material: player_head[skull_skin=egg|<script[Easter_data].parsed_key[textures].random>]
-  display name: "Fake Shot Egg"
+  display name: Fake Shot Egg
   mechanisms:
     pickup_delay: 5m
     time_lived: 5m
@@ -289,44 +289,44 @@ seashell_shooter:
   debug: false
   type: item
   material: player_head[skull_skin=Seashell Bucket|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWNjYmI2NWZlOWQ5ZmFlODZlZTA3ZTI3YjIyZTJiMzQ0ZjE0MWNmZGUwMzE1ZDYwNmFjNzlmMjMyNGUyODNiMiJ9fX0=]
-  display name: "<aqua><bold>Seashell Shooter"
+  display name: <aqua><bold>Seashell Shooter
   lore:
-    - "<&f><red>Right-Click<gold> to fire SeaShells!"
-    - ""
-    - "<&f><yellow>Earned as part of the <gold><bold>2021 Summer event"
+    - <&f><red>Right-Click<gold> to fire SeaShells!
+    - <empty>
+    - <&f><yellow>Earned as part of the <gold><bold>2021 Summer event
 
 fake_seashell:
   debug: false
   type: item
   material: player_head[skull_skin=egg|<script[Summer_data].parsed_key[textures].random>]
-  display name: "Fake seashell"
+  display name: Fake seashell
 
 fake_shell_scute:
   debug: false
   type: item
   material: scute[custom_model_data=<script[Summer_data].parsed_key[shells].random>]
-  display name: "Fake seashell"
+  display name: Fake seashell
 
 fake_nautilus:
   debug: false
   type: item
   material: nautilus_shell
-  display name: "Fake seashell"
+  display name: Fake seashell
 
 fake_scute:
   debug: false
   type: item
   material: scute
-  display name: "Fake seashell"
+  display name: Fake seashell
 
 candy_shooter:
   debug: false
   type: item
   material: paper[custom_model_data=11100]
-  display name: "<yellow><bold>Candy Shooter"
+  display name: <yellow><bold>Candy Shooter
   lore:
-    - "<&c>Right click<&6> to fire candy!"
-    - ""
+    - <&c>Right click<&6> to fire candy!
+    - <empty>
     - <&6>Earned as part of the
     - <&e><&4>2021 Halloween event
 
@@ -344,15 +344,15 @@ vday_shovel:
   type: item
   debug: false
   material: diamond_shovel
-  display name: "<light_purple>Valentine's Spade"
+  display name: <light_purple>Valentine's Spade
   lore:
-    - "I dig you <red><&lt>3"
+    - I dig you <red><&lt>3
 
 fake_shot_candy:
   debug: false
   type: item
   material: apple[custom_model_data=<script[Candy_data].parsed_key[textures].random>]
-  display name: "Fake Shot candy"
+  display name: Fake Shot candy
   mechanisms:
     pickup_delay: 5m
     time_lived: 5m

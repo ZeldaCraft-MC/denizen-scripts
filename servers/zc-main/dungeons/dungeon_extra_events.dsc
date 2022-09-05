@@ -6,7 +6,7 @@ dungeon_extra_events:
         #     - if <context.projectile.on_fire>:
         #         - run ddoor_open def:icecav_1|bypasslock
         #         - remove <context.projectile>
-        #         - playeffect effect:cloud at:<context.location> quantity:100 offset:0.5,2,2 targets:<context.location.find.players.within[100]>
+        #         - playeffect effect:cloud at:<context.location> quantity:100 offset:0.5,2,2 targets:<context.location.find_players_within[100]>
         #         - wait 50t
         #         - run ddoor_close def:icecav_1|bypasslock
         on fireball spawns in:*_dungeon:
@@ -34,9 +34,9 @@ glass_switcher:
   type: item
   material: nether_star
   debug: false
-  display name: "<gray>Glass Switcher"
+  display name: <gray>Glass Switcher
   lore:
-    - "<aqua>Right click terracotta"
-    - "<aqua>block to remove glass"
-    - "<aqua>of the same colour."
-    - "<aqua>Right click sea lanterns to reset"
+    - <aqua>Right click terracotta
+    - <aqua>block to remove glass
+    - <aqua>of the same colour.
+    - <aqua>Right click sea lanterns to reset

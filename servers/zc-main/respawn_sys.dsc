@@ -19,6 +19,7 @@ respawn_data:
       - newnether
     dungeon:
       - dungeons
+
 respawn_world:
   type: world
   debug: false

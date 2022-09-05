@@ -3,18 +3,20 @@ no_item:
   material: black_stained_glass_pane
   debug: false
   display name: <&0><&sp>
+
 ep_page_back:
   type: item
   material: book
   debug: false
-  display name: "<&a>Page Backward"
+  display name: <&a>Page Backward
   lore:
     - <&f>Page <[page].sub[1]||0>
+
 ep_page_forward:
   type: item
   material: book
   debug: false
-  display name: "<&a>Page Forward"
+  display name: <&a>Page Forward
   lore:
     - <&f>Page <[page].add[1]||2>
 

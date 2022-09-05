@@ -21,7 +21,6 @@ repeating_cmd_block_replacements:
             - define sound <[line].split[,]>
             #- playsound <[targets]> sound:<[sound].get[1]> volume:<[sound].get[2]> pitch:<[sound].get[3]> sound_category:MUSIC
 
-
 skyloft_music:
   type: command
   name: skyloftmusic

@@ -15,4 +15,4 @@ magic_jar:
   type: item
   material: experience_bottle
   mechanisms:
-    nbt: uniquifier/<util.random.uuid>
+    nbt: uniquifier/<util.random_uuid>

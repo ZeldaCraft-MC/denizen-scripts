@@ -1,5 +1,7 @@
 custom_data_command:
   type: command
+  description: Applies custom model data to items
+  usage: /custom_data
   name: custom_data
   permission: zc.custom_data
   script:

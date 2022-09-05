@@ -4,7 +4,7 @@ ender_dragon_events:
   events:
     on ender_dragon death:
       - define drops <list>
-      - define rand <util.random.decimal>
+      - define rand <util.random_decimal>
       - if <context.entity.location.world.name> == resources_nullscape_end_island:
         - define drops <[drops].include[zc_dragon_scale|zc_dragon_scale]>
         - if <[rand]> < 0.40:
@@ -35,4 +35,4 @@ ender_dragon_wings:
   durability: 431
   display name: Dragon Wings
   lore:
-    - "The tattered wings of a great beast."
+    - The tattered wings of a great beast.

@@ -171,4 +171,4 @@ kitty_cannon_spell:
   type: task
   debug: false
   script:
-    - execute as_op "kittycannon"
+    - execute as_op kittycannon

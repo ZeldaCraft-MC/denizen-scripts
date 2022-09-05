@@ -100,58 +100,6 @@ safe_stop_command:
     on server start:
       - flag server stopping:!
 
-fix_head_item:
-  type: procedure
-  debug: false
-  definitions: item|filename
-  script:
-    - if <[item].inventory_contents||null> != null:
-      - define contents <[item].inventory_contents.parse[proc[fix_head_item]]>
-      - determine <[item].with_single[inventory_contents=<[contents]>]>
-    - if <[item].material.name> != player_head:
-      - determine <[item]>
-    - if <[item].skull_skin||null> == null:
-      - determine <[item]>
-    - define split <[item].skull_skin.split[|]>
-    - if <[split].size> == 3:
-      - determine <[item]>
-    - if <[split].first.length> == 36:
-      - determine <[item]>
-    - debug debug "<[filename]>: <[item].skull_skin>"
-    - determine <[item]>
-
-fix_player_heads:
-  type: task
-  debug: false
-  script:
-    - ~yaml load:inventories/fixme.yml id:fixme
-    - define files <yaml[fixme].read[fixme]>
-    - yaml unload id:fixme
-    #- define files <server.list_files[inventories].filter[ends_with[.yml]]>
-    - narrate "Scanning <[files].size> files..."
-    - foreach <[files]> as:filename:
-      - define i <[loop_index]>
-      - ~yaml load:inventories/<[filename]> id:tmp_inv
-      - foreach <yaml[tmp_inv].read[groups]> key:group as:modes:
-        - foreach <[modes]> key:mode as:types:
-          - foreach <[types]> key:type as:data:
-            - choose <[type]>:
-              - case offhand:
-                - define new_item <[data].proc[fix_head_item].context[<[filename]>]>
-              - case inventory:
-                - foreach <[data]> key:slot as:item:
-                  - define new_item <[item].proc[fix_head_item].context[<[filename]>]>
-              - case equipment:
-                - foreach <[data]> key:slot as:item:
-                  - define new_item <[item].proc[fix_head_item].context[<[filename]>]>
-      - yaml unload id:tmp_inv
-      - wait 1t
-      - if <[i]> >= 500:
-        - foreach stop
-      - if <[i].mod[300]> == 0:
-        - narrate "<[i]>/<[files].size>"
-    - narrate "Done"
-
 inv_events:
   type: world
   debug: false
@@ -161,7 +109,7 @@ inv_events:
       - inventory clear
       - inventory d:<player.enderchest> clear
       - if !<yaml.list.contains[<player.uuid>_inventories]>:
-        - if !<server.has_file[inventories/<player.uuid>.yml]>:
+        - if !<util.has_file[inventories/<player.uuid>.yml]>:
           - yaml create id:<player.uuid>_inventories
           - flag player inv_save_ready
           - stop

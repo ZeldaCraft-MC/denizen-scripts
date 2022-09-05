@@ -9,7 +9,7 @@ xmas_prizes:
         - determine passively cancelled
         - itemcooldown player_head duration:0.1s
         - repeat 5:
-            - shoot dropped_item[item=fake_present;pickup_delay=<util.int_max>;time_lived=4.98m] origin:<player.location.above[0.8]> destination:<player.eye_location.precise_cursor_on[10]||<player.location.above[0.8].forward[1]>> speed:<util.random.decimal[0.6].to[3]> spread:<util.random.decimal[5].to[8]> def:shooter script:del_present_prize
+            - shoot dropped_item[item=fake_present;pickup_delay=<util.int_max>;time_lived=4.98m] origin:<player.location.above[0.8]> destination:<player.eye_location.ray_trace[range=10]||<player.location.above[0.8].forward[1]>> speed:<util.random.decimal[0.6].to[3]> spread:<util.random.decimal[5].to[8]> def:shooter script:del_present_prize
             - playsound sound:item_armor_equip_elytra pitch:<util.random.decimal[0.2].to[0.7]> at:<player.location> volume:0.2 sound_category:blocks
             - playsound sound:block_wool_place pitch:<util.random.decimal[0.1].to[0.5]> at:<player.location> volume:0.2 sound_category:blocks
             - wait 1t
@@ -17,7 +17,7 @@ xmas_prizes:
         - ratelimit <player> 2t
         - determine passively cancelled
         - itemcooldown snowball duration:2t
-        - shoot snowball origin:<player.eye_location> destination:<player.eye_location.precise_cursor_on[10]||<player.eye_location.forward[1]>> speed:<util.random.decimal[1.2].to[2]> spread:1 script:infinite_snowball_land
+        - shoot snowball origin:<player.eye_location> destination:<player.eye_location.ray_trace[range=10]||<player.eye_location.forward[1]>> speed:<util.random.decimal[1.2].to[2]> spread:1 script:infinite_snowball_land
         - playsound sound:entity_snowball_throw pitch:<util.random.decimal[0.4].to[0.8]> at:<player.location> volume:0.5 sound_category:blocks
     on snowball breaks hanging:
       - determine cancelled
@@ -184,9 +184,10 @@ del_present_prize:
       - playeffect effect:BLOCK_CRACK special_data:packed_ice at:<[location]> quantity:2 offset:1,1.5,1 velocity:0,0.05,0 visibility:100
       - playeffect effect:falling_dust special_data:snow_block at:<[location]> quantity:2 offset:1,1,1 velocity:0,0.01,0 visibility:100
       - playsound sound:ENTITY_PLAYER_LEVELUP <[location]> pitch:<util.random.decimal[1.4].to[1.9]> volume:0.01 sound_category:blocks
-      - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find.players.within[1].exclude[<player>]> volume:0.4 sound_category:blocks
+      - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find_players_within[1].exclude[<player>]> volume:0.4 sound_category:blocks
     - else:
-      - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find.players.within[1]> volume:0.4 sound_category:blocks
+      - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find_players_within[1]> volume:0.4 sound_category:blocks
+
 infinite_snowball_land:
   debug: false
   type: task
@@ -359,24 +360,24 @@ xmas_claim_cmd:
       - foreach <[prizes]>:
         - if <player.inventory.empty_slots> <= 0:
           - stop
-        - if <player.flag[xmas_claimed].contains[<[value].as_item.display>]>:
+        - if <player.flag[xmas_claimed].contains[<[value].as[item].display>]>:
           - foreach next
-        - give <[value].as_item>
-        - flag <player> xmas_claimed:|:<[value].as_item.display>
-        - narrate "<yellow>You got a <gold><[value].as_item.display>!"
+        - give <[value].as[item]>
+        - flag <player> xmas_claimed:|:<[value].as[item].display>
+        - narrate "<yellow>You got a <gold><[value].as[item].display>!"
       - wait 0.5s
     - if <player.flag[xmas_earned_prizes].size||0> >= 1:
       - foreach <player.flag[xmas_earned_prizes]>:
-        - if <[value].as_item.script.name> == frozen_hyrule_custom_record:
+        - if <[value].as[item].script.name> == frozen_hyrule_custom_record:
           - if <player.has_flag[got_frozen_hyrule]>:
             - foreach next
           - else:
             - flag <player> got_frozen_hyrule duration:200d
         - if <player.inventory.empty_slots> <= 0:
           - stop
-        - give <[value].as_item>
+        - give <[value].as[item]>
         - flag <player> xmas_earned_prizes:<-:<[value]>
-        - narrate "<yellow>You got a <gold><[value].as_item.display>!"
+        - narrate "<yellow>You got a <gold><[value].as[item].display>!"
       - wait 0.5s
     # - if <[unlocks]> == 0:
     #   - narrate "<yellow><bold>Congratulations! <aqua>You've unlocked all available Christmas rewards! <light_purple>See you next year"
@@ -404,8 +405,8 @@ Xmas_data:
     - eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2U4YzI0MmMwNTFjODk0MTk5Yzg1MTBkYWQ1YWFjZTk2YzJjNGNmMmUzNGY0ZTg1YThlMTg0NTgzMWVkNWVkIn19fQ==
     - eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzJmMDQ4OWNhMTI2YTZlOWY5YWZhNTllYjQ5MWIxODUzMzk1YjU4MmI0NTRmYzJhZDQ4MDI3MjI2MjUyZDEyMSJ9fX0=
   bag_lore:
-    - "<&f><gold><player.flag[player_presents]||0> <red>Presents"
-    - "<&f>Any presents you find will be added here"
+    - <&f><gold><player.flag[player_presents]||0> <red>Presents
+    - <&f>Any presents you find will be added here
   santa:
     - eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTRlNDI0YjE2NzZmZWVjM2EzZjhlYmFkZTllN2Q2YTZmNzFmNzc1NmE4NjlmMzZmN2RmMGZjMTgyZDQzNmUifX19
   warp2:

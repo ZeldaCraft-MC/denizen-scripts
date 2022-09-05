@@ -1,5 +1,7 @@
 hide_command:
   type: command
+  description: Toggles hiding the nameplate for hide and seek
+  usage: /hide
   name: hide
   debug: false
   script:

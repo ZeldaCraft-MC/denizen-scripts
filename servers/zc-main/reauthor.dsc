@@ -1,5 +1,7 @@
 reauthor_command:
   type: command
+  description: Re-authors a book.
+  usage: /reauthor [name]
   name: reauthor
   debug: false
   permission: askdljalskda
@@ -8,6 +10,8 @@ reauthor_command:
 
 retitle_command:
   type: command
+  description: Re-titles a book.
+  usage: /retitle [name]
   name: retitle
   debug: false
   permission: sakdjalkda

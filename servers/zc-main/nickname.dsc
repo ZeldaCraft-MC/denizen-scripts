@@ -22,7 +22,7 @@ nickname_events:
         - stop
       - if !<player.has_flag[essentials_nick_updated]>:
         #- flag player essentials_nick_updated
-        - if !<server.has_file[../Essentials/userdata/<player.uuid>.yml]>:
+        - if !<util.has_file[../Essentials/userdata/<player.uuid>.yml]>:
           - stop
         - ~yaml load:../Essentials/userdata/<player.uuid>.yml id:ess_<player.uuid>
         - if <yaml[ess_<player.uuid>].contains[nickname]>:

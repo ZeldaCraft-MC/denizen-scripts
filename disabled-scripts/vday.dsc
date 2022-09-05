@@ -1,6 +1,6 @@
 vday_boat:
     type: world
-	debug: false
+    debug: false
     events:
         on player right clicks *boat in:vday_tunnel:
             - determine cancelled

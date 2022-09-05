@@ -9,7 +9,7 @@ biome_wand:
   debug: false
   name: biomewand
   usage: /biomewand
-  description: "Retrieve a biome wand"
+  description: Retrieve a biome wand
   permission: zc.setbiome
   script:
     - give biome_selector
@@ -19,7 +19,7 @@ biome_command:
   debug: false
   name: setbiome
   usage: /setbiome
-  description: "Use to set a biome"
+  description: Use to set a biome
   permission: zc.setbiome
   script:
     - if <context.args.get[1]||help> == help:
@@ -38,7 +38,7 @@ biome_command:
       - narrate "<&b>Selected region too large. Max area is 1000 blocks."
       - stop
     - adjust <[cuboid].blocks> biome:<biome[<[biome]>]>
-    - foreach <player.location.find.players.within[50]> as:player:
+    - foreach <player.location.find_players_within[50]> as:player:
       - adjust <[player]> skin_blob:<[player].skin_blob>
 
 biome_events:

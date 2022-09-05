@@ -9,6 +9,7 @@ common_vote_key:
   lore:
   - <&f>Right click a <&color[#C0C0C0]>Common <&e>Vote Crate<&f> to open it
   - <&f>Those can be found in <&d>/spawn
+
 rare_vote_key:
   type: item
   debug: false
@@ -20,11 +21,13 @@ rare_vote_key:
   lore:
   - <&f>Right click a <&color[#D4AF37]>Rare <&e>Vote Crate<&f> to open it
   - <&f>Those can be found in <&d>/spawn
+
 common_vote_crate:
   type: item
   debug: false
   material: chest
   display name: <&color[#C0C0C0]>Common <&e>Vote Crate
+
 rare_vote_crate:
   type: item
   debug: false
@@ -41,6 +44,7 @@ voting_link_i:
 #    - <&2><script[voting_sites].data_key[sites].get[<[site]>].parsed||error>
 #  mechanisms:
 #    flag: voting_site:<[site].parsed||error>
+
 cant_vote_i:
   type: item
   debug: false
@@ -49,6 +53,7 @@ cant_vote_i:
 #  lore:
 #    - <&f>Looks like you already voted today
 #    - <&f><player.flag_expiration[voted_<[site].parsed||error>].from_now.formatted||error> until you can vote again
+
 royal_halberd:
   type: item
   debug: false

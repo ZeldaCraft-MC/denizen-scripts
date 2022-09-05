@@ -4,6 +4,9 @@ streamers:
     eyelesstenshi:
       name: Tenshi
       link: https://www.twitch.tv/eyelesstenshi
+    sentisurgelius:
+      name: SentisUrgelius
+      link: https://www.twitch.tv/SentisUrgelius
     kutekiera:
       name: KuteKiera
       link: https://www.twitch.tv/kutekiera
@@ -31,6 +34,8 @@ streamers:
 
 twitch_command:
   type: command
+  description: Handles showing the twitch bossbar
+  usage: /twitch [start/end] [name]
   name: twitch
   tab completions:
     1: start|end

@@ -261,7 +261,6 @@ power_menu_item:
   - Requires 40 Dungeon Points
   - Requires 22 Secret Points
 
-
 ############
 ##Binding ##
 ############

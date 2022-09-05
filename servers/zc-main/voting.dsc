@@ -9,6 +9,7 @@ voting_worlds:
     - spawn
     - s3
     - s3_nether
+
 voting_prizes:
   type: data
   debug: false
@@ -99,11 +100,12 @@ voting_sites:
   type: data
   debug: false
   sites:
-    TopG.org: "https://topg.org/minecraft-servers/server-627786"
-    Minecraft-MP.com: "https://minecraft-mp.com/server/284225/vote/"
-    MinecraftServers.org: "https://minecraftservers.org/server/612670"
-    MinecraftServersList: "https://minecraftlist.org/vote/23456"
-    PlanetMinecraft.com: "https://www.planetminecraft.com/server/zeldacraft-5068967/vote/"
+    TopG.org: https://topg.org/minecraft-servers/server-627786
+    Minecraft-MP.com: https://minecraft-mp.com/server/284225/vote/
+    MinecraftServers.org: https://minecraftservers.org/server/612670
+    MinecraftServersList: https://minecraftlist.org/vote/23456
+    PlanetMinecraft.com: https://www.planetminecraft.com/server/zeldacraft-5068967/vote/
+
 vote_cmd:
   type: command
   debug: false
@@ -112,6 +114,7 @@ vote_cmd:
   usage: /vote
   script:
     - inventory open d:voting_menu
+
 voting_menu:
   type: inventory
   inventory: hopper
@@ -277,6 +280,7 @@ votifier_alive_check:
     - ~discordmessage id:zc-info channel:859064321299185764 "<discord_embed.with[title].as[<context.username> voted].with[color].as[green].with[footer].as[<context.service>].with[timestamp].as[<util.time_now>]>"
     - wait 2s
     - run get_voters
+
 get_voters:
   type: task
   debug: false
@@ -289,6 +293,7 @@ get_voters:
       - if <[voters].is_empty>:
         - define voters "<list[No one voted at all, or something went wrong]>"
     - ~discordmessage id:zc-info edit:859085204197736498 channel:757903718640517191 "<discord_embed.with[title].as[Top voters all time].with[description].as[<[voters].separated_by[<&nl>]>].with[color].as[aqua].with[footer].as[Last updated].with[timestamp].as[<util.time_now>]>"
+
 voting_crate_world:
   type: world
   debug: false
@@ -320,7 +325,7 @@ voting_crate_world:
       - stop
     - flag <context.location> users:->:<player>
     - wait 2t
-    - take common_vote_key[quantity=1]
+    - take item:common_vote_key quantity:1
     - animatechest <context.location> open sound:true <player>
     - if <player.has_permission[zc.mod_fly]>:
       - define prize <script[voting_prizes].parsed_key[prizes].get[common].exclude[Flytime_6-Minutes].include[Stinky_egg].random>
@@ -381,7 +386,7 @@ voting_crate_world:
       - narrate "You are already using this crate" format:zc_text
       - stop
     - flag <context.location> users:->:<player>
-    - take rare_vote_key[quantity=1]
+    - take item:rare_vote_key quantity:1
     - animatechest <context.location> open sound:true <player>
     - if <player.has_permission[zc.mod_fly]>:
       - define prize <script[voting_prizes].parsed_key[prizes].get[rare].exclude[Flytime_10-Minutes|Flytime_15-Minutes].include[bottled_fart|Caff_Coupon].random>
@@ -437,6 +442,7 @@ voting_crate_world:
           - ~discordmessage id:zc-info channel:152498419569524736 "<discord_embed.with[title].as[Vote announce].with[description].as[<[player].name> received the first<&nl><&nl>**Royal Halberd!**<&nl><&nl>Want your own? be sure to vote daily].with[color].as[green].with[thumbnail].as[https://cdn.discordapp.com/attachments/757894566413205554/861655780607918080/blade_preview.png].with[footer_icon].as[https://cravatar.eu/helmavatar/<[player].name>/190.png].with[timestamp].as[<util.time_now>]>"
     - narrate <[msg]> format:zc_text
     - flag <context.location> users:<-:<player>
+
 fly_cmd:
   type: command
   name: fly
@@ -496,7 +502,7 @@ fly_world:
         - adjust <[player]> can_fly:false
       - else:
         - flag <[player]> voteflytime:--
-        - actionbar "You have <&a><[player].flag[voteflytime].as_duration.formatted><&f> left to fly" targets:<[player]>
+        - actionbar "You have <&a><[player].flag[voteflytime].as[duration].formatted><&f> left to fly" targets:<[player]>
         - if <[player].flag[voteflytime]> == 60:
           - narrate "Only 1 minute left on your limited fly!" targets:<[player]> format:zc_text
           - playsound sound:block_bell_resonate volume:10 pitch:2 <[player]>
@@ -515,17 +521,20 @@ fly_world:
 vote_holo_common:
   type: entity
   entity_type: armor_stand
-  custom_name: <&color[#C0C0C0]>Common <&e>Vote Crate
-  custom_name_visible: true
-  marker: true
-  visible: false
+  mechanisms:
+    custom_name: <&color[#C0C0C0]>Common <&e>Vote Crate
+    custom_name_visible: true
+    marker: true
+    visible: false
+
 vote_holo_rare:
   type: entity
   entity_type: armor_stand
-  custom_name: <&color[#D4AF37]>Rare <&e>Vote Crate
-  custom_name_visible: true
-  marker: true
-  visible: false
+  mechanisms:
+    custom_name: <&color[#D4AF37]>Rare <&e>Vote Crate
+    custom_name_visible: true
+    marker: true
+    visible: false
 
 bottled_fart_lol:
   type: world
@@ -555,6 +564,7 @@ top_voters_weekly:
         - if <[voters].is_empty>:
           - define voters "<list[No one voted this week]>"
         - ~discordmessage id:zc-info channel:402888223732531200 "<discord_embed.with[title].as[Top voters this week].with[description].as[<[voters].separated_by[<&nl>]>].with[color].as[aqua]>"
+
 voters_command:
   type: command
   name: voters
@@ -598,6 +608,7 @@ voters_command:
       - narrate "<&nl><[left_ar]> <&r>Page <[page]>/<[max]> <&color[#04BA04]><&chr[25B7]><&nl>"
       - stop
     - narrate "<&nl><[left_ar]> <&r>Page <[page]>/<[max]> <[right_ar]><&nl>"
+
 total_votes_command:
   type: command
   usage: /total_votes
@@ -612,6 +623,7 @@ total_votes_command:
     - narrate -----------------------
     - narrate "<&a><[total_votes]><&f> total votes found"
     - narrate -----------------------
+
 get_total_task:
   type: task
   debug: false

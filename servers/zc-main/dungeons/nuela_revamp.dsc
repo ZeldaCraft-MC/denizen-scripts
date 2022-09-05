@@ -26,31 +26,31 @@ mplat_c:
         - if <player.has_flag[mplat]>:
           - if <player.has_flag[mp_pos]>:
             - flag player mp_pos:!
-          - glow <player.flag[mplat].as_entity.flag[mplink].parse_tag[<[parse_value].passengers.get[2].as_entity>].include[<player.flag[mplat].as_entity.passengers.get[2].as_entity>]> false
+          - glow <player.flag[mplat].flag[mplink].parse_tag[<[parse_value].passengers.get[2]>].include[<player.flag[mplat].passengers.get[2]>]> false
           - flag player mplat:!
         - flag player mplat:<[mplat]>
-        - glow <[mplat].flag[mplink].parse_tag[<[parse_value].passengers.get[2].as_entity>].include[<[mplat].passengers.get[2].as_entity>]>
+        - glow <[mplat].flag[mplink].parse_tag[<[parse_value].passengers.get[2]>].include[<[mplat].passengers.get[2]>]>
       - case select:
         - if <player.has_flag[mplat]>:
           - if <player.has_flag[mp_pos]>:
             - flag player mp_pos:!
-          - glow <player.flag[mplat].as_entity.flag[mplink].parse_tag[<[parse_value].passengers.get[2].as_entity>].include[<player.flag[mplat].as_entity.passengers.get[2].as_entity>]> false
+          - glow <player.flag[mplat].flag[mplink].parse_tag[<[parse_value].passengers.get[2]>].include[<player.flag[mplat].passengers.get[2]>]> false
           - flag player mplat:!
         - if <player.target.vehicle.has_flag[plink]>:
-          - define mplat <player.target.vehicle.flag[plink].as_entity>
+          - define mplat <player.target.vehicle.flag[plink]>
         - if <player.target.vehicle.has_flag[mplink]>:
           - define mplat <player.target.vehicle>
         - else:
           - narrate "You do not seem to be targeting a moving platform"
           - stop
         - flag player mplat:<[mplat]>
-        - glow <[mplat].flag[mplink].parse_tag[<[parse_value].passengers.get[2].as_entity>].include[<[mplat].passengers.get[2].as_entity>]>
+        - glow <[mplat].flag[mplink].parse_tag[<[parse_value].passengers.get[2]>].include[<[mplat].passengers.get[2]>]>
         - if <[mplat].has_flag[pos_1]>:
           - fakespawn ender_signal <[mplat].flag[pos_1]> d:30s players:<player>
-          - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>1;custom_name_visible=true] <[mplat].flag[pos_1].as_location.add[0,0.5,0]> d:30s players:<player>
+          - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>1;custom_name_visible=true] <[mplat].flag[pos_1].add[0,0.5,0]> d:30s players:<player>
         - if <[mplat].has_flag[pos_2]>:
           - fakespawn ender_signal <[mplat].flag[pos_2]> d:30s players:<player>
-          - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>2;custom_name_visible=true] <[mplat].flag[pos_2].as_location.add[0,0.5,0]> d:30s players:<player>
+          - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>2;custom_name_visible=true] <[mplat].flag[pos_2].add[0,0.5,0]> d:30s players:<player>
         - narrate "Moving platform selected"
       - case deselect:
         - if !<player.has_flag[mplat]>:
@@ -58,18 +58,18 @@ mplat_c:
           - stop
         - if <player.has_flag[mp_pos]>:
           - flag player mp_pos:!
-        - glow <player.flag[mplat].as_entity.flag[mplink].parse_tag[<[parse_value].passengers.get[2].as_entity>].include[<player.flag[mplat].as_entity.passengers.get[2].as_entity>]> false
+        - glow <player.flag[mplat].flag[mplink].parse_tag[<[parse_value].passengers.get[2]>].include[<player.flag[mplat].passengers.get[2]>]> false
         - flag player mplat:!
         - narrate "That moving platform is no longer selected"
       - case remove:
         - if !<player.has_flag[mplat]>:
           - narrate "You do not have a moving platform selected"
           - stop
-        - remove <player.flag[mplat].as_entity.flag[mplink].parse_tag[<[parse_value].passengers.get[2].as_entity>]>
-        - remove <player.flag[mplat].as_entity.flag[mplink].parse_tag[<[parse_value].passengers.get[1].as_entity>]>
-        - remove <player.flag[mplat].as_entity.flag[mplink].parse[as_entity]>
-        - remove <player.flag[mplat].as_entity.passengers>
-        - remove <player.flag[mplat].as_entity>
+        - remove <player.flag[mplat].flag[mplink].parse_tag[<[parse_value].passengers.get[2]>]>
+        - remove <player.flag[mplat].flag[mplink].parse_tag[<[parse_value].passengers.get[1]>]>
+        - remove <player.flag[mplat].flag[mplink]>
+        - remove <player.flag[mplat].passengers>
+        - remove <player.flag[mplat]>
         - flag server test_plat:<-:<player.flag[mplat]>
         - if <server.flag[test_plat].is_empty||false>:
           - flag server test_plat:!
@@ -96,6 +96,7 @@ mplat_c:
         - narrate "The moving platform will automatically tp to the right area and start moving"
       - default:
         - narrate test2
+
 mplat_wait_re:
   type: task
   debug: false
@@ -106,6 +107,7 @@ mplat_wait_re:
     - flag <[mplat]> go:!
     - flag <[mplat]> re
     - flag <[mplat]> station:!
+
 mplat_wait_go:
   type: task
   debug: false
@@ -123,6 +125,7 @@ mplat_wait_go:
     - flag <[mplat]> go
     - flag <[mplat]> re:!
     - flag <[mplat]> station:!
+
 mplat_safe_restart_w:
   type: world
   debug: false
@@ -171,6 +174,7 @@ mplat_safe_restart_w:
     - if <server.has_flag[no_plat_move]>:
       - flag server no_plat_move:!
       - run mplat_t_move
+
 mplat_t_move:
   type: task
   debug: false
@@ -187,7 +191,7 @@ mplat_t_move:
       - if <[mplat].has_flag[pos_1]||false> && <[mplat].has_flag[pos_2]||false>:
         - if <[mplat].has_flag[go]>:
           - define new_loc1 <[mplat].location.sub[<[mplat].flag[moving]>]>
-          - foreach <[mplat].location.find.players.within[2]> as:player:
+          - foreach <[mplat].location.find_players_within[2]> as:player:
             - cast <[player]> speed amplifier:2 duration:1t hide_particles no_icon no_ambient
             - adjust <[player]> velocity:<[player].velocity.mul[1.8].sub[<[mplat].flag[moving]>].div[2]>
           - teleport <[mplat]> <[new_loc1]>
@@ -200,7 +204,7 @@ mplat_t_move:
           - foreach next
         - if <[mplat].has_flag[re]>:
           - define new_loc2 <[mplat].location.add[<[mplat].flag[moving]>]>
-          - foreach <[mplat].location.find.players.within[2]> as:player:
+          - foreach <[mplat].location.find_players_within[2]> as:player:
             - cast <[player]> speed amplifier:2 duration:0.5s hide_particles no_icon no_ambient
             - adjust <[player]> velocity:<[player].velocity.mul[1.8].add[<[mplat].flag[moving]>].div[2]>
           - teleport <[mplat]> <[new_loc2]>
@@ -212,14 +216,14 @@ mplat_t_move:
             - run mplat_wait_go def:<[mplat]>
             - foreach next
           - foreach next
-        - if <[mplat].flag[pos_1].as_location.material> != <material[air]>:
+        - if <[mplat].flag[pos_1].material> != <material[air]>:
           - foreach next
         - teleport <[mplat]> <[mplat].flag[pos_1]>
         - run mplat_wait_go def:<[mplat]>
         - foreach next
       - if <[mplat].has_flag[pos_1]||false>:
-        - if <[mplat].location> != <[mplat].flag[pos_1].as_location>:
-          - if <[mplat].flag[pos_1].as_location.material> != <material[air]>:
+        - if <[mplat].location> != <[mplat].flag[pos_1]>:
+          - if <[mplat].flag[pos_1].material> != <material[air]>:
             - foreach next
           - teleport <[mplat]> <[mplat].flag[pos_1]>
     - wait 1t
@@ -227,6 +231,7 @@ mplat_t_move:
       - flag server mplats_moving:!
       - stop
     - inject mplat_t_move
+
 mov_plat_w:
   type: world
   debug: false
@@ -243,15 +248,15 @@ mov_plat_w:
       - narrate "You have to click a block to register the position"
       - narrate "You can remove this block after selecting the position"
       - stop
-    - define mplat <player.flag[mplat].as_entity>
+    - define mplat <player.flag[mplat]>
     - if <[mplat].has_flag[pos_1]>:
-      - define x1 <[mplat].flag[pos_1].as_location.x>
-      - define y1 <[mplat].flag[pos_1].as_location.y>
-      - define z1 <[mplat].flag[pos_1].as_location.z>
+      - define x1 <[mplat].flag[pos_1].x>
+      - define y1 <[mplat].flag[pos_1].y>
+      - define z1 <[mplat].flag[pos_1].z>
     - if <[mplat].has_flag[pos_2]>:
-      - define x2 <[mplat].flag[pos_2].as_location.x>
-      - define y2 <[mplat].flag[pos_2].as_location.y>
-      - define z2 <[mplat].flag[pos_2].as_location.z>
+      - define x2 <[mplat].flag[pos_2].x>
+      - define y2 <[mplat].flag[pos_2].y>
+      - define z2 <[mplat].flag[pos_2].z>
     - if <context.click_type> == left_click_block:
       - if <[mplat].has_flag[pos_2]>:
         - if <[y2]> != <context.location.center.sub[0,0.5,0].y>:
@@ -276,10 +281,10 @@ mov_plat_w:
             - flag <[mplat]> moving:0.1,0,0
       - flag <[mplat]> pos_1:<context.location.center.sub[0,0.5,0]>
       - fakespawn ender_signal <[mplat].flag[pos_1]> d:30s players:<player>
-      - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>1;custom_name_visible=true] <[mplat].flag[pos_1].as_location.add[0,0.5,0]> d:30s players:<player>
+      - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>1;custom_name_visible=true] <[mplat].flag[pos_1].add[0,0.5,0]> d:30s players:<player>
       - if <[mplat].has_flag[pos_2]>:
         - fakespawn ender_signal <[mplat].flag[pos_2]> d:30s players:<player>
-        - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>2;custom_name_visible=true] <[mplat].flag[pos_2].as_location.add[0,0.5,0]> d:30s players:<player>
+        - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>2;custom_name_visible=true] <[mplat].flag[pos_2].add[0,0.5,0]> d:30s players:<player>
         - narrate "positions <[mplat].flag[pos_1]> and <[mplat].flag[pos_2]> have been linked"
       - else:
         - narrate "first postion set at <[mplat].flag[pos_1]>"
@@ -307,10 +312,10 @@ mov_plat_w:
             - flag <[mplat]> moving:-0.1,0,0
       - flag <[mplat]> pos_2:<context.location.center.sub[0,0.5,0]>
       - fakespawn ender_signal <[mplat].flag[pos_2]> d:30s players:<player>
-      - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>2;custom_name_visible=true] <[mplat].flag[pos_2].as_location.add[0,0.5,0]> d:30s players:<player>
+      - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>2;custom_name_visible=true] <[mplat].flag[pos_2].add[0,0.5,0]> d:30s players:<player>
       - if <[mplat].has_flag[pos_1]>:
         - fakespawn ender_signal <[mplat].flag[pos_1]> d:30s players:<player>
-        - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>1;custom_name_visible=true] <[mplat].flag[pos_1].as_location.add[0,0.5,0]> d:30s players:<player>
+        - fakespawn armor_stand[is_small=true;visible=false;marker=true;custom_name=Position<&sp>1;custom_name_visible=true] <[mplat].flag[pos_1].add[0,0.5,0]> d:30s players:<player>
         - narrate "positions <[mplat].flag[pos_1]> and <[mplat].flag[pos_2]> have been linked"
       - else:
         - narrate "second postion set at <[mplat].flag[pos_2]>"
@@ -318,17 +323,20 @@ mov_plat_w:
     - if !<player.location.find_entities[moving_platform].within[3].is_empty||true>:
       - determine passively fly_cooldown:20s
       - determine cancelled
+
 mplat_move:
   type: task
   debug: false
   script:
     - push <server.flag[test_plat]>|<server.flag[test_plat].passengers> origin:<server.flag[test_plat].location> destination:<server.flag[test_plat].location.add[10,0,0]> force_along
+
 spawn_mov_plat:
   type: task
   debug: false
   script:
     - define ent_loc <player.location.center>
     - inject spawn_mov_plat1
+
 spawn_mov_plat1:
   type: task
   debug: false
@@ -360,6 +368,7 @@ spawn_mov_plat1:
           - attach <[plat]> to:<[mplat]> offset:-1,0,0 sync_server
         - case 8:
           - attach <[plat]> to:<[mplat]> offset:-1,0,1 sync_server
+
 moving_platform:
   type: entity
   entity_type: armor_stand
@@ -369,6 +378,7 @@ moving_platform:
     visible: false
     persistent: true
     marker: true
+
 moving_platform_side:
   type: entity
   entity_type: armor_stand

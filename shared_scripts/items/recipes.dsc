@@ -1,7 +1,7 @@
 recipe_command:
   type: command
   name: recipes
-  description: "Shows you all of our custom recipes"
+  description: Shows you all of our custom recipes
   usage: /recipes
   debug: false
   script:
@@ -38,7 +38,7 @@ zc_recipes_world:
 
     on player clicks in zc2_recipes_inv:
     - determine passively cancelled
-    - if <context.item.has_script>:
+    - if <context.item.script.exists>:
       - if <context.item.script> == <script[custom_ct]>:
         - inventory open d:zc_recipes_inv
       - if <context.item.script> == <script[modified_ct]>:
@@ -114,7 +114,7 @@ zc_recipes_world:
     - flag player recipe_inv:!
     - adjust <player.open_inventory> matrix:<list[air|]>
     - if <player.inventory.contains.nbt[remove]>:
-      - take <player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
+      - take item:<player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
     - wait 1t
     - inventory update
 
@@ -122,19 +122,19 @@ zc_recipes_world:
     - if <player.has_flag[recipe_inv]>:
       - flag player recipe_inv:!
       - if <player.inventory.contains.nbt[remove]>:
-        - take <player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
+        - take item:<player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
 
     on player closes blast_furnace:
     - if <player.has_flag[recipe_inv]>:
       - flag player recipe_inv:!
       - if <player.inventory.contains.nbt[remove]>:
-        - take <player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
+        - take item:<player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
 
     on player closes smoker:
     - if <player.has_flag[recipe_inv]>:
       - flag player recipe_inv:!
       - if <player.inventory.contains.nbt[remove]>:
-        - take <player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
+        - take item:<player.inventory.list_contents.get[<player.inventory.list_contents.find_all_partial[nbt=<list[<element[remove/true]>]>]>]> quantity:64
 
     on player drags in other_recipes_inv:
     - determine passively cancelled
@@ -156,17 +156,17 @@ modified_ct:
   type: item
   debug: false
   material: crafting_table
-  display name: "<&e>Modified crafting recipes"
+  display name: <&e>Modified crafting recipes
   lore:
-  - "<&f>Show crafting recipes<&nl><&f>we made for already existing items"
+  - <&f>Show crafting recipes<&nl><&f>we made for already existing items
 
 custom_ct:
   type: item
   debug: false
   material: crafting_table
-  display name: "<&6>Custom item recipes"
+  display name: <&6>Custom item recipes
   lore:
-  - "<&f>Show crafting recipes for custom items"
+  - <&f>Show crafting recipes for custom items
   mechanisms:
     hides: ALL
   enchantments:
@@ -248,7 +248,7 @@ switch_inv:
             - define items <[items].include[<[value]>]>
             - foreach next
           - if <[value].starts_with[material:]>:
-            - define value <[value].after[:].as_item>
+            - define value <[value].after[:].as[item]>
           - define items:->:<[value].with[nbt=remove/true]||null>
     - else:
       - foreach <server.recipe_items[<[id]>]>:
@@ -256,6 +256,6 @@ switch_inv:
           - define items <[items].include[<[value]>]>
           - foreach next
         - if <[value].starts_with[material:]>:
-          - define value <[value].after[:].as_item>
+          - define value <[value].after[:].as[item]>
         - define items:->:<[value].with[nbt=remove/true]||null>
     - adjust <player.open_inventory||null> matrix:<[items]||null>

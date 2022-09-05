@@ -14,5 +14,3 @@ Collapse_world:
         - determine cancelled
         on player right clicks item_frame in:hephaestus:
         - determine cancelled
-
-

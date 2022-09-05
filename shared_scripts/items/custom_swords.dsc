@@ -10,11 +10,11 @@ zc_goddes_sword:
     nbt_attributes: generic.attack_damage/mainhand/0/10
     hides: attributes
   lore:
-  - "<&f>Right click for special attack"
-  - "<&f>Uses <&d>30 <&f>Magic"
-  - ""
-  - "<&d>Forged together with the most powerful magic"
-  - "<&f>Only a few can wield this power."
+  - <&f>Right click for special attack
+  - <&f>Uses <&d>30 <&f>Magic
+  - <empty>
+  - <&d>Forged together with the most powerful magic
+  - <&f>Only a few can wield this power.
   recipes:
     1:
       type: shaped
@@ -34,11 +34,11 @@ zc_twilight_scimitar:
   enchantments:
     - damage_all: 8
   lore:
-  - "<&f>Right click for special attack"
-  - "<&f>Uses <&d>70 <&f>Magic"
-  - ""
-  - "<&c>Forged together with the strongest of metals"
-  - "<&f>Only a few can wield this power."
+  - <&f>Right click for special attack
+  - <&f>Uses <&d>70 <&f>Magic
+  - <empty>
+  - <&c>Forged together with the strongest of metals
+  - <&f>Only a few can wield this power.
   recipes:
     1:
       type: shaped

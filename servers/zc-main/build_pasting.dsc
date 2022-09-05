@@ -58,7 +58,7 @@ build_pasting_sections:
   debug: false
   definitions: name
   script:
-    - define num <server.list_files[schematics/<[name]>/].size||0>
+    - define num <util.list_files[schematics/<[name]>/].size||0>
     - define origin <player.location>
     - narrate "beginning paste of <[num]> sections at <player.location>"
     - repeat <[num]>:
@@ -76,11 +76,12 @@ build_huge_delete:
   debug: false
   definitions: name
   script:
-    - if <server.has_file[schematics/<[name]>]>:
+    - if <util.has_file[schematics/<[name]>]>:
       - adjust server delete_file:schematics/<[name]>
       - narrate "schematic deleted"
     - else:
       - narrate "No schematics of that name exits"
+
 we_huge_delete:
   type: task
   debug: false
@@ -134,6 +135,3 @@ we_huge_delete:
       - else:
         - foreach next
     - narrate "<yellow>Deletion complete!"
-
-
-

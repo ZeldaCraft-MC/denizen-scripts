@@ -162,7 +162,6 @@ shops_script:
         item: brown_wool
         price: 25
 
-
     decoration_shop:
       1:
         item: bookshelf
@@ -182,7 +181,6 @@ shops_script:
       6:
         item: flower_pot
         price: 50
-
 
     food_shop:
       1:
@@ -230,8 +228,6 @@ shops_script:
       15:
         item: pumpkin
         price: 100
-
-
 
     coral_shop:
       1:
@@ -285,7 +281,6 @@ shops_script:
       17:
         item: dried_kelp_block
         price: 50
-
 
     glass_shop:
       1:
@@ -391,8 +386,6 @@ shops_script:
         item: glass_pane
         price: 30
 
-
-
     sand_shop:
       1:
         item: cut_sandstone
@@ -433,7 +426,6 @@ shops_script:
       13:
         item: polished_andesite
         price: 60
-
 
     concrete_shop:
       1:
@@ -533,8 +525,6 @@ shops_script:
         item: blue_concrete_powder
         price: 55
 
-
-
     dye_shop:
       1:
         item: black_dye
@@ -584,8 +574,6 @@ shops_script:
       16:
         item: blue_dye
         price: 150
-
-
 
     spawnegg_shop:
       1:
@@ -648,7 +636,6 @@ shops_script:
       20:
         item: tropical_fish_spawn_egg
         price: 1000
-
 
     terracotta_shop:
       1:
@@ -754,8 +741,6 @@ shops_script:
         item: light_gray_glazed_terracotta
         price: 75
 
-
-
     flower_shop:
       1:
         item: poppy
@@ -815,7 +800,6 @@ shops_script:
         item: sunflower
         price: 150
 
-
     bow_shop:
       1:
         item: bow
@@ -830,8 +814,6 @@ shops_script:
         item: spectral_arrow
         price: 50
 
-
-
     beedle_shop:
       1:
         item: bow
@@ -845,8 +827,6 @@ shops_script:
       4:
         item: spectral_arrow
         price: 50
-
-
 
     strange_item_shop:
       1:
@@ -910,8 +890,6 @@ shops_script:
         item: quartz_block
         price: 25
 
-
-
     potion_shop:
       1:
         item: phantom_membrane
@@ -974,8 +952,6 @@ shops_script:
         item: glistering_melon_slice
         price: 500
 
-
-
     clocktown_shop:
       1:
         item: prismarine
@@ -1013,8 +989,6 @@ shops_script:
       12:
         item: white_banner
         price: 250
-
-
 
     redstone_shop:
       1:
@@ -1060,13 +1034,10 @@ shops_script:
         item: dropper
         price: 450
 
-
-
     test_shop:
       1:
         item: diamond_sword
         price: 1
-
 
     wool&decoration&clocktown_shop:
       1:
@@ -1171,8 +1142,6 @@ shops_script:
       34:
         item: white_banner
         price: 250
-
-
 
     sand&concrete_shop:
       1:
@@ -1310,8 +1279,6 @@ shops_script:
       45:
         item: blue_concrete_powder
         price: 55
-
-
 
     dye&terracotta_shop:
       1:
@@ -1465,8 +1432,6 @@ shops_script:
         item: light_gray_glazed_terracotta
         price: 75
 
-
-
     flower&coral_shop:
       1:
         item: poppy
@@ -1577,8 +1542,6 @@ shops_script:
         item: dried_kelp_block
         price: 50
 
-
-
     rod_shop:
       1:
         item: fishing_rod
@@ -1587,7 +1550,6 @@ shops_script:
       1:
         item: cocoa_beans[display=Magic Beans]
         price: 10
-
 
     decorations:
       1:
@@ -1877,8 +1839,8 @@ populate_shops:
       #- define prices <script[shops_script].data_key[shops.<[shops]>].values>
       - foreach <[items]>:
         - define item <[items].get[<[loop_index]>]>
-        - define lore "<&e>Price: $<[item].get[price]||9999>|<&a>Left click to buy 1|<&c>Right click to buy <[item].get[item].as_item.material.max_stack_size||1>"
-        - define list <[list].include[<[item].get[item].as_item.with_flag[Price:<[item].get[price]>].with[lore=<[lore]>].if_null[air]>]>
+        - define lore "<&e>Price: $<[item].get[price]||9999>|<&a>Left click to buy 1|<&c>Right click to buy <[item].get[item].as[item].material.max_stack_size||1>"
+        - define list <[list].include[<[item].get[item].as[item].with_flag[Price:<[item].get[price]>].with[lore=<[lore]>].if_null[air]>]>
       - define inv <inventory[inventory_script]>
       - inventory set d:<[inv]> o:<[list].get[<[page].sub[1].mul[45].max[1]>].to[<[page].mul[45]>]>
       - if <[page]> > 1:
@@ -1886,7 +1848,6 @@ populate_shops:
       - if <[list].size> > <[page].mul[45]>:
           - inventory set d:<[inv]> o:<item[right_arrow].with_flag[page:<[page].add[1]>].with[lore=<Aqua>To<&sp>Page<&sp><[page].add[1]>]> slot:54
       - inventory open d:<[inv]>
-
 
 npc_assign_event:
     type: world
@@ -1909,7 +1870,7 @@ npc_assign_event:
             - if <context.item.has_display>:
               - give <context.item.with[lore=].with[display=<&f><context.item.display||<context.item.material.name.replace_text[_].with[<&sp>].to_titlecase>>]> quantity:<context.item.material.max_stack_size>
             - else:
-              - give <context.item.material.name.as_item> quantity:<context.item.material.max_stack_size>
+              - give <context.item.material.name> quantity:<context.item.material.max_stack_size>
             - narrate "<green>Bought <gold>x<context.item.material.max_stack_size> <context.item.display||<context.item.material.translated_name>><green> for <gold>$<context.item.flag[price].mul[<context.item.material.max_stack_size>]><green>" targets:<player> format:zc_text
             - narrate "<aqua>Remaining Balance: <gold><player.formatted_money>" targets:<player> format:zc_text
             - if <player.flag[npc_shops]> == beedle_shop:
@@ -1923,7 +1884,7 @@ npc_assign_event:
           - if <context.item.has_display>:
             - give <context.item.with[lore=].with[display=<&f><context.item.display||<context.item.material.name.replace_text[_].with[<&sp>].to_titlecase>>]>
           - else:
-            - give <context.item.material.name.as_item>
+            - give <context.item.material.name>
           - narrate "<green>Bought <gold>x1 <context.item.display||<context.item.material.translated_name>><green> for <gold>$<context.item.flag[price]>" targets:<player> format:zc_text
           - narrate "<aqua>Remaining Balance: <gold><player.formatted_money>" targets:<player> format:zc_text
           - if <player.flag[npc_shops]> == beedle_shop:

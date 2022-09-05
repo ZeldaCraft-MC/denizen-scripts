@@ -69,11 +69,11 @@ beam_enttity_events:
     on player right clicks block with:beam_spawner:
       - if <context.location||null> == null || <context.location.material.name> == air || <context.relative.material.name> != air:
         - stop
-      - define top_loc <context.relative.with_pose[-90,0].precise_cursor_on[100]||null>
+      - define top_loc <context.relative.with_pose[-90,0].ray_trace[range=100]||null>
       - if <[top_loc]> == null || <[top_loc].material.name> == air:
         - narrate "<&c>The maximum height of a portal is 10 blocks high."
         - stop
-      - define marker <util.random.uuid>
+      - define marker <util.random_uuid>
       - define parity <context.relative.y.mod[2]>
       - foreach <cuboid[<context.relative.add[1,0,1]>|<[top_loc].sub[1,1,1]>].blocks> as:loc:
         - if <[loc].material.name> != air && <[loc].material.name> != structure_void && <[loc].material.name> != barrier:
@@ -93,10 +93,12 @@ shrine_priest_format:
   type: format
   debug: false
   format: <&b><&o>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-<&nl><&nl><&nl><&nl><[text]><&nl><&nl><&nl><&nl>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 shrine_orb_get:
   type: format
   debug: false
   format: <&7><&o>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-<&nl><&nl><&nl><&f><&l><&o>Spirit Orb    <[text]>                      <&f>+1<&nl><&7><&m>-------------------------------------<&nl><&f><&o>A symbol of courage given tothose who<&nl>have overcome the challenges of a shrine.<&nl><&nl><&nl><&7><&o>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 conv_shrine_monk:
   type: task
   debug: false
@@ -143,7 +145,7 @@ botw_ending_test:
     - define legs <context.location.find_entities[armor_stand].within[5].filter[has_flag[shrine_monk.leg]]>
     - define fan <context.location.find_entities[armor_stand].within[5].filter[has_flag[shrine_monk.fan]]>
     - define mid <[base].location>
-    - define players <context.location.find.players.within[20]>
+    - define players <context.location.find_players_within[20]>
     - define loc <context.location.add[0,-2,2].center.sub[0,0.5,0].with_yaw[180].with_pitch[-19]>
     - foreach <context.location.find_entities[armor_stand].within[5]>:
       - define <[value]>_equipment <[value].equipment>

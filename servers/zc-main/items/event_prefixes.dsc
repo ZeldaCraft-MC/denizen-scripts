@@ -49,6 +49,7 @@ event_prefix_w:
           - narrate "Your leave message has been set to:<&nl><&sp><&sp><&sp><&sp><&7><&gt><&gt><&f><&sp><player.flag[e_prefix_quit]>" format:zc_text
     on player drags in event_prefix_i:
     - determine passively cancelled
+
 event_prefix_i:
   type: inventory
   inventory: chest
@@ -161,7 +162,6 @@ event_prefix_c:
         - narrate "If you want to set your event prefix use<&nl><&hover[click here to run /prefix set]><&click[/prefix set]><&a>/prefix <&b>set<&end_click><&end_hover>"
         - narrate "No longer want a prefix you can clear a prefix with<&nl><&a><&hover[Click here so we can suggest the correct command]><&click[/prefix clear ].type[suggest_command]>/prefix <&b>clear <&e>(join/leave)<&end_click><&end_hover>"
         - narrate "If you do not specify either join or leave it will clear both of them."
-
 
 #put below here all the prefixes want
 
@@ -395,7 +395,6 @@ easter2021_prefixes:
     - if <[easter_earned]> == 1:
       - narrate "<&e>You earned a new Easter 2021 prefix!" targets:<player>
       - stop
-
 
 summer2021_prefixes:
   type: task

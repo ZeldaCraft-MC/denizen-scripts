@@ -53,6 +53,7 @@ fix_colosseum_task:
       - flag server <[flag].replace[coloseum].with[colosseum]>:<server.flag[<[flag]>]>
       - flag server <[flag]>:!
     - announce done to_console
+
 hallow2021_warps_list:
   type: data
   debug: false
@@ -138,6 +139,7 @@ hallow2021_npc_create:
     - adjust <entry[npc].created_npc> set_assignment:hallow2021_ass
     - adjust <entry[npc].created_npc> lookclose:true
     - narrate "New halloween npc has been created :)"
+
 # the assignment script that gets given to the npc
 hallow2021_ass:
   type: assignment
@@ -172,6 +174,7 @@ hallow2021_ass:
         - narrate "Take this for your travels!"
         - give lens_oftruth
       - inventory open d:hallow2021_info_inv
+
 hallow2021_rab_ass:
   type: assignment
   debug: false
@@ -214,6 +217,7 @@ hallow2021_rab_ass:
       - wait 5s
       - playsound sound:ENTITY_PLAYER_BURP pitch:0.7 <player>
       - narrate "ohm nom nom, that tastes good."
+
 hallow2021_cs_ass:
   type: assignment
   debug: false
@@ -234,6 +238,7 @@ hallow2021_cs_ass:
       - narrate "Would you be so kind to sort things out for me?" format:hallow2021_ol_format
       - wait 3s
       - inventory open d:HALLOW2021_CS_INV
+
 hallow2021_tot_ass:
   type: assignment
   debug: false
@@ -291,6 +296,7 @@ hallow2021_tot_ass:
           - flag <player> hallow2021_treated:++
           - flag <player> Interactedwith_<npc>:++ expire:30m
           - flag <player> now_int_<npc>:!
+
 # the interaction feature of the inventory that opens
 hallow2021_warp_world:
   type: world
@@ -314,6 +320,7 @@ hallow2021_warp_world:
     - inventory open d:hallow2021_warp_inv
     on player clicks written_book in hallow2021_info_inv:
     - adjust <player> show_book:hallow2021_info_book
+
 # the inventory that opens when a player right clicks the npc
 hallow2021_info_inv:
   type: inventory
@@ -323,6 +330,7 @@ hallow2021_info_inv:
   gui: true
   slots:
   - [hallow2021_buy_basket] [] [hallow2021_warps_i] [] [hallow2021_info_book]
+
 hallow2021_warp_inv:
   type: inventory
   inventory: chest
@@ -340,6 +348,7 @@ hallow2021_warp_inv:
     - determine <[items]>
   slots:
   - [] [] [] [] [] [] [] [] []
+
 hallow2021_buy_basket:
   type: item
   material: paper
@@ -351,6 +360,7 @@ hallow2021_buy_basket:
     - <&f>To buy this bucket
     - <&f>Click here when you have <&d>500 candy
     - <&f>in your player storage
+
 hallow2021_warps_i:
   type: item
   material: player_head
@@ -360,6 +370,7 @@ hallow2021_warps_i:
     skull_skin: <script[hallow2021_warps_list].data_key[heads].random>
   lore:
     - <&f>Click here to go to the active warps list
+
 hallow2021_info_book:
   type: book
   title: haunted info
@@ -554,6 +565,7 @@ hallow2021_setup_c:
         - narrate "<[b]> has been setup in <[a]> at <&a><player.we_selection.max.simple> / <player.we_selection.min.simple>"
       - default:
         - narrate "<&c>Something went wrong with your second arch. Are you sure it is correct?"
+
 sel_boat_inv:
   type: inventory
   inventory: chest
@@ -563,6 +575,7 @@ sel_boat_inv:
   gui: true
   slots:
     - [] [oak_boat] [spruce_boat] [birch_boat] [] [jungle_boat] [acacia_boat] [dark_oak_boat] []
+
 #---------------------------------#
 # events regarding automazation of events
 # such as daily changing the events
@@ -810,6 +823,7 @@ hallow2021_sevents_w:
     - if <context.area.note_name> == hallow2021_graveyard:
       - stop
     - sidebar remove players:<player>
+
 # changing the events daily task
 hallow2021_se_task:
   type: task
@@ -893,6 +907,7 @@ hallow2021_randome_world:
             - wait 1m
             - flag server ghost:<-:<entry[vex].spawned_entity>
             - remove <entry[vex].spawned_entity>|<entry[armor].spawned_entity>
+
 hallow2021_i_categories:
   type: data
   debug: false
@@ -1070,6 +1085,7 @@ hallow2021_i_categories:
     - raw_copper
     - raw_gold
     - netherite_scrap
+
 hallow2021_cs_inv:
   type: inventory
   inventory: chest
@@ -1096,6 +1112,7 @@ hallow2021_cs_inv:
   - [] [] [] [] [] [] [] [] []
   - [] [] [] [] [] [] [] [] []
   - [] [] [] [] [] [] [] [] [hallow2021_Confirm]
+
 hallow2021_csinv_e:
   type: world
   debug: false
@@ -1145,66 +1162,78 @@ hallow2021_csinv_e:
         - repeat <util.random.int[30].to[45]>:
           - spawn hallow2021_candy_e <player.location>
         - inventory close
+
 hallow2021_ol_format:
   type: format
   format: <&f>Old <&7>Lady <&8><&chr[BB]> <&f><text>
+
 hallow2021_fm_format:
   type: format
   format: <&color[#6F5901]>Friendly <&color[#957802]>Monster <&7><&chr[BB]> <&f><text>
+
 hallow2021_Weapon:
   type: item
   material: iron_sword
   display name: <&e>Weapons
   lore:
   - <&f>Place all weapons below
+
 hallow2021_Armor:
   type: item
   material: leather_helmet
   display name: <&a>Armor
   lore:
   - <&f>Place all armor below
+
 hallow2021_Tool:
   type: item
   material: iron_hoe
   display name: <&b>Tools
   lore:
   - <&f>Place all tools below
+
 hallow2021_Glass:
   type: item
   material: glass
   display name: <&d>Glass
   lore:
   - <&f>Place all glass below
+
 hallow2021_Wool:
   type: item
   material: white_wool
   display name: <&5>Wools
   lore:
   - <&f>Place all wools below
+
 hallow2021_Food:
   type: item
   material: bread
   display name: <&2>Food
   lore:
   - <&f>Place all food below
+
 hallow2021_Bucket:
   type: item
   material: bucket
   display name: <&7>Buckets
   lore:
   - <&f>Place all buckets below
+
 hallow2021_Redstone:
   type: item
   material: redstone
   display name: <&c>Redstone
   lore:
   - <&f>Place all redstone componements below
+
 hallow2021_Ore:
   type: item
   material: raw_copper
   display name: <&8>Ores
   lore:
   - <&f>Place all ores below
+
 hallow2021_confirm:
   type: item
   material: lime_concrete
@@ -1212,6 +1241,7 @@ hallow2021_confirm:
   lore:
   - <&f>Click this once you have sorted
   - <&f>all items
+
 # randomly hiding the candy task
 hallow2021_hc_task:
   type: task
@@ -1223,6 +1253,7 @@ hallow2021_hc_task:
         - foreach next
       - spawn hallow2021_hidden_candy_e <[loc]> save:ent
       - flag <entry[ent].spawned_entity> has_candy:<util.random.int[30].to[45]>
+
 # checking how many mobs are left
 # spawning new ones if there are less then x amount
 hallow2021_mr_task:
@@ -1255,6 +1286,7 @@ hallow2021_mr_task:
         - spawn jumper <[num]> save:ent
         - spawn floating_pumpkin <[num]> save:ent
       - flag <entry[ent].spawned_entity> hallow2021_mob
+
 # checking how many bats are left
 # spawning new ones if there are less then x amount
 hallow2021_br_task:
@@ -1279,6 +1311,7 @@ hallow2021_br_task:
         - stop
       - spawn hallow2021_bat <[num]> save:ent
       - flag <entry[ent].spawned_entity> hallow2021_bat
+
 hallow2021_rr_task:
   type: task
   debug: false
@@ -1301,6 +1334,7 @@ hallow2021_rr_task:
         - stop
       - spawn hallow2021_rab_e <[num]> save:ent
       - flag <entry[ent].spawned_entity> hallow2021_rab
+
 # checking how many items there are in total in the area
 # spawning new ones if there are less then x amount
 # items should despawn after like 2 minutes so they dont all get stuck ontop of things
@@ -1326,6 +1360,7 @@ hallow2021_old_shov:
   display name: <&8>Old Shovel
   lore:
     - <&f>What can i dig up with this?
+
 hallow2021_candy_e:
   type: entity
   entity_type: dropped_item
@@ -1333,6 +1368,7 @@ hallow2021_candy_e:
   item: hallow2021_candy_i
   pickup_delay: 2s
   time_lived: <duration[240s]>
+
 hallow2021_candy_i:
   type: item
   material: apple
@@ -1342,12 +1378,14 @@ hallow2021_candy_i:
     - <&f>it has a sugary taste
   mechanisms:
     custom_model_data: <list[200|300|400|500|600|700|800|900|1000].random>
+
 hallow2021_hidden_candy_e:
   type: entity
   entity_type: dropped_item
   debug: false
   item: hallow2021_hidden_candy_i
   pickup_delay: 3s
+
 hallow2021_hidden_candy_i:
   type: item
   material: bundle
@@ -1355,6 +1393,7 @@ hallow2021_hidden_candy_i:
   display name: <&d>Hidden Bundle
   lore:
     - <&f>How did you get this?
+
 hallow2021_bucket_i:
   type: item
   material: paper
@@ -1363,11 +1402,12 @@ hallow2021_bucket_i:
     custom_model_data: 10600
   flags:
     candy_storage: 0
-    custom_uuid: <util.random.uuid>
+    custom_uuid: <util.random_uuid>
   lore:
     - <&f>This bucket seems to be empty
     - <&f>Collect candy to fill it
     - <&f>0/5000 candy
+
 hallow2021_update_bucket:
   type: task
   debug: false
@@ -1404,6 +1444,7 @@ hallow2021_update_bucket:
     - mark fin
     - inventory adjust "lore:<list[<&f><[msg]>|<&f><[extra_msg].if_null[Collect candy to fill it]>|<&d><[can]>/5000 <&e>candy]>" slot:<[slot]> d:<player.inventory>
     - inventory adjust custom_model_data:<[data]> slot:<[slot]> d:<player.inventory>
+
 hallow2021_update_pl:
   type: task
   debug: false
@@ -1455,6 +1496,7 @@ hallow2021_update_pl:
     - define values:|:<[text]>
     - define values:->:<&f><[sep]>
     - sidebar set title:<&d><&l>Halloween values:<[values]> players:<player>
+
 candy_int_w:
   type: world
   debug: false
@@ -1734,34 +1776,36 @@ hallow2021_mob_e:
     - if <util.random.int[0].to[5]> == 1:
       - attach <context.damager> to:<context.entity> offset:0,1.9,0 sync_server
       - flag <context.damager> jumped
+
 hallow2021_candy_geyser:
-    type: task
-    definitions: loc|min|max|dur|delay|direction|type
-    debug: false
-    script:
-      - if <[type]||no> != candy:
-        - run present_effect def:<[loc]>|<[min]>|<[delay]>|<[dur]>|<[direction]>
-      - playsound sound:ENTITY_skeleton_horse_death <[loc]> pitch:0.2 volume:1
-      - while <duration[<[dur]||1s>].sub[<duration[<[delay]||1s>]>].in_milliseconds||duration[0s].in_milliseconds> > <duration[0s].in_milliseconds>:
-        - choose <[direction]>:
-          - case down:
-            - define dir <util.random.decimal[-1.0].to[-2.0]>
-            - define adj_loc <[loc].sub[0,<util.random.decimal[0.1].to[4]>,0]>
-          - case up:
-            - define dir <util.random.decimal[1.0].to[2.0]>
-            - define adj_loc <[loc].add[0,<util.random.decimal[0.1].to[4]>,0]>
-          - default:
-            - define dir <util.random.decimal[0.1].to[1]>
-            - define adj_loc <[loc]>
-        - if <[type]||no> == candy:
-          - repeat <util.random.int[<[min]>].to[<[max]>]>:
-            - drop hallow2021_candy_i <[adj_loc]> speed:<[dir]>
-          - define offset <util.random.decimal[1].to[4]>
-          - define velocity <util.random.decimal[0].to[0.08]>
-          - playeffect effect:soul at:<[loc]> quantity:10 offset:<[offset]>,<[offset]>,<[offset]> velocity:<[velocity]>,<util.random.decimal[0.2].to[0.2]>,<[velocity]>
-          - playeffect effect:soul_fire_flame at:<[loc]> quantity:10 offset:<[offset]>,<[offset]>,<[offset]> velocity:<[velocity]>,<util.random.decimal[0.2].to[0.2]>,<[velocity]>
-        - wait <[delay]||1s>
-        - define dur:<duration[<[dur]||1s>].sub[<duration[<[delay]||1s>]>]||duration[0s]>
+  type: task
+  definitions: loc|min|max|dur|delay|direction|type
+  debug: false
+  script:
+    - if <[type]||no> != candy:
+      - run present_effect def:<[loc]>|<[min]>|<[delay]>|<[dur]>|<[direction]>
+    - playsound sound:ENTITY_skeleton_horse_death <[loc]> pitch:0.2 volume:1
+    - while <duration[<[dur]||1s>].sub[<duration[<[delay]||1s>]>].in_milliseconds||duration[0s].in_milliseconds> > <duration[0s].in_milliseconds>:
+      - choose <[direction]>:
+        - case down:
+          - define dir <util.random.decimal[-1.0].to[-2.0]>
+          - define adj_loc <[loc].sub[0,<util.random.decimal[0.1].to[4]>,0]>
+        - case up:
+          - define dir <util.random.decimal[1.0].to[2.0]>
+          - define adj_loc <[loc].add[0,<util.random.decimal[0.1].to[4]>,0]>
+        - default:
+          - define dir <util.random.decimal[0.1].to[1]>
+          - define adj_loc <[loc]>
+      - if <[type]||no> == candy:
+        - repeat <util.random.int[<[min]>].to[<[max]>]>:
+          - drop hallow2021_candy_i <[adj_loc]> speed:<[dir]>
+        - define offset <util.random.decimal[1].to[4]>
+        - define velocity <util.random.decimal[0].to[0.08]>
+        - playeffect effect:soul at:<[loc]> quantity:10 offset:<[offset]>,<[offset]>,<[offset]> velocity:<[velocity]>,<util.random.decimal[0.2].to[0.2]>,<[velocity]>
+        - playeffect effect:soul_fire_flame at:<[loc]> quantity:10 offset:<[offset]>,<[offset]>,<[offset]> velocity:<[velocity]>,<util.random.decimal[0.2].to[0.2]>,<[velocity]>
+      - wait <[delay]||1s>
+      - define dur:<duration[<[dur]||1s>].sub[<duration[<[delay]||1s>]>]||duration[0s]>
+
 hallow2021_spawn_ghost:
   type: task
   debug: false
@@ -1775,12 +1819,14 @@ hallow2021_spawn_ghost:
     - wait 1m
     - flag server ghost:<-:<entry[vex].spawned_entity>
     - remove <entry[vex].spawned_entity>|<entry[armor].spawned_entity>
+
 spectralcreep1:
   type: entity
   entity_type: creeper
   debug: false
   custom_name: "<&color[#003366]>S<&color[#004C99]>p<&color[#0066CC]>e<&color[#0080FF]>c<&color[#3399FF]>t<&color[#66B2FF]>r<&color[#99CCFF]>a<&color[#CCE5FF]>l <&color[#CCFFCC]>C<&color[#99FF99]>r<&color[#66FF66]>e<&color[#33FF33]>e<&color[#00FF00]>p<&color[#00CC00]>e<&color[#009900]>r"
   custom_name_visible: true
+
 spectralcreep2:
   type: entity
   entity_type: creeper
@@ -1790,6 +1836,7 @@ spectralcreep2:
   custom_name: "<&color[#003366]>S<&color[#004C99]>p<&color[#0066CC]>e<&color[#0080FF]>c<&color[#3399FF]>t<&color[#66B2FF]>r<&color[#99CCFF]>a<&color[#CCE5FF]>l <&color[#CCFFCC]>C<&color[#99FF99]>r<&color[#66FF66]>e<&color[#33FF33]>e<&color[#00FF00]>p<&color[#00CC00]>e<&color[#009900]>r"
   custom_name_visible: true
   speed: 1.2
+
 ghoul_rat:
   type: entity
   entity_type: silverfish
@@ -1797,6 +1844,7 @@ ghoul_rat:
   hide_from_players: true
   custom_name: "<&color[#202020]>G<&color[#404040]>h<&color[#606060]>o<&color[#808080]>u<&color[#A0A0A0]>l <&color[#C0C0C0]>R<&color[#E0E0E0]>a<&color[#FFFFFF]>t"
   custom_name_visible: true
+
 fire_bubble:
   type: entity
   entity_type: zombie
@@ -1809,6 +1857,7 @@ fire_bubble:
   silent: true
   speed: 0.32
   equipment: air|air|air|player_head[skull_skin=24304ecb-4215-49ce-b145-4d9dc5e21b68|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjYxNzg1NWZmMTI2OGQ5NTliZDlmMjM5Mzg0ZmUwNDMxZWJkNzUxYjI2MjQ2MTljNTU1ZTlkNDcxZTk0NDAifX19]
+
 poison_bubble:
   type: entity
   entity_type: zombie
@@ -1821,6 +1870,7 @@ poison_bubble:
   silent: true
   speed: 0.32
   equipment: air|air|air|player_head[skull_skin=aa84e219-41f5-4a9f-a4e0-49e003aa29e8|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjYwOTMyYjJjMjI0YjdjMjE2M2NiYWMwNWYyODZhMDZlNjkyMjUyN2IwMzY2N2M0ZTk2ZjcyOGU1YzRmZmI2NiJ9fX0=]
+
 redead_walker:
   type: entity
   entity_type: husk
@@ -1831,6 +1881,7 @@ redead_walker:
   custom_name_visible: true
   item_in_hand: air
   equipment: air|air|leather_chestplate[color=<color[85,60,35]>]|player_head[skull_skin=d4576dca-a99e-4875-a319-81b4e61c0579|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTczM2Q1YTMzMGJiYmQ0MGUzYjZhNWRmYWY4MGFmNTMzZGYxZmFmOTE1ZDg4Y2I4OTEyNDg5YWI3ZDA2YWIwIn19fQ==]
+
 ghost_armor:
   type: entity
   entity_type: armor_stand
@@ -1842,6 +1893,7 @@ ghost_armor:
   custom_name_visible: true
   disabled_slots: chest/all|feet/all|hand/all|head/all|legs/all|off_hand/all
   equipment: leather_boots[color=white]|leather_leggings[color=white]|leather_chestplate[color=white]|player_head[skull_skin=31152fb2-cb1e-45c3-86dd-b23f7a20a6f8|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjhkMjE4MzY0MDIxOGFiMzMwYWM1NmQyYWFiN2UyOWE5NzkwYTU0NWY2OTE2MTllMzg1NzhlYTRhNjlhZTBiNiJ9fX0=]
+
 ghost_vex:
   type: entity
   entity_type: vex
@@ -1850,6 +1902,7 @@ ghost_vex:
   hide_from_players: true
   invulnerable: true
   silent: true
+
 water_bubble:
   type: entity
   entity_type: zombie
@@ -1862,6 +1915,7 @@ water_bubble:
   silent: true
   speed: 0.32
   equipment: air|air|air|player_head[skull_skin=33782a3d-90da-4c6b-a6d6-0748cb84278b|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmE5OWQ5ZWU2NTEzYWE4OGEzYzQ1NmFiYTJiZDFlMTdkMTM0NDQ4ZmQxMTc3NWJkMWQ1NWVmNjlhYTc3ZDIzMCJ9fX0=]
+
 jumper:
   type: entity
   entity_type: cave_spider
@@ -1871,6 +1925,7 @@ jumper:
   max_health: 30
   health: 30
   silent: true
+
 lens_oftruth:
   type: item
   material: ender_eye
@@ -1882,11 +1937,13 @@ lens_oftruth:
   display name: "<&d>Shard <&f>of <&5>Truth"
   lore:
   - "<&f>Shows you hidden enemies"
+
 spechead:
   type: item
   debug: false
   material: player_head[skull_skin=f9318e11-a0c7-4cfd-85c9-2b2852e1a8b0|eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjJjZWIzOWRkNGRlMjRhN2FkZmUyOTFhM2EwY2ZjN2NmNGY2NDVkZTU5YjYwM2ZjZmUwNmM2YjVhMDZlMjYifX19]
   display name: "<&color[#003366]>S<&color[#004C99]>p<&color[#0066CC]>e<&color[#0080FF]>c<&color[#3399FF]>t<&color[#66B2FF]>r<&color[#99CCFF]>a<&color[#CCE5FF]>l <&f>Head"
+
 floating_pumpkin:
   type: entity
   entity_type: zombie
@@ -1898,11 +1955,13 @@ floating_pumpkin:
   age: <list[baby|adult].random>
   potion_effects: invisibility,0,999999,false,false,false
   item_in_hand: air
+
 hallow2021_bat:
   type: entity
   entity_type: bat
   silent: true
   debug: false
+
 hallow2021_rab_e:
   type: entity
   entity_type: rabbit
@@ -1911,6 +1970,7 @@ hallow2021_rab_e:
   color: <list[brown|white|black|black_and_white|gold|salt_and_pepper|the_killer_bunny].random>
   max_health: 50
   health: 50
+
 #------------#
 # scoreboards
 # aaa
@@ -1922,6 +1982,7 @@ hallow2021_topweek_block:
   display name: <&3><&l>Halloween top 10 weekly
   lore:
     - <&7>Place to mark a top 10 location!
+
 hallow2021_topall_block:
   type: item
   material: warped_hyphae
@@ -1929,6 +1990,7 @@ hallow2021_topall_block:
   display name: <&3><&l>Halloween top 10 all
   lore:
     - <&7>Place to mark a top 10 location!
+
 hallow2021_top_block_holo:
   type: entity
   entity_type: armor_stand
@@ -1937,6 +1999,7 @@ hallow2021_top_block_holo:
   custom_name: <&3><&l>1.
   custom_name_visible: true
   marker: true
+
 hallow2021_top_world:
   type: world
   debug: false

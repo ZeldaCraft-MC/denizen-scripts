@@ -204,7 +204,6 @@ dungeon_block_events:
     - playsound <player> sound:ENTITY_PLAYER_LEVELUP pitch:0.3 volume:80
     - stop
 
-
 timer_block:
   type: item
   material: gold_block
@@ -218,17 +217,19 @@ timer_block_holo1:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&a><&l>Step here to start the timer!
-  custom_name_visible: true
+  mechanisms:
+    visible: false
+    custom_name: <&a><&l>Step here to start the timer!
+    custom_name_visible: true
 
 timer_block_holo2:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&e><&l>Your previous time was 00:00:000!
-  custom_name_visible: true
+  mechanisms:
+    visible: false
+    custom_name: <&e><&l>Your previous time was 00:00:000!
+    custom_name_visible: true
 
 finish_block:
   type: item
@@ -243,17 +244,19 @@ finish_block_holo1:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&a><&l>You finished <&e><&l>dungeon name<&a><&l>!
-  custom_name_visible: true
+  mechanisms:
+    visible: false
+    custom_name: <&a><&l>You finished <&e><&l>dungeon name<&a><&l>!
+    custom_name_visible: true
 
 finish_block_holo2:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&e><&l>Stand here to earn <&c><&l>1<&e><&l> Dungeon Point!
-  custom_name_visible: true
+  mechanisms:
+    visible: false
+    custom_name: <&e><&l>Stand here to earn <&c><&l>1<&e><&l> Dungeon Point!
+    custom_name_visible: true
 
 scoreboard_block:
   type: item
@@ -268,10 +271,11 @@ scoreboard_block_holo:
   type: entity
   entity_type: armor_stand
   debug: false
-  visible: false
-  custom_name: <&3><&l>1.
-  custom_name_visible: true
-  marker: true
+  mechanisms:
+    visible: false
+    custom_name: <&3><&l>1.
+    custom_name_visible: true
+    marker: true
 
 get_best_times:
   type: task
@@ -286,6 +290,7 @@ get_best_times:
         - define blist <[blist].include[<&a><[player].flag[times.<[dungeon]>.best]><&sp><&7><[player].name>]>
       - define pages <[pages].include[<[dungeon]><p><[blist].parse[replace[:].with[,]].alphabetical.parse[replace[,].with[:]].separated_by[<n>]>]>
     - give writable_book[book_pages=<[pages]>]
+
 stop_time_tab_complete:
   type: world
   debug: false
@@ -298,11 +303,12 @@ stop_time_tab_complete:
         - if <player.flag[times.<[dungeon]>].keys.contains[start]>:
           - define tab <[tab].include[<[dungeon]>]>
       - determine <[tab]>
+
 stop_time_c:
   type: command
   name: stop_timer
   debug: false
-  description: "Lets you stop a current timer"
+  description: Lets you stop a current timer
   usage: /stop_timer (dungeon)
   script:
     - if <context.args.first||empty> == empty:

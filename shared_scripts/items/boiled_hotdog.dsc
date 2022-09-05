@@ -2,7 +2,7 @@ hotdog:
   type: item
   debug: false
   material: bread
-  display name: "<&e>Hotdog"
+  display name: <&e>Hotdog
   recipes:
     1:
       type: shaped
@@ -17,7 +17,7 @@ boiled_hotdog:
   type: item
   debug: false
   material: bread
-  display name: "<&3>Boiled Hotdog"
+  display name: <&3>Boiled Hotdog
   recipes:
     1:
       type: shapeless
@@ -29,7 +29,7 @@ boiled_water:
   type: item
   debug: false
   material: water_bucket
-  display name: "<&1>Boiled Water"
+  display name: <&1>Boiled Water
   recipes:
     1:
       type: furnace

@@ -1,5 +1,7 @@
 rename_command:
   type: command
+  description: Rename an item in your hand.
+  usage: /rename
   name: rename
   permission: askdjsad
   script:

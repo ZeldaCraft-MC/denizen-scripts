@@ -25,11 +25,11 @@ tips:
     - We are always looking for talented and mature volunteers to help us with this server! If you would like to help - whether with art, streaming, moderation, or anything else - let us know on the Discord (/discord)!
     default:
     - Griefing and stealing are not allowed on this server! If you've been griefed, contact a Mod to fix it.
-    - Loving the server? Apply for the [Trusted] rank by typing "/trusted" on our Discord (/discord)!
+    - Loving the server? Apply for the [Trusted] rank by typing <&dq>/trusted<&dq> on our Discord (/discord)!
     non_staff:
-    - Enjoy helping new players? Consider applying for [Helper] by typing "/helper" on our Discord (/discord)!
+    - Enjoy helping new players? Consider applying for [Helper] by typing <&dq>/helper<&dq> on our Discord (/discord)!
     non_builder:
-    - Have the building skills to help us create warps? Apply for [Builder] by typing "/builder" on our Discord (/discord)!
+    - Have the building skills to help us create warps? Apply for [Builder] by typing <&dq>/builder<&dq> on our Discord (/discord)!
 
 tips_events:
   type: world

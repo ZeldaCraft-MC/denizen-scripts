@@ -13,6 +13,8 @@ rankups_menu:
 
 ranks_command:
   type: command
+  description: View ranks
+  usage: /ranks
   name: ranks
   permission: sadadasd
   script:

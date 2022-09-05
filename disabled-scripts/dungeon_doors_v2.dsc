@@ -33,14 +33,13 @@ ddoor_open:
             - if <[door].players.size> < 1:
                 - run ddoor_close def:<[1]>
 
-
 ddoor_close:
     type: task
     debug: false
     script:
         - define door_name <[1].to_lowercase>
         - define properties <server.flag[<[1]>_ddoor_properties].as_map>
-        - if <[properties].get[busy]||true> || ( <[properties].get[locked]||false> && <[2]||no> != bypasslock ) || <[properties].get[state]||false> == closed || ( !<server.notables.get[<server.notables.find_partial[ddoor_<[1]>]>].players.is_empty> && <[2]||no> != bypasslock ) :
+        - if <[properties].get[busy]||true> || ( <[properties].get[locked]||false> && <[2]||no> != bypasslock ) || <[properties].get[state]||false> == closed || ( !<server.notables.get[<server.notables.find_partial[ddoor_<[1]>]>].players.is_empty> && <[2]||no> != bypasslock ):
             - stop
         - flag server <[1]>_ddoor_properties:<server.flag[<[1]>_ddoor_properties].as_map.with[busy].as[true].with[state].as[closing]>
         - define properties <server.flag[<[1]>_ddoor_properties].as_map>
@@ -66,9 +65,9 @@ ddoor_close:
         - flag server <[1]>_ddoor_properties:<server.flag[<[1]>_ddoor_properties].as_map.with[busy].as[false].with[state].as[closed]>
 
 dungeon_doors:
-	type: world
-	debug: false
-	events:
+    type: world
+    debug: false
+    events:
         on player enters ddoor_*:
         - if <player.gamemode> == spectator:
             - stop
@@ -267,7 +266,7 @@ ddoor_cmd:
                         - define mode close
                     - default:
                         - narrate "<red>Command must be input in the format: /ddoor show_frame [ddoor name] [open/close] [frame number]"
-                - if ( <context.args.get[4]> <= <server.flag[<[door_name]>_ddoor_properties.open_frames]> ) && ( <schematic.list.contains[<[door_name]>_<[mode]>_frame_<context.args.get[4]>]> ) && <server.has_flag[<[door_name]>_ddoor_properties.origin]> :
+                - if ( <context.args.get[4]> <= <server.flag[<[door_name]>_ddoor_properties.open_frames]> ) && ( <schematic.list.contains[<[door_name]>_<[mode]>_frame_<context.args.get[4]>]> ) && <server.has_flag[<[door_name]>_ddoor_properties.origin]>:
                     - schematic load name:<[door_name]>_<[mode]>_frame_<context.args.get[4]>
                     - wait 2t
                     - schematic paste name:<[door_name]>_<[mode]>_frame_<context.args.get[4]> <server.flag[<[door_name]>_ddoor_properties.origin]>
@@ -437,15 +436,15 @@ ddoor_cmd:
                     - flag server <[door_name]>_ddoor_properties:!
                     - narrate "<green>Dungeon door: <gold><[door_name]><green> successfully deleted"
 
-        # - define actionID <util.random.uuid>
-        # - if <server.flag[opendoors].contains_any[<context.cuboids.get[0].notable_name>]> :
+        # - define actionID <util.random_uuid>
+        # - if <server.flag[opendoors].contains_any[<context.cuboids.get[0].notable_name>]>:
         #    - flag server opendoors:<-:<context.cuboids.get[0].notable_name>
         #    - define loc1 <context.cuboids.get[0].min.add[1,0,0].sub[0,1,0]>
         #    - define loc2 <context.cuboids.get[0].max>
         #    - define height <math:<[loc2].y.abs.round>-<[loc1].y.abs.round>>
         #    - define zlen <math:<[loc1].z.abs.round>-<[loc2].z.abs.round>>
         #    - define stored1 <[loc1].sub[0,<math:<[height]>+1>,0]>
-        #    - repeat <[height]> :
+        #    - repeat <[height]>:
         #        - define nstored1 <[stored1].add[0,<[value]>,0]>
         #        - define nstored2 <[stored1].add[0,<[value]>,<[zlen]>]>
         #        - schematic create name:clone_<[actionID]> cu@<[nstored1]>|<[nstored2]> <[stored1]>
@@ -464,6 +463,7 @@ update_ddoors:
     script:
         - foreach <server.flag[dungeon_doors]>:
             - flag server <[value].replace_text[ddoor_].with[].to_lowercase>_ddoor_properties.frame_region:<cuboid[ddoor_<[value].replace_text[ddoor_].with[].to_lowercase>]>
+
 lock_entity:
     debug: false
     type: entity
@@ -471,7 +471,7 @@ lock_entity:
     gravity: false
     invulnerable: false
     custom_name: Lock
-	is_small: true
+    is_small: true
     equipment: <list[<item[air]>|<item[air]>|<item[air]>|<item[lodestone]>|<item[air]>]>
     visible: false
     disabled_slots: HEAD|CHEST|LEGS|FEET
@@ -479,7 +479,7 @@ lock_entity:
 
 Lock_Placer:
     type: item
-	debug: false
+    debug: false
     material: <item[lodestone]>
     display name: Lock_Placer
     lore:

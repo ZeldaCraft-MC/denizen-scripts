@@ -66,7 +66,6 @@ horse_events:
       - if <player.is_inside_vehicle> && <player.vehicle.is_tamed||false> && <player.vehicle.proc[has_saddle]> && !<player.vehicle.has_flag[original_speed]||true>:
         - inject setup_horse
 
-
 looping_horse_carrots:
   type: task
   debug: false

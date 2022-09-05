@@ -7,12 +7,12 @@ baltop_events:
       - if <yaml.list.contains[<player.uuid>]>:
         - yaml set money:<player.money> id:<player.uuid>
       - else:
-        - webget "http://localhost:8080/players/<player.uuid>" 'post:{"money":<player.money>}' "headers:Content-type/application/json"
+        - webget http://localhost:8080/players/<player.uuid> post:{"money":<player.money>} headers:<map[Content-type=application/json]>
 
 baltop_command:
   type: command
   debug: false
-  description: "get the players baltop"
+  description: Get the player's baltop
   usage: /baltop
   name: baltop
   permission: zc.baltop
@@ -27,7 +27,7 @@ baltop_command:
     - define end <[start].add[<[page_size]>].sub[1].max[1].min[100]>
     - define output <list[]>
 
-    - ~webget "http://localhost:8080/baltop?offset=<[start].sub[1]>&size=<[page_size].min[<element[100].sub[<[start].sub[1]>]>]>" save:request
+    - ~webget http://localhost:8080/baltop?offset=<[start].sub[1]>&size=<[page_size].min[<element[100].sub[<[start].sub[1]>]>]> save:request
     - yaml loadtext:<entry[request].result> id:<player.uuid>-baltop
 
     # Reads into a list of uuids

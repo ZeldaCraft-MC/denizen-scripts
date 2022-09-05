@@ -6,6 +6,7 @@ disabled_commands_data:
     - fly
     - call
     - jump
+
 ocarina_events:
   type: world
   events:
@@ -45,7 +46,7 @@ ocarina_events:
       - if <player.has_permission[op]>:
           - stop
       - foreach <script[disabled_commands_data].data_key[cmds]> as:cmd:
-        - if <context.command.advanced_matches[*<[cmd]>*]> :
+        - if <context.command.advanced_matches[*<[cmd]>*]>:
           - narrate "<&c>You cannot use that command in here!"
           - determine fulfilled
 
@@ -61,6 +62,7 @@ malice_colors:
     - dd0852
     - 712b42
     - 231d1a
+
 malice_color_test:
   type: task
   debug: false
@@ -69,6 +71,7 @@ malice_color_test:
       - foreach <script[malice_colors].data_key[colors]> as:c:
         - playeffect effect:redstone at:<player.location.add[1,1,0]> special_data:0.8|<color[#<[c]>]> offset:0.2,0.2,0.2 quantity:<util.random.int[1].to[6]>
       - wait 1s
+
 ocarina_check_boss_task:
   type: task
   debug: false
@@ -85,6 +88,7 @@ ocarina_check_boss_task:
     - else:
       - teleport <server.flag[summon_sword_ent]> summon_sword_loc
       - flag <server.flag[summon_sword_ent].flag[linked]> pull_out:0
+
 spawn_summon_sword:
   type: task
   debug: false
@@ -94,6 +98,7 @@ spawn_summon_sword:
     - define ent2 <[ent1].passenger>
     - flag <[ent1]> linked:<[ent2]>
     - flag <[ent2]> linked:<[ent1]>
+
 summon_sword_world:
   type: world
   debug: false
@@ -161,11 +166,13 @@ summon_sword_world:
           - run spawn_ganon_boss_task
           - flag <context.entity> pull_out:0
           - flag <context.entity> busy:!
+
 spawn_ganon_boss_task:
   type: task
   debug: false
   script:
     - spawn armor_stand <location[summon_sword_loc].add[0,3,0]>
+
 summon_sword_bottom:
   type: entity
   debug: false
@@ -174,6 +181,7 @@ summon_sword_bottom:
     equipment: air|air|air|netherite_sword[custom_model_data=1900]
     visible: false
     gravity: false
+
 summon_sword_top:
   type: entity
   debug: false
