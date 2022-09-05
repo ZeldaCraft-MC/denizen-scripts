@@ -26,6 +26,7 @@ test_wings:
 
 equip_command:
   type: command
+  debug: false
   description: Equips wings
   usage: /equip
   name: equip

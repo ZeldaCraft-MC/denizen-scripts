@@ -1,5 +1,6 @@
 trophy_resurrect_events:
   type: world
+  debug: false
   events:
     on player resurrected:
       - if <player.item_in_hand.script.name||null> == totem_of_speed || <player.item_in_offhand.script.name||null> == totem_of_speed:

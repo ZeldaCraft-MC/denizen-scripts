@@ -73,7 +73,7 @@ ban_tools_events:
   debug: false
   events:
     on player login:
-      - if !<player.name.exists>:
+      - if !<player.name.exists> or <player.name> == null:
         - stop
       - if !<player.is_banned||false>:
         - stop

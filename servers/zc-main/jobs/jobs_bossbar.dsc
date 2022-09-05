@@ -44,6 +44,7 @@ jobs_config:
 
 jobs_bossbar_command:
   type: command
+  debug: false
   name: testbb
   permission: asdkasld
   usage: /testbb

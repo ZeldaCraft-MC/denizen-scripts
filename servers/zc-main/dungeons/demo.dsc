@@ -1,5 +1,6 @@
 dungeons_demo:
   type: command
+  debug: false
   usage: /dungeons
   description: some demo
   permission: zc.demo

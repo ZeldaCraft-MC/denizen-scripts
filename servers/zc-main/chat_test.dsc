@@ -1,5 +1,6 @@
 curse_words:
   type: data
+  debug: false
   words:
     - badword
 

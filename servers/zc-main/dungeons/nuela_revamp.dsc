@@ -371,6 +371,7 @@ spawn_mov_plat1:
 
 moving_platform:
   type: entity
+  debug: false
   entity_type: armor_stand
   mechanisms:
     passengers: falling_block[fallingblock_type=light_blue_concrete_powder;time_lived=<util.int_min>]|shulker[invulnerable=true;has_ai=false;potion_effects=invisibility,1,<util.int_max>,false,false,false]
@@ -381,6 +382,7 @@ moving_platform:
 
 moving_platform_side:
   type: entity
+  debug: false
   entity_type: armor_stand
   mechanisms:
     passengers: falling_block[fallingblock_type=end_stone_bricks;time_lived=<util.int_min>]|shulker[invulnerable=true;has_ai=false;potion_effects=invisibility,1,<util.int_max>,false,false,false]

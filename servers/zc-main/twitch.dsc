@@ -1,5 +1,6 @@
 streamers:
   type: data
+  debug: false
   list:
     eyelesstenshi:
       name: Tenshi
@@ -34,6 +35,7 @@ streamers:
 
 twitch_command:
   type: command
+  debug: false
   description: Handles showing the twitch bossbar
   usage: /twitch [start/end] [name]
   name: twitch

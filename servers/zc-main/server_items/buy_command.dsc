@@ -1,5 +1,6 @@
 buy_gui_cmd:
   type: command
+  debug: false
   name: buy
   description: Opens the server store gui.
   usage: /buy

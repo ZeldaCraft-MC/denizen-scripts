@@ -4,6 +4,7 @@
 
 lookup_command_conf:
   type: data
+  debug: false
   data:
     messages:
       no_target: <&c>You must be facing a player when using this command!

@@ -1,5 +1,6 @@
 auto_emote_co:
   type: command
+  debug: false
   name: auto_emote
   description: Enables/disables auto emoticons
   usage: /auto_emote

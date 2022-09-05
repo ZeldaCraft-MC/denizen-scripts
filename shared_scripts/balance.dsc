@@ -1,5 +1,6 @@
 balance_command:
   type: command
+  debug: false
   description: Shows your balance.
   usage: /balance
   name: balance

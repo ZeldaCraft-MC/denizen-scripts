@@ -245,7 +245,7 @@ zc_secrets:
       - narrate "<&c>The dungeon you specified could not be found."
       - stop
 
-    - define secrets <yaml[zcrpg_config].read[dungeons.<[dungeon]>.secrets].exclude[none]>
+    - define secrets <yaml[zcrpg_config].read[dungeons.<[dungeon]>.secrets].as[list].exclude[none]>
     - if <[secrets].size> == 1:
       - narrate "<&3>There is <&e>1<&3> secret in <[dungeon].to_titlecase>"
     - else:
@@ -389,7 +389,7 @@ show_profile:
     - define max_magic <yaml[<[uuid]>].read[completed_dungeons].size.mul[3].add[<yaml[<[uuid]>].read[completed_secrets].size>].add[100]>
     - foreach <script.list_keys[data.pvp_ranks].sort_by_number[].reverse> as:score:
       - if <[pvp_points]> >= <[score]>:
-        - define rank <script.data_key[pvp_ranks.<[score]>]>
+        - define rank <script.data_key[data.pvp_ranks.<[score]>]>
         - foreach stop
 
     - narrate "<&3><[player].name> (<yaml[<[uuid]>].read[race]>)"

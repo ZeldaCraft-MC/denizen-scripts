@@ -1,5 +1,6 @@
 shrine_warp_events:
   type: world
+  debug: false
   events:
     on player enters tut_shrine_warp:
       - teleport <player> nuelasotreshrine_warp

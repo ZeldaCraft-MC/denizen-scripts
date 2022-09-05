@@ -6,6 +6,7 @@
 
 jobs_profession_config:
   type: data
+  debug: false
   order:
     - slayer
     - miner

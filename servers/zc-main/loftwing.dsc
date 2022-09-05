@@ -1,5 +1,6 @@
 loftwing:
   type: entity
+  debug: false
   entity_type: parrot
   mechanisms:
     custom_name: Loftwing

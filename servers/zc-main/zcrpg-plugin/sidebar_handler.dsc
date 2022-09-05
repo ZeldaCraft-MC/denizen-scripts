@@ -1,5 +1,6 @@
 sidebar_command:
   type: command
+  debug: false
   name: sidebar
   description: Used to toggle the sidebar shown in dungeons
   usage: /sidebar (on/off/toggle)
