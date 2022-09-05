@@ -49,6 +49,7 @@ jailed_cancel_events:
     on player damaged flagged:jailed:
       - determine passively cancelled
       - narrate "<&4>You cannot do that while jailed!"
+
 jail_cmd:
   type: command
   debug: false
@@ -101,6 +102,7 @@ jail_cmd:
       - narrate "<&c>You do the crime, you do the time." format:zc_text targets:<[player]>
       - narrate "Succesfully jailed <[player].name> in <&e><[jail]> <&f>for <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text
       - narrate "<player.name> has jailed <[player].name> in <&e><[jail]> <&f>for <&a><[player].flag_expiration[jailed].duration_since[<util.time_now>].formatted>" format:zc_text targets:<server.online_players.filter[has_permission[zc.mod]].exclude[<player>]>
+
 unjail_cmd:
   type: command
   debug: false
@@ -131,6 +133,7 @@ unjail_cmd:
     - narrate "You have been unjailed!" format:zc_text targets:<[player]>
     - narrate "You succesfully unjailed <[player].name>" format:zc_text
     - narrate "<player.name> unjailed <[player].name>" format:zc_text targets:<server.online_players.filter[has_permission[zc.mod]].exclude[<player>]>
+
 jails_cmd:
   type: command
   debug: false
@@ -154,6 +157,7 @@ jails_cmd:
     - narrate <&a><&l>Zelda<&2><&l>Craft Jails<&nl>
     - narrate <empty>
     - narrate <[jails].separated_by[<&nl>]><&nl>
+
 gotojail_cmd:
   type: command
   debug: false
@@ -172,6 +176,7 @@ gotojail_cmd:
       - stop
     - teleport <player> <server.flag[jails.<context.args.first>]>
     - narrate "Succesfully teleported to <&a><context.args.first>" format:zc_text
+
 setjail_cmd:
   type: command
   debug: false
@@ -188,6 +193,7 @@ setjail_cmd:
       - stop
     - flag server jails.<context.args.first>:<player.location>
     - narrate "<&a><context.args.first><&f> Succesfully created at <&b><player.location.simple>" format:zc_text
+
 deljail_cmd:
   type: command
   debug: false

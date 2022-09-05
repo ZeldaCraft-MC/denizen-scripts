@@ -166,7 +166,6 @@ morshu_assignment:
   interact scripts:
   - morshu_int
 
-
 morshu_int:
   type: interact
   debug: false

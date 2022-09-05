@@ -162,7 +162,6 @@ shops_script:
         item: brown_wool
         price: 25
 
-
     decoration_shop:
       1:
         item: bookshelf
@@ -182,7 +181,6 @@ shops_script:
       6:
         item: flower_pot
         price: 50
-
 
     food_shop:
       1:
@@ -230,8 +228,6 @@ shops_script:
       15:
         item: pumpkin
         price: 100
-
-
 
     coral_shop:
       1:
@@ -285,7 +281,6 @@ shops_script:
       17:
         item: dried_kelp_block
         price: 50
-
 
     glass_shop:
       1:
@@ -391,8 +386,6 @@ shops_script:
         item: glass_pane
         price: 30
 
-
-
     sand_shop:
       1:
         item: cut_sandstone
@@ -433,7 +426,6 @@ shops_script:
       13:
         item: polished_andesite
         price: 60
-
 
     concrete_shop:
       1:
@@ -533,8 +525,6 @@ shops_script:
         item: blue_concrete_powder
         price: 55
 
-
-
     dye_shop:
       1:
         item: black_dye
@@ -584,8 +574,6 @@ shops_script:
       16:
         item: blue_dye
         price: 150
-
-
 
     spawnegg_shop:
       1:
@@ -648,7 +636,6 @@ shops_script:
       20:
         item: tropical_fish_spawn_egg
         price: 1000
-
 
     terracotta_shop:
       1:
@@ -754,8 +741,6 @@ shops_script:
         item: light_gray_glazed_terracotta
         price: 75
 
-
-
     flower_shop:
       1:
         item: poppy
@@ -815,7 +800,6 @@ shops_script:
         item: sunflower
         price: 150
 
-
     bow_shop:
       1:
         item: bow
@@ -830,8 +814,6 @@ shops_script:
         item: spectral_arrow
         price: 50
 
-
-
     beedle_shop:
       1:
         item: bow
@@ -845,8 +827,6 @@ shops_script:
       4:
         item: spectral_arrow
         price: 50
-
-
 
     strange_item_shop:
       1:
@@ -910,8 +890,6 @@ shops_script:
         item: quartz_block
         price: 25
 
-
-
     potion_shop:
       1:
         item: phantom_membrane
@@ -974,8 +952,6 @@ shops_script:
         item: glistering_melon_slice
         price: 500
 
-
-
     clocktown_shop:
       1:
         item: prismarine
@@ -1013,8 +989,6 @@ shops_script:
       12:
         item: white_banner
         price: 250
-
-
 
     redstone_shop:
       1:
@@ -1060,13 +1034,10 @@ shops_script:
         item: dropper
         price: 450
 
-
-
     test_shop:
       1:
         item: diamond_sword
         price: 1
-
 
     wool&decoration&clocktown_shop:
       1:
@@ -1171,8 +1142,6 @@ shops_script:
       34:
         item: white_banner
         price: 250
-
-
 
     sand&concrete_shop:
       1:
@@ -1310,8 +1279,6 @@ shops_script:
       45:
         item: blue_concrete_powder
         price: 55
-
-
 
     dye&terracotta_shop:
       1:
@@ -1465,8 +1432,6 @@ shops_script:
         item: light_gray_glazed_terracotta
         price: 75
 
-
-
     flower&coral_shop:
       1:
         item: poppy
@@ -1577,8 +1542,6 @@ shops_script:
         item: dried_kelp_block
         price: 50
 
-
-
     rod_shop:
       1:
         item: fishing_rod
@@ -1587,7 +1550,6 @@ shops_script:
       1:
         item: cocoa_beans[display=Magic Beans]
         price: 10
-
 
     decorations:
       1:
@@ -1886,7 +1848,6 @@ populate_shops:
       - if <[list].size> > <[page].mul[45]>:
           - inventory set d:<[inv]> o:<item[right_arrow].with_flag[page:<[page].add[1]>].with[lore=<Aqua>To<&sp>Page<&sp><[page].add[1]>]> slot:54
       - inventory open d:<[inv]>
-
 
 npc_assign_event:
     type: world

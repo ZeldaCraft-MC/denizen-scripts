@@ -93,10 +93,12 @@ shrine_priest_format:
   type: format
   debug: false
   format: <&b><&o>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-<&nl><&nl><&nl><&nl><[text]><&nl><&nl><&nl><&nl>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 shrine_orb_get:
   type: format
   debug: false
   format: <&7><&o>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-<&nl><&nl><&nl><&f><&l><&o>Spirit Orb    <[text]>                      <&f>+1<&nl><&7><&m>-------------------------------------<&nl><&f><&o>A symbol of courage given tothose who<&nl>have overcome the challenges of a shrine.<&nl><&nl><&nl><&7><&o>-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 conv_shrine_monk:
   type: task
   debug: false

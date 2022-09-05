@@ -17,7 +17,8 @@ blocked_words:
   exceptions:
     - fagyistefi
   ascii_letters:
-    - abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!"#$'()*+,-./:;<&lt>=<&gt>?@[\]^_`{}~
+    - abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!<&dq>#$<&sq>()*+,-./:;<&lt>=<&gt>?@[\]^_`{}~
+
 chat_blocker_events:
   type: world
   debug: false
@@ -73,12 +74,12 @@ chat_blocker_events:
         - narrate "<&1>Tempban From <&c><player.name> recorded:<&nl>" targets:<server.online_players.filter[has_permission[zc.mod]]>
         - narrate "<&3>Player: <&f><player.name>" targets:<server.online_players.filter[has_permission[zc.mod]]>
         - narrate "<&3>Reason: <&f><[message]>" targets:<server.online_players.filter[has_permission[zc.mod]]>
-        - narrate "<&3>Until: <&f><util.time_now.add[<[time]>].format> (<[time].as_duration.formatted>)" targets:<server.online_players.filter[has_permission[zc.mod]]>
+        - narrate "<&3>Until: <&f><util.time_now.add[<[time]>].format> (<[time].as[duration].formatted>)" targets:<server.online_players.filter[has_permission[zc.mod]]>
         - narrate "<&3>Time: <&f><util.time_now.format><&nl>" targets:<server.online_players.filter[has_permission[zc.mod]]>
         - narrate "<&3><player.name> their warnings, tempbans and perms" targets:<server.online_players.filter[has_permission[zc.mod]]>
         - narrate "<tern[<[has_warn]>].pass[<&click[/listwarns <player.name>]><&hover[Click to show their warning(s)]><&e>[<player.flag[moderate.warnings].size> Warning(s)]<&end_hover><&end_click>].fail[<&e>[0 Warnings]]> <tern[<[has_temp]>].pass[<&click[/listtemps <player.name>]><&hover[Click to show their Tempban(s)]><&3>[<player.flag[moderate.tempban].size> Tempban(s)]<&end_hover><&end_click>].fail[<&3>[0 Tempbans]]> <tern[<[has_perm]>].pass[<&click[/listperms <player.name>]><&hover[Click to show their permban(s)]><&c>[<player.flag[moderate.permban].size> Permbans(s)]<&end_hover><&end_click>].fail[<&c>[0 Permbans]]>" targets:<server.online_players.filter[has_permission[zc.mod]]>
         - announce "<player.name> got auto banned. Message:<&nl><[msg]>" to_console
-        - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<player.name>].with[author_url].as[https://minecraft-statistic.net/en/player/<player.name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<player.name>/190.png].with[description].as[Server has tempbanned <player.name>].add_field[Tempban Reason:].value[<[message]>].add_inline_field[Time of tempban:].value[<util.time_now.format>].add_inline_field[Tempban untill:].value[<util.time_now.add[<[time]>].format> (<[time].as_duration.formatted>)].add_field[Ip tempban].value[false].add_inline_field[Warnings].value[<player.flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<player.flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<player.flag[moderate.permban].size||0> Permbans].with[color].as[red].with[footer].as[server].with[footer_icon].as[https://cravatar.eu/helmavatar/Loopsplz/190.png].with[timestamp].as[<util.time_now>]>"
+        - ~discordmessage id:zc-info channel:763308613795315732 "<discord_embed.with[author_name].as[<player.name>].with[author_url].as[https://minecraft-statistic.net/en/player/<player.name>.html].with[author_icon_url].as[https://cravatar.eu/helmavatar/<player.name>/190.png].with[description].as[Server has tempbanned <player.name>].add_field[Tempban Reason:].value[<[message]>].add_inline_field[Time of tempban:].value[<util.time_now.format>].add_inline_field[Tempban untill:].value[<util.time_now.add[<[time]>].format> (<[time].as[duration].formatted>)].add_field[Ip tempban].value[false].add_inline_field[Warnings].value[<player.flag[moderate.warnings].size||0> Warnings].add_inline_field[Tempbans].value[<player.flag[moderate.tempban].size||0> Tempbans].add_inline_field[Permbans].value[<player.flag[moderate.permban].size||0> Permbans].with[color].as[red].with[footer].as[server].with[footer_icon].as[https://cravatar.eu/helmavatar/Loopsplz/190.png].with[timestamp].as[<util.time_now>]>"
         - stop
       - if <[msg].strip_color.split[<&sp>].contains_any[<script[blocked_words].parsed_key[warn_words]>]>:
         - if <[msg].strip_color.split[<&sp>].contains_any[<script[blocked_words].parsed_key[exceptions]>]>:
@@ -210,7 +211,7 @@ chat_blocker_events:
         - toast targets:<[player]> "<&6><context.new_message.author.name><&b> mentioned you!" frame:goal
     on redis pubsub message channel:global_chat_*:
       - if !<context.channel.ends_with[<bungee.server>]>:
-        - define map <context.message.as_map>
+        - define map <context.message.as[map]>
         - define msg <[map].get[message]>
         - define out <list>
         - foreach "<[msg].split[ ]>":
@@ -256,7 +257,7 @@ chat_blocker_events:
         - definemap data:
             username: <[map.name]>
             avatar_url: http://88.99.71.100:8080/portrait/<[skin_data].get[id]><[params]>
-        - define data "<[data].with[content].as[<[msg].strip_color.replace[*].with[\*].replace[_].with[\_].replace[~].with[\~].replace[`].with[\`]>]>"
+        - define data <[data].with[content].as[<[msg].strip_color.replace[*].with[\*].replace[_].with[\_].replace[~].with[\~].replace[`].with[\`]>]>
         - webget <secret[minecraft_chat_webhook]> headers:<map[Content-Type=application/json]> data:<[data].to_json>
         #- else:
         #  - if <[map].get[prefix_simple].length> > 0:

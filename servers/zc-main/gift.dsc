@@ -5,7 +5,7 @@ gifts_inv:
   gui: true
   definitions:
     _: light_blue_stained_glass_pane[display_name=<&f>]
-    b: "book[display=<&b>Click a gift to open it!;lore=<empty>|<&7>Use <&b>/gift (name)<&7> to send|<&7>someone else a gift!]"
+    b: book[display=<&b>Click a gift to open it!;lore=<empty>|<&7>Use <&b>/gift (name)<&7> to send|<&7>someone else a gift!]
   slots:
     - [_] [_] [_] [_] [_] [_] [_] [_] [_]
     - [] [] [] [] [] [] [] [] []

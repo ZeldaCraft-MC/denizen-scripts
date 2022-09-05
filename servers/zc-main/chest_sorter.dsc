@@ -21,7 +21,7 @@ stack_items:
         - define item_map.<[item].with_flag[nostack_removeme:<util.random_uuid>].escaped> <[item].quantity>
     - define stacked_items <list>
     - foreach <[item_map]> key:esc_item as:quantity:
-      - define stacked_items:->:<[esc_item].unescaped.as_item.with[quantity=<[quantity]>]>
+      - define stacked_items:->:<[esc_item].unescaped.as[item].with[quantity=<[quantity]>]>
     - determine <[stacked_items]>
 
 # Do the sorting. Purely alphabetical is awful, so bucket like items together and then sort each bucket.

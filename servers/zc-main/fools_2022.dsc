@@ -13,6 +13,7 @@
 #        - repeat <util.random.int[1].to[5]>:
 #            - define items:->:fools_gold
 #        - determine <[items]>
+
 morshu_ass:
     type: assignment
     debug: false

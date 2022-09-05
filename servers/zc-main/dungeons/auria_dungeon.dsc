@@ -15,6 +15,7 @@ dungeon_chunk_reset:
       - if <[loop_index].mod[10]> <= 0:
         - wait 1s
         - announce "<[loop_index]>/<cuboid[auria_dungeon].chunks.size> unloaded!" to_console
+
 #only run this if you set it up or something massive happened(entities being removed)
 #for targets do not use this if the entities still exsist it will just spawn multiple off them. which may confuse people
 target_entity_reset:
@@ -35,6 +36,7 @@ target_entity_reset:
     - flag server entity_target5:<entry[target5].spawned_entity>
     - flag server entity_target6:<entry[target6].spawned_entity>
     - flag server entity_target7:<entry[target7].spawned_entity>
+
 #for arms it will remove them automatically and replace them (bc they stop working on server restart)
 shadowend_arms_reset:
     type: task
@@ -43,6 +45,7 @@ shadowend_arms_reset:
     - remove <location[shadowendbeam4].find_entities[armor_stand].within[20]>
     - run shadowend_right_arm_reset
     - run shadowend_left_arm_reset
+
 shadowend_right_arm_reset:
     type: task
     debug: false
@@ -68,6 +71,7 @@ shadowend_right_arm_reset:
     - attach <server.flag[blwool_ent2]> to:<entry[center].spawned_entity> offset:1.86,0.62,0
     - attach <server.flag[blwool_ent3]> to:<entry[center].spawned_entity> offset:-1.24,0.62,0
     - attach <server.flag[blwool_ent4]> to:<entry[center].spawned_entity> offset:-1.24,0,0
+
 shadowend_left_arm_reset:
     type: task
     debug: false
@@ -93,6 +97,7 @@ shadowend_left_arm_reset:
     - attach <server.flag[blwool_ent2]> to:<entry[center].spawned_entity> offset:1.86,0.62,0
     - attach <server.flag[blwool_ent3]> to:<entry[center].spawned_entity> offset:-1.24,0.62,0
     - attach <server.flag[blwool_ent4]> to:<entry[center].spawned_entity> offset:-1.24,0,0
+
 #for fake pushable blocks do not use this if the entities still exist. will break puzzles completely
 fake_pb_reset:
     type: task
@@ -109,6 +114,7 @@ fake_pb_reset:
     - spawn fake_pb[color=gray] <location[fake_pb9]>
     - spawn fake_pb[color=gray] <location[fake_pb10]>
     - spawn fake_pb[color=gray] <location[fake_pb11]>
+
 #for pb_reset it will remove them automatically and replace them (for an easy reset)
 pb_reset:
     type: task
@@ -128,12 +134,14 @@ pb_reset:
         - flag <entry[stand1].spawned_entities.get[1]||null> link:<entry[block1].spawned_entities.get[1]||null>
         - wait 1t
         - adjust <entry[stand].spawned_entities.get[1]||null> gravity:false
+
 #general brain
 #items and formats
 info_text:
     type: format
     debug: false
     format: <&7>[<&a>#<&7>]<&f> <[text]> <&7>[<&a>#<&7>]<&f>
+
 shadowend:
     type: format
     debug: false
@@ -223,6 +231,7 @@ island_world:
             - wait 2s
         - else:
             - narrate "Nothing seems to happen" format:info_text
+
 #shadowend boss battle
 shadowend_world:
     type: world
@@ -300,6 +309,7 @@ shadowend_world:
         - narrate "that seemed to hurt it. keep on going" format:info_text targets:<server.flag[shadowendfight]||null>
         - wait 2s
         - run shadowend_attack
+
 shadowend_dies:
     type: task
     debug: false
@@ -335,6 +345,7 @@ shadowend_dies:
     - playsound <server.flag[shadowendfight]||null> sound:ui_toast_challenge_complete pitch:100
     - title "title:<&5>Auria <&f>S<&color[#E5CCFF]>h<&color[#CC99FF]>a<&color[#B266FF]>d<&color[#9933FF]>o<&color[#7F00FF]>w<&color[#6600CC]>e<&color[#4C0099]>n<&color[#330066]>d" "subtitle:Defeated! Good Job." targets:<server.flag[shadowendfight]>
     - teleport <server.flag[shadowendfight]||null> <location[dungeon2_spawn]>
+
 shadowend_attack:
     type: task
     debug: false
@@ -483,6 +494,7 @@ shadowend_attack:
                 - bossbar update Shadowend progress:0.88
             - if <server.flag[shadow_attack]||null> == 1:
                 - bossbar update Shadowend progress:0.99
+
 special_attack:
     type: task
     debug: false
@@ -556,6 +568,7 @@ special_attack:
         - remove <[beam1]>|<[beam2]>|<[beam3]>|<[beam4]>
         - wait 1s
         - run shadowend_attack
+
 shadowend_quotes:
   type: task
   debug: false
@@ -575,6 +588,7 @@ shadowend_quotes:
         - narrate "WAHAHAHHA. I won't kill you, at least not yet.<&nl>You're too much fun for me" format:shadowend targets:<server.flag[shadowendfight]>
     - stop
     - stop
+
 turret_attack:
     type: task
     debug: false
@@ -609,6 +623,7 @@ turret_attack:
     - wait 20s
     - flag server lasertarget:!
     - run shadowend_attack
+
 laser_attack:
     type: task
     debug: false
@@ -642,6 +657,7 @@ laser_attack:
         - stop
     - run shadowend_attack
     - flag server lasertarget:!
+
 arms_attack:
     type: task
     debug: false
@@ -715,6 +731,7 @@ arms_attack:
     - playsound <[larm]> sound:entity_dragon_fireball_explode  volume:5 pitch:2
     - teleport <server.flag[arm_left]> <location[shadowend_left_arm]>
     - run shadowend_attack
+
 laser_target:
     type: task
     debug: false
@@ -735,6 +752,7 @@ laser_target:
                     - hurt 4 <server.flag[shadowendfight]||null>
                     - actionbar "You got hit by a magic laser" format:info_text targets:<server.flag[shadowendfight]||null>
             - wait 2t
+
 #pushable block dungeon + end
 pbdungeon_world:
     type: world
@@ -1255,6 +1273,7 @@ pbdungeon_world:
         - wait 3t
         - title "title:<&5>Auria <&color[#CCFFCC]>F<&color[#99FF99]>i<&color[#66FF66]>n<&color[#33FF33]>i<&color[#00FF00]>s<&color[#00CC00]>h<&color[#009900]>e<&color[#006600]>d" subtitle:Congratulations fade_in:0
         - playsound <player> sound:minecraft:music.congratulations custom
+
 #entities
 target_e:
     type: entity
@@ -1263,6 +1282,7 @@ target_e:
     mechanisms:
         base_plate: false
         equipment: leather_boots[color=255,0,0]|leather_leggings[color=255,255,255]|leather_chestplate[color=255,0,0]|target
+
 shadowbeam:
     type: entity
     debug: false
@@ -1271,6 +1291,7 @@ shadowbeam:
         beam_target: <server.flag[shadowendfight].standing_on||null>
         invulnerable: true
         glowing: true
+
 shadoweye:
     type: entity
     debug: false
@@ -1278,6 +1299,7 @@ shadoweye:
     mechanisms:
         beam_target: <server.flag[shadowendfight].standing_on||null>
         glowing: true
+
 turret_purple:
     type: entity
     debug: false
@@ -1285,6 +1307,7 @@ turret_purple:
     mechanisms:
         health: 0.1
         color: purple
+
 turret_black:
     type: entity
     debug: false
@@ -1292,6 +1315,7 @@ turret_black:
     mechanisms:
         health: 0.1
         color: black
+
 turret_magenta:
     type: entity
     debug: false
@@ -1299,6 +1323,7 @@ turret_magenta:
     mechanisms:
         health: 0.1
         color: magenta
+
 sobi:
     type: entity
     debug: false
@@ -1308,6 +1333,7 @@ sobi:
         visible: false
         gravity: false
         invulnerable: true
+
 sblackwool:
     type: entity
     debug: false
@@ -1317,6 +1343,7 @@ sblackwool:
         visible: false
         gravity: false
         invulnerable: true
+
 fake_pb:
     type: entity
     debug: false
@@ -1324,6 +1351,7 @@ fake_pb:
     mechanisms:
         has_ai: false
         invulnerable: true
+
 difficulty_changer_e_shadow:
     type: entity
     debug: false

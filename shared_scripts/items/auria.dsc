@@ -5,6 +5,7 @@ branch:
     display name: Branch
     lore:
     - "<&f>Seems like an ordinary stick"
+
 branch_onfire:
     type: item
     debug: false
@@ -12,6 +13,7 @@ branch_onfire:
     display name: "Branch on fire"
     lore:
     - "<&f>Ooo a nice and warm fire"
+
 old_book:
     type: item
     material: book

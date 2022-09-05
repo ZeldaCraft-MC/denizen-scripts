@@ -157,6 +157,7 @@ Build_tools:
         #after player exits twreg_*:
         #  - time player reset
         #  - weather player reset
+
 schematic_preview:
     type: task
     debug: false
@@ -287,7 +288,6 @@ sp_prev:
     material: magenta_glazed_terracotta
     display name: <green>Last<&sp>Used<&sp>schematic
 
-
 schematic_menu:
   type: inventory
   inventory: chest
@@ -318,6 +318,7 @@ schematic_menu:
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [air] [air] [air] [sp_main] [sp_prev] [air] [air] []
+
 builders_toolbox:
     type: inventory
     inventory: chest

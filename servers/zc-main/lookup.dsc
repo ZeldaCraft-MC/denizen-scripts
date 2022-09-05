@@ -16,6 +16,8 @@ lookup_command_conf:
 
 lookup_command:
   type: command
+  description: Look into another player
+  usage: /lookup
   name: lookup
   permission: denizen.command.lookup
   script:

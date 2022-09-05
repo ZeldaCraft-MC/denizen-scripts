@@ -1,7 +1,7 @@
 auto_emote_co:
   type: command
   name: auto_emote
-  description: "Enables/disables auto emoticons"
+  description: Enables/disables auto emoticons
   usage: /auto_emote
   permission: zc.aura
   script:

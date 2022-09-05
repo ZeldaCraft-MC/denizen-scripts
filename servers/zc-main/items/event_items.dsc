@@ -366,7 +366,6 @@ del_fake_shot_egg:
     # - else:
     #   - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find_players_within[1]> volume:0.4 sound_category:blocks
 
-
 seashell_shooter_events:
   type: world
   debug: false

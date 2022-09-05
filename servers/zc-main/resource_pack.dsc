@@ -16,15 +16,15 @@ test_rp_command:
 rp_prompt:
   type: data
   data:
-    -
+    - <empty>
     - <&8><&m>---------------
     - <&color[#3dffc8]>It's dangerous to go alone! Take this.
-    -
+    - <empty>
     - <&color[#c0c0c0]>🗡
-    -
+    - <empty>
     - <&7>To begin your journey on ZeldaCraft,
     - <&7>you must first accept our resource pack!
-    -
+    - <empty>
     - <&color[#4287f5]>Are you ready?
     - <&8><&m>---------------
     - <&f>
@@ -42,7 +42,6 @@ rp_handler:
     - define metadata <util.parse_yaml[<entry[res].result>]>
     - define live_pack <[metadata.live]>
     - if <player.has_permission[zc.rp_bypass]>:
-      #- resourcepack url:<[url]>/<[live_pack]>.zip hash:<[metadata.hashes.<[live_pack]>]> forced prompt:<script[rp_prompt].parsed_key[data].separated_by[<n>]> targets:<player>
       - resourcepack url:<[url]>/<[live_pack]>.zip hash:<[metadata.hashes.<[live_pack]>]> targets:<player>
     - else:
       - resourcepack url:<[url]>/<[live_pack]>.zip hash:<[metadata.hashes.<[live_pack]>]> forced prompt:<script[rp_prompt].parsed_key[data].separated_by[<n>]> targets:<player>

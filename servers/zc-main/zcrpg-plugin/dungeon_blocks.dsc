@@ -204,7 +204,6 @@ dungeon_block_events:
     - playsound <player> sound:ENTITY_PLAYER_LEVELUP pitch:0.3 volume:80
     - stop
 
-
 timer_block:
   type: item
   material: gold_block
@@ -291,6 +290,7 @@ get_best_times:
         - define blist <[blist].include[<&a><[player].flag[times.<[dungeon]>.best]><&sp><&7><[player].name>]>
       - define pages <[pages].include[<[dungeon]><p><[blist].parse[replace[:].with[,]].alphabetical.parse[replace[,].with[:]].separated_by[<n>]>]>
     - give writable_book[book_pages=<[pages]>]
+
 stop_time_tab_complete:
   type: world
   debug: false
@@ -303,6 +303,7 @@ stop_time_tab_complete:
         - if <player.flag[times.<[dungeon]>].keys.contains[start]>:
           - define tab <[tab].include[<[dungeon]>]>
       - determine <[tab]>
+
 stop_time_c:
   type: command
   name: stop_timer

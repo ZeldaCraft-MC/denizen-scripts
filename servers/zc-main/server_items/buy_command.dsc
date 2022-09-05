@@ -1,7 +1,7 @@
 buy_gui_cmd:
   type: command
   name: buy
-  description: "opens the server store gui."
+  description: Opens the server store gui.
   usage: /buy
   script:
   - inventory open d:buy_gui_inv
@@ -10,7 +10,7 @@ buy_gui_inv:
   type: inventory
   inventory: hopper
   debug: false
-  title: "<&2>Zelda<&a>Craft Store"
+  title: <&2>Zelda<&a>Craft Store
   gui: true
   procedural items:
     - define list <list[]>
@@ -175,6 +175,7 @@ teb_perks:
       - SVIP role on discord
       - A custom [SVIP] prefix that also appears in tab
     inline: false
+
 teb_messages:
   type: data
   debug: false
@@ -184,7 +185,7 @@ teb_messages:
     author_url: https://store.zeldacraft.net/
     description: Thank you <[player].name> for donating for the <[pack_name].to_uppercase> rank!
     fields:
-      - "<script[teb_perks].parsed_key[<[pack_name]>_perks].with[value].as[<&chr[BB]> <script[teb_perks].parsed_key[<[pack_name]>_perks].get[value].separated_by[<&nl><&chr[BB]> ]>]>"
+      - <script[teb_perks].parsed_key[<[pack_name]>_perks].with[value].as[<&chr[BB]> <script[teb_perks].parsed_key[<[pack_name]>_perks].get[value].separated_by[<&nl><&chr[BB]> ]>]>
     thumbnail: https://cravatar.eu/helmavata/<[player].name>/32.png
     color: lime
     timestamp: <util.time_now>
@@ -197,6 +198,7 @@ tebex_thank_you_i:
   lore:
   - <&f>You already have our highest rank <&e><&chr[263B]>
   - <&f>Thank you for donating to our server
+
 tebex_gift_i:
   type: item
   debug: false
@@ -205,6 +207,7 @@ tebex_gift_i:
   lore:
   - <&f>Feeling generous? Click to gift
   - <&f>a rank to another player!
+
 tebex_viptovipplus:
   type: item
   debug: false
@@ -212,6 +215,7 @@ tebex_viptovipplus:
   display name: <&color[#64dfdf]>VIP <&chr[BB]> VIP+ <&a>Upgrade
   lore:
   - <&7>Price<&co> <&2>$5
+
 tebex_viptosvip:
   type: item
   debug: false
@@ -219,6 +223,7 @@ tebex_viptosvip:
   display name: <&color[#80ffdb]>VIP <&chr[BB]> SVIP <&a>Upgrade
   lore:
   - <&7>Price<&co> <&2>$15
+
 tebex_vipplustosvip:
   type: item
   debug: false
@@ -226,6 +231,7 @@ tebex_vipplustosvip:
   display name: <&color[#80ffdb]>VIP+ <&chr[BB]> SVIP <&a>Upgrade
   lore:
   - <&7>Price<&co> <&2>$10
+
 tebex_vip:
   type: item
   debug: false
@@ -233,6 +239,7 @@ tebex_vip:
   display name: <&color[#48bfe3]>VIP <&a>Rank
   lore:
   - <&7>Price<&co> <&2>$5
+
 tebex_vipplus:
   type: item
   debug: false
@@ -240,6 +247,7 @@ tebex_vipplus:
   display name: <&color[#64dfdf]>VIP+ <&a>Rank
   lore:
   - <&7>Price<&co> <&2>$10
+
 tebex_svip:
   type: item
   debug: false
@@ -253,10 +261,11 @@ no_dash_uuid_proc:
   definitions: uuid
   debug: false
   script:
-    - determine <[uuid].split[].insert[-].at[9].insert[-].at[14].insert[-].at[19].insert[-].at[24].unseparated.as_player>
+    - determine <[uuid].split[].insert[-].at[9].insert[-].at[14].insert[-].at[19].insert[-].at[24].unseparated.as[player]>
+
 tebex_proc:
   type: procedure
   definitions: webget_result
   debug: false
   script:
-    - determine <util.parse_yaml[{"result":<[webget_result]>}].get[result].as_list>
+    - determine <util.parse_yaml[{"result":<[webget_result]>}].get[result].as[list]>

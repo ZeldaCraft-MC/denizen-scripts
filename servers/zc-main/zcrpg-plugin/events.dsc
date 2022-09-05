@@ -220,7 +220,6 @@ zcrpg_playerdata_events:
           - narrate "<&c>This secret does not exist! Please get in touch with an admin."
           - stop
 
-
         - if !<yaml[<player.uuid>].read[completed_secrets].contains[<[secret]>]>:
           #- yaml set 'statsd.player~event~zcrpg~secrets~<[secret].to_lowercase>~completed:++' id:stats_log
           - yaml set completed_secrets:->:<[secret]> id:<player.uuid>

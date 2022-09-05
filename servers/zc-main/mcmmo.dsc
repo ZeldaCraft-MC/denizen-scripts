@@ -1,5 +1,7 @@
 mcgui_command:
   type: command
+  description: Opens up an McMMO GUI.
+  usage: /mcgui
   debug: false
   name: mcgui
   script:

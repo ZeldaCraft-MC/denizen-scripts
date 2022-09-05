@@ -48,6 +48,7 @@ xmas_snow_block_prize:
   - "<red>Right-Click <yellow>to play a snowy effect!"
   - "<red>Right-Click <light_purple>While sneaking <yellow>to change the snow particle range"
   - ""
+
 jolly_cap:
   debug: false
   type: item
@@ -102,6 +103,7 @@ Hyrule_bass:
   - <gray>An ordinary fish that
   - <gray>can be found all over hyrule
   - ""
+
 Reekfish:
   type: item
   debug: false

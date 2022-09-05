@@ -33,7 +33,6 @@ ddoor_open:
             - if <[door].players.size> < 1:
                 - run ddoor_close def:<[1]>
 
-
 ddoor_close:
     type: task
     debug: false
@@ -464,6 +463,7 @@ update_ddoors:
     script:
         - foreach <server.flag[dungeon_doors]>:
             - flag server <[value].replace_text[ddoor_].with[].to_lowercase>_ddoor_properties.frame_region:<cuboid[ddoor_<[value].replace_text[ddoor_].with[].to_lowercase>]>
+
 lock_entity:
     debug: false
     type: entity

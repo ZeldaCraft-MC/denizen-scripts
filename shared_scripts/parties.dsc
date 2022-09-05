@@ -39,6 +39,7 @@ conv_party_check:
                             - flag server parties.<[n]>.members.<[id]>.rank:Member
             - else:
                 - announce "<[n]> not found Skipping..." to_console
+
 # /ex narrate <server.flag[parties].keys.filter_tag[<server.flag[parties].get[<[filter_value]>].get[members].keys.contains[<player.uuid>]>]>
 # /ex narrate <server.flag[parties].get[partyhard].get[members].filter_tag[<[filter_value].get[name].is[==].to[greenleeuw]>].keys>
 # /ex narrate <server.flag[global_player_data].filter[get[name].is[==].to[greenleeuw]].first.get[uuid]>
@@ -259,6 +260,7 @@ party_cmd:
                 - narrate demote
             - default:
                 - narrate "Something went wrong!"
+
 chat_cmd:
     type: command
     debug: false

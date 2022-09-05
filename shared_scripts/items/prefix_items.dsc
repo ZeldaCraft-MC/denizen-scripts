@@ -3,6 +3,7 @@ no_item:
   material: black_stained_glass_pane
   debug: false
   display name: <&0><&sp>
+
 ep_page_back:
   type: item
   material: book
@@ -10,6 +11,7 @@ ep_page_back:
   display name: "<&a>Page Backward"
   lore:
     - <&f>Page <[page].sub[1]||0>
+
 ep_page_forward:
   type: item
   material: book

@@ -139,5 +139,3 @@ kilton_shovel:
     mechanisms:
         can_destroy: snow_block|sand|grass_block|gravel|clay|grass_path|dirt|coarse_dirt|podzol|snow
         hides: DESTROYS
-
-

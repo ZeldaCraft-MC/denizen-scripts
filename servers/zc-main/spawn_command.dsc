@@ -1,5 +1,7 @@
 spawn_command:
   type: command
+  description: Teleports you to spawn.
+  usage: /spawn
   name: spawn
   script:
-    - execute as_player "warp spawn"
+    - run warp_task def:spawn

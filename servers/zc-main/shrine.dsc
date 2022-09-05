@@ -45,7 +45,7 @@ shrine_events:
             - stop
         - flag player shrine.last_click:<util.time_now>
         - narrate "<n><&7>You used the shrine! Come back tomorrow for more items!"
-        - define item <script[shrine_item_pool].data_key[items].random.as_item>
+        - define item <script[shrine_item_pool].data_key[items].random.as[item]>
         - give <[item]> unlimit_stack_size
         - narrate "<&7>You gained <&a>x<[item].quantity> <[item].material.translated_name><n>"
         - stop

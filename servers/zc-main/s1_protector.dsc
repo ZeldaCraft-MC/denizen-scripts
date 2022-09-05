@@ -29,6 +29,8 @@ s1_protector_events:
 
 rules_command:
   type: command
+  description: Show the rules.
+  usage: /rules
   name: rules
   debug: false
   script:
@@ -44,6 +46,8 @@ rules_command:
 
 accept_rules_command:
   type: command
+  description: Accept the rules.
+  usage: /accept
   name: accept
   debug: false
   script:

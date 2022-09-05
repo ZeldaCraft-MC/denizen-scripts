@@ -9,6 +9,7 @@ fill_map_test:
     - foreach <[x].points_between[<[z_loc].with_x[<[x].x>]>].distance[64]> as:z:
       - teleport <player> <location[<[z]>]>
       - wait 0.5s
+
 skin_restore:
   type: task
   debug: false
@@ -31,10 +32,11 @@ inf_slime:
   type: entity
   debug: false
   entity_type: slime
-  size: 2
-  custom_name: <&6><&l>Infinity
-  custom_name_visible: true
-  persistent: true
+  mechanisms:
+    size: 2
+    custom_name: <&6><&l>Infinity
+    custom_name_visible: true
+    persistent: true
 
 inf_slime_world:
   type: world
@@ -42,24 +44,28 @@ inf_slime_world:
   events:
     on inf_slime dies:
     - spawn inf_slime <context.entity.location>
+
 hallow2021_tot_ass:
   type: assignment
   debug: false
   actions:
     on click:
     - stop
+
 hallow2021_cs_ass:
   type: assignment
   debug: false
   actions:
     on click:
     - stop
+
 hallow2021_rab_ass:
   type: assignment
   debug: false
   actions:
     on click:
     - stop
+
 hallow2021_ass:
   type: assignment
   debug: false

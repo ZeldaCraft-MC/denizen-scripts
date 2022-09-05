@@ -15,6 +15,7 @@ autowb_msg_task:
         - narrate PLAYER_MESSAGE=<[map]> targets:<[targets]>
         - if <server.has_flag[server_name]>:
             - redis id:global_chat_pub publish:global_chat_<server.flag[server_name]> message:<[map]>
+
 autowb_world:
   type: world
   debug: false
@@ -118,6 +119,7 @@ autowb_world:
           - wait 0.<util.random.int[2].to[6]>s
           - define msg <[player].flag[autowb].parsed||wb>
           - run autowb_msg_task player:<[player]> def:<[msg]>
+
 autowb_command:
   type: command
   name: autowb

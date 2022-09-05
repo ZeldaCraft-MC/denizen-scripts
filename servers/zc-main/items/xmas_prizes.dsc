@@ -187,6 +187,7 @@ del_present_prize:
       - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find_players_within[1].exclude[<player>]> volume:0.4 sound_category:blocks
     - else:
       - playsound sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]> <[location].find_players_within[1]> volume:0.4 sound_category:blocks
+
 infinite_snowball_land:
   debug: false
   type: task

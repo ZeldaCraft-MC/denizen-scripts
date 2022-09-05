@@ -120,6 +120,7 @@ needs_name_task:
         - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[no_name_msg]>]> no_mention
         - stop
       - define p <context.new_message.author.flag[mc_link]>
+
 mclink_task:
   type: task
   debug: false
@@ -129,6 +130,7 @@ mclink_task:
     - flag <[user]> mc_link:<[pl]>
     - narrate "You and <[user].name> Have succesfully been linked" targets:<[pl]> format:zc_text
     - ~discordmessage id:zc-info user:<[user]> <discord_embed.with_map[<script[d_messages].parsed_key[linkmc_suc_msg]>]>
+
 reply_sug_task:
   type: task
   debug: false
@@ -165,6 +167,7 @@ reply_sug_task:
       - else:
         - ~discordmessage id:zc-info channel:<[thread]> <discord_embed.with_map[<script[d_messages].parsed_key[suggestion_attach_reply]>]>
     - ~discordmessage id:zc-info user:<[u]> <discord_embed.with_map[<script[d_messages].parsed_key[suggestion_reply_suc_msg]>]>
+
 reply_bug_task:
   type: task
   debug: false
@@ -197,6 +200,7 @@ reply_bug_task:
       - else:
         - ~discordmessage id:zc-info channel:<[thread]> <discord_embed.with_map[<script[d_messages].parsed_key[bug_attach_reply]>]>
     - ~discordmessage id:zc-info user:<[u]> <discord_embed.with_map[<script[d_messages].parsed_key[bug_reply_suc_msg]>]>
+
 create_u_report_task:
   type: task
   debug: false
@@ -219,6 +223,7 @@ create_u_report_task:
         - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[user_report_attach_msg]>]> save:msg rows:<[buttons]>
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[report_announce].mention>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 mc_create_u_report_task:
   type: task
   debug: false
@@ -229,6 +234,7 @@ mc_create_u_report_task:
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[mc_user_report_msg]>]> rows:<[buttons]> save:msg
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[report_announce].mention>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 create_g_report_task:
   type: task
   debug: false
@@ -251,6 +257,7 @@ create_g_report_task:
         - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[grief_report_attach_msg]>]> save:msg rows:<[buttons]>
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[report_announce].mention>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 mc_create_g_report_task:
   type: task
   debug: false
@@ -261,6 +268,7 @@ mc_create_g_report_task:
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[mc_grief_report_msg]>]> rows:<[buttons]> save:msg
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[report_announce].mention>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 create_bug_task:
   type: task
   debug: false
@@ -283,6 +291,7 @@ create_bug_task:
         - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[bugs_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[bugs_attach_msg]>]> save:msg rows:<[buttons]>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
     - flag <entry[msg].message> user:<[u]>
+
 mc_create_bug_task:
   type: task
   debug: false
@@ -292,6 +301,7 @@ mc_create_bug_task:
     - inject bugreport_buttons
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[bugs_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[mc_bug_msg]>]> rows:<[buttons]> save:msg
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 mc_create_sug_task:
   type: task
   debug: false
@@ -304,6 +314,7 @@ mc_create_sug_task:
     - else:
       - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[suggestion_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[mc_suggestion_title_msg]>]> rows:<[buttons]> save:msg
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 create_sug_task:
   type: task
   debug: false
@@ -325,6 +336,7 @@ create_sug_task:
       - else:
         - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[suggestion_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[suggestion_attach_msg]>]> save:msg rows:<[buttons]>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 create_ban_appeal_task:
   type: task
   debug: false
@@ -356,6 +368,7 @@ create_ban_appeal_task:
         - ~discordmessage id:zc-info channel:<entry[thread].created_thread> <discord_embed.with_map[<script[d_messages].parsed_key[ban_appeal_attach_msg]>]> save:msg2 rows:<[buttons]>
     - flag <entry[msg2].message.channel> <[ruuid]>.msg:<entry[msg].message>
     - flag <entry[msg2].message.channel> <[ruuid]>.pl:<[u]>
+
 create_ticket_task:
   type: task
   debug: false
@@ -398,6 +411,7 @@ create_ticket_task:
       - else:
         - ~discordmessage id:zc-info channel:<entry[thread].created_thread> <discord_embed.with_map[<script[d_messages].parsed_key[ticket_attach_msg]>]>
     - ~discordmessage id:zc-info user:<[u]> "<discord_embed.with[title].as[Ticket Opened].with[footer].as[A staff member will respond to you when available]>"
+
 bot_connect:
   type: world
   debug: false
@@ -1127,6 +1141,7 @@ bot_connect:
             - ~discordmessage id:zc-info user:<context.new_message.author> "<discord_embed.with[title].as[Ticket Creation].with[description].as[Type your question/message for the staff team in here]>" rows:<[butt]>
             - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[dm_msg]>]> no_mention
           - adjust <context.new_message> delete
+
 non_discord_events_w:
   type: world
   debug: false
@@ -1170,6 +1185,7 @@ non_discord_events_w:
       - wait 1s
       - take item:suggestions_i
       - narrate "Suggestion posted, <&a><&hover[For real thank you, this will improve the server]>thanks<&f><&end_hover> for suggesting" format:zc_text
+
 #---------------------#
 # ingame commands that
 # use discord formats
@@ -1307,6 +1323,7 @@ news_cmd:
       - narrate "<&nl><[left_ar]> <&r>Page <[page]>/<[max_page]> <&color[#04BA04]><&chr[25B7]><&nl>"
       - stop
     - narrate "<&nl><[left_ar]> <&r>Page <[page]>/<[max_page]> <[right_ar]><&nl>"
+
 discord_command_den:
     type: command
     name: discord
@@ -1315,6 +1332,7 @@ discord_command_den:
     debug: false
     script:
     - narrate "Click this link to join our discord! <&click[https://discordapp.com/invite/P57m9qK].type[open_url]><&b><&n>https://discordapp.com/invite/P57m9qK<&end_click>" format:zc_text
+
 #--------------------#
 # discord role keeper
 #--------------------#
@@ -1340,6 +1358,7 @@ discord_role_keep:
     - announce <context.new_roles.parse[name]> to_console
     - flag <context.user> discord_roles:<context.new_roles||!>
     - announce <context.user.flag[discord_roles].parse[name]> to_console
+
 get_list:
   type: task
   debug: false
