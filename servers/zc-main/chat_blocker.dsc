@@ -134,7 +134,7 @@ chat_blocker_events:
             - foreach next
           - if <[value].starts_with[#]>:
             - define num <[value].split[].get[2].to[7].unseparated>
-            - if <&color[#<[num]>]||error> == error:
+            - if !<&color[#<[num]>].exists>:
               - foreach next
             - define msg <[msg].replace_text[&#<[num]>].with[<&color[#<[num]>]>]>
           - else:

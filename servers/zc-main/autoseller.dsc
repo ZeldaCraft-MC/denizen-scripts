@@ -4,15 +4,7 @@ autosell_all_task:
   debug: false
   script:
     - define total 0
-    # SELL CURRENT INVENTORY
-#    - define valuable <[inventory].list_contents.filter[material.name.is[!=].to[air]].filter[has_script.not].filter[worth.is[!=].to[null]]||<list[]>>
-#    - foreach <[valuable]> as:item:
-#      - money give quantity:<[item].worth.mul[<[item].quantity>]>
-#      - define total:+:<[item].worth.mul[<[item].quantity>]>
-#      - take <[item]> quantity:<[item].quantity> from:<[inventory]>
-#    - if <[total]> > 0 && <player.is_online>:
-#      - narrate '<&a>You made $<[total]> from your autoseller!'
-    - foreach <[inventory].map_slots||<map>> key:slot as:item:
+    - foreach <[inventory].map_slots.if_null[<map>]> key:slot as:item:
       - if !<[item].script.exists> && <[item].worth.exists>:
         - money give quantity:<[item].worth.mul[<[item].quantity>]>
         - define total:+:<[item].worth.mul[<[item].quantity>]>
@@ -27,7 +19,7 @@ autoseller_events:
     on player closes chest:
       - if !<context.inventory.contains_item[autoseller]>:
         - stop
-      - foreach <context.inventory.list_contents.filter[scriptname.equals[autoseller]]||null> as:item:
+      - foreach <context.inventory.list_contents.filter[script.name.equals[autoseller]]> as:item:
         - if <[item].nbt[active]>:
           - run autosell_all_task def:<context.inventory> player:<player[<[item].nbt[player]>]>
           - foreach stop
@@ -36,7 +28,7 @@ autoseller_events:
       - if !<context.location.inventory.contains_item[autoseller]>:
         - stop
 
-      - foreach <context.location.inventory.list_contents.filter[scriptname.equals[autoseller]]||null> as:item:
+      - foreach <context.location.inventory.list_contents.filter[script.name.equals[autoseller]]> as:item:
         - if <[item].nbt[active]>:
           - narrate "<&c>Chests with active autosellers cannot be broken."
           - determine cancelled
@@ -59,21 +51,21 @@ autoseller_events:
         - stop
 
       # Find all autosellers
-      - define list <context.destination.list_contents.filter[scriptname.is[==].to[AUTOSELLER]]||null>
+      - define list <context.destination.list_contents.filter[script.name.is[==].to[AUTOSELLER]]||null>
       - foreach <[list]> as:item:
         - if <[item].nbt[active]>:
           - define active <[item]>
           - foreach stop
 
       # There are no active autosellers. Stop early
-      - if <[active]||null> == null:
+      - if !<[active].exists>:
         - stop
 
       # Save item for after delay
       - define item <item[<context.item>]>
 
       # Stop early if item is worthless
-      - if <[item].worth||null> == null:
+      - if !<[item].worth.exists>:
         - stop
 
       # Delay for event safety
@@ -116,7 +108,7 @@ autoseller_events:
 
       - if !<context.item.nbt[active]>:
         # Stop duplicate autosellers
-        - define list <context.clicked_inventory.list_contents.filter[scriptname.is[==].to[AUTOSELLER]]||null>
+        - define list <context.clicked_inventory.list_contents.filter[script.name.is[==].to[AUTOSELLER]]||null>
         - foreach <[list]> as:item:
           - if <[item].nbt[active]>:
             - narrate '<&c>You cannot activate a second Autoseller.'

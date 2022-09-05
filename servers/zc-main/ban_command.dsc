@@ -153,7 +153,7 @@ warn_world:
       - if !<player.has_permission[zc.mod]>:
         - narrate "You do not have permission to submit a warning"
         - determine passively not_signing
-        - take scriptname:warn_book
+        - take item:warn_book
         - stop
       - determine passively not_signing
       - wait 1t
@@ -163,7 +163,7 @@ warn_world:
       - flag player writing.warn:!
       - define message <context.book.book_pages.separated_by[<&nl>].strip_color>
       - define method Warn
-      - take scriptname:warn_book
+      - take item:warn_book
       - inventory open d:warn_gui
       - inventory adjust slot:9 enchantments:lure,1 d:<player.open_inventory>
       - inventory adjust slot:9 hides:enchants d:<player.open_inventory>
@@ -178,7 +178,7 @@ warn_world:
       - if !<player.has_permission[zc.mod]>:
         - narrate "You do not have permission to submit a ban"
         - determine passively not_signing
-        - take scriptname:warn_book
+        - take item:warn_book
         - stop
       - determine passively not_signing
       - wait 1t
@@ -197,7 +197,7 @@ warn_world:
           - define other_players <[other_players].include[<server.flag[ip_addresses.<[ip]>]>]>
       - define other_players <[other_players].deduplicate.replace[<[player]>].parse_tag[<&c><[parse_value].name>].alphanumeric||list[]>
       - define is_perm true
-      - take scriptname:ban_book
+      - take item:ban_book
       - inventory open d:ban_gui
       - define item_slot <player.open_inventory.find_item[ban_i_9]>
       - inventory adjust slot:<[item_slot]> enchantments:lure,1 d:<player.open_inventory>
@@ -213,7 +213,7 @@ warn_world:
       - if !<player.has_permission[zc.mod]>:
         - narrate "You do not have permission to submit a tempban"
         - determine passively not_signing
-        - take scriptname:warn_book
+        - take item:warn_book
         - stop
       - determine passively not_signing
       - wait 1t
@@ -252,7 +252,7 @@ warn_world:
           - inventory adjust slot:<[item_slot]> "lore:<&f>Tempban <[player].name> for<&nl><&3><player.flag[writing.tempban.time_date]><&nl><&3>Until: <util.time_now.add[<player.flag[writing.tempban.time_amount]>].format>" d:<player.open_inventory>
           - inventory flag slot:<[item_slot]> time:<player.flag[writing.tempban.time_amount]> d:<player.open_inventory>
       - flag player writing.tempban:!
-      - take scriptname:tempban_book
+      - take item:tempban_book
 
     #----------------------------------------#
     # ban gui interactions
@@ -1514,7 +1514,7 @@ unban_co:
     2: with_ip
   script:
     #--------------------------------------------------#
-    # Checking if the player is real and if he's banned
+    # Checking if the player is real and if they're banned
     #--------------------------------------------------#
     - define player <server.match_offline_player[<context.args.first||fdsafkjlsdjfds>]||noone>
     - if <[player]> == noone:
@@ -1524,7 +1524,7 @@ unban_co:
       - narrate "<[player].name> does not seem to be banned" format:zc_unban_text
       - stop
     #--------------------------------------------------#
-    # Checks wether it is an ip unban or not
+    # Checks whether it is an ip unban or not
     #--------------------------------------------------#
     - if <context.args.get[2]||false> == with_ip:
       - define other_players <list[]>
@@ -1538,13 +1538,13 @@ unban_co:
       - foreach <[other_players]> as:players:
         - define num <[players].flag[moderate.unban].size.add[1]||1>
         #----------------------------------------------------#
-        # Since it is an ip ban it need to check if
-        # Other players on that ip are also banned
+        # Since it is an ip ban it needs to check if
+        # Other players with that ip are also banned
         #---------------------------------------------------#
         - if <[players].is_banned>:
           - define reason <[players].ban_reason>
           - define source <[players].ban_source>
-          - if <[players].ban_expiration_time||never> != never:
+          - if <[players].ban_expiration_time.exists>:
             - define expiration <[players].ban_expiration_time>
           - define created <[players].ban_created_time>
         - flag <[players]> moderate.unban.<[num]>.by_player:<player||server>
@@ -1555,7 +1555,7 @@ unban_co:
         #---------------------------------------------#
           - flag <[players]> moderate.unban.<[num]>.reason:<[reason]>
           - flag <[players]> moderate.unban.<[num]>.source:<[source]>
-          - if <[players].ban_expiration_time||never> != never:
+          - if <[players].ban_expiration_time.exists>:
             - flag <[players]> moderate.unban.<[num]>.expiration:<[expiration]>
           - flag <[players]> moderate.unban.<[num]>.created:<[created]>
         - flag <[players]> moderate.unban.<[num]>.was_ip:true
@@ -1570,7 +1570,7 @@ unban_co:
         - define discord ban
         - define reason <[player].ban_reason>
         - define source <[player].ban_source>
-        - if <[player].ban_expiration_time||never> != never:
+        - if <[player].ban_expiration_time.exists>:
           - define discord ban_expiration
           - define expiration <[player].ban_expiration_time>
         - define created <[player].ban_created_time>
@@ -1599,7 +1599,7 @@ unban_co:
       - define discord ban
       - define reason <[player].ban_reason>
       - define source <[player].ban_source>
-      - if <[player].ban_expiration_time||never> != never:
+      - if <[player].ban_expiration_time.exists>:
         - define discord ban_expiration
         - define expiration <[player].ban_expiration_time>
       - define created <[player].ban_created_time>
@@ -1608,7 +1608,7 @@ unban_co:
     - if <[player].is_banned>:
       - flag <[player]> moderate.unban.<[num]>.reason:<[reason]>
       - flag <[player]> moderate.unban.<[num]>.source:<[source]>
-      - if <[player].ban_expiration_time||never> != never:
+      - if <[player].ban_expiration_time.exists>:
         - flag <[player]> moderate.unban.<[num]>.expiration:<[expiration]>
       - flag <[player]> moderate.unban.<[num]>.created:<[created]>
     - flag <[player]> moderate.unban.<[num]>.was_ip:false

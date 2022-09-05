@@ -8,10 +8,10 @@ client_cmd:
   tab completions:
     1: <server.online_players.parse[name]>
   script:
-    - if <context.args.first||error> == error:
+    - if !<context.args.first.exists>:
       - narrate "You need to put in a player name to check their client" format:zc_text
       - stop
-    - if <server.match_player[<context.args.first>]||noone> == noone:
+    - if !<server.match_player[<context.args.first>].exists>:
       - narrate "Are you sure <context.args.first> is a player and is online?" format:zc_text
       - stop
     - define player <server.match_player[<context.args.first>]>

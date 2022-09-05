@@ -7,9 +7,9 @@ custom_data_command:
   permission: zc.custom_data
   script:
     - if <player.gamemode> != creative:
-      - narrate "must be in creative mode"
+      - narrate "Must be in creative mode"
       - stop
-    - if <context.args.get[1]||null> == null:
-      - narrate "gotta give this command a number"
+    - if !<context.args.first.exists> or !<context.args.first.is_integer>:
+      - narrate "Must give this command a number"
       - stop
-    - inventory adjust custom_model_data:<context.args.get[1]> slot:<player.held_item_slot>
+    - inventory adjust custom_model_data:<context.args.first> slot:<player.held_item_slot>

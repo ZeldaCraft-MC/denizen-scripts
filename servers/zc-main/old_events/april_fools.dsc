@@ -13,12 +13,12 @@ april_fools_events:
     # on delta time secondly:
     #     - if <cuboid[fools_spawn].players.size> >= 1:
     #         - foreach <cuboid[fools_spawn].players> as:p:
-    #             - if <[p].location.find.entities[dropped_item].within[50].filter[item.scriptname.is[==].to[fools_gold]].size> >= 1:
-    #                 - foreach <[p].location.find.entities[dropped_item].within[50].filter[item.scriptname.is[==].to[fools_gold]]> as:gold:
+    #             - if <[p].location.find.entities[dropped_item].within[50].filter[item.script.name.is[==].to[fools_gold]].size> >= 1:
+    #                 - foreach <[p].location.find.entities[dropped_item].within[50].filter[item.script.name.is[==].to[fools_gold]]> as:gold:
     #                     - if <[p].has_flag[mmm_cooldown_<[gold]>]>:
     #                         - foreach next
     #                     - playsound sound:zc_sfx.fools.mmmmmm-converted custom <[gold].as_entity.location.center> pitch:<util.random.decimal[0.9].to[1.1]> volume:<element[1].sub[<[p].location.distance[<[gold].location>].div[19]>]> sound_category:blocks
-    #                     - playeffect effect:fireworks_spark at:<[p].location.find.entities[dropped_item].within[50].filter[item.scriptname.is[==].to[fools_gold]].parse[location.center]> quantity:<util.random.int[1].to[3]> offset:0.2,0.5,0.2 targets:<[p]>
+    #                     - playeffect effect:fireworks_spark at:<[p].location.find.entities[dropped_item].within[50].filter[item.script.name.is[==].to[fools_gold]].parse[location.center]> quantity:<util.random.int[1].to[3]> offset:0.2,0.5,0.2 targets:<[p]>
     #                     - if <element[1].sub[<[p].location.distance[<[gold].location>].div[15]>]> >= 0.8:
     #                         - flag <[p]> mmm_cooldown_<[gold]> duration:<util.random.decimal[0.3].to[0.8]>s
     #                     - else if <element[1].sub[<[p].location.distance[<[gold].location>].div[15]>]> >= 0.5:
@@ -177,7 +177,7 @@ morshu_int:
           - if <player.item_in_hand.script.name||null> == FOOLS_GOLD:
             - narrate "<gold>You want it?? It's YOURS my friend!" targets:<player>
             - playsound sound:zc_sfx.fools.you-want-it-converted custom <player> volume:0.2
-            - take scriptname:fools_gold quantity:1
+            - take item:fools_gold quantity:1
             - wait 5s
             - if <util.random.int[1].to[100]> <= 80:
               - playeffect effect:cloud quantity:<util.random.int[10].to[20]> offset:0.1,0.2,0.7 <location[morshu_prize_loc]>

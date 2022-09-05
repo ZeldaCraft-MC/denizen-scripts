@@ -546,7 +546,7 @@ bottled_fart_lol:
       - ratelimit <player> 2t
       - playsound sound:zc_sfx.fools.fart-with-reverb custom <player.location> volume:10
       - playeffect effect:huge_explosion quantity:1 offset:0.5,0.5,0.5 <player.location>
-      - take scriptname:bottled_fart
+      - take item:bottled_fart
     on player quits:
       - if <player.name> == ExtraCaff69:
         - playsound sound:zc_sfx.fools.fart-with-reverb custom <server.online_players> volume:10

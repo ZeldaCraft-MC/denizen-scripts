@@ -1,22 +1,3 @@
-#conv_homes:
-#  type: task
-#  debug: false
-#  script:
-#    - ~yaml load:homes.yml id:homes
-#    - foreach <yaml[homes].read[homes]>:
-#      - if <server.match_offline_player[<[value].before[;]>].uuid||none> == none:
-#        - announce "<[value].before[;]> not found" to_console
-#        - foreach next
-#      - define player <server.match_offline_player[<[value].before[;]>]>
-#      - define loc <[value].after[;].before_last[;].replace[;].with[,].as_location>
-#      - define name <[value].after_last[;].replace[.].with[dot].replace[|].replace[<&lt>].replace[<&gt>].replace[:].replace[<&lb>].replace[<&rb>]>
-#      - if <[value].after_last[;]> == <empty>:
-#        - define name default
-#      - flag <[player]> homes.<[name]>:<[loc]>
-#      - announce <[player]> to_console
-#      - if <[loop_index].mod[5]> == 0:
-#        - wait 1t
-
 mutehome_command:
   type: command
   name: mutehome
@@ -50,6 +31,7 @@ mutehome_command:
           - flag player mutehomes.sethome:true
       - default:
         - narrate "Put either home, delhome or sethome after <&a><&click[/mutehome<&sp>].type[suggest_command]>/mutehome<&end_click>" format:zc_home_text
+
 #-----------------------------------#
 #add (playername):(homename) support :check:
 #-----------------------------------#

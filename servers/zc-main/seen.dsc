@@ -50,7 +50,7 @@ seen_command:
   usage: /seen (name)
   debug: false
   script:
-    - if <context.args.get[1]||null> == null:
+    - if !<context.args.get[1].exists>:
       - narrate "<&7>Show information about a player with <&a>/seen (playername)"
       - if <player.has_permission[zc.ip_lookup]>:
         - narrate "<&7>You can also look an ip up with <&a>/seen (ip) <&7>or by clicking the ip in a player's seen response."
@@ -67,7 +67,7 @@ seen_command:
         - stop
       - foreach <server.flag[ip_addresses.<[ip]>]>:
         # Do a mojang api call and cache the results
-        - if <[value].name||null> == null:
+        - if !<[value].name.exists>:
           - if !<server.has_flag[name_cache.<[value]>]>:
             - ~webget https://api.mojang.com/user/profiles/<[value].uuid>/names save:resp
             - if <entry[resp].failed> || <entry[resp].status> == 204:
