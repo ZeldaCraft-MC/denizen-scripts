@@ -57,8 +57,6 @@ autoseller_events:
           - define active <[item]>
           - foreach stop
 
-      - announce to_console "Autoseller at <context.destination.location>, is active? <[active].is_truthy>"
-
       # There are no active autosellers. Stop early
       - if !<[active].exists>:
         - stop
@@ -75,7 +73,6 @@ autoseller_events:
 
       # Sell item
       - if <[active].has_nbt[player]>:
-        - announce to_console "Giving player <player[<[active].nbt[player]>]> $<[item].worth.mul[<[item].quantity>]> from autoseller"
         - money give to:<player[<[active].nbt[player]>]> quantity:<[item].worth.mul[<[item].quantity>]>
         - take item:<[item].material.name> quantity:<[item].quantity> from:<context.destination>
 
