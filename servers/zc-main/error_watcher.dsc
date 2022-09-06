@@ -55,7 +55,7 @@ debug_alert:
       - define bot_id <script[error_handler_conf].parsed_key[data.bot_id]>
       - define channel <script[error_handler_conf].parsed_key[data.channel_id]>
       - if <[debug_enabled].size> <= 10:
-        - ~discordmessage id:<[bot_id]> channel:<[channel]> <[message]>
+        - ~discordmessage id:<[bot_id]> channel:<[channel]> <[message]><n>```<[scripts]>```
       - else:
         - ~discordmessage id:<[bot_id]> channel:<[channel]> <[message]> attach_file_name:error.txt attach_file_text:<[scripts]>
 
