@@ -4,7 +4,7 @@ deku_nut:
   material: snowball
   data:
     discover: true
-  display name: <color[#995F31]>Deku Nut
+  display name: <&color[#995F31]>Deku Nut
   enchantments:
     - LUCK: 1
   mechanisms:
@@ -12,8 +12,8 @@ deku_nut:
     hides:
       - ENCHANTS
   lore:
-    - <color[#C27A40]>The dried bud of
-    - <color[#C27A40]>a Deku Baba.
+    - <&color[#C27A40]>The dried bud of
+    - <&color[#C27A40]>a Deku Baba.
 
 blue_deku_husk:
   type: item
@@ -21,7 +21,7 @@ blue_deku_husk:
   material: leather
   data:
     discover: true
-  display name: <color[#4087C2]>Blue Deku Husk
+  display name: <&color[#4087C2]>Blue Deku Husk
   enchantments:
     - LUCK: 1
   mechanisms:
@@ -29,9 +29,9 @@ blue_deku_husk:
     hides:
       - ENCHANTS
   lore:
-    - <color[#4F9EE2]>The outer husk of
-    - <color[#4F9EE2]>a Deku Baba. It's tough
-    - <color[#4F9EE2]>and shell like.
+    - <&color[#4F9EE2]>The outer husk of
+    - <&color[#4F9EE2]>a Deku Baba. It's tough
+    - <&color[#4F9EE2]>and shell like.
 
 orange_deku_husk:
   type: item
@@ -39,7 +39,7 @@ orange_deku_husk:
   material: leather
   data:
     discover: true
-  display name: <color[#F39C2C]>Tough Deku Husk
+  display name: <&color[#F39C2C]>Tough Deku Husk
   enchantments:
     - LUCK: 1
   mechanisms:
@@ -47,9 +47,9 @@ orange_deku_husk:
     hides:
       - ENCHANTS
   lore:
-    - <color[#FFB85E]>The outer husk of
-    - <color[#FFB85E]>a Quadro Deku Baba.
-    - <color[#FFB85E]>It's very sturdy.
+    - <&color[#FFB85E]>The outer husk of
+    - <&color[#FFB85E]>a Quadro Deku Baba.
+    - <&color[#FFB85E]>It's very sturdy.
 
 twilight_deku_husk:
   type: item
@@ -57,7 +57,7 @@ twilight_deku_husk:
   material: leather
   data:
     discover: true
-  display name: <color[#3E1E52]>Carnivourous Deku Husk
+  display name: <&color[#5E1B91]>Carnivourous Deku Husk
   enchantments:
     - LUCK: 1
   mechanisms:
@@ -65,9 +65,9 @@ twilight_deku_husk:
     hides:
       - ENCHANTS
   lore:
-    - <color[#B63FB1]>The outer husk of
-    - <color[#B63FB1]>a Shadow Deku Baba.
-    - <color[#B63FB1]>It feels cursed.
+    - <&color[#B63FB1]>The outer husk of
+    - <&color[#B63FB1]>a Shadow Deku Baba.
+    - <&color[#B63FB1]>It feels cursed.
 
 deku_stick:
   type: item
@@ -75,7 +75,7 @@ deku_stick:
   material: stick
   data:
     discover: true
-  display name: <color[#81623A]>Deku Stick
+  display name: <&color[#81623A]>Deku Stick
   enchantments:
     - LUCK: 1
   mechanisms:
@@ -83,8 +83,8 @@ deku_stick:
     hides:
       - ENCHANTS
   lore:
-    - <color[#A7865B]>The dried stem
-    - <color[#A7865B]>of a Deku Baba.
+    - <&color[#A7865B]>The dried stem
+    - <&color[#A7865B]>of a Deku Baba.
 
 deku_torch:
   type: item
@@ -92,7 +92,7 @@ deku_torch:
   material: torch
   data:
     discover: true
-  display name: <color[#AD6E1E]>Deku Torch
+  display name: <&color[#AD6E1E]>Deku Torch
   enchantments:
     - LUCK: 1
   mechanisms:
@@ -100,8 +100,8 @@ deku_torch:
     hides:
       - ENCHANTS
   lore:
-    - <color[#D87B30]>A sturdy torch
-    - <color[#D87B30]>made from a Deku Stick.
+    - <&color[#D87B30]>A sturdy torch
+    - <&color[#D87B30]>made from a Deku Stick.
   recipes:
     1:
       type: shaped
