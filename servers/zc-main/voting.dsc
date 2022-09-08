@@ -324,7 +324,6 @@ voting_crate_world:
       - narrate "You are already using this crate" format:zc_text
       - stop
     - flag <context.location> users:->:<player>
-    - wait 2t
     - take item:common_vote_key quantity:1
     - animatechest <context.location> open sound:true <player>
     - if <player.has_permission[zc.mod_fly]>:
