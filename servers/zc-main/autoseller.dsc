@@ -16,7 +16,7 @@ autoseller_events:
   type: world
   debug: false
   events:
-    on player closes chest:
+    on player closes chest in:world_flagged:autoseller_enabled:
       - if !<context.inventory.contains_item[autoseller]>:
         - stop
       - foreach <context.inventory.list_contents.filter[script.name.equals[autoseller]]> as:item:
@@ -24,7 +24,7 @@ autoseller_events:
           - run autosell_all_task def:<context.inventory> player:<player[<[item].nbt[player]>]>
           - foreach stop
 
-    on player breaks chest:
+    on player breaks chest in:world_flagged:autoseller_enabled:
       - if !<context.location.inventory.contains_item[autoseller]>:
         - stop
 
@@ -33,7 +33,7 @@ autoseller_events:
           - narrate "<&c>Chests with active autosellers cannot be broken."
           - determine cancelled
 
-    on item moves from inventory:
+    on item moves from inventory in:world_flagged:autoseller_enabled:
       # Prevent active autoseller from leaving chest via hopper
       - if <context.item.script.name||null> == autoseller && <context.item.nbt[active]>:
         - determine cancelled
@@ -77,7 +77,7 @@ autoseller_events:
         - take item:<[item].material.name> quantity:<[item].quantity> from:<context.destination>
 
     # Negate all interaction with active autoseller
-    on player clicks autoseller in chest:
+    on player clicks autoseller in chest in_area:world_flagged:autoseller_enabled:
       - if <context.click> == shift_right || !<context.item.nbt[active]>:
         - stop
       - determine passively cancelled
@@ -86,7 +86,7 @@ autoseller_events:
       - inventory update
 
     # Toggle autoseller state
-    on player shift_right clicks autoseller in chest:
+    on player shift_right clicks autoseller in chest in_area:world_flagged:autoseller_enabled:
       - if <context.clicked_inventory.inventory_type.to_lowercase> != chest:
         - stop
 
