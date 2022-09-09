@@ -54,21 +54,6 @@ cant_vote_i:
 #    - <&f>Looks like you already voted today
 #    - <&f><player.flag_expiration[voted_<[site].parsed||error>].from_now.formatted||error> until you can vote again
 
-royal_halberd:
-  type: item
-  debug: false
-  material: golden_axe
-  display name: <&6>Royal Halberd
-  mechanisms:
-    hides: attributes
-    custom_model_data: 100
-    enchantments:
-      sharpness: 4
-      unbreaking: 2
-  lore:
-  - <&f>This spear was issued to the knights,
-  - <&f>who guarded Hyrule Castle's throne room
-
 Stinky_egg:
   type: item
   debug: false
