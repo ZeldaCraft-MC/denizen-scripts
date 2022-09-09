@@ -21,7 +21,7 @@ inv_has_old_nbt:
   debug: false
   definitions: inv
   script:
-  - determine !<[inv].list_contents.exclude[<item[air]>].filter_tag[<proc[has_old_nbt].context[<[filter_value]>]>].is_empty>
+  - determine <[inv].list_contents.exclude[<item[air]>].filter_tag[<proc[has_old_nbt].context[<[filter_value]>]>].is_empty.not>
 
 update_item_nbt_to_flags:
   type: task
