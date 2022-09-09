@@ -18,13 +18,14 @@ has_old_nbt:
 
 inv_has_old_nbt:
   type: procedure
-  debug: true
+  debug: false
   definitions: inv
   script:
   - determine !<[inv].list_contents.exclude[<item[air]>].filter_tag[<proc[has_old_nbt].context[<[filter_value]>]>].is_empty>
 
 update_item_nbt_to_flags:
   type: task
+  debug: false
   defintitions: inv|itemscript
   script:
   - define slots <[inv].find_all_items[<[itemscript]>]>

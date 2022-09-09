@@ -14,7 +14,7 @@ autosell_all_task:
 
 autoseller_events:
   type: world
-  debug: true
+  debug: false
   events:
     on player closes chest in:world_flagged:autoseller_enabled:
       - if !<context.inventory.contains_item[autoseller]>:
