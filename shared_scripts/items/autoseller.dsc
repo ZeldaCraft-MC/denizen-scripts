@@ -8,8 +8,9 @@ autoseller:
   mechanisms:
     hides:
       - ENCHANTS
-    nbt: active/false
     lore: <script[autoseller].data_key[data.lore_inactive].separated_by[|].parse_color>
+  flags:
+    active: false
   data:
     discover: true
     lore_active:

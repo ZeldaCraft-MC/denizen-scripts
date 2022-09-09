@@ -14,28 +14,51 @@ autosell_all_task:
 
 autoseller_events:
   type: world
-  debug: false
+  debug: true
   events:
     on player closes chest in:world_flagged:autoseller_enabled:
       - if !<context.inventory.contains_item[autoseller]>:
         - stop
+      ## Updating old autosellers ##
+      - define inv <context.inventory>
+      - if <proc[inv_has_old_nbt].context[<[inv]>]>:
+        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller save:updateQueue
+        - waituntil !<entry[updateQueue].created_queue.is_valid>
+      ## End update autosellers ##
       - foreach <context.inventory.list_contents.filter[script.name.equals[autoseller]]> as:item:
-        - if <[item].nbt[active]>:
-          - run autosell_all_task def:<context.inventory> player:<player[<[item].nbt[player]>]>
+        - if <[item].flag[active]>:
+          - run autosell_all_task def:<context.inventory> player:<player[<[item].flag[player]>]>
           - foreach stop
 
     on player breaks chest in:world_flagged:autoseller_enabled:
+      ## Updating old autosellers ##
       - if !<context.location.inventory.contains_item[autoseller]>:
         - stop
-
+      - define inv <context.location.inventory>
+      - if <proc[inv_has_old_nbt].context[<[inv]>]>:
+          - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller save:updateQueue
+          - waituntil !<entry[updateQueue].created_queue.is_valid>
+      ## End update autosellers ##
       - foreach <context.location.inventory.list_contents.filter[script.name.equals[autoseller]]> as:item:
-        - if <[item].nbt[active]>:
+        - if <[item].flag[active]>:
           - narrate "<&c>Chests with active autosellers cannot be broken."
           - determine cancelled
 
     on item moves from inventory in:world_flagged:autoseller_enabled:
+      ## Updating old autosellers ##
+      - define inv <context.origin>
+      - if <proc[inv_has_old_nbt].context[<[inv]>]>:
+        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller save:updateQueue
+        - waituntil !<entry[updateQueue].created_queue.is_valid>
+
+      - define inv <context.destination>
+      - if <proc[inv_has_old_nbt].context[<[inv]>]>:
+        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller save:updateQueue
+        - waituntil !<entry[updateQueue].created_queue.is_valid>
+      ## End update autosellers ##
+
       # Prevent active autoseller from leaving chest via hopper
-      - if <context.item.script.name||null> == autoseller && <context.item.nbt[active]>:
+      - if <context.item.script.name||null> == autoseller && <context.item.flag[active]>:
         - determine cancelled
 
       # Ignore all non-chest inventories since autoseller should only work in chest.
@@ -53,7 +76,7 @@ autoseller_events:
       # Find all autosellers
       - define list <context.destination.list_contents.filter[script.name.is[==].to[AUTOSELLER]]||null>
       - foreach <[list]> as:item:
-        - if <[item].nbt[active]>:
+        - if <[item].flag[active]>:
           - define active <[item]>
           - foreach stop
 
@@ -72,13 +95,19 @@ autoseller_events:
       - wait 1t
 
       # Sell item
-      - if <[active].has_nbt[player]>:
-        - money give to:<player[<[active].nbt[player]>]> quantity:<[item].worth.mul[<[item].quantity>]>
+      - if <[active].flag[player].exists>:
+        - money give to:<player[<[active].flag[player]>]> quantity:<[item].worth.mul[<[item].quantity>]>
         - take item:<[item].material.name> quantity:<[item].quantity> from:<context.destination>
 
     # Negate all interaction with active autoseller
     on player clicks autoseller in chest in_area:world_flagged:autoseller_enabled:
-      - if <context.click> == shift_right || !<context.item.nbt[active]>:
+      ## Updating old autosellers ##
+      - define inv <context.inventory>
+      - if <proc[inv_has_old_nbt].context[<[inv]>]>:
+        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller save:updateQueue
+        - waituntil !<entry[updateQueue].created_queue.is_valid>
+      ## End update autosellers ##
+      - if <context.click> == shift_right || !<context.item.flag[active]>:
         - stop
       - determine passively cancelled
 
@@ -87,6 +116,11 @@ autoseller_events:
 
     # Toggle autoseller state
     on player shift_right clicks autoseller in chest in_area:world_flagged:autoseller_enabled:
+      - define inv <context.inventory>
+      - if <proc[inv_has_old_nbt].context[<[inv]>]>:
+        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller save:updateQueue
+        - waituntil !<entry[updateQueue].created_queue.is_valid>
+      ## End update autosellers ##
       - if <context.clicked_inventory.inventory_type.to_lowercase> != chest:
         - stop
 
@@ -97,20 +131,20 @@ autoseller_events:
       - determine passively cancelled
       - wait 1t
 
-      - if <context.item.nbt[active]>:
-        - if <context.item.nbt[player]> == <player.uuid>:
+      - if <context.item.flag[active]>:
+        - if <context.item.flag[player]> == <player.uuid>:
           - narrate '<&a>You have Deactivated your Autoseller. It is now safe to move.'
-          - inventory adjust d:<context.clicked_inventory> slot:<context.slot> nbt:active/false
-          - inventory adjust d:<context.clicked_inventory> slot:<context.slot> remove_nbt:player
+          - inventory flag d:<context.clicked_inventory> slot:<context.slot> active:false
+          - inventory flag d:<context.clicked_inventory> slot:<context.slot> player:!
           - inventory adjust d:<context.clicked_inventory> slot:<context.slot> lore:<script[autoseller].data_key[data.lore_inactive].separated_by[|].parse_color>
         - else:
           - narrate '<&c>You are not the owner of this Autoseller. You cannot disable it.'
 
-      - if !<context.item.nbt[active]>:
+      - if !<context.item.flag[active]>:
         # Stop duplicate autosellers
         - define list <context.clicked_inventory.list_contents.filter[script.name.is[==].to[AUTOSELLER]]||null>
         - foreach <[list]> as:item:
-          - if <[item].nbt[active]>:
+          - if <[item].flag[active]>:
             - narrate '<&c>You cannot activate a second Autoseller.'
             - stop
 
@@ -121,7 +155,7 @@ autoseller_events:
         # Activate the autoseller
         - narrate '<&a>You have now Activated your Autoseller.'
         - narrate '<&a>While it is Active you cannot move this item.'
-        - inventory adjust d:<context.clicked_inventory> slot:<context.slot> nbt:active/true
-        - inventory adjust d:<context.clicked_inventory> slot:<context.slot> nbt:player/<player.uuid>
+        - inventory flag d:<context.clicked_inventory> slot:<context.slot> active:true
+        - inventory adjust d:<context.clicked_inventory> slot:<context.slot> player:<player.uuid>
         - inventory adjust d:<context.clicked_inventory> slot:<context.slot> lore:<script[autoseller].data_key[data.lore_active].separated_by[|].parse_color>
         - run autosell_all_task def:<context.clicked_inventory>
