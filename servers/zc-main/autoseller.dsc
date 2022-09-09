@@ -68,6 +68,9 @@ autoseller_events:
       - if !<[item].worth.exists>:
         - stop
 
+      - if !<context.destination.can_fit[<context.item>]>:
+        - stop
+
       # Delay for event safety
       - wait 1t
 
