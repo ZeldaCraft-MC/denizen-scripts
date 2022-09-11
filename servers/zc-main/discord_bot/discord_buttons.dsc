@@ -470,7 +470,7 @@ d_butt_w:
       - define staff <[staff].include[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[<[role]>]>]>]>]>
     - flag <context.channel> <[ruuid]>.votes:++
     - flag <context.channel> <[ruuid]>.yesses:++
-    - define staff <[staff].deduplicate.size.sub[2]>
+    - define staff <[staff].deduplicate.size.sub[1]>
     - define amount <[staff].sub[1].div[2].round_down>
     - define half_staff <[amount].add[1]>
     - define new_msg <[msg].embed.first.map>
@@ -513,7 +513,7 @@ d_butt_w:
     - foreach <script[zc_bot_info].data_key[upvote_roles].values> as:role:
       - define staff <[staff].include[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[<[role]>]>]>]>]>
     - flag <context.channel> <[ruuid]>.votes:++
-    - define staff <[staff].deduplicate.size.sub[2]>
+    - define staff <[staff].deduplicate.size.sub[1]>
     - define amount <[staff].sub[1].div[2].round_down>
     - define half_staff <[amount].add[1]>
     - define new_msg <[msg].embed.first.map>
@@ -551,7 +551,7 @@ d_butt_w:
       - define staff <[staff].include[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[<[role]>]>]>]>]>
     - flag <context.channel> <[ruuid]>.votes:++
     - flag <context.channel> <[ruuid]>.yesses:++
-    - define staff <[staff].deduplicate.size.sub[2]>
+    - define staff <[staff].deduplicate.size.sub[1]>
     - define amount <[staff].sub[1].div[2].round_down>
     - define half_staff <[amount].add[1]>
     - define new_msg <[msg].embed.first.map>
@@ -594,7 +594,7 @@ d_butt_w:
     - foreach <script[zc_bot_info].data_key[upvote_roles].values> as:role:
       - define staff <[staff].include[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[<[role]>]>]>]>]>
     - flag <context.channel> <[ruuid]>.votes:++
-    - define staff <[staff].deduplicate.size.sub[2]>
+    - define staff <[staff].deduplicate.size.sub[1]>
     - define amount <[staff].sub[1].div[2].round_down>
     - define half_staff <[amount].add[1]>
     - define new_msg <[msg].embed.first.map>
