@@ -708,3 +708,8 @@ d_messages:
     description: <[text].separated_by[<&nl>]>
     thumbnail: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStagdyunL5zpU5cfCZnvS1YKvHYQH_4Vrsng&usqp=CAU
     color: aqua
+  user_banned_msg:
+    title: Interaction banned
+    description: I'm sorry but you seem to be banned from using this command for a certain time.<&nl>We ask you to not mess with the bot after this ban has been lifted.<&nl>You are not able to appeal for this ban.
+    thumbnail: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/RedX.svg/2048px-RedX.svg.png
+    color: red

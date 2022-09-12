@@ -651,6 +651,9 @@ ticket_slash_cmd:
   events:
     on discord slash command name:ticket:
       - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+        - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+        - stop
       - if <context.options.get[message]||<empty>> == <empty>:
         - if <context.interaction.user.flag[bot_int].contains[start_ticket]>:
           - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Ticket Creation].with[description].as[You cannot have more then one ticket creations going on at once].with[color].as[red]>"
@@ -700,6 +703,9 @@ report_slash_cmd:
   events:
     on discord slash command name:report:
       - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+        - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+        - stop
       - choose <context.options.get[type]>:
         - case bug:
           - if <context.options.get[message]||<empty>> == <empty>:
@@ -807,6 +813,9 @@ suggestion_slash_cmd:
   events:
     on discord slash command name:suggestion:
       - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+        - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+        - stop
       - if <context.options.get[message]||<empty>> == <empty>:
         - if <context.interaction.user.flag[bot_int].contains[post_sug]>:
           - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Suggestion].with[description].as[You cannot have more then one suggestion creations going on at once].with[color].as[red]>"
@@ -1124,4 +1133,3 @@ unmute_slash_command:
         - stop
       - adjust <[player]> is_muted:false
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[UnMute].with[description].as[<[player].name> has succesfully been unmuted].with[color].as[aqua]>"
-
