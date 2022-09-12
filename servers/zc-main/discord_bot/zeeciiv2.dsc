@@ -1225,7 +1225,7 @@ report_command:
   tab_completions:
     1: bug|grief|<server.online_players.parse[name]>
   script:
-  - if <script[zc_bot_info].data_key[MC_no_access_users]> contains <player.uuid>:
+  - if <script[zc_bot_info].data_key[mc_no_access_users]> contains <player.uuid>:
     - narrate "I'm sorry but it seems like your account is banned from using this command for a certain time." format:zc_text
     - narrate "We ask you to not mess with the bot after this ban has been lifted" format:zc_text
     - narrate "You are not able to appeal for this ban" format:zc_text
@@ -1298,7 +1298,7 @@ suggestion:
   usage: /suggestion <&lt>suggestion<&gt>
   debug: false
   script:
-  - if <script[zc_bot_info].data_key[MC_no_access_users]> contains <player.uuid>:
+  - if <script[zc_bot_info].data_key[mc_no_access_users]> contains <player.uuid>:
     - narrate "I'm sorry but it seems like your account is banned from using this command for a certain time." format:zc_text
     - narrate "We ask you to not mess with the bot after this ban has been lifted" format:zc_text
     - narrate "You are not able to appeal for this ban" format:zc_text
