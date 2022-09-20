@@ -1,4 +1,4 @@
-old_nbt_getmap:
+get_old_nbt_map:
   type: procedure
   debug: false
   definitions: obj
@@ -19,16 +19,3 @@ inv_has_old_nbt:
   definitions: inv
   script:
   - determine <[inv].list_contents.filter[proc[has_old_nbt]].is_truthy>
-
-update_item_nbt_to_flags:
-  type: task
-  debug: false
-  defintitions: inv|itemscript
-  script:
-  - define slots <[inv].find_all_items[<[itemscript]>]>
-  - foreach <[slots]> as:slot:
-    - if <proc[has_old_nbt].context[<[inv].slot[<[slot]>]>]>:
-      - define flags <proc[old_nbt_getmap].context[<[inv].slot[<[slot]>]>]>
-      - foreach <[flags]> key:flag as:flag_value:
-        - inventory adjust slot:<[slot]> remove_nbt:<[flag]> destination:<[inv]>
-        - inventory flag slot:<[slot]> <[flag]>:<[flag_value]> destination:<[inv]>

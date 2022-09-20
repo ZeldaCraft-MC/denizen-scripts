@@ -20,37 +20,39 @@ autoseller_events:
       - if !<context.inventory.contains_item[autoseller]>:
         - stop
       - foreach <context.inventory.list_contents.filter[script.name.equals[autoseller]]> as:item:
-        - if <[item].flag[active].if_null[false]>:
-          - run autosell_all_task def:<context.inventory> player:<player[<[item].flag[player]>]>
+        - define active <[item].flag[autoseller_active].if_null[<[item].proc[get_old_nbt_map].get[active]>]>
+        - if <[active]>:
+          - define active_player <[item].flag[autoseller_player].if_null[<[item].proc[get_old_nbt_map].get[player]>]>
+          - run autosell_all_task def:<context.inventory> player:<player[<[active_player]>]>
           - foreach stop
-      ## Updating old autosellers ##
-      - define inv <context.inventory>
-      - if <[inv].proc[inv_has_old_nbt]>:
-        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller
-      ## End update autosellers ##
+      ## Update old autosellers ##
+      - wait 1t
+      - if <context.inventory.proc[inv_has_old_nbt]>:
+        - run update_autoseller_nbt_to_flags def:<context.inventory>
+      ## End autoseller update ##
 
     on player breaks chest in:world_flagged:autoseller_enabled:
       - if !<context.location.inventory.contains_item[autoseller]>:
         - stop
       - foreach <context.location.inventory.list_contents.filter[script.name.equals[autoseller]]> as:item:
-        - if <[item].flag[active].if_null[false]>:
+        - define active <[item].flag[autoseller_active].if_null[<[item].proc[get_old_nbt_map].get[active]>]>
+        - if <[active]>:
           - narrate "<&c>Chests with active autosellers cannot be broken."
           - determine cancelled
-      ## Updating old autosellers ##
-      - define inv <context.location.inventory>
-      - if <[inv].proc[inv_has_old_nbt]>:
-        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller
-      ## End update autosellers ##
+      ## Update old autosellers ##
+      - wait 1t
+      - if <context.location.inventory.proc[inv_has_old_nbt]>:
+        - run update_autoseller_nbt_to_flags def:<context.location.inventory>
+      ## End autoseller update ##
 
     on item moves from inventory in:world_flagged:autoseller_enabled:
       # Prevent active autoseller from leaving chest via hopper
       ## If an old autoseller is trying to move, update it immediately
-      - if <context.item.script.name||null> == autoseller && <context.item.flag[active].if_null[true]>:
+      - if <context.item.script.name||null> == autoseller && <context.item.flag[autoseller_active].if_null[<context.item.proc[get_old_nbt_map].get[active]>]>:
         - determine passively cancelled
         - if <context.item.proc[has_old_nbt]>:
           - wait 1t
-          - define inv <context.origin>
-          - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller
+          - run update_autoseller_nbt_to_flags def:<context.origin>
           - stop
 
       # Ignore all non-chest inventories since autoseller should only work in chest.
@@ -64,7 +66,7 @@ autoseller_events:
       # Find all autosellers
       - define list <context.destination.list_contents.filter[script.name.is[==].to[AUTOSELLER]]||null>
       - foreach <[list]> as:item:
-        - if <[item].flag[active].if_null[false]>:
+        - if <[item].flag[autoseller_active].if_null[<[item].proc[get_old_nbt_map].get[active]>]>:
           - define active <[item]>
           - foreach stop
 
@@ -83,31 +85,29 @@ autoseller_events:
       - wait 1t
 
       # Sell item
-      - if <[active].flag[player].exists>:
-        - money give to:<player[<[active].flag[player]>]> quantity:<[item].worth.mul[<[item].quantity>]>
+      - define active_player <[item].flag[autoseller_player].if_null[<[item].proc[get_old_nbt_map].get[player]>]>
+      - if <[active_player].exists>:
+        - money give to:<player[<[active_player]>]> quantity:<[item].worth.mul[<[item].quantity>]>
         - take item:<[item].material.name> quantity:<[item].quantity> from:<context.destination>
 
-      ## Updating old autosellers ##
-      - define inv <context.origin>
-      - if <[inv].proc[inv_has_old_nbt]>:
-        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller
-      - define inv <context.destination>
-      - if <[inv].proc[inv_has_old_nbt]>:
-        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller
-      ## End update autosellers ##
+      ## Update old autosellers ##
+      - if <context.origin.proc[inv_has_old_nbt]>:
+        - run update_autoseller_nbt_to_flags def:<context.origin>
+      - if <context.destination.proc[inv_has_old_nbt]>:
+        - run update_autoseller_nbt_to_flags def:<context.destination>
+      ## End autoseller update ##
 
     # Negate all interaction with active autoseller
     on player clicks autoseller in chest in_area:world_flagged:autoseller_enabled:
-      - if <context.click> == shift_right || !<context.item.flag[active].if_null[false]>:
+      - if <context.click> == shift_right || !<context.item.flag[autoseller_active].if_null[<context.item.proc[get_old_nbt_map].get[active]>]>:
         - stop
       - determine passively cancelled
 
       - wait 1t
-      ## Updating old autosellers ##
-      - define inv <context.inventory>
-      - if <[inv].proc[inv_has_old_nbt]>:
-        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller
-      ## End update autosellers ##
+      ## Update old autosellers ##
+      - if <context.inventory.proc[inv_has_old_nbt]>:
+        - run update_autoseller_nbt_to_flags def:<context.inventory>
+      ## End autoseller update ##
       - inventory update
 
     # Toggle autoseller state
@@ -118,20 +118,21 @@ autoseller_events:
       - determine passively cancelled
       - wait 1t
 
-      - if <context.item.flag[active].if_null[false]>:
-        - if <context.item.flag[player]> == <player.uuid>:
+      - define active <context.item.flag[autoseller_active].if_null[<context.item.proc[get_old_nbt_map].get[active]>]>
+      - if <[active]>:
+        - if <context.item.flag[autoseller_player].if_null[<context.item.proc[get_old_nbt_map].get[player]>]> == <player.uuid>:
           - narrate '<&a>You have Deactivated your Autoseller. It is now safe to move.'
-          - inventory flag d:<context.clicked_inventory> slot:<context.slot> active:false
-          - inventory flag d:<context.clicked_inventory> slot:<context.slot> player:!
-          - inventory adjust d:<context.clicked_inventory> slot:<context.slot> lore:<script[autoseller].data_key[data.lore_inactive].separated_by[|].parse_color>
+          - inventory flag autoseller_active:false d:<context.clicked_inventory> slot:<context.slot>
+          - inventory flag autoseller_player:! d:<context.clicked_inventory> slot:<context.slot>
+          - inventory adjust lore:<script[autoseller].data_key[data.lore_inactive].separated_by[|].parse_color> d:<context.clicked_inventory> slot:<context.slot>
         - else:
           - narrate '<&c>You are not the owner of this Autoseller. You cannot disable it.'
 
-      - if !<context.item.flag[active].if_null[true]>:
+      - if !<[active]>:
         # Stop duplicate autosellers
         - define list <context.clicked_inventory.list_contents.filter[script.name.is[==].to[AUTOSELLER]]||null>
         - foreach <[list]> as:item:
-          - if <[item].flag[active]>:
+          - if <[item].flag[autoseller_active].if_null[<[item].proc[get_old_nbt_map].get[active]>]>:
             - narrate '<&c>You cannot activate a second Autoseller.'
             - stop
 
@@ -142,12 +143,38 @@ autoseller_events:
         # Activate the autoseller
         - narrate '<&a>You have now Activated your Autoseller.'
         - narrate '<&a>While it is Active you cannot move this item.'
-        - inventory flag d:<context.clicked_inventory> slot:<context.slot> active:true
-        - inventory adjust d:<context.clicked_inventory> slot:<context.slot> player:<player.uuid>
-        - inventory adjust d:<context.clicked_inventory> slot:<context.slot> lore:<script[autoseller].data_key[data.lore_active].separated_by[|].parse_color>
+        - inventory flag autoseller_active:true d:<context.clicked_inventory> slot:<context.slot>
+        - inventory flag autoseller_player:<player.uuid> d:<context.clicked_inventory> slot:<context.slot>
+        - inventory adjust lore:<script[autoseller].data_key[data.lore_active].separated_by[|].parse_color> d:<context.clicked_inventory> slot:<context.slot>
         - run autosell_all_task def:<context.clicked_inventory>
-      ## Updating old autosellers ##
-      - define inv <context.inventory>
-      - if <[inv].proc[inv_has_old_nbt]>:
-        - run update_item_nbt_to_flags def.inv:<[inv]> def.itemscript:autoseller
-      ## End update autosellers ##
+
+      ## Update old autosellers ##
+      - if <context.clicked_inventory.proc[inv_has_old_nbt]>:
+        - run update_autoseller_nbt_to_flags def:<context.clicked_inventory>
+      ## End autoseller update ##
+
+update_autoseller_nbt_to_flags:
+  type: task
+  debug: true
+  definitions: inv
+  script:
+  - define slots <[inv].find_all_items[autoseller]>
+  - foreach <[slots]> as:slot:
+    - define newItem <[inv].slot[<[slot]>].proc[autoseller_replaced_flags]>
+    - inventory set o:<[newItem]> d:<[inv]> slot:<[slot]>
+
+autoseller_replaced_flags:
+  type: procedure
+  debug: true
+  definitions: item
+  script:
+  - define newItem <item[autoseller]>
+  # If the item somehow already has flags And nbt, dont replace the existing flags
+  - define active <[item].flag[autoseller_active].if_null[<[item].proc[get_old_nbt_map].get[active]>]>
+  - define lore <[active].if_true[<script[autoseller].data_key[data.lore_active]>].if_false[<script[autoseller].data_key[data.lore_inactive]>].separated_by[|].parse_color>
+  - define active_player <[item].flag[autoseller_player].if_null[<[item].proc[get_old_nbt_map].get[player]||null>]>
+
+  - define newItem <[newItem].with_flag[autoseller_active:<[active]>].with[lore=<[lore]>]>
+  - if <[active_player].exists>:
+    - define newItem <[newItem].with_flag[autoseller_player:<[active_player]>]>
+  - determine <[newItem]>
