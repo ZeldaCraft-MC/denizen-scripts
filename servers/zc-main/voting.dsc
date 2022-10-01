@@ -337,6 +337,7 @@ voting_crate_world:
       - stop
     - flag <context.location> users:->:<player>
     - take item:common_vote_key quantity:1
+    - adjust <context.location> coreprotect_log_interaction:<player.name>
     - animatechest <context.location> open sound:true <player>
     - if <player.has_permission[zc.mod_fly]>:
       - define prize <script[voting_prizes].parsed_key[prizes].get[common].exclude[Flytime_6-Minutes].include[Stinky_egg].random>
@@ -398,6 +399,7 @@ voting_crate_world:
       - stop
     - flag <context.location> users:->:<player>
     - take item:rare_vote_key quantity:1
+    - adjust <context.location> coreprotect_log_interaction:<player.name>
     - animatechest <context.location> open sound:true <player>
     - if <player.has_permission[zc.mod_fly]>:
       - define prize <script[voting_prizes].parsed_key[prizes].get[rare].exclude[Flytime_10-Minutes|Flytime_15-Minutes].include[bottled_fart|Caff_Coupon].random>
