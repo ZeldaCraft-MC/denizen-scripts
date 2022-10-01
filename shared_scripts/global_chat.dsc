@@ -241,7 +241,7 @@ global_chat_events:
           - define params <[params]>&slim
         - definemap data:
             username: <player.name>
-            avatar_url: http://88.99.71.100:8080/portrait/<[skin_data].get[id]><[params]>
+            avatar_url: http://play.zeldacraft.com:8080/portrait/<[skin_data].get[id]><[params]>
         - define data <[data].with[content].as[<[msg].strip_color.replace[*].with[\*].replace[_].with[\_].replace[~].with[\~].replace[`].with[\`]>]>
         - webget <secret[minecraft_chat_webhook]> headers:<map[Content-Type=application/json]> data:<[data].to_json>
     on redis pubsub message channel:global_reload_*:
