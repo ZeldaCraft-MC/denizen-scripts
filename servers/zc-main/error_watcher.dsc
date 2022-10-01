@@ -6,6 +6,7 @@ error_handler_conf:
   type: data
   debug: false
   data:
+    is_bungee_server: true
     bot_id: zc-info
     channel_id: 1010782332740972574
     # Shows errors that crop up in any scripts that get run
@@ -150,7 +151,7 @@ error_handlers:
       - inject <script> path:build_estimated_script
       - define output:->:<[estimated_script]>
 
-    - if !<bungee.server.exists>:
+    - if !<script[error_handler_conf].data_key[data.is_bungee_server]>:
       - define message ":warning: Scripting error occurred, see below for details (Click expand for more info)"
     - else:
       - define message ":warning: **[<bungee.server>]** Scripting error occurred, see below for details (Click expand for more info)"
@@ -166,7 +167,7 @@ error_handlers:
     - define error_messages <context.queue.flag[_script_errors.<[uniq]>].deduplicate>
     - flag <context.queue> _script_errors.<[uniq]>:!
     - define message ":clipboard:"
-    - if <bungee.server.exists>:
+    - if <script[error_handler_conf].data_key[data.is_bungee_server]>:
       - define message "<[message]> **[<bungee.server>]**"
     - if <context.queue.id.before[_]> == excommand:
       - define message "<[message]> Error in /ex command:<n>```"
@@ -184,7 +185,7 @@ error_handlers:
     - ~discordmessage id:<[bot_id]> channel:<[channel]> <[message]>
   show_nonscript_nonqueue_error:
     - define message ":clipboard:"
-    - if <bungee.server.exists>:
+    - if <script[error_handler_conf].data_key[data.is_bungee_server]>:
       - define message "<[message]> **[<bungee.server>]**"
     - define message "<[message]> ERROR: <context.message>"
     - define bot_id <script[error_handler_conf].parsed_key[data.bot_id]>
@@ -194,7 +195,7 @@ error_handlers:
     on server generates exception:
       - ratelimit exception_lock 5t
       - define message ":bangbang:"
-      - if <bungee.server.exists>:
+      - if <script[error_handler_conf].data_key[data.is_bungee_server]>:
         - define message "<[message]> **[<bungee.server>]**"
       - define message "<[message]> SERVER GENERATED EXCEPTION -- <context.type><&co> <context.message>"
 
