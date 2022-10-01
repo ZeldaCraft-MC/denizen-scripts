@@ -37,8 +37,10 @@ zc_bot_info:
     - unarmed
     - acrobatics
     - alchemy
+  # input the uuid of the player
   mc_no_access_users:
     - no_one
+  # input the id of the discord user
   dis_no_access_users:
     - no-one
   images:
@@ -467,6 +469,10 @@ bot_connect:
       - flag <server.online_players> last_announce:<server.flag[last_announce]>
     # suggestion channel messages
     - if <context.new_message.channel.id> == <script[zc_bot_info].data_key[suggestion_channel].get[id]>:
+      - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+        - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+        - adjust <context.new_message> delete
+        - stop
       - if <context.new_message.replied_to||none> == none:
         - define u <context.new_message.author>
         - define msg <context.new_message.text_no_mentions>
@@ -492,6 +498,10 @@ bot_connect:
         - adjust <context.new_message> delete
     # bug report channel messages
     - if <context.new_message.channel.id> == <script[zc_bot_info].data_key[bugs_channel].get[id]>:
+      - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+        - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+        - adjust <context.new_message> delete
+        - stop
       - if <context.new_message.replied_to||none> == none:
         - define u <context.new_message.author>
         - define msg <context.new_message.text_no_mentions>
@@ -864,6 +874,10 @@ bot_connect:
             - yaml unload id:<[uuid]>
         # report command
         - case report:
+          - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+            - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+            - adjust <context.new_message> delete
+            - stop
           - choose <[args].get[2]||default>:
             #bug report
             - case bug:
@@ -973,6 +987,10 @@ bot_connect:
             - ~discordmessage id:zc-info reply:<context.new_message> "Pick one" rows:<[selection]> no_mention
         # suggestion command
         - case suggestion:
+          - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+            - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+            - adjust <context.new_message> delete
+            - stop
           - if <[args].size> > 1:
             - define msg <[args].get[2].to[999999].space_separated>
             - define u <context.new_message.author>
@@ -1117,6 +1135,10 @@ bot_connect:
             - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[help_msg]>]> rows:<[selection]> no_mention
         # ticket command
         - case ticket:
+          - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+            - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+            - adjust <context.new_message> delete
+            - stop
           - if <[args].size> > 1:
             - if <context.new_message.author.flag[bot_int].size||0> >= 25:
               - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[too_many_int_msg]>]> no_mention
@@ -1203,7 +1225,7 @@ report_command:
   tab_completions:
     1: bug|grief|<server.online_players.parse[name]>
   script:
-  - if <script[zc_bot_info].data_key[MC_no_access_users].contains[<player.uuid>]>:
+  - if <script[zc_bot_info].data_key[mc_no_access_users]> contains <player.uuid>:
     - narrate "I'm sorry but it seems like your account is banned from using this command for a certain time." format:zc_text
     - narrate "We ask you to not mess with the bot after this ban has been lifted" format:zc_text
     - narrate "You are not able to appeal for this ban" format:zc_text
@@ -1276,7 +1298,7 @@ suggestion:
   usage: /suggestion <&lt>suggestion<&gt>
   debug: false
   script:
-  - if <script[zc_bot_info].data_key[MC_no_access_users].contains[<player.uuid>]>:
+  - if <script[zc_bot_info].data_key[mc_no_access_users]> contains <player.uuid>:
     - narrate "I'm sorry but it seems like your account is banned from using this command for a certain time." format:zc_text
     - narrate "We ask you to not mess with the bot after this ban has been lifted" format:zc_text
     - narrate "You are not able to appeal for this ban" format:zc_text

@@ -378,6 +378,9 @@ d_dm_int_w:
         - ~discordmessage id:zc-info user:<context.new_message.author> <discord_embed.with_map[<script[d_messages].parsed_key[mod_app_post]>]>
         - flag <context.new_message.author> mod_app:!
       - default:
+        - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+          - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+          - stop
         - if !<context.new_message.author.has_flag[bot_int]> || <context.new_message.author.flag[bot_int].is_empty>:
           - inject sug_int_menu
           - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[no_ints_msg]>]> rows:<[selection]> no_mention

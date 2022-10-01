@@ -239,6 +239,9 @@ d_butt_w:
     - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
     - choose <context.option.get[value]>:
       - case ticket:
+        - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+          - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+          - stop
         - if <context.interaction.user.flag[bot_int].contains[start_ticket]>:
           - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Ticket Creation].with[description].as[You cannot have more then one ticket creations going on at once].with[color].as[red]>"
           - stop
@@ -253,6 +256,9 @@ d_butt_w:
         - ~discordmessage id:zc-info user:<context.interaction.user> "<discord_embed.with[title].as[Ticket Creation].with[description].as[Type your question/message for the staff team in here]>" rows:<[butt]>
         - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[dm_msg]>]>
       - case sug:
+        - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+          - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+          - stop
         - if <context.interaction.user.flag[bot_int].contains[post_sug]>:
           - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Suggestion].with[description].as[You cannot have more then one suggestion creations going on at once].with[color].as[red]>"
           - stop
@@ -267,6 +273,9 @@ d_butt_w:
         - ~discordmessage id:zc-info user:<context.interaction.user> "<discord_embed.with[title].as[Suggestion].with[description].as[Type your suggestion in here]>" rows:<[butt]>
         - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[dm_msg]>]>
       - case bug_report:
+        - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+          - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+          - stop
         - if <context.interaction.user.flag[bot_int].contains[post_bug]>:
           - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Bug report].with[description].as[You cannot report more then one bug at a time].with[color].as[red]>"
           - stop
@@ -439,6 +448,10 @@ d_butt_w:
     - flag <[msg]> cur_page:<[page]>
     - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Voters].with[description].as[Page has been changed].with[color].as[lime]>"
     on discord button clicked id:reply_bug_* for:zc-info:
+    - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+      - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+      - stop
     - if !<context.channel.has_flag[<context.button.map.get[id].after[reply_bug_]>]>:
       - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
       - discordinteraction reply interaction:<context.interaction> "This suggestion is already accepted/declined"
@@ -789,6 +802,10 @@ d_butt_w:
     - ~discordinteraction reply interaction:<context.interaction> "The suggestion has been denied!"
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Denied Suggestion].with[description].as[<context.interaction.user.name> marked a suggestion as denied<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[lime]>"
     on discord button clicked id:reply_suggestion_* for:zc-info:
+    - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+      - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+      - stop
     - if !<context.channel.has_flag[<context.button.map.get[id].after[reply_suggestion_]>]>:
       - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
       - discordinteraction reply interaction:<context.interaction> "This suggestion is already accepted/declined"
