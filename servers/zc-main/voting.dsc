@@ -304,7 +304,7 @@ get_voters:
         - foreach stop
       - if <[voters].is_empty>:
         - define voters "<list[No one voted at all, or something went wrong]>"
-    - ~discordmessage id:zc-info edit:859085204197736498 channel:757903718640517191 "<discord_embed.with[title].as[Top voters all time].with[description].as[<[voters].separated_by[<&nl>]>].with[color].as[aqua].with[footer].as[Last updated].with[timestamp].as[<util.time_now>]>"
+    - ~discordmessage id:zc-info edit:1034567370871685141 channel:757903718640517191 "<discord_embed.with[title].as[Top voters all time].with[description].as[<[voters].separated_by[<&nl>]>].with[color].as[aqua].with[footer].as[Last updated].with[timestamp].as[<util.time_now>]>"
 
 voting_crate_world:
   type: world
