@@ -48,7 +48,7 @@ shops_script:
         price: 200
       15:
         item: redstone
-        price: 50
+        price: 75
       16:
         item: bricks
         price: 25
@@ -112,6 +112,18 @@ shops_script:
       36:
         item: snow_block
         price: 25
+      37:
+        item: deepslate
+        price: 75
+      38:
+        item: mud
+        price: 10
+      39:
+        item: mangrove_propagule
+      price: 50
+      40:
+        item: mangrove_log
+      price:  25
     wool_shop:
       1:
         item: white_wool
@@ -385,6 +397,9 @@ shops_script:
       34:
         item: glass_pane
         price: 30
+      35:
+        item: tinted_glass
+        price: 500
 
     sand_shop:
       1:
@@ -636,6 +651,15 @@ shops_script:
       20:
         item: tropical_fish_spawn_egg
         price: 1000
+      21:
+        item: allay_spawn_egg
+        price: 10000
+      22:
+        item: frog_spawn_egg
+        price: 4000
+      23:
+        item: tadpole_spawn_egg
+        price: 4000
 
     terracotta_shop:
       1:
@@ -889,6 +913,18 @@ shops_script:
       20:
         item: quartz_block
         price: 25
+      21:
+        item: shroomlight
+        price: 100
+      22:
+        item: orche_froglight
+        price: 100
+      23:
+        item: verdant_froglight
+        price: 100
+      24:
+        item: pearlescent_froglight
+        price: 100
 
     potion_shop:
       1:
@@ -941,7 +977,7 @@ shops_script:
         price: 200
       17:
         item: redstone
-        price: 50
+        price: 75
       18:
         item: magma_cream
         price: 250
@@ -1139,6 +1175,15 @@ shops_script:
       33:
         item: white_banner
         price: 250
+      34:
+        item: vine
+        price: 10
+      35:
+        item: glow_lichen
+        price: 10
+      36:
+        item: sculk_vein
+        price: 10
 
     sand&concrete_shop:
       1:
