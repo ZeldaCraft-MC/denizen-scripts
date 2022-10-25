@@ -917,7 +917,7 @@ shops_script:
         item: shroomlight
         price: 100
       22:
-        item: orche_froglight
+        item: ochre_froglight
         price: 100
       23:
         item: verdant_froglight
