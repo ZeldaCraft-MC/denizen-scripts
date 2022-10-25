@@ -1400,4 +1400,4 @@ get_list:
       - else:
         - define amount <[players].size>
         - define players <[players].separated_by[<&nl>]>
-    - ~discordmessage id:zc-info edit:757905073660755998 channel:757903718640517191 "<discord_embed.with[author_name].as[ZeldaCraft online players].with[author_url].as[https://www.zeldacraft.com/].with[color].as[aqua].with[footer].as[Last updated].with[timestamp].as[<util.time_now>].with[description].as[**<[amount]||0> player(s) online**<&nl><[players]>]>"
+    - ~discordmessage id:zc-info edit:1034566869723664525 channel:757903718640517191 "<discord_embed.with[author_name].as[ZeldaCraft online players].with[author_url].as[https://www.zeldacraft.com/].with[color].as[aqua].with[footer].as[Last updated].with[timestamp].as[<util.time_now>].with[description].as[**<[amount]||0> player(s) online**<&nl><[players]>]>"
