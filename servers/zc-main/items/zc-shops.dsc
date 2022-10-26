@@ -120,10 +120,10 @@ shops_script:
         price: 10
       39:
         item: mangrove_propagule
-      price: 50
+        price: 50
       40:
         item: mangrove_log
-      price:  25
+        price:  25
     wool_shop:
       1:
         item: white_wool
