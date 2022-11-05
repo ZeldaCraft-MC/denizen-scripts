@@ -1677,3 +1677,61 @@ warden_leggings_world:
       on delta time secondly:
         - foreach <server.online_players.filter[has_equipped[warden_leggings]]> as:__player:
           - playeffect effect:white_ash quantity:<util.random.int[1].to[5]> at:<player.location>
+
+phantom_ganon_sword:
+  type: item
+  debug: false
+  material: netherite_sword
+  data:
+    discover: true
+  display name: <&color[#3DB0C6]>Phantom Blade
+  enchantments:
+    - DAMAGE_ALL: 8
+  mechanisms:
+    custom_model_data: 100
+  lore:
+   - <&color[#52C6DC]>An illusion of the mind
+   - <&7>created with forsaken magic.
+   - <&color[#52C6DC]>Once wielded by a powerful phantom.
+
+phantom_ganon_drop:
+  type: world
+  events:
+    on player kills warden:
+    - define droprate 1
+    - if <util.random_chance[<[droprate]>]>:
+      - drop phantom_ganon_sword
+
+great_fairy_sword:
+  type: item
+  debug: false
+  material: netherite_sword
+  data:
+    discover: true
+  display name: <&color[#F131FF]>Great Fairy Sword
+  enchantments:
+    - DAMAGE_ALL: 6
+  mechanisms:
+    custom_model_data: 300
+  lore:
+   - <&color[#30BB2C]>A blessing bestowed upon those
+   - <&color[#3CD937]>who helped fairies in the Era of Time.
+   - <&color[#30BB2C]>Fairy magic flows through you.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - vines|cured_quartz|vines
+        - cured_quartz|plate_of_courage|cured_quartz
+        - vines|netherite_sword|vines
+
+great_fairy_sword_world:
+  type: world
+  events:
+      after player hits entity:
+       - playsound <player.location> sound:entity_allay_ambient_with_item volume:1.5
+       - playeffect effect:heart quantity:<util.random.int[1].to[5]> at:<player.location>
+       - cast regeneration duration:2s
+      on delta time secondly:
+        - foreach <server.online_players.filter[has_equipped[great_fairy_sword]]> as:__player:
+          - playeffect effect:heart quantity:<util.random.int[1].to[5]> at:<player.location>
