@@ -24,9 +24,9 @@ malice_fragment_drop:
   type: world
   events:
     on player kills warden:
-    - define droprate 1
+    - define droprate 5
     - if <util.random_chance[<[droprate]>]>:
-      - drop malice_fragment[quantity=<util.random.int[1].to[3]>]
+      - drop malice_fragment
 
 compressed_sculk:
   type: item
@@ -168,6 +168,28 @@ cured_quartz_plate:
         - cured_quartz|cured_quartz|cured_quartz
         - cured_quartz|amethyst_cluster|cured_quartz
         - cured_quartz|cured_quartz|cured_quartz
+
+mythril_dragon_scale:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: <&color[#79A6E2]>Mythril Dragon Scale
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 1000
+  lore:
+    - <&color[#A7CCFD]>Stronger than steel
+    - <&color[#A7CCFD]>but at what cost?
+  recipes:
+    1:
+      type: shaped
+      input:
+        - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
+        - zc_dragon_scale|zc_mythril|zc_dragon_scale
+        - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
 
 reinforced_string:
   type: item
@@ -384,7 +406,7 @@ gold_dust_drop:
       - else if <player.item_in_hand.enchantment_map.get[fortune]> == 3:
         - define droprate 5
     - if <util.random_chance[<[droprate]>]>:
-      - determine deku_root[quantity=<util.random.int[1].to[3]>]
+      - determine gold_dust[quantity=<util.random.int[1].to[3]>]
 
 chu_chu_jelly:
   type: item
@@ -396,7 +418,6 @@ chu_chu_jelly:
   mechanisms:
     hides:
       - ENCHANTS
-    custom_model_data: 200
   lore:
     - <&a>A gelatinous ball of
     - <&a>green chu chu jelly.
@@ -525,6 +546,84 @@ timestone_shard:
     - <&color[#5EADA3]>A fragment of a timestone
     - <&color[#5EAD69]>lost to the Era of the Sky.
 
+obsidian_plate:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: <&color[#7A13B0]>Obsidian Plate
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 1500
+    hides:
+      - ENCHANTS
+  lore:
+    - <&color[#A12EE7]>Forged from the tears
+    - <&color[#A12EE7]>of lost souls.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - crying_obsidian|crying_obsidian|crying_obsidian
+        - crying_obsidian|netherite_ingot|crying_obsidian
+        - crying_obsidian|crying_obsidian|crying_obsidian
+
+gear_of_time:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: <&color[#E0A7FD]>Gear of Time
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 300
+    hides:
+      - ENCHANTS
+  lore:
+    - <&color[#F6A7FD]>A fragment of the Gate of Hylia
+    - <&color[#CC75FE]>lost long ago. Perhaps with time,
+    - <&color[#8567FF]>it shall work again.
+
+
+gear_of_time_drop:
+  type: world
+  events:
+    on player breaks budding_amethyst:
+    - if <player.item_in_hand.material.name> != netherite_pickaxe:
+      - stop
+    - define droprate 0.5
+    - if <player.item_in_hand.enchantment_map.contains[fortune]>:
+      - if <player.item_in_hand.enchantment_map.get[fortune]> == 1:
+        - define droprate 1
+      - else if <player.item_in_hand.enchantment_map.get[fortune]> == 2:
+        - define droprate 2.5
+      - else if <player.item_in_hand.enchantment_map.get[fortune]> == 3:
+        - define droprate 5
+    - if <util.random_chance[<[droprate]>]>:
+      - determine gear_of_time[quantity=<util.random.int[1].to[3]>]
+
+
+timestone_shard_drop:
+  type: world
+  events:
+    on player breaks deepslate_lapis_ore|deepslate_emerald_ore:
+    - if <player.item_in_hand.material.name> != netherite_pickaxe:
+      - stop
+    - define droprate 0.5
+    - if <player.item_in_hand.enchantment_map.contains[fortune]>:
+      - if <player.item_in_hand.enchantment_map.get[fortune]> == 1:
+        - define droprate 1
+      - else if <player.item_in_hand.enchantment_map.get[fortune]> == 2:
+        - define droprate 2.5
+      - else if <player.item_in_hand.enchantment_map.get[fortune]> == 3:
+        - define droprate 5
+    - if <util.random_chance[<[droprate]>]>:
+      - determine timestone_shard[quantity=<util.random.int[1].to[3]>]
+
 # Actual crafted recipe items and item events--
 
 calamitous_boots:
@@ -629,7 +728,7 @@ keaton_boots:
   type: item
   material: GOLDEN_BOOTS
   Data: 0
-  display name: <&6>Keaton<&6>Boots
+  display name: <&6>Keaton Boots
   Lore:
         - <&e>Soft boots made from fur,
         - <&e>They have a strange aura.
@@ -690,7 +789,7 @@ fairy_bow:
     - POWER: 6
     - DURABILITY: 4
   mechanisms:
-    custom_model_data: 200
+    custom_model_data: 100
 
   lore:
     - <&color[#60dc53]>A thing that doesn't change
@@ -700,7 +799,7 @@ fairy_bow:
     1:
       type: shaped
       input:
-        - zc_courage_shard|deku_root|zc_triforce_gem
+        - plate_of_courage|deku_root|zc_triforce_gem
         - deku_root|skulltula_silk|air
         - zc_triforce_gem|air|air
 
@@ -714,9 +813,9 @@ fairy_bow_scripts:
         - itemcooldown bow duration:1s
       - determine passively cancelled
       - shoot fairy_arrow origin:<player> speed:<context.force> save:arrow no_rotate def:<context.projectile>
-      - playsound <player.location> sound:ENTITY_FOX_SPIT volume:1 pitch:<util.random.decimal[1.15].to[1.5].add[<context.force.div[10]>]>
+      - playsound <player.location> sound:block_amethyst_block_fall volume:1 pitch:<util.random.decimal[1.15].to[1.5].add[<context.force.div[10]>]>
       - run fairy_bow_particles def:<entry[arrow].shot_entity>|<context.force.div[10]>
-    on player shoots block with:soul_arrow:
+    on player shoots block with:fairy_arrow:
       - remove <context.projectile>
     on arrow hits entity:
       - if <context.hit_entity.invulnerable>:
@@ -733,7 +832,7 @@ fairy_bow_particles:
     - wait 2t
     - while <[arrow].is_spawned||false> && <util.time_now.is_before[<[spawned].add[60s]>]||false>:
       - playeffect <[arrow].location> effect:totem quantity:<util.random.int[1].to[5]> offset:0,3,0 velocity:0,0,0 visibility:100
-      - playsound <[arrow].location> sound:entity_puffer_fish_blow_up pitch:<util.random.decimal[1.2].to[1.8]>
+      - playsound <[arrow].location> sound:block_amethyst_block_chime pitch:<util.random.decimal[1.2].to[1.8]>
       - wait <util.random.int[1].to[3]>t
     - if <[arrow].is_spawned||false>:
       - remove <[arrow]>
@@ -770,8 +869,6 @@ chu_chu_club:
   data:
     discover: true
   display name: <&color[#02d500]>Chu Chu Club
-  mechanisms:
-    custom_model_data: 2500
   enchantments:
     - KNOCKBACK: 5
   lore:
@@ -899,7 +996,7 @@ sword_spirit_shovel:
     discover: true
   display name: <&color[#00aded]>Sword Spirit Shovel
   mechanisms:
-    custom_model_data: 500
+    custom_model_data: 200
   lore:
     - <&color[#b4a7d6]>Left behind by the
     - <&color[#b4a7d6]>Hero of the Sky, it
@@ -920,7 +1017,7 @@ sword_spirit_pickaxe:
     discover: true
   display name: <&color[#00aded]>Sword Spirit Pickaxe
   mechanisms:
-    custom_model_data: 500
+    custom_model_data: 200
   lore:
     - <&color[#b4a7d6]>It is said that
     - <&color[#b4a7d6]>this tool had
@@ -941,7 +1038,7 @@ sword_spirit_axe:
     discover: true
   display name: <&color[#00aded]>Sword Spirit Axe
   mechanisms:
-    custom_model_data: 500
+    custom_model_data: 200
   lore:
     - <&color[#b4a7d6]>Lost to time, The blade
     - <&color[#b4a7d6]>allows you to render
@@ -1152,3 +1249,373 @@ mythril_longbow:
         - air|zc_mythril|reinforced_string
         - zc_mythril|air|reinforced_string
         - air|zc_mythril|reinforced_string
+
+blin_basher:
+  type: item
+  debug: false
+  material: netherite_pickaxe
+  data:
+    discover: true
+  display name: <&color[#57009a]>Blin Basher
+  enchantments:
+    - DIG_SPEED: 5
+    - KNOCKBACK: 5
+  mechanisms:
+    custom_model_data: 800
+  lore:
+    - <empty>
+    - <&color[#6d00c1]>A hammer made from Bokoblin Horns.
+    - <&color[#6d00c1]>Smash and Crash!
+  recipes:
+    1:
+      type: shaped
+      input:
+        - bokoblin_horn|obsidian_plate|crying_obsidian
+        - air|amethyst_shard|obsidian_plate
+        - moblin_fang|air|bokoblin_horn
+
+decaying_hoe:
+  type: item
+  debug: false
+  material: iron_hoe
+  data:
+    discover: true
+  display name: <&color[#E2BE45]>Decaying Hoe
+  mechanisms:
+    custom_model_data: 800
+  enchantments:
+    - LOOT_BONUS_BLOCKS: 4
+  lore:
+    - <empty>
+    - <&color[#D8C565]>The decaying remains of a Moblin,
+    - <&color[#C28B72]>fashioned into a crude hoe.
+    - <&color[#A03485]>The smell is putrid.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - moblin_horn|moblin_horn|large_amethyst_bud
+        - air|raw_gold_block|moblin_fang
+        - obsidian_plate|raw_gold_block|air
+
+moblin_axe:
+  type: item
+  debug: false
+  material: golden_axe
+  data:
+    discover: true
+  display name: <&color[#E2BE45]>Spiked Boko Axe
+  mechanisms:
+    custom_model_data: 600
+  enchantments:
+    - DAMAGE_UNDEAD: 6
+  lore:
+    - <empty>
+    - <&color[#C28B72]>Spiked thorns and teeth
+    - <&color[#C28B72]>rip flesh from bone.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - moblin_fang|moblin_horn|bokoblin_guts
+        - air|moblin_fang|air
+        - obsidian_plate|stick|air
+
+moblin_pickaxe:
+  type: item
+  debug: false
+  material: golden_pickaxe
+  data:
+    discover: true
+  display name: <&color[#349EA0]>Molblin Pickaxe
+  mechanisms:
+    custom_model_data: 600
+  enchantments:
+    - DIG_SPEED: 5
+    - LOOT_BONUS_BLOCKS: 4
+    - DAMAGE_UNDEAD: 3
+  lore:
+    - <empty>
+    - <&color[#42BEDF]>A pickaxe fashioned from those,
+    - <&color[#42C8D8]>who deal with the Prince of Darkness.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - moblin_horn|moblin_guts|moblin_guts
+        - air|onox_shard|moblin_guts
+        - netherite_ingot|air|moblin_horn
+
+time_lord_blade:
+  type: item
+  debug: false
+  material: diamond_sword
+  data:
+    discover: true
+  display name: <&b>Time <&3>Lord <&a>Blade
+  mechanisms:
+    custom_model_data: 800
+  enchantments:
+    - DAMAGE_ALL: 5
+    - MENDING
+  lore:
+    - <&color[#42C8D8]>Fragments of the legendary
+    - <&color[#42C8D8]>blade of a Fierce Deity.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|gear_of_time|air
+        - air|timestone_shard|air
+        - air|zc_mythril_hilt|air
+
+time_lord_shovel:
+  type: item
+  debug: false
+  material: diamond_shovel
+  data:
+    discover: true
+  display name: <&b>Time <&3>Lord <&a>Shovel
+  mechanisms:
+    custom_model_data: 500
+  lore:
+    - <&color[#42C8D8]>Dig deep into
+    - <&color[#42C8D8]>memories of a falseborn world.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|timestone_shard|air
+        - air|cured_quartz_plate|air
+        - air|tempered_iron_plate|air
+
+time_lord_pickaxe:
+  type: item
+  debug: false
+  material: diamond_pickaxe
+  data:
+    discover: true
+  display name: <&b>Time <&3>Lord <&a>Pickaxe
+  mechanisms:
+    custom_model_data: 500
+  lore:
+    - <&color[#42C8D8]>Forge your way
+    - <&color[#42C8D8]>into your own creation,
+    - <&color[#42C8D8]>avoid a terrible fate.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - timestone_shard|gear_of_time|timestone_shard
+        - air|cured_quartz_plate|air
+        - air|tempered_iron_plate|air
+
+time_lord_axe:
+  type: item
+  debug: false
+  material: diamond_axe
+  data:
+    discover: true
+  display name: <&b>Time <&3>Lord <&a>Axe
+  mechanisms:
+    custom_model_data: 500
+  lore:
+    - <&color[#42C8D8]>A haunting axe
+    - <&color[#42C8D8]>found deep within the
+    - <&color[#42C8D8]> forgotten land of Termina.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - gear_of_time|timestone_shard|air
+        - timestone_shard|cured_quartz_plate|air
+        - air|tempered_iron_plate|air
+
+warden_boots:
+  type: item
+  debug: false
+  material: leather_boots
+  data:
+    discover: true
+  display name: <&color[#1697AF]>Warden Boots
+  mechanisms:
+    color: 41,223,235
+    custom_model_data: 200
+    attribute_modifiers:
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 4
+          slot: feet
+  enchantments:
+    - DURABILITY: 6
+  lore:
+    - <&b>Pulsating lights swirl
+    - <&b>from the depths below.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - fragmented_sculk|air|fragmented_sculk
+        - malice_fragment|air|malice_fragment
+
+warden_chestplate:
+  type: item
+  debug: false
+  material: leather_chestplate
+  data:
+    discover: true
+  display name: <&color[#1697AF]>Warden Chestplate
+  mechanisms:
+    color: 41,223,235
+    custom_model_data: 300
+    attribute_modifiers:
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 9
+          slot: chest
+  enchantments:
+    - DURABILITY: 6
+  lore:
+    - <&b>Otherwordly heartbeats thrum
+    - <&b>within a cracked ribcage.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - fragmented_sculk|air|fragmented_sculk
+        - fragmented_sculk|malice_fragment|fragmented_sculk
+        - fragmented_sculk|fragmented_sculk|fragmented_sculk
+
+warden_helmet:
+  type: item
+  debug: false
+  material: leather_helmet
+  data:
+    discover: true
+  display name: <&color[#1697AF]>Warden Helmet
+  mechanisms:
+    color: 41,223,235
+    custom_model_data: 100
+    attribute_modifiers:
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 4
+          slot: head
+  enchantments:
+    - DURABILITY: 6
+  lore:
+    - <&b>Beneath this hollow husk
+    - <&b>lay spirits clouded in shadow.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - fragmented_sculk|fragmented_sculk|fragmented_sculk
+        - malice_fragment|air|malice_fragment
+
+warden_leggings:
+  type: item
+  debug: false
+  material: leather_leggings
+  data:
+    discover: true
+  display name: <&color[#1697AF]>Warden Leggings
+  mechanisms:
+    color: 41,223,235
+    custom_model_data: 200
+    attribute_modifiers:
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 7
+          slot: legs
+  enchantments:
+    - DURABILITY: 6
+  lore:
+    - <&b>Tread softly within the darkness,
+    - <&b>whispering souls cry out.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - fragmented_sculk|fragmented_sculk|fragmented_sculk
+        - malice_fragment|air|malice_fragment
+        - fragmented_sculk|air|fragmented_sculk
+
+knight_bow:
+  type: item
+  debug: false
+  material: bow
+  data:
+    discover: true
+  display name: <&color[#999999]>Knights Bow
+  mechanisms:
+      custom_model_data: 200
+  enchantments:
+    - ARROW_DAMAGE: 3
+  lore:
+  - <&7>The sturdy metal construction of
+  - <&7>this bow offers superior durability.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|tempered_iron_plate|skultulla_silk
+        - plate_of_wisdom|air|skultulla_silk
+        - air|tempered_iron_plate|skultulla_silk
+
+royal_guard_bow:
+  type: item
+  debug: false
+  material: bow
+  data:
+    discover: true
+  display name: <&color[#A00063]>Royal Guard's Bow
+  mechanisms:
+      custom_model_data: 400
+      hides: attributes
+      attribute_modifiers:
+        generic_attack_speed:
+          1:
+            operation: add_number
+            amount: 1
+            slot: hand
+  enchantments:
+    - ARROW_DAMAGE: 5
+  lore:
+  - <&color[#C63D92]>Made with ancient technology,
+  - <&color[#C63D92]>it boasts a high rate of firepower
+  - <&color[#C63D92]>but has low durability.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|netherite_ingot|onox_shard
+        - obsidian_plate|air|reinforced_string
+        - air|netherite_ingot|onox_shard
+
+heros_bow:
+  type: item
+  debug: false
+  material: bow
+  data:
+    discover: true
+  display name: <&e>Hero's Bow
+  mechanisms:
+      custom_model_data: 300
+  enchantments:
+    - ARROW_DAMAGE: 3
+    - DURABILITY: 3
+  lore:
+  - <&6>A replica of the bow said
+  - <&6>to be used in the Era of Twilight.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|stick|gold_skultulla_silk
+        - plate_of_courage|air|gold_skultulla_silk
+        - air|stick|gold_skultulla_silk
