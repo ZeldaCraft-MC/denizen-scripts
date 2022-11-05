@@ -1447,8 +1447,14 @@ warden_boots:
           operation: add_number
           amount: 4
           slot: feet
+      generic_armor_toughness:
+        1:
+          operation: add_number
+          amount: 3
+          slot: feet
   enchantments:
     - DURABILITY: 6
+    - SOUL_SPEED: 5
   lore:
     - <&b>Pulsating lights swirl
     - <&b>from the depths below.
@@ -1474,6 +1480,11 @@ warden_chestplate:
         1:
           operation: add_number
           amount: 9
+          slot: chest
+      generic_armor_toughness:
+        1:
+          operation: add_number
+          amount: 3
           slot: chest
   enchantments:
     - DURABILITY: 6
@@ -1504,6 +1515,11 @@ warden_helmet:
           operation: add_number
           amount: 4
           slot: head
+      generic_armor_toughness:
+        1:
+          operation: add_number
+          amount: 3
+          slot: head
   enchantments:
     - DURABILITY: 6
   lore:
@@ -1531,6 +1547,11 @@ warden_leggings:
         1:
           operation: add_number
           amount: 7
+          slot: legs
+      generic_armor_toughness:
+        1:
+          operation: add_number
+          amount: 3
           slot: legs
   enchantments:
     - DURABILITY: 6
@@ -1619,3 +1640,40 @@ heros_bow:
         - air|stick|gold_skultulla_silk
         - plate_of_courage|air|gold_skultulla_silk
         - air|stick|gold_skultulla_silk
+
+warden_helmet_world:
+  type: world
+  events:
+      after player equips warden_helmet:
+       - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
+       - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
+      on delta time secondly:
+        - foreach <server.online_players.filter[has_equipped[warden_helmet]]> as:__player:
+          - playeffect effect:white_ash quantity:<util.random.int[1].to[5]> at:<player.location>
+warden_chestplate_world:
+  type: world
+  events:
+      after player equips warden_chestplate:
+       - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
+      on delta time secondly:
+        - foreach <server.online_players.filter[has_equipped[warden_chestplate]]> as:__player:
+          - playeffect effect:sculk_soul quantity:<util.random.int[1].to[5]> at:<player.location>
+          - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
+warden_boots_world:
+  type: world
+  events:
+      after player equips warden_boots:
+       - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
+       - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
+      on delta time secondly:
+        - foreach <server.online_players.filter[has_equipped[warden_boots]]> as:__player:
+          - playeffect effect:sculk_charge quantity:<util.random.int[1].to[5]> at:<player.location>
+warden_leggings_world:
+  type: world
+  events:
+      after player equips warden_leggings:
+       - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
+       - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
+      on delta time secondly:
+        - foreach <server.online_players.filter[has_equipped[warden_leggings]]> as:__player:
+          - playeffect effect:white_ash quantity:<util.random.int[1].to[5]> at:<player.location>
