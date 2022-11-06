@@ -1902,29 +1902,29 @@ relic_of_shadow:
 relic_of_dreams_world:
   type: world
   events:
-      on player holds item item:relic_of_dreams:
-          - playsound <player.location> sound:block_amethyst_block_chime
       on delta time secondly:
        - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_dreams]]> as:__player:
           - playeffect effect:wax_off quantity:<util.random.int[1].to[5]> at:<player.location>
           - cast JUMP duration:2s
+      on player swaps items offhand:relic_of_dreams:
+          - playsound <player.location> sound:block_amethyst_block_chime
 
 relic_of_wrath_world:
   type: world
   events:
-      on player holds item item:relic_of_wrath:
-          - playsound <player.location> sound:entity_warden_heartbeat
       on delta time secondly:
        - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_wrath]]> as:__player:
           - playeffect effect:damage_indicator quantity:<util.random.int[1].to[5]> at:<player.location>
           - cast INCREASE_DAMAGE duration:2s
+      on player swaps items offhand:relic_of_wrath:
+          - playsound <player.location> sound:entity_warden_heartbeat
 
 relic_of_shadow_world:
   type: world
   events:
-      on player holds item item:relic_of_shadow:
-          - playsound <player.location> sound:entity_phantom_swoop
       on delta time secondly:
        - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_shadow]]> as:__player:
           - playeffect effect:enchantment_table quantity:<util.random.int[1].to[5]> at:<player.location>
-          - cast NIGHT_VISION duration:2s
+          - cast NIGHT_VISION duration:12s
+      on player swaps items offhand:relic_of_shadow:
+          - playsound <player.location> sound:ambient_soul_sand_valley_mood
