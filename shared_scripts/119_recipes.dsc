@@ -180,6 +180,8 @@ mythril_dragon_scale:
     - LUCK: 1
   mechanisms:
     custom_model_data: 1000
+    hides:
+    - ENCHANTS
   lore:
     - <&color[#A7CCFD]>Stronger than steel
     - <&color[#A7CCFD]>but at what cost?
@@ -1422,7 +1424,7 @@ time_lord_axe:
   lore:
     - <&color[#42C8D8]>A haunting axe
     - <&color[#42C8D8]>found deep within the
-    - <&color[#42C8D8]> forgotten land of Termina.
+    - <&color[#42C8D8]>forgotten land of Termina.
   recipes:
     1:
       type: shaped
@@ -1728,10 +1730,190 @@ great_fairy_sword:
 great_fairy_sword_world:
   type: world
   events:
-      after player hits entity:
+      after player damages entity with:great_fairy_sword:
        - playsound <player.location> sound:entity_allay_ambient_with_item volume:1.5
        - playeffect effect:heart quantity:<util.random.int[1].to[5]> at:<player.location>
        - cast regeneration duration:2s
+
+phantom_ganon_sword_world:
+  type: world
+  events:
+      after player damages entity with:phantom_ganon_sword:
+       - playsound <player.location> sound:ambient_soul_sand_valley_mood volume:1
+       - playeffect effect:sonic_boom quantity:<util.random.int[1].to[5]> at:<player.location>
+       - cast darkness duration:2s
+
+frost_drake_fishing_rod:
+  type: item
+  debug: false
+  material: fishing_rod
+  data:
+    discover: true
+  display name: <&color[#79A6E2]>Frost Drake Rod
+  enchantments:
+    - LUCK: 7
+  lore:
+    - <&color[#A7CCFD]>A frozen rod fished from the frozen
+    - <&color[#A7CCFD]>Lake Hylia in the Era of Time.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|air|tempered_iron_plate
+        - air|mythril_dragon_scale|skultulla_string
+        - mythril_dragon_scale|air|skultulla_string
+
+rod_of_tenacity:
+  type: item
+  debug: false
+  material: fishing_rod
+  data:
+    discover: true
+  display name: <&color[#f1c232]>Rod of Tenacity
+  enchantments:
+    - LUCK: 5
+  lore:
+    - <&color[#ffe599]>A rod crafted out of the strongest
+    - <&color[#ffe599]>metal and rarest silks.
+    - <&color[#ffe599]>Said to bring good luck.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - air|air|cured_quartz_plate
+        - air|plate_of_wisdom|gold_skultulla_string
+        - plate_of_wisdom|air|gold_skultulla_string
+
+croak_cloak:
+  type: item
+  debug: false
+  material: elytra
+  data:
+    discover: true
+  display name: <&color[#30BB2C]>Croak Cloak
+  lore:
+   - <&color[#3CD937]>Ribbit Ribbit
+   - <&color[#3CD937]>The sound of frogs comforts you.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - chu_chu_jelly|ochre_froglight|chu_chu_jelly
+        - verdant_froglight|elytra|pearlescent_froglight
+        - moss_block|moss_block|moss_block
+
+croak_cloak_world:
+  type: world
+  events:
+      after player equips croak_cloak:
+       - playsound <player.location> sound:entity_frog_ambient volume:1.5
       on delta time secondly:
-        - foreach <server.online_players.filter[has_equipped[great_fairy_sword]]> as:__player:
-          - playeffect effect:heart quantity:<util.random.int[1].to[5]> at:<player.location>
+        - foreach <server.online_players.filter[has_equipped[croak_cloak]]> as:__player:
+          - playeffect effect:scrape quantity:<util.random.int[1].to[5]> at:<player.location>
+          - playsound <player.location> sound:entity_frog_ambient volume:1.5
+
+relic_of_dreams:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: <&color[#F131FF]>Relic of Dreams
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 1200
+    hides:
+      - enchants
+  lore:
+   - <&color[#C305F2]>A Legendary Relic granted to the
+   - <&color[#05E0F2]>Hero of Legend in a great slumber.
+   - <&color[#F205A3]>The Wind Fish lives on in your memory.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - cured_quartz_plate|cured_quartz_plate|timestone_shard
+        - cured_quartz_plate|gear_of_time|wizzrobe_crytal
+        - timestone_shard|wizzrobe_crystal|wizzrobe_crystal
+
+relic_of_wrath:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: <&color[#9700B9]>Relic of Wrath
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 1300
+    hides:
+      - enchants
+  lore:
+   - <&color[#9D4BB0]>A Legendary Relic found in the ruins
+   - <&color[#9FA26C]>said to be broken by the Hero of Time.
+   - <&color[#A35863]>A corrupt aura eminates from it.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - plate_of_power|netherite_ingot|plate_of_power
+        - onox_shard|malice_fragment|onox_shard
+        - gold_skultulla_silk|netherite_ingot|gold_skultulla_silk
+
+
+relic_of_shadow:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: <&color[#8F8F8F]>Relic of Shadow
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 1100
+    hides:
+      - enchants
+  lore:
+   - <&color[#707070]>A Legendary Relic from the Twilight Realm.
+   - <&color[#28A4AC]>They say that the Twilight Princess
+   - <&color[#DA9317]>once used it to defeat the Usuper King Zant.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - timestone_shard|netherite_ingot|timestone_shard
+        - fragmented_sculk|sculk|fragmentd_sculk
+        - tempered_iron_plate|tempered_iron_plate|tempered_iron_plate
+
+relic_of_dreams_world:
+  type: world
+  events:
+      on player holds item item:relic_of_dreams:
+          - playsound <player.location> sound:block_amethyst_block_chime
+      on delta time secondly:
+       - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_dreams]]> as:__player:
+          - playeffect effect:wax_off quantity:<util.random.int[1].to[5]> at:<player.location>
+          - cast JUMP duration:2s
+
+relic_of_wrath_world:
+  type: world
+  events:
+      on player holds item item:relic_of_wrath:
+          - playsound <player.location> sound:entity_warden_heartbeat
+      on delta time secondly:
+       - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_wrath]]> as:__player:
+          - playeffect effect:damage_indicator quantity:<util.random.int[1].to[5]> at:<player.location>
+          - cast INCREASE_DAMAGE duration:2s
+
+relic_of_shadow_world:
+  type: world
+  events:
+      on player holds item item:relic_of_shadow:
+          - playsound <player.location> sound:entity_phantom_swoop
+      on delta time secondly:
+       - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_shadow]]> as:__player:
+          - playeffect effect:enchantment_table quantity:<util.random.int[1].to[5]> at:<player.location>
+          - cast NIGHT_VISION duration:2s
