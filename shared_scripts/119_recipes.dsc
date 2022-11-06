@@ -206,6 +206,11 @@ reinforced_string:
     custom_model_data: 300
   lore:
     - <&color[#9553C6]>A sturdy spool of reinforced string.
+  recipes:
+    1:
+      type: smithing
+      base: string
+      upgrade: zc_dragon_scale
 
 loftwing_feather:
   type: item
@@ -280,6 +285,7 @@ onox_shard:
   enchantments:
     - LUCK: 1
   mechanisms:
+    custom_model_data: 1400
     hides:
       - ENCHANTS
   lore:
@@ -729,7 +735,6 @@ soul_arrow:
 keaton_boots:
   type: item
   material: GOLDEN_BOOTS
-  Data: 0
   display name: <&6>Keaton Boots
   Lore:
         - <&e>Soft boots made from fur,
@@ -1068,6 +1073,12 @@ dragon_boots:
   lore:
     - <&color[#9851CE]>Did we really
     - <&color[#9851CE]>win the war?
+  recipes:
+    1:
+      type: shaped
+      input:
+        - zc_dragon_scale|air|zc_dragon_scale
+        - zc_dragon_scale|air|zc_dragon_scale
 
 dragon_leggings:
   type: item
@@ -1075,7 +1086,7 @@ dragon_leggings:
   material: netherite_leggings
   data:
     discover: true
-  display name: <&color[#7934AD]>Dragon Graeves
+  display name: <&color[#7934AD]>Dragon Greaves
   enchantments:
     - PROTECTION_ENVIRONMENTAL: 4
     - PROTECTION_EXPLOSIONS: 3
@@ -1165,7 +1176,7 @@ mythril_dragon_leggings:
   material: netherite_leggings
   data:
     discover: true
-  display name: <&color[#5187CE]>Frozen Drake Graeves
+  display name: <&color[#5187CE]>Frozen Drake Greaves
   enchantments:
     - PROTECTION_ENVIRONMENTAL: 6
     - PROTECTION_EXPLOSIONS: 5
@@ -1586,9 +1597,9 @@ knight_bow:
     1:
       type: shaped
       input:
-        - air|tempered_iron_plate|skultulla_silk
-        - plate_of_wisdom|air|skultulla_silk
-        - air|tempered_iron_plate|skultulla_silk
+        - air|tempered_iron_plate|skulltula_silk
+        - plate_of_wisdom|air|skulltula_silk
+        - air|tempered_iron_plate|skulltula_silk
 
 royal_guard_bow:
   type: item
@@ -1620,7 +1631,7 @@ royal_guard_bow:
         - obsidian_plate|air|reinforced_string
         - air|netherite_ingot|onox_shard
 
-heros_bow:
+hero_bow:
   type: item
   debug: false
   material: bow
@@ -1639,9 +1650,9 @@ heros_bow:
     1:
       type: shaped
       input:
-        - air|stick|gold_skultulla_silk
-        - plate_of_courage|air|gold_skultulla_silk
-        - air|stick|gold_skultulla_silk
+        - air|stick|gold_skulltula_silk
+        - plate_of_courage|air|gold_skulltula_silk
+        - air|stick|gold_skulltula_silk
 
 warden_helmet_world:
   type: world
@@ -1723,9 +1734,9 @@ great_fairy_sword:
     1:
       type: shaped
       input:
-        - vines|cured_quartz|vines
+        - vine|cured_quartz|vine
         - cured_quartz|plate_of_courage|cured_quartz
-        - vines|netherite_sword|vines
+        - vine|netherite_sword|vine
 
 great_fairy_sword_world:
   type: world
@@ -1760,8 +1771,8 @@ frost_drake_fishing_rod:
       type: shaped
       input:
         - air|air|tempered_iron_plate
-        - air|mythril_dragon_scale|skultulla_string
-        - mythril_dragon_scale|air|skultulla_string
+        - air|mythril_dragon_scale|skulltula_silk
+        - mythril_dragon_scale|air|skulltula_silk
 
 rod_of_tenacity:
   type: item
@@ -1781,8 +1792,8 @@ rod_of_tenacity:
       type: shaped
       input:
         - air|air|cured_quartz_plate
-        - air|plate_of_wisdom|gold_skultulla_string
-        - plate_of_wisdom|air|gold_skultulla_string
+        - air|plate_of_wisdom|gold_skulltula_silk
+        - plate_of_wisdom|air|gold_skulltula_silk
 
 croak_cloak:
   type: item
@@ -1834,7 +1845,7 @@ relic_of_dreams:
       type: shaped
       input:
         - cured_quartz_plate|cured_quartz_plate|timestone_shard
-        - cured_quartz_plate|gear_of_time|wizzrobe_crytal
+        - cured_quartz_plate|gear_of_time|wizzrobe_crystal
         - timestone_shard|wizzrobe_crystal|wizzrobe_crystal
 
 relic_of_wrath:
@@ -1860,7 +1871,7 @@ relic_of_wrath:
       input:
         - plate_of_power|netherite_ingot|plate_of_power
         - onox_shard|malice_fragment|onox_shard
-        - gold_skultulla_silk|netherite_ingot|gold_skultulla_silk
+        - gold_skulltula_silk|netherite_ingot|gold_skulltula_silk
 
 
 relic_of_shadow:
@@ -1885,7 +1896,7 @@ relic_of_shadow:
       type: shaped
       input:
         - timestone_shard|netherite_ingot|timestone_shard
-        - fragmented_sculk|sculk|fragmentd_sculk
+        - fragmented_sculk|sculk|fragmented_sculk
         - tempered_iron_plate|tempered_iron_plate|tempered_iron_plate
 
 relic_of_dreams_world:
