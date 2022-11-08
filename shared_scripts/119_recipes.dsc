@@ -14,11 +14,11 @@ malice_fragment:
   mechanisms:
     custom_model_data: 100
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
-   - <&color[#A03485]>A fragment of malice
-   - <&color[#A03485]>left behind by the Calamity.
-   - <&color[#A03485]>What power does it hold?
+  - <&color[#A03485]>A fragment of malice
+  - <&color[#A03485]>left behind by the Calamity.
+  - <&color[#A03485]>What power does it hold?
 
 malice_fragment_drop:
   type: world
@@ -40,7 +40,7 @@ compressed_sculk:
   mechanisms:
     custom_model_data: 200
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
   - <&color[#1697AF]>A compressed mass of sculk.
   - <&color[#1697AF]>It pulsates with otherwordly flesh.
@@ -86,7 +86,7 @@ sculk_string:
     - LUCK: 1
   mechanisms:
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&3>A piece of tainted string.
   recipes:
@@ -107,7 +107,7 @@ tempered_iron_plate:
   mechanisms:
     custom_model_data: 200
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&7>A solid plate perfect for
     - <&7>armor smithing.
@@ -131,7 +131,7 @@ cured_quartz:
   mechanisms:
     custom_model_data: 100
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#E9C8FF]>This quartz has been cleansed
     - <&color[#E9C8FF]>with amethyst, offering protection
@@ -156,7 +156,7 @@ cured_quartz_plate:
   mechanisms:
     custom_model_data: 200
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#E9C8FF]>A plate forged from
     - <&color[#E9C8FF]>cured quartz. You can
@@ -202,7 +202,7 @@ reinforced_string:
     - LUCK: 1
   mechanisms:
     hides:
-      - ENCHANTS
+    - ENCHANTS
     custom_model_data: 300
   lore:
     - <&color[#9553C6]>A sturdy spool of reinforced string.
@@ -221,7 +221,7 @@ loftwing_feather:
     - LUCK: 1
   mechanisms:
     hides:
-      - ENCHANTS
+    - ENCHANTS
     custom_model_data: 100
   lore:
     - <&c>A crimson feather dropped
@@ -244,7 +244,7 @@ wizzrobe_crystal:
     - LUCK: 1
   mechanisms:
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&d>A crystal broken off
     - <&d>from a Wizzrobe's robe.
@@ -267,7 +267,7 @@ enhanced_loftwing_feather:
   mechanisms:
     custom_model_data: 200
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#B999E6]>Once a simple feather
     - <&color[#B999E6]>now gleaming with magic.
@@ -287,7 +287,7 @@ onox_shard:
   mechanisms:
     custom_model_data: 1400
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#8B8B8B]>A shard of solid onox that
     - <&color[#8B8B8B]>reminds you of a seasons long past.
@@ -319,7 +319,7 @@ deku_root:
     - LUCK: 1
   mechanisms:
     hides:
-      - ENCHANTS
+    - ENCHANTS
     custom_model_data: 800
   lore:
     - <&color[#AD865E]>A root from remnants
@@ -351,7 +351,7 @@ skulltula_silk:
     - LUCK: 1
   mechanisms:
     hides:
-      - ENCHANTS
+    - ENCHANTS
     custom_model_data: 100
   lore:
     - <&f>Silk from a giant spider.
@@ -374,7 +374,7 @@ gold_skulltula_silk:
   mechanisms:
     custom_model_data: 200
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&e>Silk that seems to be
     - <&e>spun from solid gold.
@@ -393,7 +393,7 @@ gold_dust:
     - LUCK: 1
   mechanisms:
     hides:
-      - ENCHANTS
+    - ENCHANTS
     custom_model_data: 1000
   lore:
     - <&e>Mined by the Gorons of old,
@@ -425,7 +425,7 @@ chu_chu_jelly:
     - LUCK: 1
   mechanisms:
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&a>A gelatinous ball of
     - <&a>green chu chu jelly.
@@ -448,7 +448,7 @@ keaton_fur_tuft:
     - LUCK: 1
   mechanisms:
     hides:
-      - ENCHANTS
+    - ENCHANTS
     custom_model_data: 100
   lore:
     - <&e>A piece of shedded fur
@@ -474,7 +474,7 @@ plate_of_power:
     enchantments:
       - LUCK: 1
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#d24848]>Forged from the
     - <&color[#d24848]>fallen souls. Power
@@ -499,7 +499,7 @@ plate_of_wisdom:
     enchantments:
       - LUCK: 1
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#ffe599]>From the brighest
     - <&color[#ffe599]>of minds come the
@@ -524,7 +524,7 @@ plate_of_courage:
     enchantments:
       - LUCK: 1
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#b6d7a8]>Let tenacity and
     - <&color[#b6d7a8]>determination shine
@@ -549,7 +549,7 @@ timestone_shard:
   mechanisms:
     custom_model_data: 1700
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#5EADA3]>A fragment of a timestone
     - <&color[#5EAD69]>lost to the Era of the Sky.
@@ -566,7 +566,7 @@ obsidian_plate:
   mechanisms:
     custom_model_data: 1500
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#A12EE7]>Forged from the tears
     - <&color[#A12EE7]>of lost souls.
@@ -590,7 +590,7 @@ gear_of_time:
   mechanisms:
     custom_model_data: 300
     hides:
-      - ENCHANTS
+    - ENCHANTS
   lore:
     - <&color[#F6A7FD]>A fragment of the Gate of Hylia
     - <&color[#CC75FE]>lost long ago. Perhaps with time,
@@ -661,15 +661,15 @@ calamitous_boots_world:
   type: world
   events:
       after player equips calamitous_boots:
-       - cast increase_damage amplifier:1.0 duration:1639
-       - cast darkness duration:1639
-       - playsound <player.location> sound:ENTITY_WARDEN_SONIC_BOOM volume:1.5
+      - cast increase_damage amplifier:1.0 duration:1639
+      - cast darkness duration:1639
+      - playsound <player.location> sound:ENTITY_WARDEN_SONIC_BOOM volume:1.5
       on delta time secondly:
         - foreach <server.online_players.filter[has_equipped[calamitous_boots]]> as:__player:
           - playeffect effect:sonic_boom quantity:5 at:<player.location>
       after player unequips calamitous_boots:
-       - cast increase_damage remove
-       - cast darkness remove
+      - cast increase_damage remove
+      - cast darkness remove
 
 soul_bow:
   type: item
@@ -745,19 +745,21 @@ keaton_boots:
     - SOUL_SPEED:3
   mechanisms:
     hides:
-      - enchants
+    - enchants
   recipes:
       type: shaped
       input:
         - keaton_fur_tuft|air|keaton_fur_tuft
         - keaton_fur_tuft|air|keaton_fur_tuft
+
 keaton_boots_world:
   type: world
   events:
       after player equips keaton_boots:
-       - cast speed amplifier:1.0 duration:1639
+      - cast speed amplifier:1.0 duration:1639
       after player unequips keaton_boots:
-       - cast speed remove
+      - cast speed remove
+
 loftwing_cap:
     type: item
     debug: false
@@ -777,6 +779,7 @@ loftwing_cap:
       input:
         - enhanced_loftwing_feather|enhanced_loftwing_feather|enhanced_loftwing_feather
         - enhanced_loftwing_feather|air|enhanced_loftwing_feather
+
 loftwing_cap_world:
   type: world
   events:
@@ -849,26 +852,6 @@ fairy_arrow:
   debug: false
   entity_type: arrow[damage=0.1;pickup_status=CREATIVE_ONLY;]
 
-zc_bomb:
-  type: item
-  debug: false
-  material: slime_ball
-  data:
-    discover: true
-  display name: Bomb
-  mechanisms:
-    custom_model_data: 100
-  lore:
-    - Be careful to
-    - detonate it on time!
-  recipes:
-    1:
-      type: shaped
-      input:
-        - tnt|zc_power_dust|tnt
-        - zc_power_dust|ink_sac|zc_power_dust
-        - tnt|zc_power_dust|tnt
-
 chu_chu_club:
   type: item
   debug: false
@@ -888,7 +871,6 @@ chu_chu_club:
         - chu_chu_jelly
         - chu_chu_jelly
         - stick
-
 
 diamond_demon_pickaxe:
   type: item
@@ -1658,8 +1640,8 @@ warden_helmet_world:
   type: world
   events:
       after player equips warden_helmet:
-       - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
-       - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
+      - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
+      - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
       on delta time secondly:
         - foreach <server.online_players.filter[has_equipped[warden_helmet]]> as:__player:
           - playeffect effect:white_ash quantity:<util.random.int[1].to[5]> at:<player.location>
@@ -1667,7 +1649,7 @@ warden_chestplate_world:
   type: world
   events:
       after player equips warden_chestplate:
-       - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
+      - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
       on delta time secondly:
         - foreach <server.online_players.filter[has_equipped[warden_chestplate]]> as:__player:
           - playeffect effect:sculk_soul quantity:<util.random.int[1].to[5]> at:<player.location>
@@ -1676,8 +1658,8 @@ warden_boots_world:
   type: world
   events:
       after player equips warden_boots:
-       - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
-       - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
+      - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
+      - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
       on delta time secondly:
         - foreach <server.online_players.filter[has_equipped[warden_boots]]> as:__player:
           - playeffect effect:sculk_charge quantity:<util.random.int[1].to[5]> at:<player.location>
@@ -1685,8 +1667,8 @@ warden_leggings_world:
   type: world
   events:
       after player equips warden_leggings:
-       - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
-       - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
+      - playsound <player.location> sound:entity_warden_tendril_clicks volume:1.5
+      - playsound <player.location> sound:entity_warden_heartbeat volume:1.5
       on delta time secondly:
         - foreach <server.online_players.filter[has_equipped[warden_leggings]]> as:__player:
           - playeffect effect:white_ash quantity:<util.random.int[1].to[5]> at:<player.location>
@@ -1703,9 +1685,9 @@ phantom_ganon_sword:
   mechanisms:
     custom_model_data: 100
   lore:
-   - <&color[#52C6DC]>An illusion of the mind
-   - <&7>created with forsaken magic.
-   - <&color[#52C6DC]>Once wielded by a powerful phantom.
+  - <&color[#52C6DC]>An illusion of the mind
+  - <&7>created with forsaken magic.
+  - <&color[#52C6DC]>Once wielded by a powerful phantom.
 
 phantom_ganon_drop:
   type: world
@@ -1727,9 +1709,9 @@ great_fairy_sword:
   mechanisms:
     custom_model_data: 300
   lore:
-   - <&color[#30BB2C]>A blessing bestowed upon those
-   - <&color[#3CD937]>who helped fairies in the Era of Time.
-   - <&color[#30BB2C]>Fairy magic flows through you.
+  - <&color[#30BB2C]>A blessing bestowed upon those
+  - <&color[#3CD937]>who helped fairies in the Era of Time.
+  - <&color[#30BB2C]>Fairy magic flows through you.
   recipes:
     1:
       type: shaped
@@ -1742,17 +1724,17 @@ great_fairy_sword_world:
   type: world
   events:
       after player damages entity with:great_fairy_sword:
-       - playsound <player.location> sound:entity_allay_ambient_with_item volume:1.5
-       - playeffect effect:heart quantity:<util.random.int[1].to[5]> at:<player.location>
-       - cast regeneration duration:2s
+      - playsound <player.location> sound:entity_allay_ambient_with_item volume:1.5
+      - playeffect effect:heart quantity:<util.random.int[1].to[5]> at:<player.location>
+      - cast regeneration duration:2s
 
 phantom_ganon_sword_world:
   type: world
   events:
       after player damages entity with:phantom_ganon_sword:
-       - playsound <player.location> sound:ambient_soul_sand_valley_mood volume:1
-       - playeffect effect:sonic_boom quantity:<util.random.int[1].to[5]> at:<player.location>
-       - cast darkness duration:2s
+      - playsound <player.location> sound:ambient_soul_sand_valley_mood volume:1
+      - playeffect effect:sonic_boom quantity:<util.random.int[1].to[5]> at:<player.location>
+      - cast darkness duration:2s
 
 frost_drake_fishing_rod:
   type: item
@@ -1803,8 +1785,8 @@ croak_cloak:
     discover: true
   display name: <&color[#30BB2C]>Croak Cloak
   lore:
-   - <&color[#3CD937]>Ribbit Ribbit
-   - <&color[#3CD937]>The sound of frogs comforts you.
+  - <&color[#3CD937]>Ribbit Ribbit
+  - <&color[#3CD937]>The sound of frogs comforts you.
   recipes:
     1:
       type: shaped
@@ -1817,7 +1799,7 @@ croak_cloak_world:
   type: world
   events:
       after player equips croak_cloak:
-       - playsound <player.location> sound:entity_frog_ambient volume:1.5
+      - playsound <player.location> sound:entity_frog_ambient volume:1.5
       on delta time secondly:
         - foreach <server.online_players.filter[has_equipped[croak_cloak]]> as:__player:
           - playeffect effect:scrape quantity:<util.random.int[1].to[5]> at:<player.location>
@@ -1837,9 +1819,9 @@ relic_of_dreams:
     hides:
       - enchants
   lore:
-   - <&color[#C305F2]>A Legendary Relic granted to the
-   - <&color[#05E0F2]>Hero of Legend in a great slumber.
-   - <&color[#F205A3]>The Wind Fish lives on in your memory.
+  - <&color[#C305F2]>A Legendary Relic granted to the
+  - <&color[#05E0F2]>Hero of Legend in a great slumber.
+  - <&color[#F205A3]>The Wind Fish lives on in your memory.
   recipes:
     1:
       type: shaped
@@ -1862,9 +1844,9 @@ relic_of_wrath:
     hides:
       - enchants
   lore:
-   - <&color[#9D4BB0]>A Legendary Relic found in the ruins
-   - <&color[#9FA26C]>said to be broken by the Hero of Time.
-   - <&color[#A35863]>A corrupt aura eminates from it.
+  - <&color[#9D4BB0]>A Legendary Relic found in the ruins
+  - <&color[#9FA26C]>said to be broken by the Hero of Time.
+  - <&color[#A35863]>A corrupt aura eminates from it.
   recipes:
     1:
       type: shaped
@@ -1888,9 +1870,9 @@ relic_of_shadow:
     hides:
       - enchants
   lore:
-   - <&color[#707070]>A Legendary Relic from the Twilight Realm.
-   - <&color[#28A4AC]>They say that the Twilight Princess
-   - <&color[#DA9317]>once used it to defeat the Usuper King Zant.
+  - <&color[#707070]>A Legendary Relic from the Twilight Realm.
+  - <&color[#28A4AC]>They say that the Twilight Princess
+  - <&color[#DA9317]>once used it to defeat the Usuper King Zant.
   recipes:
     1:
       type: shaped
@@ -1903,7 +1885,7 @@ relic_of_dreams_world:
   type: world
   events:
       on delta time secondly:
-       - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_dreams]]> as:__player:
+      - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_dreams]]> as:__player:
           - playeffect effect:wax_off quantity:<util.random.int[1].to[5]> at:<player.location>
           - cast JUMP duration:2s
       on player swaps items offhand:relic_of_dreams:
@@ -1913,7 +1895,7 @@ relic_of_wrath_world:
   type: world
   events:
       on delta time secondly:
-       - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_wrath]]> as:__player:
+      - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_wrath]]> as:__player:
           - playeffect effect:damage_indicator quantity:<util.random.int[1].to[5]> at:<player.location>
           - cast INCREASE_DAMAGE duration:2s
       on player swaps items offhand:relic_of_wrath:
@@ -1923,7 +1905,7 @@ relic_of_shadow_world:
   type: world
   events:
       on delta time secondly:
-       - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_shadow]]> as:__player:
+      - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_shadow]]> as:__player:
           - playeffect effect:enchantment_table quantity:<util.random.int[1].to[5]> at:<player.location>
           - cast NIGHT_VISION duration:12s
       on player swaps items offhand:relic_of_shadow:
