@@ -1055,6 +1055,10 @@ dragon_boots:
   lore:
     - <&color[#9851CE]>Did we really
     - <&color[#9851CE]>win the war?
+  flags:
+    custom_durability:
+      max: 581
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1077,6 +1081,10 @@ dragon_leggings:
   lore:
     - <&color[#9851CE]>People who do not believe in dragons,
     - <&color[#9851CE]>are often eaten by dragons.
+  flags:
+    custom_durability:
+      max: 692
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1100,6 +1108,10 @@ dragon_chestplate:
   lore:
     - <&color[#9851CE]>Come not between the dragon
     - <&color[#9851CE]>and her wrath.
+  flags:
+    custom_durability:
+      max: 666
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1123,6 +1135,10 @@ dragon_helmet:
   lore:
     - <&color[#9851CE]>Here are dragons to be slain,
     - <&color[#9851CE]>and treasures to be gain.
+  flags:
+    custom_durability:
+      max: 607
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1145,6 +1161,10 @@ mythril_dragon_boots:
     custom_model_data: 600
   lore:
     - <&color[#79A6E2]>War never really changes.
+  flags:
+    custom_durability:
+      max: 881
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1168,6 +1188,10 @@ mythril_dragon_leggings:
   lore:
     - <&color[#79A6E2]>Never anger the beast that
     - <&color[#79A6E2]>sleeps at the end of the world.
+  flags:
+    custom_durability:
+      max: 1110
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1192,6 +1216,10 @@ mythril_dragon_chestplate:
   lore:
     - <&color[#79A6E2]>So comes snow after fire,
     - <&color[#79A6E2]>and even dragons have their endings.
+  flags:
+    custom_durability:
+      max: 1184
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1216,6 +1244,10 @@ mythril_dragon_helmet:
   lore:
     - <&color[#79A6E2]>Death comes out
     - <&color[#79A6E2]>of the dragons mouth.
+  flags:
+    custom_durability:
+      max: 814
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1356,6 +1388,10 @@ time_lord_blade:
   lore:
     - <&color[#42C8D8]>Fragments of the legendary
     - <&color[#42C8D8]>blade of a Fierce Deity.
+  flags:
+    custom_durability:
+      max: 3000
+      current: 0
   recipes:
     1:
       type: shaped
