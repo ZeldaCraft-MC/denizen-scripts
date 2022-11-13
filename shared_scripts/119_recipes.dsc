@@ -1966,3 +1966,110 @@ relic_of_shadow_world:
           - cast NIGHT_VISION duration:12s
       on player swaps items offhand:relic_of_shadow:
           - playsound <player.location> sound:ambient_soul_sand_valley_mood
+
+relic_of_sands:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: <&3>Relic of Sands
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 2100
+    hides:
+      - enchants
+  lore:
+  - <&color[#0BBCD1]>A Legendary Relic from the Twilight Realm.
+  - <&color[#C2CF80]>They say that the Twilight Princess
+  - <&color[#0BBCD1]>once used it to defeat the Usuper King Zant.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - plate_of_wisdom|plate_of_courage|plate_of_wisdom
+        - glass|gold_dust|glass
+        - plate_of_wisdom|plate_of_courage|plate_of_wisdom
+
+relic_of_sands_world:
+  type: world
+  events:
+      on delta time secondly:
+      - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_sands]]> as:__player:
+          - playeffect effect:bubble_pop quantity:<util.random.int[1].to[5]> at:<player.location>
+          - cast INVISIBILITY duration:12s
+      on player swaps items offhand:relic_of_sands:
+          - playsound <player.location> sound:block_amethyst_block_hit
+
+relic_of_time:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: <&color[#997D4E]>Relic of Time
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 1900
+    hides:
+      - enchants
+  lore:
+  - <&color[#B69661]>A Legendary Relic from the Era of Time.
+  - <&color[#76B661]>The Sage of the Forest was said to
+  - <&color[#5D9A49]>give this to the Hero of Time.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - zc_triforce_gem|deku_root|deku_root
+        - brown_terracotta|plate_of_courage|brown_terracotta
+        - plate_of_courage|brown_terracotta|brown_terracotta
+
+relic_of_time_world:
+  type: world
+  events:
+      on delta time secondly:
+      - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_time]]> as:__player:
+          - playeffect effect:note quantity:<util.random.int[1].to[5]> at:<player.location>
+          - cast HEAL duration:12s
+      on player swaps items offhand:relic_of_time:
+          - playsound <player.location> sound:block_bell_resonate
+          - wait 10s
+          - playsound <player.location> sound:entity_allay_ambient_without_item pitch: -1
+
+relic_of_darkness:
+  type: item
+  debug: false
+  material: flint
+  data:
+    discover: true
+  display name: <&color[#A28352]>Relic of Darkness
+  enchantments:
+    - LUCK: 1
+  mechanisms:
+    custom_model_data: 2000
+    hides:
+      - enchants
+  lore:
+  - <&color[#DFBB3F]>Lost in the Era of Seasons, This
+  - <&color[#8A8461]>Legendary Relic is all that remains
+  - <&color[#61618A]>of General Onox, the Lord of Darkness.
+  recipes:
+    1:
+      type: shaped
+      input:
+        - onox_shard|tempered_iron_plate|air
+        - tempered_iron_plate|netherite_block|onox_shard
+        - chain|chain|chain
+
+relic_of_darkness_world:
+  type: world
+  events:
+      on delta time secondly:
+      - foreach <server.online_players.filter[item_in_offhand.advanced_matches[relic_of_darkness]]> as:__player:
+          - playeffect effect:explosion_normal quantity:<util.random.int[1].to[5]> at:<player.location>
+          - cast DAMAGE_RESISTANCE duration:12s
+      on player swaps items offhand:relic_of_darkness:
+          - playsound <player.location> sound:entity_ender_dragon_growl pitch: -1
