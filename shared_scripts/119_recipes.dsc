@@ -1575,6 +1575,10 @@ knight_bow:
   lore:
   - <&7>The sturdy metal construction of
   - <&7>this bow offers superior durability.
+  flags:
+    custom_durability:
+      max: 585
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1605,6 +1609,10 @@ royal_guard_bow:
   - <&color[#C63D92]>Made with ancient technology,
   - <&color[#C63D92]>it boasts a high rate of firepower
   - <&color[#C63D92]>but has low durability.
+  flags:
+    custom_durability:
+      max: 185
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1628,6 +1636,10 @@ hero_bow:
   lore:
   - <&6>A replica of the bow said
   - <&6>to be used in the Era of Twilight.
+  flags:
+    custom_durability:
+      max: 450
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1688,6 +1700,10 @@ phantom_ganon_sword:
   - <&color[#52C6DC]>An illusion of the mind
   - <&7>created with forsaken magic.
   - <&color[#52C6DC]>Once wielded by a powerful phantom.
+  flags:
+    custom_durability:
+      max: 2531
+      current: <util.random.int[100].to[1000]>
 
 phantom_ganon_drop:
   type: world
@@ -1712,6 +1728,10 @@ great_fairy_sword:
   - <&color[#30BB2C]>A blessing bestowed upon those
   - <&color[#3CD937]>who helped fairies in the Era of Time.
   - <&color[#30BB2C]>Fairy magic flows through you.
+  flags:
+    custom_durability:
+      max: 2500
+      current: 0
   recipes:
     1:
       type: shaped
