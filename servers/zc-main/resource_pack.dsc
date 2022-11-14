@@ -9,7 +9,7 @@ test_rp_command:
     - if <context.args.size> == 0:
       - narrate "<&c>You must provide a valid url to a resource pack."
       - stop
-    - define url http://packs.zeldacraft.net:4000
+    - define url http://147.135.8.145:4000
     - ~webget <[url]>/metadata.yml save:res
     - define metadata <util.parse_yaml[<entry[res].result>]>
     - resourcepack url:<[url]>/<context.args.get[1]> hash:<[metadata.hashes.<context.args.get[1].before[.]>]> forced "prompt:Please accept this" targets:<player>
@@ -39,7 +39,7 @@ rp_handler:
     - if <player.has_flag[from_server_swap]>:
       - flag <player> from_server_swap:!
       - stop
-    - define url http://packs.zeldacraft.net:4000
+    - define url http://147.135.8.145:4000
     - ~webget <[url]>/metadata.yml save:res
     - define metadata <util.parse_yaml[<entry[res].result>]>
     - define live_pack <[metadata.live]>

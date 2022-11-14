@@ -186,6 +186,8 @@ zc_recipes_inv:
     - define items <list[]>
     - foreach <server.recipe_ids.get[<server.recipe_ids.find_all_partial[denizen]>].get[<server.recipe_ids.get[<server.recipe_ids.find_all_partial[denizen]>].find_all_partial[zc]>]>:
       - define item <server.recipe_result[<[value]>]>
+      - if <[item].max_durability||0> > 0:
+        - define item <[item].with_single[lore=<[item].proc[updated_durability_lore]>]>
       - define items <[items].include[<[item]>]>
     - determine <[items].deduplicate.alphanumeric>
 
@@ -203,6 +205,8 @@ other_recipes_inv:
       #  - goto next
       - if <[item]> == <item[coal_block]>:
         - foreach next
+      - if <[item].max_durability||0> > 0:
+        - define item <[item].with_single[lore=<[item].proc[updated_durability_lore]>]>
       - define items <[items].include[<[item]>]>
     - determine <[items].deduplicate.alphanumeric>
 

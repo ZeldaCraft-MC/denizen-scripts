@@ -351,6 +351,8 @@ voting_crate_world:
       - define text "<[nar_time]> Fly Time"
     - else:
       - define item <item[<[prize]>]>
+      - if <[item].max_durability||0> > 0:
+        - define item <[item].with_single[lore=<[item].proc[updated_durability_lore]>]>
       - define msg "You received <[item].quantity||1> <&a><[item].display.on_hover[<[item]>].type[show_item].if_null[<[item].material.name.replace_text[_].with[<&sp>].to_titlecase.on_hover[<[item]>].type[show_item]>]>"
       - define text <[item].display.if_null[<[item].material.name.replace_text[_].with[<&sp>].to_titlecase>]>
     - spawn <context.location.sub[0,0.5,0].center> armor_stand[is_small=true;visible=false;marker=true;equipment=air|air|air|<[item]>;custom_name=<[text]>;custom_name_visible=true;hide_from_players=true] save:ent
@@ -413,6 +415,8 @@ voting_crate_world:
       - define text "<[nar_time]> Fly Time"
     - else:
       - define item <item[<[prize]>]>
+      - if <[item].max_durability||0> > 0:
+        - define item <[item].with_single[lore=<[item].proc[updated_durability_lore]>]>
       - define msg "You received <[item].quantity||1> <&hover[<[item]>].type[show_item]><&a><[item].display.if_null[<[item].material.name.replace_text[_].with[<&sp>].to_titlecase>]><&end_hover>"
       - define text <[item].display.if_null[<[item].material.name.replace_text[_].with[<&sp>].to_titlecase>]>
     - spawn <context.location.sub[0,0.5,0].center> armor_stand[is_small=true;visible=false;marker=true;equipment=air|air|air|<[item]>;custom_name=<[text]>;custom_name_visible=true;hide_from_players=true] save:ent

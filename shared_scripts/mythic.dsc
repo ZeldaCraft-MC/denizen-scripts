@@ -6,7 +6,7 @@ mythicmobs_spawn_checks:
     - if <context.location.world.name> not in s1|s2:
       - stop
     - ratelimit global_lock 10t
-    - if <context.location.light.blocks> > 0:
+    - if <context.location.light.blocks> > 0 or <util.random_chance[90]>:
       - if <context.entity.is_spawned>:
         - teleport <context.entity> <context.entity.location.with_y[-10]>
         - wait 1t
