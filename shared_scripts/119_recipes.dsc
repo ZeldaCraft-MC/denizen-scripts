@@ -44,13 +44,13 @@ compressed_sculk:
   lore:
   - <&color[#1697AF]>A compressed mass of sculk.
   - <&color[#1697AF]>It pulsates with otherwordly flesh.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - sculk|sculk|sculk
-        - sculk|sculk|sculk
-        - sculk|sculk|sculk
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - sculk|sculk|sculk
+  #       - sculk|sculk|sculk
+  #       - sculk|sculk|sculk
 
 fragmented_sculk:
   type: item
@@ -69,13 +69,13 @@ fragmented_sculk:
   - <&color[#1697AF]>A combination of two worlds.
   - <&color[#DCD9B4]>Combined with the right materials
   - <&color[#1697AF]>it can be quite powerful.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - sculk|end_stone|sculk
-        - end_stone|ender_eye|end_stone
-        - sculk|end_stone|sculk
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - sculk|end_stone|sculk
+  #       - end_stone|ender_eye|end_stone
+  #       - sculk|end_stone|sculk
 
 sculk_string:
   type: item
@@ -89,11 +89,11 @@ sculk_string:
     - ENCHANTS
   lore:
     - <&3>A piece of tainted string.
-  recipes:
-    1:
-      type: smithing
-      base: string
-      upgrade: sculk
+  # recipes:
+  #   1:
+  #     type: smithing
+  #     base: string
+  #     upgrade: sculk
 
 tempered_iron_plate:
   type: item
@@ -111,13 +111,13 @@ tempered_iron_plate:
   lore:
     - <&7>A solid plate perfect for
     - <&7>armor smithing.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_tempered_iron|zc_tempered_iron|zc_tempered_iron
-        - zc_tempered_iron|zc_tempered_iron_block|zc_tempered_iron
-        - zc_tempered_iron|zc_tempered_iron|zc_tempered_iron
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_tempered_iron|zc_tempered_iron|zc_tempered_iron
+  #       - zc_tempered_iron|zc_tempered_iron_block|zc_tempered_iron
+  #       - zc_tempered_iron|zc_tempered_iron|zc_tempered_iron
 
 cured_quartz:
   type: item
@@ -136,13 +136,13 @@ cured_quartz:
     - <&color[#E9C8FF]>This quartz has been cleansed
     - <&color[#E9C8FF]>with amethyst, offering protection
     - <&color[#E9C8FF]>and guidance.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - quartz|amethyst_shard|quartz
-        - amethyst_shard|quartz|amethyst_shard
-        - quartz|amethyst_shard|quartz
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - quartz|amethyst_shard|quartz
+  #       - amethyst_shard|quartz|amethyst_shard
+  #       - quartz|amethyst_shard|quartz
 
 cured_quartz_plate:
   type: item
@@ -161,13 +161,13 @@ cured_quartz_plate:
     - <&color[#E9C8FF]>A plate forged from
     - <&color[#E9C8FF]>cured quartz. You can
     - <&color[#E9C8FF]>feel it's purity.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - cured_quartz|cured_quartz|cured_quartz
-        - cured_quartz|amethyst_cluster|cured_quartz
-        - cured_quartz|cured_quartz|cured_quartz
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - cured_quartz|cured_quartz|cured_quartz
+  #       - cured_quartz|amethyst_cluster|cured_quartz
+  #       - cured_quartz|cured_quartz|cured_quartz
 
 mythril_dragon_scale:
   type: item
@@ -185,13 +185,13 @@ mythril_dragon_scale:
   lore:
     - <&color[#A7CCFD]>Stronger than steel
     - <&color[#A7CCFD]>but at what cost?
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
-        - zc_dragon_scale|zc_mythril|zc_dragon_scale
-        - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
+  #       - zc_dragon_scale|zc_mythril|zc_dragon_scale
+  #       - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
 
 reinforced_string:
   type: item
@@ -206,11 +206,11 @@ reinforced_string:
     custom_model_data: 300
   lore:
     - <&color[#9553C6]>A sturdy spool of reinforced string.
-  recipes:
-    1:
-      type: smithing
-      base: string
-      upgrade: zc_dragon_scale
+  # recipes:
+  #   1:
+  #     type: smithing
+  #     base: string
+  #     upgrade: zc_dragon_scale
 
 loftwing_feather:
   type: item
@@ -271,11 +271,11 @@ enhanced_loftwing_feather:
   lore:
     - <&color[#B999E6]>Once a simple feather
     - <&color[#B999E6]>now gleaming with magic.
-  recipes:
-    1:
-      type: smithing
-      base: loftwing_feather
-      upgrade: wizzrobe_crystal
+  # recipes:
+  #   1:
+  #     type: smithing
+  #     base: loftwing_feather
+  #     upgrade: wizzrobe_crystal
 
 onox_shard:
   type: item
@@ -378,11 +378,11 @@ gold_skulltula_silk:
   lore:
     - <&e>Silk that seems to be
     - <&e>spun from solid gold.
-  recipes:
-    1:
-      type: smithing
-      base: skulltula_silk
-      upgrade: gold_dust
+  # recipes:
+  #   1:
+  #     type: smithing
+  #     base: skulltula_silk
+  #     upgrade: gold_dust
 
 gold_dust:
   type: item
@@ -479,13 +479,13 @@ plate_of_power:
     - <&color[#d24848]>Forged from the
     - <&color[#d24848]>fallen souls. Power
     - <&color[#d24848]>overcomes weakness.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
-        - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
-        - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
+  #       - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
+  #       - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
 
 plate_of_wisdom:
   type: item
@@ -504,13 +504,13 @@ plate_of_wisdom:
     - <&color[#ffe599]>From the brighest
     - <&color[#ffe599]>of minds come the
     - <&color[#ffe599]>strongest warriors.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_wisdom_shard|zc_wisdom_shard|zc_wisdom_shard
-        - zc_wisdom_shard|zc_wisdom_shard|zc_wisdom_shard
-        - zc_wisdom_shard|zc_wisdom_shard|zc_wisdom_shard
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_wisdom_shard|zc_wisdom_shard|zc_wisdom_shard
+  #       - zc_wisdom_shard|zc_wisdom_shard|zc_wisdom_shard
+  #       - zc_wisdom_shard|zc_wisdom_shard|zc_wisdom_shard
 
 plate_of_courage:
   type: item
@@ -529,13 +529,13 @@ plate_of_courage:
     - <&color[#b6d7a8]>Let tenacity and
     - <&color[#b6d7a8]>determination shine
     - <&color[#b6d7a8]>strong without fear.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_courage_shard|zc_courage_shard|zc_courage_shard
-        - zc_courage_shard|zc_courage_shard|zc_courage_shard
-        - zc_courage_shard|zc_courage_shard|zc_courage_shard
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_courage_shard|zc_courage_shard|zc_courage_shard
+  #       - zc_courage_shard|zc_courage_shard|zc_courage_shard
+  #       - zc_courage_shard|zc_courage_shard|zc_courage_shard
 
 timestone_shard:
   type: item
@@ -570,13 +570,13 @@ obsidian_plate:
   lore:
     - <&color[#A12EE7]>Forged from the tears
     - <&color[#A12EE7]>of lost souls.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - crying_obsidian|crying_obsidian|crying_obsidian
-        - crying_obsidian|netherite_ingot|crying_obsidian
-        - crying_obsidian|crying_obsidian|crying_obsidian
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - crying_obsidian|crying_obsidian|crying_obsidian
+  #       - crying_obsidian|netherite_ingot|crying_obsidian
+  #       - crying_obsidian|crying_obsidian|crying_obsidian
 
 gear_of_time:
   type: item
@@ -650,12 +650,12 @@ calamitous_boots:
   lore:
         - <&color[#A03485]>Boots crafted from remnants
         - <&color[#A03485]>of a haunted past.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - malice_fragment|air|malice_fragment
-        - malice_fragment|air|malice_fragment
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - malice_fragment|air|malice_fragment
+  #       - malice_fragment|air|malice_fragment
 
 calamitous_boots_world:
   type: world
@@ -685,13 +685,13 @@ soul_bow:
   - <&color[#1697AF]>Crafted with deadly precision
   - <&3>this bow of those lost to battle
   - <&color[#1697AF]>still damages those from beyond the grave.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|fragmented_sculk|sculk_string
-        - fragmented_sculk|air|sculk_string
-        - air|fragmented_sculk|sculk_string
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|fragmented_sculk|sculk_string
+  #       - fragmented_sculk|air|sculk_string
+  #       - air|fragmented_sculk|sculk_string
 
 soul_bow_scripts:
   type: world
@@ -746,11 +746,11 @@ keaton_boots:
   mechanisms:
     hides:
     - enchants
-  recipes:
-      type: shaped
-      input:
-        - keaton_fur_tuft|air|keaton_fur_tuft
-        - keaton_fur_tuft|air|keaton_fur_tuft
+  # recipes:
+  #     type: shaped
+  #     input:
+  #       - keaton_fur_tuft|air|keaton_fur_tuft
+  #       - keaton_fur_tuft|air|keaton_fur_tuft
 
 keaton_boots_world:
   type: world
@@ -774,11 +774,11 @@ loftwing_cap:
       - <&c>These feathers have been
       - <&c>fashioned into a nice cap,
       - <&c>you feel lighter!
-    recipes:
-      type: shaped
-      input:
-        - enhanced_loftwing_feather|enhanced_loftwing_feather|enhanced_loftwing_feather
-        - enhanced_loftwing_feather|air|enhanced_loftwing_feather
+    # recipes:
+    #   type: shaped
+    #   input:
+    #     - enhanced_loftwing_feather|enhanced_loftwing_feather|enhanced_loftwing_feather
+    #     - enhanced_loftwing_feather|air|enhanced_loftwing_feather
 
 loftwing_cap_world:
   type: world
@@ -805,13 +805,13 @@ fairy_bow:
     - <&color[#60dc53]>A thing that doesn't change
     - <&color[#60dc53]>with time is a memory
     - <&color[#60dc53]>of younger days.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - plate_of_courage|deku_root|zc_triforce_gem
-        - deku_root|skulltula_silk|air
-        - zc_triforce_gem|air|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - plate_of_courage|deku_root|zc_triforce_gem
+  #       - deku_root|skulltula_silk|air
+  #       - zc_triforce_gem|air|air
 
 fairy_bow_scripts:
   type: world
@@ -863,14 +863,13 @@ chu_chu_club:
     - KNOCKBACK: 5
   lore:
     - <&color[#97ff96]>Bonk!
-
-  recipes:
-    1:
-      type: shaped
-      input:
-        - chu_chu_jelly
-        - chu_chu_jelly
-        - stick
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - chu_chu_jelly
+  #       - chu_chu_jelly
+  #       - stick
 
 diamond_demon_pickaxe:
   type: item
@@ -885,13 +884,13 @@ diamond_demon_pickaxe:
     - <&color[#d92a2a]>It reminds you of
     - <&color[#d92a2a]>the Demon Lord
     - <&color[#d92a2a]>Ghirahim.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
-        - air|netherite_ingot|air
-        - air|netherite_ingot|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_shard_of_power|zc_shard_of_power|zc_shard_of_power
+  #       - air|netherite_ingot|air
+  #       - air|netherite_ingot|air
 
 diamond_demon_axe:
   type: item
@@ -906,13 +905,13 @@ diamond_demon_axe:
     - <&color[#d92a2a]>Anyone who gets in
     - <&color[#d92a2a]>my way must be
     - <&color[#d92a2a]>dealt with!
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_shard_of_power|zc_shard_of_power|air
-        - zc_shard_of_power|netherite_ingot|air
-        - air|netherite_ingot|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_shard_of_power|zc_shard_of_power|air
+  #       - zc_shard_of_power|netherite_ingot|air
+  #       - air|netherite_ingot|air
 
 diamond_demon_blade:
   type: item
@@ -927,13 +926,13 @@ diamond_demon_blade:
     - <&color[#d92a2a]>Do you have any
     - <&color[#d92a2a]>idea how that makes me
     - <&color[#d92a2a]>feel? Furious! Outraged!
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|air|zc_shard_of_power
-        - air|zc_shard_of_power|air
-        - netherite_ingot|air|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|air|zc_shard_of_power
+  #       - air|zc_shard_of_power|air
+  #       - netherite_ingot|air|air
 
 diamond_demon_shovel:
   type: item
@@ -948,13 +947,13 @@ diamond_demon_shovel:
     - <&color[#d92a2a]>Left behind by
     - <&color[#d92a2a]>a demon lord
     - <&color[#d92a2a]>on the land below.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|zc_shard_of_power|air
-        - air|netherite_ingot|air
-        - air|netherite_ingot|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|zc_shard_of_power|air
+  #       - air|netherite_ingot|air
+  #       - air|netherite_ingot|air
 
 sword_spirit_blade:
   type: item
@@ -969,13 +968,13 @@ sword_spirit_blade:
     - <&color[#b4a7d6]>Legend says an ancient
     - <&color[#b4a7d6]>voice resonates inside it.
     - <&color[#b4a7d6]>Can you hear it, Hero?
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|gear_of_time|air
-        - air|gear_of_time|air
-        - air|cured_quartz|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|gear_of_time|air
+  #       - air|gear_of_time|air
+  #       - air|cured_quartz|air
 
 sword_spirit_shovel:
   type: item
@@ -990,13 +989,13 @@ sword_spirit_shovel:
     - <&color[#b4a7d6]>Left behind by the
     - <&color[#b4a7d6]>Hero of the Sky, it
     - <&color[#b4a7d6]>was said to grant wishes.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|gear_of_time|air
-        - air|cured_quartz|air
-        - air|cured_quartz|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|gear_of_time|air
+  #       - air|cured_quartz|air
+  #       - air|cured_quartz|air
 
 sword_spirit_pickaxe:
   type: item
@@ -1011,13 +1010,13 @@ sword_spirit_pickaxe:
     - <&color[#b4a7d6]>It is said that
     - <&color[#b4a7d6]>this tool had
     - <&color[#b4a7d6]>magical properties long ago.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - gear_of_time|gear_of_time|gear_of_time
-        - air|cured_quartz|air
-        - air|cured_quartz|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - gear_of_time|gear_of_time|gear_of_time
+  #       - air|cured_quartz|air
+  #       - air|cured_quartz|air
 
 sword_spirit_axe:
   type: item
@@ -1032,13 +1031,13 @@ sword_spirit_axe:
     - <&color[#b4a7d6]>Lost to time, The blade
     - <&color[#b4a7d6]>allows you to render
     - <&color[#b4a7d6]>your enemies to dust.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - gear_of_time|gear_of_time|air
-        - gear_of_time|cured_quartz|air
-        - air|cured_quartz|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - gear_of_time|gear_of_time|air
+  #       - gear_of_time|cured_quartz|air
+  #       - air|cured_quartz|air
 
 dragon_boots:
   type: item
@@ -1059,12 +1058,12 @@ dragon_boots:
     custom_durability:
       max: 581
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_dragon_scale|air|zc_dragon_scale
-        - zc_dragon_scale|air|zc_dragon_scale
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_dragon_scale|air|zc_dragon_scale
+  #       - zc_dragon_scale|air|zc_dragon_scale
 
 dragon_leggings:
   type: item
@@ -1085,13 +1084,13 @@ dragon_leggings:
     custom_durability:
       max: 692
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
-        - zc_dragon_scale|air|zc_dragon_scale
-        - zc_dragon_scale|air|zc_dragon_scale
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
+  #       - zc_dragon_scale|air|zc_dragon_scale
+  #       - zc_dragon_scale|air|zc_dragon_scale
 
 dragon_chestplate:
   type: item
@@ -1112,13 +1111,13 @@ dragon_chestplate:
     custom_durability:
       max: 666
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_dragon_scale|air|zc_dragon_scale
-        - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
-        - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_dragon_scale|air|zc_dragon_scale
+  #       - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
+  #       - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
 
 dragon_helmet:
   type: item
@@ -1139,12 +1138,12 @@ dragon_helmet:
     custom_durability:
       max: 607
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
-        - zc_dragon_scale|air|zc_dragon_scale
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
+  #       - zc_dragon_scale|air|zc_dragon_scale
 
 mythril_dragon_boots:
   type: item
@@ -1165,12 +1164,12 @@ mythril_dragon_boots:
     custom_durability:
       max: 881
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - mythril_dragon_scale|air|mythril_dragon_scale
-        - mythril_dragon_scale|air|mythril_dragon_scale
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - mythril_dragon_scale|air|mythril_dragon_scale
+  #       - mythril_dragon_scale|air|mythril_dragon_scale
 
 mythril_dragon_leggings:
   type: item
@@ -1192,13 +1191,13 @@ mythril_dragon_leggings:
     custom_durability:
       max: 1110
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
-        - mythril_dragon_scale|air|mythril_dragon_scale
-        - mythril_dragon_scale|air|mythril_dragon_scale
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
+  #       - mythril_dragon_scale|air|mythril_dragon_scale
+  #       - mythril_dragon_scale|air|mythril_dragon_scale
 
 mythril_dragon_chestplate:
   type: item
@@ -1220,13 +1219,13 @@ mythril_dragon_chestplate:
     custom_durability:
       max: 1184
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - mythril_dragon_scale|air|mythril_dragon_scale
-        - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
-        - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - mythril_dragon_scale|air|mythril_dragon_scale
+  #       - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
+  #       - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
 
 mythril_dragon_helmet:
   type: item
@@ -1248,12 +1247,12 @@ mythril_dragon_helmet:
     custom_durability:
       max: 814
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
-        - mythril_dragon_scale|air|mythril_dragon_scale
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
+  #       - mythril_dragon_scale|air|mythril_dragon_scale
 
 mythril_longbow:
   type: item
@@ -1269,13 +1268,13 @@ mythril_longbow:
   lore:
     - <&color[#97CEE8]>Fragments of mythril
     - <&color[#97CEE8]>form this sturdy bow.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|zc_mythril|reinforced_string
-        - zc_mythril|air|reinforced_string
-        - air|zc_mythril|reinforced_string
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|zc_mythril|reinforced_string
+  #       - zc_mythril|air|reinforced_string
+  #       - air|zc_mythril|reinforced_string
 
 blin_basher:
   type: item
@@ -1293,13 +1292,13 @@ blin_basher:
     - <empty>
     - <&color[#6d00c1]>A hammer made from Bokoblin Horns.
     - <&color[#6d00c1]>Smash and Crash!
-  recipes:
-    1:
-      type: shaped
-      input:
-        - bokoblin_horn|obsidian_plate|crying_obsidian
-        - air|amethyst_shard|obsidian_plate
-        - moblin_fang|air|bokoblin_horn
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - bokoblin_horn|obsidian_plate|crying_obsidian
+  #       - air|amethyst_shard|obsidian_plate
+  #       - moblin_fang|air|bokoblin_horn
 
 decaying_hoe:
   type: item
@@ -1317,13 +1316,13 @@ decaying_hoe:
     - <&color[#D8C565]>The decaying remains of a Moblin,
     - <&color[#C28B72]>fashioned into a crude hoe.
     - <&color[#A03485]>The smell is putrid.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - moblin_horn|moblin_horn|large_amethyst_bud
-        - air|raw_gold_block|moblin_fang
-        - obsidian_plate|raw_gold_block|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - moblin_horn|moblin_horn|large_amethyst_bud
+  #       - air|raw_gold_block|moblin_fang
+  #       - obsidian_plate|raw_gold_block|air
 
 moblin_axe:
   type: item
@@ -1340,13 +1339,13 @@ moblin_axe:
     - <empty>
     - <&color[#C28B72]>Spiked thorns and teeth
     - <&color[#C28B72]>rip flesh from bone.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - moblin_fang|moblin_horn|bokoblin_guts
-        - air|moblin_fang|air
-        - obsidian_plate|stick|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - moblin_fang|moblin_horn|bokoblin_guts
+  #       - air|moblin_fang|air
+  #       - obsidian_plate|stick|air
 
 moblin_pickaxe:
   type: item
@@ -1365,13 +1364,13 @@ moblin_pickaxe:
     - <empty>
     - <&color[#42BEDF]>A pickaxe fashioned from those,
     - <&color[#42C8D8]>who deal with the Prince of Darkness.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - moblin_horn|moblin_guts|moblin_guts
-        - air|onox_shard|moblin_guts
-        - netherite_ingot|air|moblin_horn
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - moblin_horn|moblin_guts|moblin_guts
+  #       - air|onox_shard|moblin_guts
+  #       - netherite_ingot|air|moblin_horn
 
 time_lord_blade:
   type: item
@@ -1392,13 +1391,13 @@ time_lord_blade:
     custom_durability:
       max: 3000
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|gear_of_time|air
-        - air|timestone_shard|air
-        - air|zc_mythril_hilt|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|gear_of_time|air
+  #       - air|timestone_shard|air
+  #       - air|zc_mythril_hilt|air
 
 time_lord_shovel:
   type: item
@@ -1412,13 +1411,13 @@ time_lord_shovel:
   lore:
     - <&color[#42C8D8]>Dig deep into
     - <&color[#42C8D8]>memories of a falseborn world.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|timestone_shard|air
-        - air|cured_quartz_plate|air
-        - air|tempered_iron_plate|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|timestone_shard|air
+  #       - air|cured_quartz_plate|air
+  #       - air|tempered_iron_plate|air
 
 time_lord_pickaxe:
   type: item
@@ -1433,13 +1432,13 @@ time_lord_pickaxe:
     - <&color[#42C8D8]>Forge your way
     - <&color[#42C8D8]>into your own creation,
     - <&color[#42C8D8]>avoid a terrible fate.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - timestone_shard|gear_of_time|timestone_shard
-        - air|cured_quartz_plate|air
-        - air|tempered_iron_plate|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - timestone_shard|gear_of_time|timestone_shard
+  #       - air|cured_quartz_plate|air
+  #       - air|tempered_iron_plate|air
 
 time_lord_axe:
   type: item
@@ -1454,13 +1453,13 @@ time_lord_axe:
     - <&color[#42C8D8]>A haunting axe
     - <&color[#42C8D8]>found deep within the
     - <&color[#42C8D8]>forgotten land of Termina.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - gear_of_time|timestone_shard|air
-        - timestone_shard|cured_quartz_plate|air
-        - air|tempered_iron_plate|air
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - gear_of_time|timestone_shard|air
+  #       - timestone_shard|cured_quartz_plate|air
+  #       - air|tempered_iron_plate|air
 
 warden_boots:
   type: item
@@ -1489,12 +1488,12 @@ warden_boots:
   lore:
     - <&b>Pulsating lights swirl
     - <&b>from the depths below.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - fragmented_sculk|air|fragmented_sculk
-        - malice_fragment|air|malice_fragment
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - fragmented_sculk|air|fragmented_sculk
+  #       - malice_fragment|air|malice_fragment
 
 warden_chestplate:
   type: item
@@ -1522,13 +1521,13 @@ warden_chestplate:
   lore:
     - <&b>Otherwordly heartbeats thrum
     - <&b>within a cracked ribcage.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - fragmented_sculk|air|fragmented_sculk
-        - fragmented_sculk|malice_fragment|fragmented_sculk
-        - fragmented_sculk|fragmented_sculk|fragmented_sculk
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - fragmented_sculk|air|fragmented_sculk
+  #       - fragmented_sculk|malice_fragment|fragmented_sculk
+  #       - fragmented_sculk|fragmented_sculk|fragmented_sculk
 
 warden_helmet:
   type: item
@@ -1556,12 +1555,12 @@ warden_helmet:
   lore:
     - <&b>Beneath this hollow husk
     - <&b>lay spirits clouded in shadow.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - fragmented_sculk|fragmented_sculk|fragmented_sculk
-        - malice_fragment|air|malice_fragment
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - fragmented_sculk|fragmented_sculk|fragmented_sculk
+  #       - malice_fragment|air|malice_fragment
 
 warden_leggings:
   type: item
@@ -1589,13 +1588,13 @@ warden_leggings:
   lore:
     - <&b>Tread softly within the darkness,
     - <&b>whispering souls cry out.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - fragmented_sculk|fragmented_sculk|fragmented_sculk
-        - malice_fragment|air|malice_fragment
-        - fragmented_sculk|air|fragmented_sculk
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - fragmented_sculk|fragmented_sculk|fragmented_sculk
+  #       - malice_fragment|air|malice_fragment
+  #       - fragmented_sculk|air|fragmented_sculk
 
 knight_bow:
   type: item
@@ -1615,13 +1614,13 @@ knight_bow:
     custom_durability:
       max: 585
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|tempered_iron_plate|skulltula_silk
-        - plate_of_wisdom|air|skulltula_silk
-        - air|tempered_iron_plate|skulltula_silk
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|tempered_iron_plate|skulltula_silk
+  #       - plate_of_wisdom|air|skulltula_silk
+  #       - air|tempered_iron_plate|skulltula_silk
 
 royal_guard_bow:
   type: item
@@ -1649,13 +1648,13 @@ royal_guard_bow:
     custom_durability:
       max: 185
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|netherite_ingot|onox_shard
-        - obsidian_plate|air|reinforced_string
-        - air|netherite_ingot|onox_shard
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|netherite_ingot|onox_shard
+  #       - obsidian_plate|air|reinforced_string
+  #       - air|netherite_ingot|onox_shard
 
 hero_bow:
   type: item
@@ -1676,13 +1675,13 @@ hero_bow:
     custom_durability:
       max: 450
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|stick|gold_skulltula_silk
-        - plate_of_courage|air|gold_skulltula_silk
-        - air|stick|gold_skulltula_silk
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|stick|gold_skulltula_silk
+  #       - plate_of_courage|air|gold_skulltula_silk
+  #       - air|stick|gold_skulltula_silk
 
 warden_helmet_world:
   type: world
@@ -1768,13 +1767,13 @@ great_fairy_sword:
     custom_durability:
       max: 2500
       current: 0
-  recipes:
-    1:
-      type: shaped
-      input:
-        - vine|cured_quartz|vine
-        - cured_quartz|plate_of_courage|cured_quartz
-        - vine|netherite_sword|vine
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - vine|cured_quartz|vine
+  #       - cured_quartz|plate_of_courage|cured_quartz
+  #       - vine|netherite_sword|vine
 
 great_fairy_sword_world:
   type: world
@@ -1804,13 +1803,13 @@ frost_drake_fishing_rod:
   lore:
     - <&color[#A7CCFD]>A frozen rod fished from the frozen
     - <&color[#A7CCFD]>Lake Hylia in the Era of Time.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|air|tempered_iron_plate
-        - air|mythril_dragon_scale|skulltula_silk
-        - mythril_dragon_scale|air|skulltula_silk
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|air|tempered_iron_plate
+  #       - air|mythril_dragon_scale|skulltula_silk
+  #       - mythril_dragon_scale|air|skulltula_silk
 
 rod_of_tenacity:
   type: item
@@ -1825,13 +1824,13 @@ rod_of_tenacity:
     - <&color[#ffe599]>A rod crafted out of the strongest
     - <&color[#ffe599]>metal and rarest silks.
     - <&color[#ffe599]>Said to bring good luck.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - air|air|cured_quartz_plate
-        - air|plate_of_wisdom|gold_skulltula_silk
-        - plate_of_wisdom|air|gold_skulltula_silk
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - air|air|cured_quartz_plate
+  #       - air|plate_of_wisdom|gold_skulltula_silk
+  #       - plate_of_wisdom|air|gold_skulltula_silk
 
 croak_cloak:
   type: item
@@ -1843,13 +1842,13 @@ croak_cloak:
   lore:
   - <&color[#3CD937]>Ribbit Ribbit
   - <&color[#3CD937]>The sound of frogs comforts you.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - chu_chu_jelly|ochre_froglight|chu_chu_jelly
-        - verdant_froglight|elytra|pearlescent_froglight
-        - moss_block|moss_block|moss_block
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - chu_chu_jelly|ochre_froglight|chu_chu_jelly
+  #       - verdant_froglight|elytra|pearlescent_froglight
+  #       - moss_block|moss_block|moss_block
 
 croak_cloak_world:
   type: world
@@ -1878,13 +1877,13 @@ relic_of_dreams:
   - <&color[#C305F2]>A Legendary Relic granted to the
   - <&color[#05E0F2]>Hero of Legend in a great slumber.
   - <&color[#F205A3]>The Wind Fish lives on in your memory.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - cured_quartz_plate|cured_quartz_plate|timestone_shard
-        - cured_quartz_plate|gear_of_time|wizzrobe_crystal
-        - timestone_shard|wizzrobe_crystal|wizzrobe_crystal
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - cured_quartz_plate|cured_quartz_plate|timestone_shard
+  #       - cured_quartz_plate|gear_of_time|wizzrobe_crystal
+  #       - timestone_shard|wizzrobe_crystal|wizzrobe_crystal
 
 relic_of_wrath:
   type: item
@@ -1903,13 +1902,13 @@ relic_of_wrath:
   - <&color[#9D4BB0]>A Legendary Relic found in the ruins
   - <&color[#9FA26C]>said to be broken by the Hero of Time.
   - <&color[#A35863]>A corrupt aura eminates from it.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - plate_of_power|netherite_ingot|plate_of_power
-        - onox_shard|malice_fragment|onox_shard
-        - gold_skulltula_silk|netherite_ingot|gold_skulltula_silk
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - plate_of_power|netherite_ingot|plate_of_power
+  #       - onox_shard|malice_fragment|onox_shard
+  #       - gold_skulltula_silk|netherite_ingot|gold_skulltula_silk
 
 
 relic_of_shadow:
@@ -1929,13 +1928,13 @@ relic_of_shadow:
   - <&color[#707070]>A Legendary Relic from the Twilight Realm.
   - <&color[#28A4AC]>They say that the Twilight Princess
   - <&color[#DA9317]>once used it to defeat the Usuper King Zant.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - timestone_shard|netherite_ingot|timestone_shard
-        - fragmented_sculk|sculk|fragmented_sculk
-        - tempered_iron_plate|tempered_iron_plate|tempered_iron_plate
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - timestone_shard|netherite_ingot|timestone_shard
+  #       - fragmented_sculk|sculk|fragmented_sculk
+  #       - tempered_iron_plate|tempered_iron_plate|tempered_iron_plate
 
 relic_of_dreams_world:
   type: world
@@ -1984,13 +1983,13 @@ relic_of_sands:
   - <&color[#0BBCD1]>A Legendary Relic from the Twilight Realm.
   - <&color[#C2CF80]>They say that the Twilight Princess
   - <&color[#0BBCD1]>once used it to defeat the Usuper King Zant.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - plate_of_wisdom|plate_of_courage|plate_of_wisdom
-        - glass|gold_dust|glass
-        - plate_of_wisdom|plate_of_courage|plate_of_wisdom
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - plate_of_wisdom|plate_of_courage|plate_of_wisdom
+  #       - glass|gold_dust|glass
+  #       - plate_of_wisdom|plate_of_courage|plate_of_wisdom
 
 relic_of_sands_world:
   type: world
@@ -2019,13 +2018,13 @@ relic_of_time:
   - <&color[#B69661]>A Legendary Relic from the Era of Time.
   - <&color[#76B661]>The Sage of the Forest was said to
   - <&color[#5D9A49]>give this to the Hero of Time.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - zc_triforce_gem|deku_root|deku_root
-        - brown_terracotta|plate_of_courage|brown_terracotta
-        - plate_of_courage|brown_terracotta|brown_terracotta
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - zc_triforce_gem|deku_root|deku_root
+  #       - brown_terracotta|plate_of_courage|brown_terracotta
+  #       - plate_of_courage|brown_terracotta|brown_terracotta
 
 relic_of_time_world:
   type: world
@@ -2056,13 +2055,13 @@ relic_of_darkness:
   - <&color[#DFBB3F]>Lost in the Era of Seasons, This
   - <&color[#8A8461]>Legendary Relic is all that remains
   - <&color[#61618A]>of General Onox, the Lord of Darkness.
-  recipes:
-    1:
-      type: shaped
-      input:
-        - onox_shard|tempered_iron_plate|air
-        - tempered_iron_plate|netherite_block|onox_shard
-        - chain|chain|chain
+  # recipes:
+  #   1:
+  #     type: shaped
+  #     input:
+  #       - onox_shard|tempered_iron_plate|air
+  #       - tempered_iron_plate|netherite_block|onox_shard
+  #       - chain|chain|chain
 
 relic_of_darkness_world:
   type: world
