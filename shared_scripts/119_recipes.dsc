@@ -1193,7 +1193,7 @@ frozen_drake_boots:
       generic_knockback_resistance:
         1:
           operation: add_number
-          amount: 2
+          amount: 0.2
           slot: feet
       generic_armor_toughness:
         1:
@@ -1235,7 +1235,7 @@ frozen_drake_leggings:
       generic_knockback_resistance:
         1:
           operation: add_number
-          amount: 2
+          amount: 0.2
           slot: legs
       generic_armor_toughness:
         1:
@@ -1279,7 +1279,7 @@ frozen_drake_chestplate:
       generic_knockback_resistance:
         1:
           operation: add_number
-          amount: 2
+          amount: 0.2
           slot: chest
       generic_armor_toughness:
         1:
@@ -1323,7 +1323,7 @@ frozen_drake_helmet:
       generic_knockback_resistance:
         1:
           operation: add_number
-          amount: 2
+          amount: 0.2
           slot: head
       generic_armor_toughness:
         1:
