@@ -770,10 +770,11 @@ keaton_boots:
     hides:
       - enchants
   recipes:
-    type: shaped
-    input:
-      - keaton_fur_tuft|air|keaton_fur_tuft
-      - keaton_fur_tuft|air|keaton_fur_tuft
+    1:
+      type: shaped
+      input:
+        - keaton_fur_tuft|air|keaton_fur_tuft
+        - keaton_fur_tuft|air|keaton_fur_tuft
 
 keaton_boots_world:
   type: world
@@ -802,10 +803,11 @@ loftwing_cap:
     - <&c>fashioned into a nice cap,
     - <&c>you feel lighter!
   recipes:
-    type: shaped
-    input:
-      - enhanced_loftwing_feather|enhanced_loftwing_feather|enhanced_loftwing_feather
-      - enhanced_loftwing_feather|air|enhanced_loftwing_feather
+    1:
+      type: shaped
+      input:
+        - enhanced_loftwing_feather|enhanced_loftwing_feather|enhanced_loftwing_feather
+        - enhanced_loftwing_feather|air|enhanced_loftwing_feather
 
 loftwing_cap_world:
   type: world
