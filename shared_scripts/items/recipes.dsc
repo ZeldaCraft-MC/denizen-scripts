@@ -1,12 +1,3 @@
-recipe_command:
-  type: command
-  name: recipes
-  description: Shows you all of our custom recipes
-  usage: /recipes
-  debug: false
-  script:
-  - inventory open d:zc2_recipes_inv
-
 zc2_recipes_inv:
   type: inventory
   debug: false
