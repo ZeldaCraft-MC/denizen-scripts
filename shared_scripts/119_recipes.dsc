@@ -701,7 +701,7 @@ soul_bow:
     - ARROW_DAMAGE:5
     - ARROW_INFINITE:1
   mechanisms:
-    custom_model_data: 1100
+    custom_model_data: 2000
   lore:
   - <&color[#1697AF]>Crafted with deadly precision
   - <&3>this bow of those lost to battle
