@@ -1417,7 +1417,7 @@ time_lord_blade:
     custom_model_data: 800
   enchantments:
     - DAMAGE_ALL:5
-    - MENDING
+    - MENDING:1
   lore:
     - <&color[#42C8D8]>Fragments of the legendary
     - <&color[#42C8D8]>blade of a Fierce Deity.
