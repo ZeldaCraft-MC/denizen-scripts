@@ -1584,6 +1584,10 @@ warden_boots:
   lore:
     - <&b>Pulsating lights swirl
     - <&b>from the depths below.
+  flags:
+    custom_durability:
+      max: 300
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1618,6 +1622,10 @@ warden_chestplate:
   lore:
     - <&b>Otherwordly heartbeats thrum
     - <&b>within a cracked ribcage.
+  flags:
+    custom_durability:
+      max: 400
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1653,6 +1661,10 @@ warden_helmet:
   lore:
     - <&b>Beneath this hollow husk
     - <&b>lay spirits clouded in shadow.
+  flags:
+    custom_durability:
+      max: 300
+      current: 0
   recipes:
     1:
       type: shaped
@@ -1687,6 +1699,10 @@ warden_leggings:
   lore:
     - <&b>Tread softly within the darkness,
     - <&b>whispering souls cry out.
+  flags:
+    custom_durability:
+      max: 400
+      current: 0
   recipes:
     1:
       type: shaped
