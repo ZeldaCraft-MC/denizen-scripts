@@ -1565,6 +1565,7 @@ warden_boots:
   display name: <&color[#1697AF]>Warden Boots
   mechanisms:
     color: 41,223,235
+    hides: dye
     custom_model_data: 200
     attribute_modifiers:
       generic_armor_toughness:
@@ -1599,6 +1600,7 @@ warden_chestplate:
   display name: <&color[#1697AF]>Warden Chestplate
   mechanisms:
     color: 41,223,235
+    hides: dye
     custom_model_data: 300
     attribute_modifiers:
       generic_armor_toughness:
@@ -1633,6 +1635,7 @@ warden_helmet:
   display name: <&color[#1697AF]>Warden Helmet
   mechanisms:
     color: 41,223,235
+    hides: dye
     custom_model_data: 100
     attribute_modifiers:
       generic_armor_toughness:
@@ -1666,6 +1669,7 @@ warden_leggings:
   display name: <&color[#1697AF]>Warden Leggings
   mechanisms:
     color: 41,223,235
+    hides: dye
     custom_model_data: 200
     attribute_modifiers:
       generic_armor_toughness:
