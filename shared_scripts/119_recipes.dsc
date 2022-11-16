@@ -473,7 +473,7 @@ keaton_fur_drop:
     on fox breeds:
     - define droprate 15
     - if <util.random_chance[<[droprate]>]>:
-      - drop keaton_fur_tuft[quantity=<util.random.int[1].to[3]>]
+      - drop keaton_fur_tuft[quantity=<util.random.int[1].to[3]>] <context.breeder.location>
 
 plate_of_power:
   type: item
