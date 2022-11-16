@@ -1870,7 +1870,7 @@ great_fairy_sword:
       input:
         - vine|cured_quartz|vine
         - cured_quartz|plate_of_courage|cured_quartz
-        - vine|netherite_sword|vine
+        - vine|material:netherite_sword|vine
 
 great_fairy_sword_world:
   type: world
