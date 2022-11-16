@@ -88,6 +88,7 @@ sculk_string:
   enchantments:
     - LUCK:1
   mechanisms:
+    custom_model_data: 400
     hides:
     - ENCHANTS
   lore:
@@ -462,7 +463,7 @@ keaton_fur_tuft:
     - ENCHANTS
     custom_model_data: 100
   lore:
-    - <&e>A piece of shedded fur
+    - <&e>A piece of shed fur
     - <&e>from a Keaton.
 
 keaton_fur_drop:
@@ -483,10 +484,10 @@ plate_of_power:
   display name: <&color[#b63737]>Plate of Power
   mechanisms:
     custom_model_data: 600
-    enchantments:
-      - LUCK:1
     hides:
     - ENCHANTS
+  enchantments:
+    - LUCK:1
   lore:
     - <&color[#d24848]>Forged from the
     - <&color[#d24848]>fallen souls. Power
@@ -508,10 +509,10 @@ plate_of_wisdom:
   display name: <&color[#f1c232]>Plate of Wisdom
   mechanisms:
     custom_model_data: 400
-    enchantments:
-      - LUCK:1
     hides:
     - ENCHANTS
+  enchantments:
+    - LUCK:1
   lore:
     - <&color[#ffe599]>From the brighest
     - <&color[#ffe599]>of minds come the
@@ -533,10 +534,10 @@ plate_of_courage:
   display name: <&color[#6aa84f]>Plate of Courage
   mechanisms:
     custom_model_data: 600
-    enchantments:
-      - LUCK:1
     hides:
     - ENCHANTS
+  enchantments:
+    - LUCK:1
   lore:
     - <&color[#b6d7a8]>Let tenacity and
     - <&color[#b6d7a8]>determination shine
@@ -699,6 +700,8 @@ soul_bow:
   enchantments:
     - ARROW_DAMAGE:5
     - ARROW_INFINITE:1
+  mechanisms:
+    custom_model_data: 1100
   lore:
   - <&color[#1697AF]>Crafted with deadly precision
   - <&3>this bow of those lost to battle
@@ -766,9 +769,6 @@ keaton_boots:
     - PROTECTION_ENVIRONMENTAL:1
     - DURABILITY:3
     - SOUL_SPEED:3
-  mechanisms:
-    hides:
-      - enchants
   recipes:
     1:
       type: shaped
@@ -794,10 +794,7 @@ loftwing_cap:
   material: leather_helmet
   display name: <&4>Loftwing Cap
   enchantments:
-    - luck:1
-  mechanisms:
-    hides:
-      - enchants
+    - feather_falling:10
   lore:
     - <&c>These feathers have been
     - <&c>fashioned into a nice cap,
@@ -1179,7 +1176,7 @@ dragon_helmet:
         - zc_dragon_scale|zc_dragon_scale|zc_dragon_scale
         - zc_dragon_scale|air|zc_dragon_scale
 
-mythril_dragon_boots:
+frozen_drake_boots:
   type: item
   debug: false
   material: netherite_boots
@@ -1192,6 +1189,22 @@ mythril_dragon_boots:
     - PROTECTION_FIRE:5
   mechanisms:
     custom_model_data: 600
+    attribute_modifiers:
+      generic_knockback_resistance:
+        1:
+          operation: add_number
+          amount: 2
+          slot: feet
+      generic_armor_toughness:
+        1:
+          operation: add_number
+          amount: 4
+          slot: feet
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 4
+          slot: feet
   lore:
     - <&color[#79A6E2]>War never really changes.
   flags:
@@ -1205,7 +1218,7 @@ mythril_dragon_boots:
         - mythril_dragon_scale|air|mythril_dragon_scale
         - mythril_dragon_scale|air|mythril_dragon_scale
 
-mythril_dragon_leggings:
+frozen_drake_leggings:
   type: item
   debug: false
   material: netherite_leggings
@@ -1218,6 +1231,22 @@ mythril_dragon_leggings:
     - PROTECTION_FIRE:5
   mechanisms:
     custom_model_data: 600
+    attribute_modifiers:
+      generic_knockback_resistance:
+        1:
+          operation: add_number
+          amount: 2
+          slot: legs
+      generic_armor_toughness:
+        1:
+          operation: add_number
+          amount: 4
+          slot: legs
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 7
+          slot: legs
   lore:
     - <&color[#79A6E2]>Never anger the beast that
     - <&color[#79A6E2]>sleeps at the end of the world.
@@ -1233,7 +1262,7 @@ mythril_dragon_leggings:
         - mythril_dragon_scale|air|mythril_dragon_scale
         - mythril_dragon_scale|air|mythril_dragon_scale
 
-mythril_dragon_chestplate:
+frozen_drake_chestplate:
   type: item
   debug: false
   material: netherite_chestplate
@@ -1246,6 +1275,22 @@ mythril_dragon_chestplate:
     - PROTECTION_FIRE:5
   mechanisms:
     custom_model_data: 600
+    attribute_modifiers:
+      generic_knockback_resistance:
+        1:
+          operation: add_number
+          amount: 2
+          slot: chest
+      generic_armor_toughness:
+        1:
+          operation: add_number
+          amount: 4
+          slot: chest
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 9
+          slot: chest
   lore:
     - <&color[#79A6E2]>So comes snow after fire,
     - <&color[#79A6E2]>and even dragons have their endings.
@@ -1261,7 +1306,7 @@ mythril_dragon_chestplate:
         - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
         - mythril_dragon_scale|mythril_dragon_scale|mythril_dragon_scale
 
-mythril_dragon_helmet:
+frozen_drake_helmet:
   type: item
   debug: false
   material: netherite_helmet
@@ -1274,6 +1319,22 @@ mythril_dragon_helmet:
     - PROTECTION_FIRE:5
   mechanisms:
     custom_model_data: 600
+    attribute_modifiers:
+      generic_knockback_resistance:
+        1:
+          operation: add_number
+          amount: 2
+          slot: head
+      generic_armor_toughness:
+        1:
+          operation: add_number
+          amount: 4
+          slot: head
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 4
+          slot: head
   lore:
     - <&color[#79A6E2]>Death comes out
     - <&color[#79A6E2]>of the dragons mouth.
@@ -1334,13 +1395,13 @@ blin_basher:
         - air|amethyst_shard|obsidian_plate
         - moblin_fang|air|bokoblin_horn
 
-decaying_hoe:
+decaying_scythe:
   type: item
   debug: false
   material: iron_hoe
   data:
     discover: true
-  display name: <&color[#E2BE45]>Decaying Hoe
+  display name: <&color[#E2BE45]>Decaying Scythe
   mechanisms:
     custom_model_data: 800
   enchantments:
@@ -1348,7 +1409,7 @@ decaying_hoe:
   lore:
     - <empty>
     - <&color[#D8C565]>The decaying remains of a Moblin,
-    - <&color[#C28B72]>fashioned into a crude hoe.
+    - <&color[#C28B72]>fashioned into a crude scythe.
     - <&color[#A03485]>The smell is putrid.
   recipes:
     1:
@@ -1506,12 +1567,12 @@ warden_boots:
     color: 41,223,235
     custom_model_data: 200
     attribute_modifiers:
-      generic_armor:
+      generic_armor_toughness:
         1:
           operation: add_number
-          amount: 4
+          amount: 2
           slot: feet
-      generic_armor_toughness:
+      generic_armor:
         1:
           operation: add_number
           amount: 3
@@ -1540,15 +1601,15 @@ warden_chestplate:
     color: 41,223,235
     custom_model_data: 300
     attribute_modifiers:
-      generic_armor:
-        1:
-          operation: add_number
-          amount: 9
-          slot: chest
       generic_armor_toughness:
         1:
           operation: add_number
-          amount: 3
+          amount: 2
+          slot: chest
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 8
           slot: chest
   enchantments:
     - DURABILITY:6
@@ -1574,12 +1635,12 @@ warden_helmet:
     color: 41,223,235
     custom_model_data: 100
     attribute_modifiers:
-      generic_armor:
+      generic_armor_toughness:
         1:
           operation: add_number
-          amount: 4
+          amount: 2
           slot: head
-      generic_armor_toughness:
+      generic_armor:
         1:
           operation: add_number
           amount: 3
@@ -1607,15 +1668,15 @@ warden_leggings:
     color: 41,223,235
     custom_model_data: 200
     attribute_modifiers:
-      generic_armor:
-        1:
-          operation: add_number
-          amount: 7
-          slot: legs
       generic_armor_toughness:
         1:
           operation: add_number
-          amount: 3
+          amount: 2
+          slot: legs
+      generic_armor:
+        1:
+          operation: add_number
+          amount: 6
           slot: legs
   enchantments:
     - DURABILITY:6
@@ -1665,13 +1726,6 @@ royal_guard_bow:
   display name: <&color[#A00063]>Royal Guard's Bow
   mechanisms:
     custom_model_data: 400
-    hides: attributes
-    attribute_modifiers:
-      generic_attack_speed:
-        1:
-          operation: add_number
-          amount: 1
-          slot: hand
   enchantments:
     - ARROW_DAMAGE:5
   lore:
@@ -1881,7 +1935,7 @@ croak_cloak_world:
   events:
     after player equips croak_cloak:
       - playsound <player.location> sound:entity_frog_ambient volume:1.5
-    on delta time secondly:
+    on delta time secondly every:3:
       - foreach <server.online_players.filter[has_equipped[croak_cloak]]> as:__player:
         - playeffect effect:scrape quantity:<util.random.int[1].to[5]> at:<player.location>
         - playsound <player.location> sound:entity_frog_ambient volume:1.5
@@ -1889,7 +1943,7 @@ croak_cloak_world:
 relic_of_dreams:
   type: item
   debug: false
-  material: flint
+  material: brick
   data:
     discover: true
   display name: <&color[#F131FF]>Relic of Dreams
@@ -1914,7 +1968,7 @@ relic_of_dreams:
 relic_of_wrath:
   type: item
   debug: false
-  material: flint
+  material: brick
   data:
     discover: true
   display name: <&color[#9700B9]>Relic of Wrath
@@ -1939,7 +1993,7 @@ relic_of_wrath:
 relic_of_shadow:
   type: item
   debug: false
-  material: flint
+  material: brick
   data:
     discover: true
   display name: <&color[#8F8F8F]>Relic of Shadow
@@ -1997,7 +2051,7 @@ relic_of_shadow_world:
 relic_of_sands:
   type: item
   debug: false
-  material: flint
+  material: brick
   data:
     discover: true
   display name: <&3>Relic of Sands
@@ -2008,9 +2062,9 @@ relic_of_sands:
     hides:
       - enchants
   lore:
-  - <&color[#0BBCD1]>A Legendary Relic from the Twilight Realm.
-  - <&color[#C2CF80]>They say that the Twilight Princess
-  - <&color[#0BBCD1]>once used it to defeat the Usuper King Zant.
+  - <&color[#0BBCD1]>A Legendary Relic found within the deepest
+  - <&color[#C2CF80]>of oceans. It is said that the sands within
+  - <&color[#0BBCD1]>could defeat the most malevolent demons.
   recipes:
     1:
       type: shaped
@@ -2033,7 +2087,7 @@ relic_of_sands_world:
 relic_of_time:
   type: item
   debug: false
-  material: flint
+  material: brick
   data:
     discover: true
   display name: <&color[#997D4E]>Relic of Time
@@ -2071,7 +2125,7 @@ relic_of_time_world:
 relic_of_darkness:
   type: item
   debug: false
-  material: flint
+  material: brick
   data:
     discover: true
   display name: <&color[#A28352]>Relic of Darkness
