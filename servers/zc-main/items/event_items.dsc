@@ -50,7 +50,7 @@ hween_world:
   debug: false
   events:
     on entity targets player:
-      - if <context.entity.is_mythicmob>:
+      - if <context.entity.is_mythicmob> or <context.entity.health_max||0> >= 100:
         - stop
       - if <context.target.equipment_map.get[helmet].script.name.is[==].to[hween_item]||false>:
         - determine cancelled
