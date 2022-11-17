@@ -49,10 +49,13 @@ hween_world:
   type: world
   debug: false
   events:
+    on player damages entity:
+      - if <context.entity.is_living> and <context.entity.is_monster> and !<context.entity.has_flag[attacked_by.<context.damager>]>:
+        - flag <context.entity> attacked_by.<context.damager>
     on entity targets player:
-      - if <context.entity.is_mythicmob> or <context.entity.health_max||0> >= 100:
+      - if <context.entity.is_mythicmob> or <context.entity.health_max||0> >= 100 or <context.entity.has_flag[attacked_by.<player>]>:
         - stop
-      - if <context.target.equipment_map.get[helmet].script.name.is[==].to[hween_item]||false>:
+      - if <player.has_equipped[hween_item]||false>:
         - determine cancelled
 
 hallowe2020_i_task:
