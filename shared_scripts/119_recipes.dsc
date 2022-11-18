@@ -489,9 +489,9 @@ plate_of_power:
   enchantments:
     - LUCK:1
   lore:
-    - <&color[#d24848]>Forged from the
-    - <&color[#d24848]>fallen souls. Power
-    - <&color[#d24848]>overcomes weakness.
+    - <&color[#D24848]>Forged from the
+    - <&color[#D24848]>fallen souls. Power
+    - <&color[#D24848]>overcomes weakness.
   recipes:
     1:
       type: shaped
@@ -514,9 +514,9 @@ plate_of_wisdom:
   enchantments:
     - LUCK:1
   lore:
-    - <&color[#ffe599]>From the brighest
-    - <&color[#ffe599]>of minds come the
-    - <&color[#ffe599]>strongest warriors.
+    - <&color[#FFE599]>From the brighest
+    - <&color[#FFE599]>of minds come the
+    - <&color[#FFE599]>strongest warriors.
   recipes:
     1:
       type: shaped
@@ -539,9 +539,9 @@ plate_of_courage:
   enchantments:
     - LUCK:1
   lore:
-    - <&color[#b6d7a8]>Let tenacity and
-    - <&color[#b6d7a8]>determination shine
-    - <&color[#b6d7a8]>strong without fear.
+    - <&color[#B6D7A8]>Let tenacity and
+    - <&color[#B6D7A8]>determination shine
+    - <&color[#B6D7A8]>strong without fear.
   recipes:
     1:
       type: shaped
@@ -831,9 +831,9 @@ fairy_bow:
   mechanisms:
     custom_model_data: 100
   lore:
-    - <&color[#60dc53]>A thing that doesn't change
-    - <&color[#60dc53]>with time is a memory
-    - <&color[#60dc53]>of younger days.
+    - <&color[#60DC53]>A thing that doesn't change
+    - <&color[#60DC53]>with time is a memory
+    - <&color[#60DC53]>of younger days.
   recipes:
     1:
       type: shaped
@@ -893,7 +893,7 @@ chu_chu_club:
   enchantments:
     - KNOCKBACK:5
   lore:
-    - <&color[#97ff96]>Bonk!
+    - <&color[#97FF96]>Bonk!
   recipes:
     1:
       type: shaped
@@ -912,9 +912,9 @@ diamond_demon_pickaxe:
   mechanisms:
     custom_model_data: 300
   lore:
-    - <&color[#d92a2a]>It reminds you of
-    - <&color[#d92a2a]>the Demon Lord
-    - <&color[#d92a2a]>Ghirahim.
+    - <&color[#D92A2A]>It reminds you of
+    - <&color[#D92A2A]>the Demon Lord
+    - <&color[#D92A2A]>Ghirahim.
   recipes:
     1:
       type: shaped
@@ -933,9 +933,9 @@ diamond_demon_axe:
   mechanisms:
     custom_model_data: 300
   lore:
-    - <&color[#d92a2a]>Anyone who gets in
-    - <&color[#d92a2a]>my way must be
-    - <&color[#d92a2a]>dealt with!
+    - <&color[#D92A2A]>Anyone who gets in
+    - <&color[#D92A2A]>my way must be
+    - <&color[#D92A2A]>dealt with!
   recipes:
     1:
       type: shaped
@@ -954,9 +954,9 @@ diamond_demon_blade:
   mechanisms:
     custom_model_data: 600
   lore:
-    - <&color[#d92a2a]>Do you have any
-    - <&color[#d92a2a]>idea how that makes me
-    - <&color[#d92a2a]>feel? Furious! Outraged!
+    - <&color[#D92A2A]>Do you have any
+    - <&color[#D92A2A]>idea how that makes me
+    - <&color[#D92A2A]>feel? Furious! Outraged!
   recipes:
     1:
       type: shaped
@@ -975,9 +975,9 @@ diamond_demon_shovel:
   mechanisms:
     custom_model_data: 300
   lore:
-    - <&color[#d92a2a]>Left behind by
-    - <&color[#d92a2a]>a demon lord
-    - <&color[#d92a2a]>on the land below.
+    - <&color[#D92A2A]>Left behind by
+    - <&color[#D92A2A]>a demon lord
+    - <&color[#D92A2A]>on the land below.
   recipes:
     1:
       type: shaped
@@ -996,9 +996,9 @@ sword_spirit_blade:
   mechanisms:
     custom_model_data: 500
   lore:
-    - <&color[#b4a7d6]>Legend says an ancient
-    - <&color[#b4a7d6]>voice resonates inside it.
-    - <&color[#b4a7d6]>Can you hear it, Hero?
+    - <&color[#B4A7D6]>Legend says an ancient
+    - <&color[#B4A7D6]>voice resonates inside it.
+    - <&color[#B4A7D6]>Can you hear it, Hero?
   recipes:
     1:
       type: shaped
@@ -1017,9 +1017,9 @@ sword_spirit_shovel:
   mechanisms:
     custom_model_data: 200
   lore:
-    - <&color[#b4a7d6]>Left behind by the
-    - <&color[#b4a7d6]>Hero of the Sky, it
-    - <&color[#b4a7d6]>was said to grant wishes.
+    - <&color[#B4A7D6]>Left behind by the
+    - <&color[#B4A7D6]>Hero of the Sky, it
+    - <&color[#B4A7D6]>was said to grant wishes.
   recipes:
     1:
       type: shaped
@@ -1038,9 +1038,9 @@ sword_spirit_pickaxe:
   mechanisms:
     custom_model_data: 200
   lore:
-    - <&color[#b4a7d6]>It is said that
-    - <&color[#b4a7d6]>this tool had
-    - <&color[#b4a7d6]>magical properties long ago.
+    - <&color[#B4A7D6]>It is said that
+    - <&color[#B4A7D6]>this tool had
+    - <&color[#B4A7D6]>magical properties long ago.
   recipes:
     1:
       type: shaped
@@ -1059,9 +1059,9 @@ sword_spirit_axe:
   mechanisms:
     custom_model_data: 200
   lore:
-    - <&color[#b4a7d6]>Lost to time, The blade
-    - <&color[#b4a7d6]>allows you to render
-    - <&color[#b4a7d6]>your enemies to dust.
+    - <&color[#B4A7D6]>Lost to time, The blade
+    - <&color[#B4A7D6]>allows you to render
+    - <&color[#B4A7D6]>your enemies to dust.
   recipes:
     1:
       type: shaped
@@ -1385,8 +1385,8 @@ blin_basher:
     custom_model_data: 800
   lore:
     - <empty>
-    - <&color[#6d00c1]>A hammer made from Bokoblin Horns.
-    - <&color[#6d00c1]>Smash and Crash!
+    - <&color[#6D00C1]>A hammer made from Bokoblin Horns.
+    - <&color[#6D00C1]>Smash and Crash!
   recipes:
     1:
       type: shaped
@@ -1920,9 +1920,9 @@ rod_of_tenacity:
   enchantments:
     - LUCK:5
   lore:
-    - <&color[#ffe599]>A rod crafted out of the strongest
-    - <&color[#ffe599]>metal and rarest silks.
-    - <&color[#ffe599]>Said to bring good luck.
+    - <&color[#FFE599]>A rod crafted out of the strongest
+    - <&color[#FFE599]>metal and rarest silks.
+    - <&color[#FFE599]>Said to bring good luck.
   recipes:
     1:
       type: shaped
