@@ -1946,7 +1946,7 @@ croak_cloak:
       type: shaped
       input:
         - chu_chu_jelly|ochre_froglight|chu_chu_jelly
-        - verdant_froglight|elytra|pearlescent_froglight
+        - verdant_froglight|material:elytra|pearlescent_froglight
         - moss_block|moss_block|moss_block
 
 croak_cloak_world:
