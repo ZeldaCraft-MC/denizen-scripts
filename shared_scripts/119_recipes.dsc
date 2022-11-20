@@ -730,7 +730,7 @@ soul_bow_particles:
 soul_arrow:
   type: entity
   debug: false
-  entity_type: arrow[damage=0.1;pickup_status=CREATIVE_ONLY;]
+  entity_type: arrow[damage=0.5;pickup_status=CREATIVE_ONLY;]
 
 keaton_boots:
   type: item
@@ -850,7 +850,7 @@ fairy_bow_particles:
 fairy_arrow:
   type: entity
   debug: false
-  entity_type: arrow[damage=0.1;pickup_status=CREATIVE_ONLY;]
+  entity_type: arrow[damage=0.5;pickup_status=CREATIVE_ONLY;]
 
 chu_chu_club:
   type: item
@@ -1980,7 +1980,7 @@ relic_of_sands:
     hides:
       - enchants
   lore:
-  - <&color[#0BBCD1]>A Legendary Relic from the Twilight Realm.
+  - <&color[#0BBCD1]>A Legendary Relic
   - <&color[#C2CF80]>They say that the Twilight Princess
   - <&color[#0BBCD1]>once used it to defeat the Usuper King Zant.
   # recipes:
