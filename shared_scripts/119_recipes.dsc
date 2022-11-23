@@ -2181,4 +2181,4 @@ relic_of_darkness_world:
         - playeffect effect:explosion_normal quantity:<util.random.int[1].to[5]> at:<player.location>
         - cast DAMAGE_RESISTANCE duration:2s
     on player swaps items offhand:relic_of_darkness:
-      - playsound <player.location> sound:entity_ender_dragon_growl pitch: -1
+      - playsound <player.location> sound:entity_ender_dragon_growl
