@@ -1961,6 +1961,9 @@ croak_cloak_world:
       - foreach <server.online_players.filter[has_equipped[croak_cloak]]> as:__player:
         - playeffect effect:scrape quantity:<util.random.int[1].to[5]> at:<player.location>
         - playsound <player.location> sound:entity_frog_ambient volume:1.5
+    on player crafts croak_cloak bukkit_priority:monitor ignorecancelled:true:
+      - if <context.recipe.get[5].script.name||null> == ender_dragon_wings:
+        - determine cancelled:false
 
 relic_of_dreams:
   type: item
