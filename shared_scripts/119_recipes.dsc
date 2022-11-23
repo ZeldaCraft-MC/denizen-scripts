@@ -752,7 +752,6 @@ soul_arrow:
   debug: false
   entity_type: arrow
   mechanisms:
-    damage: 0.75
     pickup_status: creative_only
 
 keaton_boots:
@@ -880,7 +879,6 @@ fairy_arrow:
   debug: false
   entity_type: arrow
   mechanisms:
-    damage: 0.75
     pickup_status: creative_only
 
 chu_chu_club:
