@@ -25,7 +25,7 @@ malice_fragment_drop:
   debug: false
   events:
     on player kills warden:
-    - define droprate 5
+    - define droprate 0.5
     - if <util.random_chance[<[droprate]>]>:
       - drop malice_fragment
 
@@ -752,7 +752,7 @@ soul_arrow:
   debug: false
   entity_type: arrow
   mechanisms:
-    damage: 0.1
+    damage: 0.75
     pickup_status: creative_only
 
 keaton_boots:
@@ -880,7 +880,7 @@ fairy_arrow:
   debug: false
   entity_type: arrow
   mechanisms:
-    damage: 0.1
+    damage: 0.75
     pickup_status: creative_only
 
 chu_chu_club:
@@ -1824,7 +1824,7 @@ phantom_ganon_sword:
   material: netherite_sword
   display name: <&color[#3DB0C6]>Phantom Blade
   enchantments:
-    - DAMAGE_ALL:8
+    - DAMAGE_ALL:5
   mechanisms:
     custom_model_data: 100
   lore:
@@ -1841,7 +1841,7 @@ phantom_ganon_drop:
   debug: false
   events:
     on player kills warden:
-    - define droprate 1
+    - define droprate 0.5
     - if <util.random_chance[<[droprate]>]>:
       - drop phantom_ganon_sword
 
