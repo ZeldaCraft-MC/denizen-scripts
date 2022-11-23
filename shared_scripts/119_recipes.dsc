@@ -1845,7 +1845,7 @@ phantom_ganon_drop:
     - if <util.random_chance[<[droprate]>]>:
       - drop phantom_ganon_sword
     after player closes inventory:
-      - foreach <player.inventory.find_all_items[ohantom_ganon_sword]> as:slot:
+      - foreach <player.inventory.find_all_items[phantom_ganon_sword]> as:slot:
         - if <player.inventory.slot[<[slot]>].enchantment_map.get[sharpness].equals[8]||false>:
           - inventory adjust slot:<[slot]> enchantments:<player.inventory.slot[<[slot]>].enchantment_map.with[sharpness].as[5]>
 
