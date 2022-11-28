@@ -47,8 +47,8 @@ voting_prizes:
       - bomb_item[quantity=8]
       - spore_blossom
       - paper[custom_model_data=5000;display_name=Lon Lon Milk Jar;quantity=5]
-      - paper[custom_model_data=12457;display_name=Xmas 2021 Sent Plushie]
-      - paper[custom_model_data=12456;display_name=Xmas 2021 Mergu Plushie]
+      - paper[custom_model_data=12457;display_name=Xmas 2022 Sent Plushie]
+      - paper[custom_model_data=12456;display_name=Xmas 2022 Mergu Plushie]
       - paper[custom_model_data=16100;display_name=Xmas 2022 Tenshi Plushie]
       - paper[custom_model_data=16100;display_name=Xmas 2022 Rune Plushie]
       - paper[custom_model_data=16101;display_name=Xmas 2022 Thunder Plushie]
