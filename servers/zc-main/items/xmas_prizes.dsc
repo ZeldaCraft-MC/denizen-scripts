@@ -292,6 +292,7 @@ xmas_place_formatter:
 xmas_claim_cmd:
     type: command
     name: xmas_claim
+    enabled: false
     debug: false
     description: Claim your event rewards!
     usage: /xmas_claim

@@ -44,6 +44,7 @@ sidebar_command:
 sidebar_handler:
   type: world
   debug: false
+  enabled: false
   events:
     on player changes world to dungeons:
       - define player <player>

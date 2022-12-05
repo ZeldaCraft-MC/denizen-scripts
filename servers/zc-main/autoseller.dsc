@@ -34,6 +34,10 @@ autoseller_events:
           - determine cancelled
 
     on item moves from inventory in:world_flagged:autoseller_enabled:
+      - determine passively cancelled
+      - ratelimit <context.item.material.name> 1t
+      - determine passively cancelled:false
+
       # Prevent active autoseller from leaving chest via hopper
       - if <context.item.script.name||null> == autoseller && <context.item.nbt[active]>:
         - determine cancelled
