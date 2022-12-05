@@ -21,15 +21,15 @@ voting_prizes:
       - zc_power_dust
       - shulker_shell
       - diamond_block
-      - iron_block[quantity=5]
-      - gold_block[quantity=5]
+ #     - iron_block[quantity=5]
+#      - gold_block[quantity=5]
       - netherite_scrap[quantity=4]
-      - experience_bottle[quantity=15]
+#      - experience_bottle[quantity=15]
       - trident
-      - name_tag[quantity=5]
-      - heart_of_the_sea
+#      - name_tag[quantity=5]
+#      - heart_of_the_sea
       - wither_skeleton_skull
-      - turtle_egg[quantity=10]
+#      - turtle_egg[quantity=10]
       - beacon
       - nether_star
       - netherite_helmet
@@ -39,23 +39,31 @@ voting_prizes:
       - netherite_sword
       - netherite_axe
       - netherite_pickaxe
-      - turtle_helmet
+#      - turtle_helmet
       - budding_amethyst
-      - spectral_arrow[quantity=256]
-      - <list[bee|cat|cow|dolphin|donkey|fox|horse|llama|mule|ocelot|panda|parrot|pig|polar_bear|pufferfish|rabbit|sheep|tropical_fish|wolf|axolotl].random>_spawn_egg
+#      - spectral_arrow[quantity=256]
+#      - <list[bee|cat|cow|dolphin|donkey|fox|horse|llama|mule|ocelot|panda|parrot|pig|polar_bear|pufferfish|rabbit|sheep|tropical_fish|wolf|axolotl].random>_spawn_egg
       - royal_halberd
       - bomb_item[quantity=8]
       - spore_blossom
-      - paper[custom_model_data=5000;display_name=Lon Lon Milk Jar;quantity=5]
-      - paper[custom_model_data=7000;display_name=DCaff95 Plushie]
-      - paper[custom_model_data=7100;display_name=Mergu Plushie]
-      - paper[custom_model_data=8400;display_name=EyelessTenshi Plushie]
-      - paper[custom_model_data=12211;display_name=Froggy Chair]
-      - paper[custom_model_data=16001;display_name=Drippy Dampe Plushie]
-      - paper[custom_model_data=16002;display_name=Postman Plushie]
-      - paper[custom_model_data=16003;display_name=Speckled Man Plushie]
+#      - paper[custom_model_data=5000;display_name=Lon Lon Milk Jar;quantity=5]
+      - paper[custom_model_data=12457;display_name=Xmas 2022 Sent Plushie]
+      - paper[custom_model_data=12456;display_name=Xmas 2022 Mergu Plushie]
+      - paper[custom_model_data=16100;display_name=Xmas 2022 Tenshi Plushie]
+      - paper[custom_model_data=16101;display_name=Xmas 2022 Rune Plushie]
+      - paper[custom_model_data=16102;display_name=Xmas 2022 Thunder Plushie]
+      - paper[custom_model_data=16103;display_name=Xmas 2022 Bayli Plushie]
+      - paper[custom_model_data=16104;display_name=Xmas 2022 Gingeh Plushie]
+      - paper[custom_model_data=16105;display_name=Xmas 2022 Isaiah Plushie]
       - paper[custom_model_data=16005;display_name=King's Crown]
       - paper[custom_model_data=16006;display_name=Loftwing Plushie]
+#      - paper[custom_model_data=7000;display_name=DCaff95 Plushie]
+#      - paper[custom_model_data=7100;display_name=Mergu Plushie]
+#      - paper[custom_model_data=8400;display_name=EyelessTenshi Plushie]
+#      - paper[custom_model_data=12211;display_name=Froggy Chair]
+#      - paper[custom_model_data=16001;display_name=Drippy Dampe Plushie]
+#      - paper[custom_model_data=16002;display_name=Postman Plushie]
+#      - paper[custom_model_data=16003;display_name=Speckled Man Plushie]
       - royal_hoe
       - royal_pickaxe
       - royal_axe
