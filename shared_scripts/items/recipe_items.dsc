@@ -17,7 +17,7 @@ recipe_handler:
       # Fix smithing items
       - if <context.inventory.list_contents.first.script.name.starts_with[zc_]||false> && <context.inventory.list_contents.first.material.name.starts_with[diamond_]||false> && <context.inventory.list_contents.get[2].material.name||error> == netherite_ingot:
         - define mat netherite_<context.inventory.list_contents.first.material.name.after[diamond_]>
-        - determine <context.inventory.list_contents.first.as_item.with[material=<[mat]>]>
+        - determine <context.inventory.list_contents.first.with[material=<[mat]>]>
 
 get_custom_recipes:
   type: procedure
@@ -31,7 +31,7 @@ get_custom_recipes:
           - if <[recipe_id]> != null:
             - define recipes <[recipes].include[denizen:<[recipe_id]>]>
       - else:
-        - define recipes <[recipes].include[<[script].name.as_item.recipe_ids>]>
+        - define recipes <[recipes].include[<[script].name.as[item].recipe_ids>]>
     - determine <[recipes]>
 
 unplaceable_items:

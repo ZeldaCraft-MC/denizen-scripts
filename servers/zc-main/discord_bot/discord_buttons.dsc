@@ -1,3 +1,11 @@
+# Copyright 2022 ZeldaCraft
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 suggestion_buttons:
   type: task
   debug: false
@@ -255,6 +263,9 @@ d_butt_w:
     - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
     - choose <context.option.get[value]>:
       - case ticket:
+        - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+          - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+          - stop
         - if <context.interaction.user.flag[bot_int].contains[start_ticket]>:
           - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Ticket Creation].with[description].as[You cannot have more then one ticket creations going on at once].with[color].as[red]>"
           - stop
@@ -269,6 +280,9 @@ d_butt_w:
         - ~discordmessage id:zc-info user:<context.interaction.user> "<discord_embed.with[title].as[Ticket Creation].with[description].as[Type your question/message for the staff team in here]>" rows:<[butt]>
         - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[dm_msg]>]>
       - case sug:
+        - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+          - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+          - stop
         - if <context.interaction.user.flag[bot_int].contains[post_sug]>:
           - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Suggestion].with[description].as[You cannot have more then one suggestion creations going on at once].with[color].as[red]>"
           - stop
@@ -283,6 +297,9 @@ d_butt_w:
         - ~discordmessage id:zc-info user:<context.interaction.user> "<discord_embed.with[title].as[Suggestion].with[description].as[Type your suggestion in here]>" rows:<[butt]>
         - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[dm_msg]>]>
       - case bug_report:
+        - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+          - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+          - stop
         - if <context.interaction.user.flag[bot_int].contains[post_bug]>:
           - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Bug report].with[description].as[You cannot report more then one bug at a time].with[color].as[red]>"
           - stop
@@ -455,6 +472,10 @@ d_butt_w:
     - flag <[msg]> cur_page:<[page]>
     - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Voters].with[description].as[Page has been changed].with[color].as[lime]>"
     on discord button clicked id:reply_bug_* for:zc-info:
+    - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+      - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+      - stop
     - if !<context.channel.has_flag[<context.button.map.get[id].after[reply_bug_]>]>:
       - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
       - discordinteraction reply interaction:<context.interaction> "This suggestion is already accepted/declined"
@@ -486,7 +507,7 @@ d_butt_w:
       - define staff <[staff].include[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[<[role]>]>]>]>]>
     - flag <context.channel> <[ruuid]>.votes:++
     - flag <context.channel> <[ruuid]>.yesses:++
-    - define staff <[staff].deduplicate.size.sub[2]>
+    - define staff <[staff].deduplicate.size.sub[1]>
     - define amount <[staff].sub[1].div[2].round_down>
     - define half_staff <[amount].add[1]>
     - define new_msg <[msg].embed.first.map>
@@ -529,7 +550,7 @@ d_butt_w:
     - foreach <script[zc_bot_info].data_key[upvote_roles].values> as:role:
       - define staff <[staff].include[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[<[role]>]>]>]>]>
     - flag <context.channel> <[ruuid]>.votes:++
-    - define staff <[staff].deduplicate.size.sub[2]>
+    - define staff <[staff].deduplicate.size.sub[1]>
     - define amount <[staff].sub[1].div[2].round_down>
     - define half_staff <[amount].add[1]>
     - define new_msg <[msg].embed.first.map>
@@ -538,7 +559,7 @@ d_butt_w:
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Trusted Downvote].with[description].as[Your vote has been changed].with[color].as[lime].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes]>"
     - else:
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Trusted Downvote].with[description].as[Thank you for voting].with[color].as[lime].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes]>"
-    - if <context.channel.flag[<[ruuid]>.votes]> > <[amount].sub[<context.channel.flag[<[ruuid]>.yesses]||0>]>:
+    - if <context.channel.flag[<[ruuid]>.votes].sub[<context.channel.flag[<[ruuid]>.yesses]||0>]> > <[amount]>:
       - ~discordmessage id:zc-info edit:<[msg]> "<discord_embed.with_map[<[new_msg]>].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes].with[color].as[red]>"
       - flag <context.channel> <[ruuid]>:!
     - else:
@@ -567,7 +588,7 @@ d_butt_w:
       - define staff <[staff].include[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[<[role]>]>]>]>]>
     - flag <context.channel> <[ruuid]>.votes:++
     - flag <context.channel> <[ruuid]>.yesses:++
-    - define staff <[staff].deduplicate.size.sub[2]>
+    - define staff <[staff].deduplicate.size.sub[1]>
     - define amount <[staff].sub[1].div[2].round_down>
     - define half_staff <[amount].add[1]>
     - define new_msg <[msg].embed.first.map>
@@ -610,7 +631,7 @@ d_butt_w:
     - foreach <script[zc_bot_info].data_key[upvote_roles].values> as:role:
       - define staff <[staff].include[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[<[role]>]>]>]>]>
     - flag <context.channel> <[ruuid]>.votes:++
-    - define staff <[staff].deduplicate.size.sub[2]>
+    - define staff <[staff].deduplicate.size.sub[1]>
     - define amount <[staff].sub[1].div[2].round_down>
     - define half_staff <[amount].add[1]>
     - define new_msg <[msg].embed.first.map>
@@ -619,7 +640,7 @@ d_butt_w:
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Helper Downvote].with[description].as[Your vote has been changed].with[color].as[lime].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes]>"
     - else:
       - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Helper Downvote].with[description].as[Thank you for voting].with[color].as[lime].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes]>"
-    - if <context.channel.flag[<[ruuid]>.votes]> > <[amount].sub[<context.channel.flag[<[ruuid]>.yesses]||0>]>:
+    - if <context.channel.flag[<[ruuid]>.votes].sub[<context.channel.flag[<[ruuid]>.yesses]||0>]> > <[amount]>:
       - ~discordmessage id:zc-info edit:<[msg]> "<discord_embed.with_map[<[new_msg]>].with[footer].as[<context.channel.flag[<[ruuid]>.yesses]>/<[half_staff]> Yesses | <context.channel.flag[<[ruuid]>.votes]>/<[staff]> votes].with[color].as[red]>"
       - flag <context.channel> <[ruuid]>:!
     - else:
@@ -766,8 +787,9 @@ d_butt_w:
     - flag <context.channel> <context.button.map.get[id].after[deny_bug_]>:!
     - ~discordmessage id:zc-info edit:<[msg]> "<[msg].embed.first.with[footer].as[status - Not a Bug].with[color].as[red]>"
     - ~discordinteraction reply interaction:<context.interaction> "The bug report has been set to Not a Bug!"
-    - adjust <[msg].flag[reply_thread]> is_thread_archived:true
-    - adjust <[msg].flag[reply_thread]> is_thread_locked:true
+    - if <[msg].has_flag[reply_thread]>:
+      - adjust <[msg].flag[reply_thread]> is_thread_archived:true
+      - adjust <[msg].flag[reply_thread]> is_thread_locked:true
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Denied Bug Report].with[description].as[<context.interaction.user.name> Denied a bug report<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[lime]>"
     on discord button clicked id:accept_bug_* for:zc-info:
     - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
@@ -780,8 +802,9 @@ d_butt_w:
       - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Accept Bug Report].with[description].as[<context.interaction.user.name> tried to accept a bug report<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[red]>"
       - stop
     - flag <context.channel> <context.button.map.get[id].after[accept_bug_]>:!
-    - adjust <[msg].flag[reply_thread]> is_thread_archived:true
-    - adjust <[msg].flag[reply_thread]> is_thread_locked:true
+    - if <[msg].has_flag[reply_thread]>:
+      - adjust <[msg].flag[reply_thread]> is_thread_archived:true
+      - adjust <[msg].flag[reply_thread]> is_thread_locked:true
     - ~discordmessage id:zc-info edit:<[msg]> "<[msg].embed.first.with[footer].as[status - Fixed].with[color].as[lime]>"
     - ~discordinteraction reply interaction:<context.interaction> "Suggestion accepted."
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Accept Bug Report].with[description].as[<context.interaction.user.name> marked a bug report as fixed<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[lime]>"
@@ -795,13 +818,18 @@ d_butt_w:
       - ~discordinteraction reply interaction:<context.interaction> "You cannot deny a suggestion!"
       - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Denied Suggestion].with[description].as[<context.interaction.user.name> tried to mark a suggestion as denied<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[red]>"
       - stop
-    - adjust <[msg].flag[reply_thread]> is_thread_archived:true
-    - adjust <[msg].flag[reply_thread]> is_thread_locked:true
+    - if <[msg].has_flag[reply_thread]>:
+      - adjust <[msg].flag[reply_thread]> is_thread_archived:true
+      - adjust <[msg].flag[reply_thread]> is_thread_locked:true
     - flag <context.channel> <context.button.map.get[id].after[deny_suggestion_]>:!
     - ~discordmessage id:zc-info edit:<[msg]> "<[msg].embed.first.with[footer].as[status - Denied].with[color].as[red]>"
     - ~discordinteraction reply interaction:<context.interaction> "The suggestion has been denied!"
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[others_channel].get[id]> "<discord_embed.with[title].as[Denied Suggestion].with[description].as[<context.interaction.user.name> marked a suggestion as denied<&nl><&lb>Message Link<&rb>(<[msg].url>)].with[color].as[lime]>"
     on discord button clicked id:reply_suggestion_* for:zc-info:
+    - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.interaction.user.id>:
+      - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
+      - ~discordinteraction reply interaction:<context.interaction> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]>
+      - stop
     - if !<context.channel.has_flag[<context.button.map.get[id].after[reply_suggestion_]>]>:
       - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
       - discordinteraction reply interaction:<context.interaction> "This suggestion is already accepted/declined"
@@ -829,8 +857,9 @@ d_butt_w:
       - discordinteraction reply interaction:<context.interaction> "This suggestion is already accepted/declined"
       - stop
     - define msg <context.channel.flag[<context.button.map.get[id].after[accept_suggestion_]>]>
-    - adjust <[msg].flag[reply_thread]> is_thread_archived:true
-    - adjust <[msg].flag[reply_thread]> is_thread_locked:true
+    - if <[msg].has_flag[reply_thread]>:
+      - adjust <[msg].flag[reply_thread]> is_thread_archived:true
+      - adjust <[msg].flag[reply_thread]> is_thread_locked:true
     - flag <context.channel> <context.button.map.get[id].after[accept_suggestion_]>:!
     - ~discordmessage id:zc-info edit:<[msg]> "<[msg].embed.first.with[footer].as[status - Accepted].with[color].as[lime]>"
     - ~discordinteraction reply interaction:<context.interaction> "Suggestion accepted."

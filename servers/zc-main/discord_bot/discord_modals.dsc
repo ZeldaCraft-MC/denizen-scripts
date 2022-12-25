@@ -1,6 +1,14 @@
+# Copyright 2022 ZeldaCraft
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 d_modals_world:
   type: world
-  debug: true
+  debug: false
   events:
     on discord modal submitted name:ban_appeal for:zc-info:
     - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
@@ -100,6 +108,7 @@ d_modals_world:
       - narrate "You and <[user].name> Have been forced linked" targets:<[pl]> format:zc_text
     - ~discordmessage id:zc-info user:<[user]> <discord_embed.with_map[<script[d_messages].parsed_key[linkmc_suc_force_msg]>]>
     - ~discordinteraction reply interaction:<context.interaction> "<discord_embed.with[title].as[Force Link].with[description].as[<[pl].name> and <[user].name> Have succesfully been linked together].with[color].as[lime]>"
+
 trusted_modal:
   type: task
   debug: false
@@ -108,6 +117,7 @@ trusted_modal:
         1:
           1: <discord_text_input.with[id].as[reason].with[label].as[Why do you want to become trusted?].with[style].as[paragraph].with[placeholder].as[Type your reason in here]>
     - ~discordmodal interaction:<context.interaction> name:trusted_app "title:Trusted Application" rows:<[modal]>
+
 helper_modal:
   type: task
   debug: false
@@ -120,6 +130,7 @@ helper_modal:
         3:
           1: <discord_text_input.with[id].as[helped].with[label].as[Who have you already helped?].with[style].as[paragraph].with[placeholder].as[Please provide examples of what you did the help those players]>
     - ~discordmodal interaction:<context.interaction> name:helper_app "title:Helper Application" rows:<[modal]>
+
 ban_appeal_modal:
   type: task
   debug: false
@@ -132,6 +143,7 @@ ban_appeal_modal:
         3:
           1: <discord_text_input.with[id].as[message].with[label].as[Do you have something else to say?].with[style].as[short].with[placeholder].as[To staff or players about your ban?]>
     - ~discordmodal interaction:<context.interaction> name:ban_appeal "title:Ban Appeal" rows:<[modal]>
+
 builder_modal:
   type: task
   debug: false
@@ -148,6 +160,7 @@ builder_modal:
         5:
           1: <discord_text_input.with[id].as[responsible].with[label].as[Will you be responsible with the staff?].with[style].as[short].with[placeholder].as[This includes being respectful and co-operative]>
     - ~discordmodal interaction:<context.interaction> name:builder_app "title:Builder Application" rows:<[modal]>
+
 sug_reply_modal:
   type: task
   debug: false
@@ -156,6 +169,7 @@ sug_reply_modal:
         1:
           1: <discord_text_input.with[id].as[msg].with[label].as[Reply message].with[style].as[short].with[placeholder].as[Put your reply to the suggestion in here]>
     - ~discordmodal interaction:<context.interaction> name:sug_reply "title:Suggestion Reply" rows:<[modal]>
+
 bug_reply_modal:
   type: task
   debug: false
@@ -164,6 +178,7 @@ bug_reply_modal:
         1:
           1: <discord_text_input.with[id].as[msg].with[label].as[Reply message].with[style].as[short].with[placeholder].as[Put your reply to the bug report in here]>
     - ~discordmodal interaction:<context.interaction> name:bug_reply "title:Bug Report Reply" rows:<[modal]>
+
 forcelink_modal:
   type: task
   debug: false

@@ -1,3 +1,11 @@
+# Copyright 2022 ZeldaCraft
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 d_messages:
   type: data
   debug: false
@@ -47,7 +55,7 @@ d_messages:
     color: aqua
   help_total_votes_msg:
     title: Total_votes command
-    description: **Usage:** `<script[zc_bot_info].parsed_key[prefix]>total_votes` in <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].channel[<script[zc_bot_info].data_key[bot_channel].get[name]>].mention> or `/total_votes`<&nl><&nl>Gives the amount of total votes the server has recieved.
+    description: **Usage:** `<script[zc_bot_info].parsed_key[prefix]>total_votes` in <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].channel[<script[zc_bot_info].data_key[bot_channel].get[name]>].mention> or `/total_votes`<&nl><&nl>Gives the amount of total votes the server has received.
     color: aqua
   help_linkmc_msg:
     title: Linkmc command
@@ -131,7 +139,7 @@ d_messages:
     title: Direct Message
     description: I have sent you a direct message(DM)
     fields:
-      - <map.with[title].as[Didn't recieve it.].with[value].as[If you didn't recieve a dm, make sure you allow direct messages from server members.]>
+      - <map.with[title].as[Didn't receive it.].with[value].as[If you didn't receive a dm, make sure you allow direct messages from server members.]>
     color: aqua
   too_many_int_msg:
     title: Interactions
@@ -203,14 +211,14 @@ d_messages:
     author_name: <[p].name> Moderator Application
     author_icon_url: https://cravatar.eu/helmavatar/<[p].name||error>/190.png
     author_url: https://minecraft-statistic.net/en/player/<[p].name>.html
-    description: Time Zone<&co> **<[time]>**<&nl>Age<&co> **<[age]>**<&nl>Total time played<&co> **<[p].statistic[play_one_minute].div[20].as_duration.formatted||error>**<&nl>First login<&co> **<[p].first_played_time.format||error>**
+    description: Time Zone<&co> **<[time]>**<&nl>Age<&co> **<[age]>**<&nl>Total time played<&co> **<[p].statistic[play_one_minute].div[20].as[duration].formatted||error>**<&nl>First login<&co> **<[p].first_played_time.format||error>**
     color: aqua
     footer: Posted by <context.interaction.user.name>
   mod_app_msg:
     author_name: <[p].name> Moderator Application
     author_icon_url: https://cravatar.eu/helmavatar/<[p].name||error>/190.png
     author_url: https://minecraft-statistic.net/en/player/<[p].name>.html
-    description: Time Zone<&co> **<[time]>**<&nl>Age<&co> **<[age]>**<&nl>Total time played<&co> **<[p].statistic[play_one_minute].div[20].as_duration.formatted||error>**<&nl>First login<&co> **<[p].first_played_time.format||error>**
+    description: Time Zone<&co> **<[time]>**<&nl>Age<&co> **<[age]>**<&nl>Total time played<&co> **<[p].statistic[play_one_minute].div[20].as[duration].formatted||error>**<&nl>First login<&co> **<[p].first_played_time.format||error>**
     color: aqua
     footer: Posted by <context.new_message.author.name>
   cracked_msg:
@@ -554,7 +562,7 @@ d_messages:
       - <map.with[title].as[Stop].with[value].as[You can stop this application by clicking the stop button]>
   helper_post_msg:
     title: Helper Application
-    description: Thank you for applying to become a helper.<&nl>Your application has been posted and will be voted on by the staff team.<&nl>Updates on the vorting can be seen in the application message
+    description: Thank you for applying to become a helper.<&nl>Your application has been posted and will be voted on by the staff team.<&nl>Updates on the voting can be seen in the application message
     fields:
       - <map.with[title].as[Helpers get priveleges:].with[value].as[:large_blue_diamond: Access to /tpo<&nl>`Teleport to anyone anytime!`<&nl><&nl>:large_blue_diamond: Limited access to /co<&nl>`Our logging system`].with[inline].as[false]>
       - <map.with[title].as[Helpers should follow the same rules as Mods].with[value].as[:large_orange_diamond: Rules<&nl>`Make sure you know the server rules.`<&nl><&nl>:large_orange_diamond: Respect<&nl>`Be respectful to other players - don't bully/abuse them.`<&nl><&nl>:large_orange_diamond: UNbiased<&nl>`Be impartial (i.e. unbiased) towards players.`<&nl><&nl>:large_orange_diamond: Mature<&sp>`Be mature and repsonsible`]>
@@ -692,7 +700,7 @@ d_messages:
     author_name: <[player].name>
     description: Underneath are all the relevant timings we could find.<&nl>The latest date we can go to is 2016/07/05 09:21:55
     fields:
-      - <map.with[title].as[Total time played:].with[value].as[<[player].statistic[play_one_minute].div[20].as_duration.formatted||error>].with[inline].as[false]>
+      - <map.with[title].as[Total time played:].with[value].as[<[player].statistic[play_one_minute].div[20].as[duration].formatted||error>].with[inline].as[false]>
       - <map.with[title].as[First login:].with[value].as[<[player].first_played_time.format||error>].with[inline].as[false]>
       - <map.with[title].as[Last login:].with[value].as[<[player].last_played_time.format||error>].with[inline].as[false]>
       - <map.with[title].as[Time between first & last login].with[value].as[<[player].last_played_time.duration_since[<[player].first_played_time>].formatted||error>].with[inline].as[false]>
@@ -708,3 +716,8 @@ d_messages:
     description: <[text].separated_by[<&nl>]>
     thumbnail: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStagdyunL5zpU5cfCZnvS1YKvHYQH_4Vrsng&usqp=CAU
     color: aqua
+  user_banned_msg:
+    title: Interaction banned
+    description: I'm sorry but you seem to be banned from using this command for a certain time.<&nl>We ask you to not mess with the bot after this ban has been lifted.<&nl>You are not able to appeal for this ban.
+    thumbnail: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/RedX.svg/2048px-RedX.svg.png
+    color: red

@@ -30,8 +30,8 @@ master_sword:
 
 master_sword_events:
   type: world
+  debug: false
   events:
-    # TODO: Make the master sword do cool things.
     on player damages entity with:master_sword:
       - narrate <context.final_damage>
 

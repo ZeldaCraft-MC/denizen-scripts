@@ -1,3 +1,11 @@
+# Copyright 2022 ZeldaCraft
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 d_dm_data:
   type: data
   debug: false
@@ -30,6 +38,7 @@ d_dm_data:
     mod_7: Moderator Application
     mod_8: Moderator Application
     mod_9: Moderator Application
+
 d_dm_int_w:
   type: world
   debug: false
@@ -377,6 +386,9 @@ d_dm_int_w:
         - ~discordmessage id:zc-info user:<context.new_message.author> <discord_embed.with_map[<script[d_messages].parsed_key[mod_app_post]>]>
         - flag <context.new_message.author> mod_app:!
       - default:
+        - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+          - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+          - stop
         - if !<context.new_message.author.has_flag[bot_int]> || <context.new_message.author.flag[bot_int].is_empty>:
           - inject sug_int_menu
           - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[no_ints_msg]>]> rows:<[selection]> no_mention

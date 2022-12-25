@@ -1,3 +1,11 @@
+# Copyright 2022 ZeldaCraft
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 zc_bot_info:
   type: data
   debug: false
@@ -37,8 +45,10 @@ zc_bot_info:
     - unarmed
     - acrobatics
     - alchemy
+  # input the uuid of the player
   mc_no_access_users:
     - no_one
+  # input the id of the discord user
   dis_no_access_users:
     - no-one
   images:
@@ -120,6 +130,7 @@ needs_name_task:
         - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[no_name_msg]>]> no_mention
         - stop
       - define p <context.new_message.author.flag[mc_link]>
+
 mclink_task:
   type: task
   debug: false
@@ -129,6 +140,7 @@ mclink_task:
     - flag <[user]> mc_link:<[pl]>
     - narrate "You and <[user].name> Have succesfully been linked" targets:<[pl]> format:zc_text
     - ~discordmessage id:zc-info user:<[user]> <discord_embed.with_map[<script[d_messages].parsed_key[linkmc_suc_msg]>]>
+
 reply_sug_task:
   type: task
   debug: false
@@ -141,6 +153,8 @@ reply_sug_task:
       - define admins <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].members.filter_tag[<[filter_value].roles[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]>].contains[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[Admin]>]>]>
       - define users <list[<[owners]>].include[<[admins]>].deduplicate>
       - foreach <[users]> as:user:
+        - if !<[user].id.is_truthy>:
+          - foreach next
         - adjust <entry[thread].created_thread> add_thread_member:<[user]>
       - wait <[users].size.div[1.4]>s
       - if <[msg2].embed.first.map.contains[fields]>:
@@ -165,6 +179,7 @@ reply_sug_task:
       - else:
         - ~discordmessage id:zc-info channel:<[thread]> <discord_embed.with_map[<script[d_messages].parsed_key[suggestion_attach_reply]>]>
     - ~discordmessage id:zc-info user:<[u]> <discord_embed.with_map[<script[d_messages].parsed_key[suggestion_reply_suc_msg]>]>
+
 reply_bug_task:
   type: task
   debug: false
@@ -179,6 +194,8 @@ reply_bug_task:
       - if <[msg2].has_flag[user]>:
         - define users <[users].include[<[msg2].flag[user]>].deduplicate>
       - foreach <[users]> as:user:
+        - if !<[user].id.is_truthy>:
+          - foreach next
         - adjust <entry[thread].created_thread> add_thread_member:<[user]>
       - wait <[users].size.div[1.4]>s
       - flag <[msg2]> reply_thread:<entry[thread].created_thread>
@@ -197,6 +214,7 @@ reply_bug_task:
       - else:
         - ~discordmessage id:zc-info channel:<[thread]> <discord_embed.with_map[<script[d_messages].parsed_key[bug_attach_reply]>]>
     - ~discordmessage id:zc-info user:<[u]> <discord_embed.with_map[<script[d_messages].parsed_key[bug_reply_suc_msg]>]>
+
 create_u_report_task:
   type: task
   debug: false
@@ -219,6 +237,7 @@ create_u_report_task:
         - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[user_report_attach_msg]>]> save:msg rows:<[buttons]>
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[report_announce].mention>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 mc_create_u_report_task:
   type: task
   debug: false
@@ -229,6 +248,7 @@ mc_create_u_report_task:
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[mc_user_report_msg]>]> rows:<[buttons]> save:msg
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[report_announce].mention>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 create_g_report_task:
   type: task
   debug: false
@@ -251,6 +271,7 @@ create_g_report_task:
         - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[grief_report_attach_msg]>]> save:msg rows:<[buttons]>
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[report_announce].mention>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 mc_create_g_report_task:
   type: task
   debug: false
@@ -261,6 +282,7 @@ mc_create_g_report_task:
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[mc_grief_report_msg]>]> rows:<[buttons]> save:msg
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[ban_channel].get[id]> <discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].role[report_announce].mention>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 create_bug_task:
   type: task
   debug: false
@@ -283,6 +305,7 @@ create_bug_task:
         - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[bugs_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[bugs_attach_msg]>]> save:msg rows:<[buttons]>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
     - flag <entry[msg].message> user:<[u]>
+
 mc_create_bug_task:
   type: task
   debug: false
@@ -292,6 +315,7 @@ mc_create_bug_task:
     - inject bugreport_buttons
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[bugs_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[mc_bug_msg]>]> rows:<[buttons]> save:msg
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 mc_create_sug_task:
   type: task
   debug: false
@@ -304,6 +328,7 @@ mc_create_sug_task:
     - else:
       - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[suggestion_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[mc_suggestion_title_msg]>]> rows:<[buttons]> save:msg
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 create_sug_task:
   type: task
   debug: false
@@ -325,6 +350,7 @@ create_sug_task:
       - else:
         - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[suggestion_channel].get[id]> <discord_embed.with_map[<script[d_messages].parsed_key[suggestion_attach_msg]>]> save:msg rows:<[buttons]>
     - flag <entry[msg].message.channel> <[ruuid]>:<entry[msg].message>
+
 create_ban_appeal_task:
   type: task
   debug: false
@@ -356,6 +382,7 @@ create_ban_appeal_task:
         - ~discordmessage id:zc-info channel:<entry[thread].created_thread> <discord_embed.with_map[<script[d_messages].parsed_key[ban_appeal_attach_msg]>]> save:msg2 rows:<[buttons]>
     - flag <entry[msg2].message.channel> <[ruuid]>.msg:<entry[msg].message>
     - flag <entry[msg2].message.channel> <[ruuid]>.pl:<[u]>
+
 create_ticket_task:
   type: task
   debug: false
@@ -398,6 +425,7 @@ create_ticket_task:
       - else:
         - ~discordmessage id:zc-info channel:<entry[thread].created_thread> <discord_embed.with_map[<script[d_messages].parsed_key[ticket_attach_msg]>]>
     - ~discordmessage id:zc-info user:<[u]> "<discord_embed.with[title].as[Ticket Opened].with[footer].as[A staff member will respond to you when available]>"
+
 bot_connect:
   type: world
   debug: false
@@ -449,6 +477,10 @@ bot_connect:
       - flag <server.online_players> last_announce:<server.flag[last_announce]>
     # suggestion channel messages
     - if <context.new_message.channel.id> == <script[zc_bot_info].data_key[suggestion_channel].get[id]>:
+      - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+        - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+        - adjust <context.new_message> delete
+        - stop
       - if <context.new_message.replied_to||none> == none:
         - define u <context.new_message.author>
         - define msg <context.new_message.text_no_mentions>
@@ -474,6 +506,10 @@ bot_connect:
         - adjust <context.new_message> delete
     # bug report channel messages
     - if <context.new_message.channel.id> == <script[zc_bot_info].data_key[bugs_channel].get[id]>:
+      - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+        - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+        - adjust <context.new_message> delete
+        - stop
       - if <context.new_message.replied_to||none> == none:
         - define u <context.new_message.author>
         - define msg <context.new_message.text_no_mentions>
@@ -773,7 +809,7 @@ bot_connect:
             - if <[bar].starts_with[****]>:
               - define bar <[bar].after_last[*]>
             - define rank <[player].mcmmo.rank[<[skill]>]||0>
-            - ~discordmessage id:zc-info reply:<context.new_message> "<discord_embed.with[title].as[<[player].name> <[skill]> Stats].with[description].as[Ranked #<[rank]><&nl>[Level <[level]>] <[bar]> (<[cur]>/<[max]> xp) (<[percent]>% to level <[level].add[1]>)].with[color].as[aqua].with[thumbnail].as[https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStagdyunL5zpU5cfCZnvS1YKvHYQH_4Vrsng&usqp=CAU]>" no_mention
+            - ~discordmessage id:zc-info reply:<context.new_message> "<discord_embed.with[title].as[<[player].name> <[skill]> Stats].with[description].as[Ranked #<[rank]><&nl>[Level <[level]>] <[bar]> (<[cur]>/<[max]> xp) (<[percent]><&pc> to level <[level].add[1]>)].with[color].as[aqua].with[thumbnail].as[https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStagdyunL5zpU5cfCZnvS1YKvHYQH_4Vrsng&usqp=CAU]>" no_mention
         # votes command
         - case votes:
           - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[votes_msg]>]> no_mention
@@ -846,6 +882,10 @@ bot_connect:
             - yaml unload id:<[uuid]>
         # report command
         - case report:
+          - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+            - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+            - adjust <context.new_message> delete
+            - stop
           - choose <[args].get[2]||default>:
             #bug report
             - case bug:
@@ -955,6 +995,10 @@ bot_connect:
             - ~discordmessage id:zc-info reply:<context.new_message> "Pick one" rows:<[selection]> no_mention
         # suggestion command
         - case suggestion:
+          - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+            - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+            - adjust <context.new_message> delete
+            - stop
           - if <[args].size> > 1:
             - define msg <[args].get[2].to[999999].space_separated>
             - define u <context.new_message.author>
@@ -1099,6 +1143,10 @@ bot_connect:
             - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[help_msg]>]> rows:<[selection]> no_mention
         # ticket command
         - case ticket:
+          - if <script[zc_bot_info].data_key[dis_no_access_users]> contains <context.new_message.author.id>:
+            - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[user_banned_msg]>]> no_mention
+            - adjust <context.new_message> delete
+            - stop
           - if <[args].size> > 1:
             - if <context.new_message.author.flag[bot_int].size||0> >= 25:
               - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[too_many_int_msg]>]> no_mention
@@ -1127,12 +1175,13 @@ bot_connect:
             - ~discordmessage id:zc-info user:<context.new_message.author> "<discord_embed.with[title].as[Ticket Creation].with[description].as[Type your question/message for the staff team in here]>" rows:<[butt]>
             - ~discordmessage id:zc-info reply:<context.new_message> <discord_embed.with_map[<script[d_messages].parsed_key[dm_msg]>]> no_mention
           - adjust <context.new_message> delete
+
 non_discord_events_w:
   type: world
   debug: false
   events:
     after player completes advancement:
-    - if <context.advancement.contains_any_text[recipes]> || <context.advancement.contains_any_text[root]>:
+    - if <context.advancement.contains_text[recipes]> || <context.advancement.contains_text[root]>:
       - stop
     - ~discordmessage id:zc-info channel:<script[zc_bot_info].data_key[chat_channel].get[id]> "<discord_embed.with[author_name].as[<player.name> has made the advancement <context.advancement.after_last[/].replace_text[_].with[ ]>!].with[author_icon_url].as[https://cravatar.eu/helmavatar/<player.name>/190.png].with[color].as[yellow]>"
     on system time secondly every:10:
@@ -1153,7 +1202,7 @@ non_discord_events_w:
           - inventory update
           - narrate "you cannot store the suggestions book" format:zc_text
     on player signs book:
-    - if <context.book.script> == <script[suggestions_i]>:
+    - if <context.book.script.name.if_null[no_script]> == suggestions_i:
       - flag player dis_sug:++ expire:1h
       - if <player.flag[dis_sug].if_null[0]> > 3:
         - narrate "You cannot post more then 3 suggestions in 1 hour" format:zc_text
@@ -1170,6 +1219,7 @@ non_discord_events_w:
       - wait 1s
       - take item:suggestions_i
       - narrate "Suggestion posted, <&a><&hover[For real thank you, this will improve the server]>thanks<&f><&end_hover> for suggesting" format:zc_text
+
 #---------------------#
 # ingame commands that
 # use discord formats
@@ -1177,13 +1227,13 @@ non_discord_events_w:
 report_command:
   type: command
   name: report
-  description: "Lets you report either a player, a bug or a grief"
+  description: Lets you report a player, bug, or grief
   usage: /report <&lt>(username)/bug/grief<&gt>
   debug: false
   tab_completions:
     1: bug|grief|<server.online_players.parse[name]>
   script:
-  - if <script[zc_bot_info].data_key[MC_no_access_users].contains[<player.uuid>]>:
+  - if <script[zc_bot_info].data_key[mc_no_access_users]> contains <player.uuid>:
     - narrate "I'm sorry but it seems like your account is banned from using this command for a certain time." format:zc_text
     - narrate "We ask you to not mess with the bot after this ban has been lifted" format:zc_text
     - narrate "You are not able to appeal for this ban" format:zc_text
@@ -1252,11 +1302,11 @@ report_command:
 suggestion:
   type: command
   name: suggestion
-  description: "Lets you post a suggestion"
+  description: Lets you post a suggestion
   usage: /suggestion <&lt>suggestion<&gt>
   debug: false
   script:
-  - if <script[zc_bot_info].data_key[MC_no_access_users].contains[<player.uuid>]>:
+  - if <script[zc_bot_info].data_key[mc_no_access_users]> contains <player.uuid>:
     - narrate "I'm sorry but it seems like your account is banned from using this command for a certain time." format:zc_text
     - narrate "We ask you to not mess with the bot after this ban has been lifted" format:zc_text
     - narrate "You are not able to appeal for this ban" format:zc_text
@@ -1293,7 +1343,7 @@ news_cmd:
     - if <[page]> == 1:
       - define messages <list[<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>].channel[<script[zc_bot_info].data_key[mc_announce_channel].get[name]>].last_message>]>
       - define num 1
-    - narrate "<&nl><&2><&l>Announcement #<[page]><&nl>
+    - narrate "<&nl><&2><&l>Announcement #<[page]><&nl>"
     - narrate <[messages].get[<[num]>].text_stripped><&nl>
     - if <[max_page]> <= 1:
       - narrate " "
@@ -1307,14 +1357,16 @@ news_cmd:
       - narrate "<&nl><[left_ar]> <&r>Page <[page]>/<[max_page]> <&color[#04BA04]><&chr[25B7]><&nl>"
       - stop
     - narrate "<&nl><[left_ar]> <&r>Page <[page]>/<[max_page]> <[right_ar]><&nl>"
+
 discord_command_den:
     type: command
     name: discord
-    description: "Gives you the link to our discord"
+    description: Gives you the link to our discord
     usage: /discord
     debug: false
     script:
     - narrate "Click this link to join our discord! <&click[https://discordapp.com/invite/P57m9qK].type[open_url]><&b><&n>https://discordapp.com/invite/P57m9qK<&end_click>" format:zc_text
+
 #--------------------#
 # discord role keeper
 #--------------------#
@@ -1340,6 +1392,7 @@ discord_role_keep:
     - announce <context.new_roles.parse[name]> to_console
     - flag <context.user> discord_roles:<context.new_roles||!>
     - announce <context.user.flag[discord_roles].parse[name]> to_console
+
 get_list:
   type: task
   debug: false
@@ -1355,4 +1408,4 @@ get_list:
       - else:
         - define amount <[players].size>
         - define players <[players].separated_by[<&nl>]>
-    - ~discordmessage id:zc-info edit:757905073660755998 channel:757903718640517191 "<discord_embed.with[author_name].as[ZeldaCraft online players].with[author_url].as[https://www.zeldacraft.com/].with[color].as[aqua].with[footer].as[Last updated].with[timestamp].as[<util.time_now>].with[description].as[**<[amount]||0> player(s) online**<&nl><[players]>]>"
+    - ~discordmessage id:zc-info edit:1034566869723664525 channel:757903718640517191 "<discord_embed.with[author_name].as[ZeldaCraft online players].with[author_url].as[https://www.zeldacraft.com/].with[color].as[aqua].with[footer].as[Last updated].with[timestamp].as[<util.time_now>].with[description].as[**<[amount]||0> player(s) online**<&nl><[players]>]>"
