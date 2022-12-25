@@ -41,22 +41,38 @@ bugreport_buttons:
 voters_buttons:
   type: task
   debug: false
-  definitions: ruuid
+  definitions: ruuid|page|max
   script:
+    - if <[page]> == 1:
+      - define 1 <discord_button.with[id].as[voters_left_<[ruuid]>].with[label].as[Previous].with[style].as[secondary].with[emoji].as[⬅️].with[disabled].as[true]>
+    - else:
+      - define 1 <discord_button.with[id].as[voters_left_<[ruuid]>].with[label].as[Previous].with[style].as[secondary].with[emoji].as[⬅️]>
+    - if <[page]> == <[max]>:
+      - define 2 <discord_button.with[id].as[voters_right_<[ruuid]>].with[label].as[Next].with[style].as[secondary].with[emoji].as[➡️].with[disabled].as[true]>
+    - else:
+      - define 2 <discord_button.with[id].as[voters_right_<[ruuid]>].with[label].as[Next].with[style].as[secondary].with[emoji].as[➡️]>
     - definemap buttons:
         1:
-          1: <discord_button.with[id].as[voters_left_<[ruuid]>].with[label].as[Previous].with[style].as[secondary].with[emoji].as[⬅️]>
-          2: <discord_button.with[id].as[voters_right_<[ruuid]>].with[label].as[Next].with[style].as[secondary].with[emoji].as[➡️]>
+          1: <[1]>
+          2: <[2]>
 
 baltop_buttons:
   type: task
   debug: false
-  definitions: ruuid
+  definitions: ruuid|page|max
   script:
+    - if <[page]> == 1:
+      - define 1 <discord_button.with[id].as[baltop_left_<[ruuid]>].with[label].as[Previous].with[style].as[secondary].with[emoji].as[⬅️].with[disabled].as[true]>
+    - else:
+      - define 1 <discord_button.with[id].as[baltop_left_<[ruuid]>].with[label].as[Previous].with[style].as[secondary].with[emoji].as[⬅️]>
+    - if <[page]> == <[max]>:
+      - define 2 <discord_button.with[id].as[baltop_right_<[ruuid]>].with[label].as[Next].with[style].as[secondary].with[emoji].as[➡️].with[disabled].as[true]>
+    - else:
+      - define 2 <discord_button.with[id].as[baltop_right_<[ruuid]>].with[label].as[Next].with[style].as[secondary].with[emoji].as[➡️]>
     - definemap buttons:
         1:
-          1: <discord_button.with[id].as[baltop_left_<[ruuid]>].with[label].as[Previous].with[style].as[secondary].with[emoji].as[⬅️]>
-          2: <discord_button.with[id].as[baltop_right_<[ruuid]>].with[label].as[Next].with[style].as[secondary].with[emoji].as[➡️]>
+          1: <[1]>
+          2: <[2]>
 
 ban_appeal_buttons:
   type: task
