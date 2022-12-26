@@ -10,6 +10,25 @@ misc_discord_commands:
   type: world
   debug: false
   events:
+    on discord command autocomplete option:ign:
+    - define value <context.options.get[<context.focused_option>]>
+    # check banned players for unban / ban_appeal
+    # sadly jailed and muted players aren't saved in the server
+    # I could do <server.players.filter[is_muted].parse[name]> & <server.players.filter[has_flag[jailed]].parse[name]> idk if this would lag the server tho
+    - choose <context.command.name>:
+      - case ban_appeal:
+        - define pl <server.banned_players.parse[name]>
+      #- case unjail:
+      #  - define pl <server.players.filter[has_flag[jailed]].parse[name]>
+      - case unban:
+        - define pl <server.banned_players.parse[name]>
+      #- case unmute:
+      #  - define pl <server.players.filter[is_muted].parse[name]>
+      - default:
+        # use the one below if parsing all players every autocomplete attempt is too much for the server
+        # -define pl <server.online_players.parse[name]>
+        - define pl <server.players.parse[name]>
+    - determine choices:<[pl].filter[contains_text[<[value]>]].first[25]>
     on discord message command for:zc-info:
       - choose <context.command.name>:
         - case "Reply Through Dms":
@@ -693,6 +712,10 @@ help_slash_cmd:
   type: world
   debug: false
   events:
+    on discord command autocomplete name:help option:command:
+    - define value <context.options.get[<context.focused_option>]>
+    - define cmds <list[help|timer|bal|baltop|stats|finished|votes|vote_timer|voters|total_votes|linkmc|class|report|suggestion|ban_appeal|ticket|trusted|helper|builder|moderator|interactions|mcmmostats]>
+    - determine choices:<[cmds].filter[contains_text[<[value]>]].first[25]>
     on discord slash command name:help:
       - ~discordinteraction defer interaction:<context.interaction> ephemeral:true
       - if <context.options.get[command]||error> == error:
