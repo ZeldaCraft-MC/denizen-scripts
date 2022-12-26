@@ -51,6 +51,7 @@ check_mod_cmds_run_once:
           name: ign
           description: The players in game name
           required: true
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:warnings "description:Look at a players their warnings!" options:<[options]>
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:tempbans "description:Look at a players their tempbans!" options:<[options]>
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:permbans "description:Look at a players their permabns!" options:<[options]>
@@ -71,73 +72,7 @@ help_cmd_run_once:
           name: command
           description: What command you want help with
           required: false
-          choices:
-            1:
-              name: Help command
-              value: help
-            2:
-              name: Times command
-              value: times
-            3:
-              name: Bal command
-              value: bal
-            4:
-              name: Baltop command
-              value: baltop
-            5:
-              name: Stats command
-              value: stats
-            6:
-              name: Finished command
-              value: finished
-            7:
-              name: Votes command
-              value: votes
-            8:
-              name: Vote timer command
-              value: vote_timer
-            9:
-              name: Voters command
-              value: voters
-            10:
-              name: Total votes command
-              value: total_votes
-            11:
-              name: Linkmc command
-              value: linkmc
-            12:
-              name: Class command
-              value: class
-            13:
-              name: Report command
-              value: report
-            14:
-              name: Suggestion command
-              value: suggestion
-            15:
-              name: Ban appeal command
-              value: ban_appeal
-            16:
-              name: Ticket command
-              value: ticket
-            17:
-              name: Trusted command
-              value: trusted
-            18:
-              name: Helper command
-              value: helper
-            19:
-              name: Builder command
-              value: builder
-            20:
-              name: Moderator command
-              value: moderator
-            21:
-              name: Interactions command
-              value: interactions
-            22:
-              name: McMMOstats command
-              value: mcmmostats
+          autocomeplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:help "description:Shows help about commands" options:<[options]>
 
 report_cmd_run_once:
@@ -194,6 +129,7 @@ stats_cmd_run_once:
           name: ign
           description: The name of the player.
           required: false
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:stats "description:Shows the player's zcrpg stats" options:<[options]>
 
 finished_cmd_run_once:
@@ -206,6 +142,7 @@ finished_cmd_run_once:
           name: ign
           description: The name of the player.
           required: false
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:finished "description:Shows the player's finished dungeons" options:<[options]>
 
 times_cmd_run_once:
@@ -218,6 +155,7 @@ times_cmd_run_once:
           name: ign
           description: The name of the player.
           required: false
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:times "description:Shows the player's current timings" options:<[options]>
 
 bal_cmd_run_once:
@@ -230,6 +168,7 @@ bal_cmd_run_once:
           name: ign
           description: The name of the player.
           required: false
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:bal "description:Shows the player's current balance" options:<[options]>
 
 baltop_cmd_run_once:
@@ -288,9 +227,10 @@ vote_timer_cmd_run_once:
     - definemap options:
         1:
           type: string
-          name: player
+          name: ign
           description: the name of the player you want to see the cooldown off
           required: false
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:vote_timer "description:View the cooldown on the voting sites" options:<[options]>
 
 total_votes_cmd_run_once:
@@ -329,6 +269,7 @@ ban_appeal_cmd_run_once:
           name: ign
           description: What is your in game name (ign)
           required: true
+          autocomplete: true
         2:
           type: string
           name: circumstances
@@ -362,6 +303,7 @@ trusted_app_cmd_run_once:
           name: ign
           description: What is your in game name (ign)
           required: true
+          autocomplete: true
         2:
           type: string
           name: reason
@@ -380,6 +322,7 @@ helper_app_cmd_run_once:
           name: ign
           description: What is your in game name (ign)
           required: true
+          autocomplete: true
         2:
           type: number
           name: age
@@ -408,6 +351,7 @@ build_app_cmd_run_once:
           name: ign
           description: What is your in game name (ign)
           required: true
+          autocomplete: true
         2:
           type: string
           name: time_zone
@@ -451,6 +395,7 @@ forcelink_cmd_run_once:
           type: string
           name: ign
           description: The player name you want to force a link with
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:force_link "description:Force a user to link their minecraft account" options:<[options]>
 
 linkmc_cmd_run_once:
@@ -462,6 +407,7 @@ linkmc_cmd_run_once:
           type: string
           name: ign
           description: In game name
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:linkmc "description:Allows you to link your minecraft and discord account together" options:<[options]>
 
 mcmmostats_cmd_run_once:
@@ -474,6 +420,7 @@ mcmmostats_cmd_run_once:
           name: ign
           description: The name of the player.
           required: false
+          autocomplete: true
         2:
           type: string
           name: skill
@@ -570,6 +517,7 @@ mod_app_cmd_run_once:
           name: ign
           description: What is your in game name (ign)
           required: true
+          autocomplete: true
         2:
           type: string
           name: time_zone
@@ -628,6 +576,7 @@ tempban_cmd_run_once:
           name: ign
           description: The in-game name of the player
           required: true
+          autocomplete: true
         2:
           type: string
           name: reason
@@ -673,6 +622,7 @@ permban_cmd_run_once:
           name: ign
           description: The in-game name of the player
           required: true
+          autocomplete: true
         2:
           type: string
           name: reason
@@ -691,6 +641,7 @@ warn_cmd_run_once:
           name: ign
           description: The in-game name of the player
           required: true
+          autocomplete: true
         2:
           type: string
           name: reason
@@ -709,6 +660,7 @@ mute_cmd_run_once:
           name: ign
           description: The in-game name of the player
           required: true
+          autocomplete: true
         2:
           type: string
           name: time
@@ -743,6 +695,7 @@ jail_cmd_run_once:
           name: ign
           description: The in-game name of the player
           required: true
+          autocomplete: true
         2:
           type: string
           name: time
@@ -776,6 +729,7 @@ unjail_cmd_run_once:
           name: ign
           description: The in-game name of the player
           required: true
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:unjail "description:Unjail a certain player" options:<[options]>
 
 unban_cmd_run_once:
@@ -788,6 +742,7 @@ unban_cmd_run_once:
           name: ign
           description: The in-game name of the player
           required: true
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:unban "description:Unban a certain player" options:<[options]>
 
 unmute_cmd_run_once:
@@ -800,4 +755,5 @@ unmute_cmd_run_once:
           name: ign
           description: The in-game name of the player
           required: true
+          autocomplete: true
     - ~discordcommand id:zc-info create group:<discord[zc-info].group[<script[zc_bot_info].data_key[group_name]>]> name:unmute "description:Unmute a certain player" options:<[options]>
